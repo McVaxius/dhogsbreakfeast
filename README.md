@@ -1,3 +1,8 @@
+##
+_functions.lua
+its here in the root so you can find it easily.
+please enjoy.
+
 ## This is stolen from the SND repo before the community scripts part goes offline forever. here it is. please enjoy
 idk what i will do with it. i suppose i will move all the non-mine-scripts into some folder and call them archival reference scripts or delete them.
 
