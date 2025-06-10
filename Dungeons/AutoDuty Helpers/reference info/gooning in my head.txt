@@ -1,0 +1,20 @@
+goonish thoughts
+I want to farm decumana as well. how shall we approach this problem.
+
+
+farm prae until 99 pare done for the day.
+farm decumana until 1 am PDT
+
+repeat
+
+Script start ->
+intialize table
+date - prae runs - porta runs
+
+Start of loop
+check date, check prae runs, if <99, we will pick prae in the DF menu, otherwise we pick Porta
+DF check -> clear selection? Pick the right duty?
+check area if its not (1044 or 1048) flag as outside,  and entered = 0
+if area is (1044 or 1048) and entered == 0 flag as inside, and entered = 1
+	log update incremeber for appropriate dungeon
+	

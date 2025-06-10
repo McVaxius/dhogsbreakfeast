@@ -1,0 +1,22 @@
+--[[
+  Description: regularsnd macro for weekly leves. requires some yesalready config
+  Author: McVaxius
+  Link: https://discord.com/channels/1162031769403543643/1162799234874093661/1190014979831779478
+]]
+
+/echo Make sure to accept the leves before the one you want
+/echo since it will pick up first leve in the list
+/echo So if you want 84 leve you pick up 80 and 82 leve
+/echo and the regular /pyes for HQ items and Pandora auto turn in
+/gs change Armorer
+/target Grigge <wait.0.35>
+/send Numpad0
+/waitaddon JournalDetail <wait.0.1>
+/click journal_detail_accept
+/wait 0.5
+/send Escape
+/wait 0.5
+/target Ahldiyrn <wait.0.35>
+/send Numpad0
+/wait 2.5
+/loop

@@ -1,0 +1,170 @@
+****************
+**INSTRUCTIONS**
+****************
+This is just kind of proof of concept farming script for duties that vbm AI mode can solve or doesn't need to becuase your doing it unsynced.
+
+******************
+**REQUIRED REPOS**
+******************
+https://love.puni.sh/ment.json
+https://puni.sh/api/repository/croizat
+https://puni.sh/api/repository/veyn
+https://raw.githubusercontent.com/a08381/Dalamud.SkipCutscene/dist/repo.json
+
+******************
+**OPTIONAL REPOS**
+******************
+https://puni.sh/api/repository/kawaii
+https://puni.sh/api/repository/taurenkey
+https://plugins.carvel.li
+https://raw.githubusercontent.com/NightmareXIV/MyDalamudPlugins/main/pluginmaster.json
+
+********************
+**REQUIRED PLOGONS**
+********************
+*Something Need Doing (croizat fork)
+*Pandora
+*Rotation solver
+*Simpletweaks
+*YesAlready
+*TextAdvance
+*Cutscene Skip
+*vnavmesh
+*visland
+
+*****************
+**Plogon config**
+*****************
+simpletweaks -> turn on maincommand
+simpletweaks -> (optional) turn on autoequip command and set it to /equipguud
+pandora -> turn on auto interact on pandora set distance to 5 dist 3 height
+pandora -> auto interact settings -> Exclude combat
+pandora -> open chests -> on, other options inside not checked
+automaton -> auto leave duty . set it to like 60,000 ms or higher so that it can catch some im-dead-when-duty-ended situations while also not cheating itself out of dungeon loots
+bossmod -> Action Tweak and Autorotation settings -> ALL OFF
+vnavmesh/visland -> nothing just leave it alone unless you know what you are doing
+something need doing -> go to options and disable SND targeting
+rotation solver -> self configured with this script
+lazyloot -> optional you decide. set your lazyloot to /fulf need/green/pass/off etc
+yesalready -> setup a leave from instance.. the first time you exit you can auto add with teh circular plus icon
+yesalready -> bothers -> auto commence duty
+textadvance -> auto on and add your char to the list
+Final Fantasy XIV Itself -> Preselect port decumana in the duty finder menu on the designated party leader then close the window, OR do it in the duty support window if thats the option you are choosing
+Final Fantasy XIV Itself -> Character -> Targeting -> Ground Targeting -> Unlocked --*make this a pcall later but leave a note somewhere to user so they can change it if they wanna aim imanually later.
+Final Fantasy XIV Itself -> Character -> Control Settings -> General -> LEGACY MOVEMENT
+Final Fantasy XIV Itself -> Character -> Control Settings -> General -> UNCHECK "Disable Camera Pivot"
+--------------
+SCRIPT CONFIG
+--------------
+--------------
+--.ini files--
+--------------
+the reason we use an ini file is so you can have many different characters configured separately and also update the script without having to edit it at all. (aside from copy and paste)
+Read the ini file - it should self explain the variables.  and it respects comments. just not same-line comments
+the ini file goes into the folder you can see below
+%AppData%\XIVLauncher\pluginConfigs\SomethingNeedDoing\
+you can change that to a different folder if you wish. just find the appropriate line of code in here to do that.
+to use this find the arbitraryduty_McVaxius.ini file and rename it to arbitraryduty_Yourcharfirstlast.ini   notice no spaces.
+so if your character is named Pomelo Pup'per then you would call the .ini file   arbitraryduty_PomeloPupper.ini
+just remember it will strip spaces and apostrophes
+---------------
+--.duty files--
+---------------
+in the repo you will see something suspicious that look like number.duty
+those are waypoint files!
+you need to place them in the same folder as the .ini files in order to make use of waypoints
+this is the same place that the auto generated WP from the code snippet below will place your newly minted waypoint files
+%AppData%\XIVLauncher\pluginConfigs\SomethingNeedDoing\
+--------------
+enjoy
+****END OF INSTRUCTIONS****
+misc side note. the version number at end of file is meaningless. its just there so i can see if i copy pasted successfully over remote control of another PC ;p clipboard is finicky
+
+
+
+
+Now for the fun part -> making waypoints and what they are etc.
+note to reader:
+please go ahead and steal the code etc.
+would appreciate if you help to improve it and PR your .duty files.
+
+--------------------------------------------
+--------how to make a .duty file------------
+--------------------------------------------
+Make script entries in SND with the following:
+
+----------------------------------------------------------------------------------------
+--zoneID for filename
+yield("/echo this is the zone/area ID = "..GetZoneID().." you can call the file "..GetZoneID()..".duty")
+----------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------
+-- Autogenerate WP file
+local file_path = os.getenv("appdata").."\\XIVLauncher\\pluginConfigs\\SomethingNeedDoing\\"..GetZoneID()..".duty"
+
+-- Open file for appending (or create it if it doesn't exist)
+local file = io.open(file_path, "a")
+
+if file then
+    -- Write text to the file
+    file:write("1,"..GetPlayerRawXPos()..","..GetPlayerRawYPos()..","..GetPlayerRawZPos()..",3,0,0\n")
+    -- Close the file handle
+    file:close()
+    yield("/echo WP added to -> "..file_path)
+else
+    yield("/echo Error: Unable to open file for writing")
+end
+
+----------------------------------------------------------------------------------------
+
+----------------------------------------------------------------------------------------
+--basic line entry for the .duty file for the x,y,z values
+yield("/echo 1,"..GetPlayerRawXPos()..","..GetPlayerRawYPos()..","..GetPlayerRawZPos()..",3,0")
+----------------------------------------------------------------------------------------
+
+----------------------------------------------------------------------------------------
+--for getting the distance after an area transition for column 6 of the .duty file
+local function distance(x1, y1, z1, x2, y2, z2)
+    return math.sqrt((x2 - x1)^2 + (y2 - y1)^2 + (z2 - z1)^2)
+end
+x2 = 123
+y2 = 123
+z2 = 123
+yield("/echo distance to waypoint after area transition -> "..distance(GetPlayerRawXPos(),GetPlayerRawYPos(),GetPlayerRawZPos(), x2, y2, z2)) --x2 y2 z2 are up to you to input
+----------------------------------------------------------------------------------------
+
+----------------------------------------
+--------.duty file structure------------
+----------------------------------------
+Every duty file has a number of rows. each one has 6 columns separated by a comma (,) and no spaces between commmas and values.
+
+Value 1: 0, 1 || movement type || 0 Visland, 1 = Vnavmesh, planned: 2 = visland+jumping, 3=vnavmesh + jumping, 4 = visland + jumping + wiggling, 5 = vnavmesh + jumping + wiggling
+Value 2: x || get from above script
+Value 3: y || get from above script
+Value 4: z || get from above script
+Value 5: t || seconds to wait after reaching waypoint before next waypoint trigger. default 3 seconds
+Value 6: r || value 0 normall, anything above 0 otherwise.  Explanation: if we have gone through a sub area transition like the magitek armor in prae -> basement section, we need to solve that. simply put in the appropriate value a few y lower than the distance to waypoint AFTER the area transition. the prae (1044.duty) preset has a few entries in it.
+Value 7: g || value 0 = normal wp, 1 = chest via WP default is 1 for WP chest
+			secret bonus: if you put text in value 7, it will search for that . like a key or something. this way we can grab keydrops... make sure you have at least 5 seconds delay for such interactions
+
+
+General tips:
+use visland to get through area transitions
+if you think navmesh might be weird around some messy corners, dont trust it implicitly and set some good spots it can reach or just use visland.
+if the duty requires some weird stuff to proceed come to the disc and let's find a solution ill write the lua or you can and we can make it work.
+some stuff isn't yet solved by bossmod but we can solve in SND for now
+
+--------------------------------------------
+---------------List of Duties---------------
+--------------------------------------------
+1035	WP		LUA		Level 15	Sastasha Synced		-	Synced.
+1041	WP		LUA		Level 32	Brayflox Longstop	-	Synced.
+1043	WP		-		Level 50	Castrum Meridianum	- 	Synced.
+1044	WP		LUA		Level 50	The Praetorium		-	Synced.
+1048	-		LUA		Level 50	Porta Decumana		-	Synced. Requires ENUM for party members (4).
+445		WP		LUA		Level 60	Alexander 4 Normal	- 	Unsynced.
+584		WP		LUA		Level 60	Alexander 9 Savage	- 	Unsynced.
+854		-		LUA		Level 80	Eden 2 Savage		-	Unsynced. Requires ENUM for party members (4). 1 tank and at least 2 healers :p
+856		-		WIP		Level 80	Eden 4 Savage		-	WIP
+???		-		WIP		Level 80	Eden 7 Savage		-	WIP
+???		-		WIP		Level 80	Eden 8 Savage		-	WIP
+???		-		WIP		Level 80	Eden 12 Savage		-	WIP
