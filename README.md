@@ -1,6 +1,7 @@
-##_functions.lua
+## _functions.lua
 its here in the root so you can find it easily.
 please enjoy.
+Also please note when it was last updated in case you using it to light your dumpsters on fire.
 
 ## The !Archived from old SND! is cloned from the old SND repo
 This was done because with new-snd the the community scripts part goes offline forever. please enjoy if you need it.
