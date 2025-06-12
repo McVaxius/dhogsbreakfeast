@@ -769,6 +769,18 @@ function clingmove(nemm)
 		yield("/vnav stop")
 	end
 	if allowmovement == 1 then
+		if are_we_DD == 1 then
+			DD_relax = "Cairn of Passage"
+			if distance(GetPlayerRawXPos(), GetPlayerRawYPos(), GetPlayerRawZPos(), GetObjectRawXPos(DD_relax),GetObjectRawYPos(DD_relax),GetObjectRawZPos(DD_relax)) < 5 then
+				yield("/bmrai off")
+				yield("/rotation auto")
+				yield("/echo CHILLING a sec so we can actually travel to the next floor")
+				yield("/vnav moveto "..GetObjectRawXPos(fren).." "..GetObjectRawYPos(fren).." "..GetObjectRawZPos(fren))
+				yield("/wait 5")
+				yield("/bmrai on")
+				yield("/rotation cancel")
+			end
+		end
 		--sub-area-transition-hack-while-in-duty
 		if are_we_DD == 0 then
 			if bistance > 20 and GetCharacterCondition(34) == true then --maybe we went through subarea transition in a duty?

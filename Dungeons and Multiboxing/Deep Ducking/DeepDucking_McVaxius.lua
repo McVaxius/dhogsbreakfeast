@@ -54,6 +54,7 @@ end
 fatfuck = 1
 number_of_party = 4 --how many poople in party hah well we will check anyhow
 
+yield("/bmrai setpresetname DD")
 
 --The Distance Function
 --why is this so complicated? well because sometimes we get bad values and we need to sanitize that so snd does not STB (shit the bed)
@@ -105,7 +106,7 @@ rpZ = GetPlayerRawZPos()
 
 
 while fatfuck == 1 do
-	yield("/wait 1")
+	yield("/wait 0.1") --speedup
 	if IsPlayerAvailable() == false then
 		--may as well reset everything if we get to this part
 		yield("/send NUMPAD0")
