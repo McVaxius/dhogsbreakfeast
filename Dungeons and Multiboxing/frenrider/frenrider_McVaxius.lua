@@ -131,7 +131,7 @@ ini_check("version", vershun)
 ----------------------------
 ---FREN / PARTY / CHOCOBO---
 ----------------------------
-fren = ini_check("fren", "Fren Name")  						-- can be partial as long as its unique
+fren = ini_check("fren", "Fren Name")  						-- can be partial as long as its unique- do not include @server, just the first and last of the fren name.  So   "Uncle Steven@Yourmom"   would just be "Uncle Steven"
 fly_you_fools = ini_check("fly_you_fools", false)			-- (fly and follow instead of mount and wait) usecase: you dont have multi seater of sufficient size, or you want to have multiple multiseaters with diff peopel riding diff ones.  sometimes frendalf doesnt want you to ride him and will ask you to ride yourself right up into outer space
 fool_flier = ini_check("fool_flier", "Beast with 3 backs")	-- if you have fly you fools as true, which beast shall you summon? the precise name with correct capitalization such as "Company Chocobo" "Behemoth" etc
 fulftype = ini_check("fulftype", "unchanged")				-- If you have lazyloot installed AND enabled (has to be done manually as it only has a toggle atm) can setup how loot is handled. Leave on "unchanged" if you don't want it to set your loot settings. Other settings include need, greed, pass
