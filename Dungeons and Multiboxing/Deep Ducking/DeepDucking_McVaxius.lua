@@ -107,18 +107,20 @@ rpZ = GetPlayerRawZPos()
 
 while fatfuck == 1 do
 	yield("/wait 0.1") --speedup
-
+    
+	yield("/attack")	
 	if string.len(GetTargetName()) > 1 then --check the target to make sure its valid before checking distance.
 		if tonumber(GetLevel(GetClassJobId())) < 60 then --if if we aren't leveled to max in potd for example. i need to see if i can figure out which dd we in
 			if distance(GetPlayerRawXPos(), GetPlayerRawYPos(), GetPlayerRawZPos(), GetObjectRawXPos(GetTargetName()),GetObjectRawYPos(GetTargetName()),GetObjectRawZPos(GetTargetName())) < 50 then
 				yield("/vnav moveto "..GetObjectRawXPos(GetTargetName()).." "..GetObjectRawYPos(GetTargetName()).." "..GetObjectRawZPos(GetTargetName()))
-				yield("/wait 5") -- escape the gravitational pull of the floor exit
+				yield("/echo vnavving to -> "..GetTargetName())
+				yield("/wait 15") -- escape the gravitational pull of the floor exit
 			end
 		end
 	end
 	
 	DD_relax = "Cairn of Passage"
-	if distance(GetPlayerRawXPos(), GetPlayerRawYPos(), GetPlayerRawZPos(), GetObjectRawXPos(DD_relax),GetObjectRawYPos(DD_relax),GetObjectRawZPos(DD_relax)) < 15 then
+	if distance(GetPlayerRawXPos(), GetPlayerRawYPos(), GetPlayerRawZPos(), GetObjectRawXPos(DD_relax),GetObjectRawYPos(DD_relax),GetObjectRawZPos(DD_relax)) < 50 then
 		yield("/bmrai off")
 		yield("/rotation auto")
 		yield("/echo CHILLING a sec so we can actually travel to the next floor")
@@ -128,8 +130,9 @@ while fatfuck == 1 do
 		yield("/rotation cancel")
 		--now we just need to check if there is a monster somewhat nearby so owe can escape the exit if need be. lets say 30 yalms?
 		if string.len(GetTargetName()) > 1 then --check the target to make sure its valid before checking distance.
-			if distance(GetPlayerRawXPos(), GetPlayerRawYPos(), GetPlayerRawZPos(), GetObjectRawXPos(GetTargetName()),GetObjectRawYPos(GetTargetName()),GetObjectRawZPos(GetTargetName())) < 30 then
+			if distance(GetPlayerRawXPos(), GetPlayerRawYPos(), GetPlayerRawZPos(), GetObjectRawXPos(GetTargetName()),GetObjectRawYPos(GetTargetName()),GetObjectRawZPos(GetTargetName())) < 50 then
 				yield("/vnav moveto "..GetObjectRawXPos(DD_relax).." "..GetObjectRawYPos(DD_relax).." "..GetObjectRawZPos(DD_relax))
+				yield("/echo vnavving to -> "..DD_relax)
 				yield("/wait 5") -- escape the gravitational pull of the floor exit
 			end
 		end
@@ -228,8 +231,8 @@ while fatfuck == 1 do
 			--]]
 		
 			if shetzone == 561 then yield("/target Death") end --floor 10
-			--if shetzone == 561 then yield("/target Death") end --floor 20
-			--if shetzone == 561 then yield("/target Death") end --floor 30
+			if shetzone == 562 then yield("/target Spurge") end --floor 20
+			if shetzone == 563 then yield("/target Ningishzida") end --floor 30
 			if shetzone == 564 then yield("/target Ixtab") end --floor 40
 			if shetzone == 565 then yield("/target Edda") end --floor 50
 			if shetzone == 593 then yield("/target Rider") end --floor 60
@@ -237,16 +240,16 @@ while fatfuck == 1 do
 			if shetzone == 595 then yield("/target Gudanna") end --floor 80
 			if shetzone == 596 then yield("/target Godmother") end --floor 90
 			if shetzone == 597 then yield("/target Nybeth") end --floor 100
-			--if shetzone == 598 then yield("/target Nybeth") end --floor 110
+			if shetzone == 598 then yield("/target Alicanto") end --floor 110
 			if shetzone == 599 then yield("/target Kirtimukha") end --floor 120
-			--if shetzone == 600 then yield("/target Nybeth") end --floor 130
-			--if shetzone == 601 then yield("/target Nybeth") end --floor 140
-			--if shetzone == 602 then yield("/target Nybeth") end --floor 150
-			--if shetzone == 603 then yield("/target Nybeth") end --floor 160
-			--if shetzone == 604 then yield("/target Nybeth") end --floor 170
-			--if shetzone == 605 then yield("/target Nybeth") end --floor 180
-			--if shetzone == 606 then yield("/target Nybeth") end --floor 190
-			--if shetzone == 607 then yield("/target Nybeth") end --floor 200
+			if shetzone == 600 then yield("/target Alfard") end --floor 130
+			if shetzone == 601 then yield("/target Puch") end --floor 140
+			if shetzone == 602 then yield("/target Tisiphone") end --floor 150  --halicarnassus ahahahhaha shes baaack
+			if shetzone == 603 then yield("/target Totesritter") end --floor 160
+			if shetzone == 604 then yield("/target Yulunggu") end --floor 170
+			if shetzone == 605 then yield("/target Dendainsonne") end --floor 180
+			if shetzone == 606 then yield("/target Godfather") end --floor 190
+			if shetzone == 607 then yield("/target Nybeth") end --floor 200
 			
 			yield("/bmrai on")
 			yield("/vbmai on")

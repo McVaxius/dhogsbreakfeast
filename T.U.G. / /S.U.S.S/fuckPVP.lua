@@ -4,7 +4,7 @@ Author: Uncle Steven
 
 Turn frontlines into a (shitty) RTS game.
 
-shitter (????) 554
+Feels of Gary (shitter) 554
 incel hacker (danshit madame) 888
 bored er..lands (suck your) 1273
 seal cock (seizure) 431
