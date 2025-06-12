@@ -107,6 +107,34 @@ rpZ = GetPlayerRawZPos()
 
 while fatfuck == 1 do
 	yield("/wait 0.1") --speedup
+
+	if string.len(GetTargetName()) > 1 then --check the target to make sure its valid before checking distance.
+		if tonumber(GetLevel(GetClassJobId())) < 60 then --if if we aren't leveled to max in potd for example. i need to see if i can figure out which dd we in
+			if distance(GetPlayerRawXPos(), GetPlayerRawYPos(), GetPlayerRawZPos(), GetObjectRawXPos(GetTargetName()),GetObjectRawYPos(GetTargetName()),GetObjectRawZPos(GetTargetName())) < 50 then
+				yield("/vnav moveto "..GetObjectRawXPos(GetTargetName()).." "..GetObjectRawYPos(GetTargetName()).." "..GetObjectRawZPos(GetTargetName()))
+				yield("/wait 5") -- escape the gravitational pull of the floor exit
+			end
+		end
+	end
+	
+	DD_relax = "Cairn of Passage"
+	if distance(GetPlayerRawXPos(), GetPlayerRawYPos(), GetPlayerRawZPos(), GetObjectRawXPos(DD_relax),GetObjectRawYPos(DD_relax),GetObjectRawZPos(DD_relax)) < 15 then
+		yield("/bmrai off")
+		yield("/rotation auto")
+		yield("/echo CHILLING a sec so we can actually travel to the next floor")
+		yield("/vnav moveto "..GetObjectRawXPos(DD_relax).." "..GetObjectRawYPos(DD_relax).." "..GetObjectRawZPos(DD_relax))
+		yield("/wait 15")
+		yield("/bmrai on")
+		yield("/rotation cancel")
+		--now we just need to check if there is a monster somewhat nearby so owe can escape the exit if need be. lets say 30 yalms?
+		if string.len(GetTargetName()) > 1 then --check the target to make sure its valid before checking distance.
+			if distance(GetPlayerRawXPos(), GetPlayerRawYPos(), GetPlayerRawZPos(), GetObjectRawXPos(GetTargetName()),GetObjectRawYPos(GetTargetName()),GetObjectRawZPos(GetTargetName())) < 30 then
+				yield("/vnav moveto "..GetObjectRawXPos(DD_relax).." "..GetObjectRawYPos(DD_relax).." "..GetObjectRawZPos(DD_relax))
+				yield("/wait 5") -- escape the gravitational pull of the floor exit
+			end
+		end
+	end
+
 	if IsPlayerAvailable() == false then
 		--may as well reset everything if we get to this part
 		yield("/send NUMPAD0")
@@ -154,24 +182,6 @@ while fatfuck == 1 do
 			end
 			wallitbro = 0
 			yield("/wait 0.5")
-		end
-
-		DD_relax = "Cairn of Passage"
-		if distance(GetPlayerRawXPos(), GetPlayerRawYPos(), GetPlayerRawZPos(), GetObjectRawXPos(DD_relax),GetObjectRawYPos(DD_relax),GetObjectRawZPos(DD_relax)) < 15 then
-			yield("/bmrai off")
-			yield("/rotation auto")
-			yield("/echo CHILLING a sec so we can actually travel to the next floor")
-			yield("/vnav moveto "..GetObjectRawXPos(DD_relax).." "..GetObjectRawYPos(DD_relax).." "..GetObjectRawZPos(DD_relax))
-			yield("/wait 15")
-			yield("/bmrai on")
-			yield("/rotation cancel")
-			--now we just need to check if there is a monster somewhat nearby so owe can escape the exit if need be. lets say 30 yalms?
-			if string.len(GetTargetName()) > 1 then --check the target to make sure its valid before checking distance.
-				if distance(GetPlayerRawXPos(), GetPlayerRawYPos(), GetPlayerRawZPos(), GetObjectRawXPos(GetTargetName()),GetObjectRawYPos(GetTargetName()),GetObjectRawZPos(GetTargetName())) < 30 then
-					yield("/vnav moveto "..GetObjectRawXPos(DD_relax).." "..GetObjectRawYPos(DD_relax).." "..GetObjectRawZPos(DD_relax))
-					yield("/wait 5") -- escape the gravitational pull of the floor exit
-				end
-			end
 		end
 
 		if anal_of_passage > 180 then --every 3 minutes try to leave the floor just in case we stuck
