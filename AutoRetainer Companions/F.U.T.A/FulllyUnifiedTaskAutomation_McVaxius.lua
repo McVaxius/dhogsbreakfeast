@@ -11,7 +11,7 @@ It could be ocean fishing, triple triad, inventory cleaning, going for a jog aro
 Requirements : SND, vnavmesh, dropbox, visland, pandora, simpletweaks
 and maybe more - let's see where we go with it
 everything from the folder you found this
-and https://github.com/Jaksuhn/SomethingNeedDoing/blob/master/Community%20Scripts/AutoRetainer%20Companions/RobustGCturnin/_functions.lua
+and https://raw.githubusercontent.com/McVaxius/dhogsbreakfeast/refs/heads/main/_functions.lua
 
 throw everything into %AppData%\XIVLauncher\pluginConfigs\SomethingNeedDoing\
 

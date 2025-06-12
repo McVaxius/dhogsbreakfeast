@@ -52,7 +52,7 @@ Yesalready configs
 	[x] Contents Finder Confirm  (auto confirm queueing)
 
 Required script:
-https://github.com/Jaksuhn/SomethingNeedDoing/blob/master/Community%20Scripts/AutoRetainer%20Companions/RobustGCturnin/_functions.lua
+https://raw.githubusercontent.com/McVaxius/dhogsbreakfeast/refs/heads/main/_functions.lua
 
 place into %AppData%\XIVLauncher\pluginConfigs\SomethingNeedDoing\
 ---------

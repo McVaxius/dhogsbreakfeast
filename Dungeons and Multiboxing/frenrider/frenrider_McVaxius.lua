@@ -1,5 +1,8 @@
 --[[
 Changelog
+v2.4
+deep dungeon area transitions should be more reliable now and not rubber banding back and forth while "fren" is at the exit, waiting
+
 v2.3
 fixed bubble follow wandering
 fixed slowness for follow
@@ -48,8 +51,8 @@ croizats SND - disable SND targeting in config
 simpletweaks with targeting fix enabled
 vnavmesh
 visland
-_functions.lua into your SND folder in %AppData%\XIVLauncher\\pluginConfigs\\SomethingNeedDoing\\_functions
-you can find it here https://raw.githubusercontent.com/Jaksuhn/SomethingNeedDoing/master/Community%20Scripts/AutoRetainer%20Companions/RobustGCturnin/_functions.lua
+_functions.lua into your SND folder in %AppData%\XIVLauncher\\pluginConfigs\\SomethingNeedDoing\\
+you can find it here https://raw.githubusercontent.com/McVaxius/dhogsbreakfeast/refs/heads/main/_functions.lua
 
 *optional:
 bring some gysahl greens
