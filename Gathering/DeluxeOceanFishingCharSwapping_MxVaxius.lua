@@ -127,7 +127,8 @@ function fishing()
 	--ok we made it to the right character. let us continue.
 	
 	-- Teleport to Lisma
-	yield("/tp Limsa Lominsa Lower Decks <wait.5>")
+	yield("/tp Limsa Lominsa Lower Decks")
+	yield("/wait 5")
 	yield("/waitaddon _ActionBar <maxwait.600><wait.10>")
 	
 	--[[
@@ -211,7 +212,8 @@ function fishing()
 	while (type(fishqtest) == "boolean" and fishqtest == false) do
 		yield("/target Dryskthota")
 		yield("/wait 2")
-		yield("/interact <wait.2>")
+		yield("/interact")
+		yield("/wait 2")
 		yield("/wait 1")
 		ungabunga()
 		yield("/wait 10")
@@ -234,7 +236,7 @@ function fishing()
 		yield("/wait 5")
 	end
 	--if so then wait for 30 seconds then start heading to the visland location
-	yield("<wait.30.0>")
+	yield("/wait 30")
 	--yield("/visland execonce OceanFishing")
 	--yield("/visland moveto 7.451 6.750 -4.043")
 
@@ -283,8 +285,10 @@ function fishing()
 			if GetCharacterCondition(34)==true then
 				if GetCharacterCondition(35)==false then
 				--LEAVE MENU!!!!!!!!
-				yield("/send NUMPAD0 <wait.1.0>")
-				yield("/send NUMPAD0 <wait.1.0>")
+				yield("/send NUMPAD0")
+				yield("/wait 1")
+				yield("/send NUMPAD0")
+				yield("/wait 1")
 				end
 			end
 		end
@@ -328,18 +332,24 @@ function fishing()
 
 	--normal small house shenanigans
 	if which_one[feesh_c][2] == 0 then
-		yield("/hold W <wait.1.0>")
+		yield("/hold W")
+		yield("/wait 1")
 		yield("/release W")
-		yield("/target Entrance <wait.1>")
+		yield("/hold W")
+		yield("/wait 1")
 		yield("/lockon on")
-		yield("/automove on <wait.2.5>")
+		yield("/hold W")
+		yield("/wait 2.5")
 		yield("/interact")
-		yield("/automove off <wait.1.5>")
-		yield("/hold Q <wait.1.0>")
+		yield("/automove off")
+		yield("/wait 1.5")
+		yield("/hold Q")
+		yield("/wait 1")
 		yield("/interact")
 		yield("/release Q")
 		yield("/interact")
-		yield("/hold Q <wait.1.0>")
+		yield("/hold Q")
+		yield("/wait 1")
 		yield("/interact")
 		yield("/release Q")
 		yield("/interact")
@@ -361,7 +371,7 @@ while true do
   local formattedTime = string.format("%04d-%02d-%02d %02d:%02d:%02d", currentTime.year, currentTime.month, currentTime.day, currentTime.hour, currentTime.min, currentTime.sec)
 	
 	if GetCharacterCondition(1)==false then
-		yield("<wait.30.0>")  -- Wait for 30 seconds because we are at the login screen
+		yield("/wait 30")  -- Wait for 30 seconds because we are at the login screen
 	end
 	
 	--secret variable
