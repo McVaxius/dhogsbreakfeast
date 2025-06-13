@@ -108,6 +108,14 @@ rpZ = GetPlayerRawZPos()
 while fatfuck == 1 do
 	yield("/wait 0.1") --speedup
     
+	if getRandomNumber(1, 20) == 1 then
+		yield("/target Palace")
+		yield("/target Peaven")
+		yield("/target Orthros")
+		yield("/target Wuckcuck")
+		yield("/echo grabbing nearby monster cuz whynot")
+	end
+	
 	yield("/attack")	
 	if string.len(GetTargetName()) > 1 then --check the target to make sure its valid before checking distance.
 		if tonumber(GetLevel(GetClassJobId())) < 60 then --if if we aren't leveled to max in potd for example. i need to see if i can figure out which dd we in
@@ -236,7 +244,7 @@ while fatfuck == 1 do
 			if shetzone == 564 then yield("/target Ixtab") end --floor 40
 			if shetzone == 565 then yield("/target Edda") end --floor 50
 			if shetzone == 593 then yield("/target Rider") end --floor 60
-			if shetzone == 594 then yield("/target Yaguaru") end --floor 70
+			if shetzone == 594 then yield("/target Yaquaru") end --floor 70
 			if shetzone == 595 then yield("/target Gudanna") end --floor 80
 			if shetzone == 596 then yield("/target Godmother") end --floor 90
 			if shetzone == 597 then yield("/target Nybeth") end --floor 100
