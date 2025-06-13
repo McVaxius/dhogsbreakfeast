@@ -125,11 +125,16 @@ yield("/target Syneyhil")
 yield("/wait 2")
 yield("/interact")
 yield("/wait 2")
-yield("/callback SelectIconString true 1 <wait.2>")
-yield("/callback SelectString true 0 <wait.2>")
-yield("/callback Shop true 0 4 1 <wait.1.0>")  --the 1 on the end is quantity i thnk we can do 2, but i dont wanna mess with that
-yield("/callback Shop true 0 4 1 <wait.1.0>")
-yield("/callback Shop true -1 <wait.1.0>")
+yield("/callback SelectIconString true 1")
+yield("/wait 2")
+yield("/callback SelectString true 0")
+yield("/wait 2")
+yield("/callback Shop true 0 4 1")  --the 1 on the end is quantity i thnk we can do 2, but i dont wanna mess with that
+yield("/wait 1")
+yield("/callback Shop true 0 4 1")
+yield("/wait 1")
+yield("/callback Shop true -1")
+yield("/wait 1")
 visland_stop_moving()
 
 --get to vocate and mek 2 retainers.

@@ -711,11 +711,12 @@ function checkAREA()
 			local HFHfilename = os.getenv("appdata").."\\XIVLauncher\\pluginConfigs\\SomethingNeedDoing\\hfh_"..HFHtempchar..".ini"
 
 			-- Call the function to load variables from the file
-			loadVariablesFromFile(HFHfilename)
-
+			--loadVariablesFromFile(HFHfilename)
+			ffunctionsToLoad = loadfile(HFHfilename)
+			ffunctionsToLoad()
 			yield("/echo Hello Fellow humans !")
 
-			floop = idle_shitter_list[getRandomNumber(1,#HFHidle_shitter_list)]
+			floop = HFHidle_shitter_list[getRandomNumber(1,#HFHidle_shitter_list)]
 			yield(floop.." motion")
 		end
 		if idle_shitter == "nothing" then

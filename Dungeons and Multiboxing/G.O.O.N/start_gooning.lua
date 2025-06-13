@@ -24,7 +24,8 @@ end
 yield("/ad stop")
 
 yield("/wait 1")
-yield("/hold W <wait.1.0>")
+yield("/hold W")
+yield("/wait 1")
 yield("/release W")
 
 --yield("/echo ad start")

@@ -89,7 +89,8 @@ if isblu == 0 then
 		yield("/gaction jump")
 
 		yield("/release E")
-		yield("/hold W <wait.0.5>")
+		yield("/hold W")
+		yield("/wait 0.5")
 		yield("/gaction jump")
 		yield("/release W")
 		yield("/interact")
@@ -129,7 +130,8 @@ if isblu == 0 then
 		fartknocker()
 		yield("/waitaddon NamePlate <maxwait.600><wait.5>")
 		yield("/wait 1")
-		yield("/hold W <wait.0.5>")
+		yield("/hold W")
+		yield("/wait 0.5")
 		yield("/release W")
 
 		yield("/ays m e") --turn ar back on

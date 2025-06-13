@@ -53,17 +53,21 @@ yield("/echo Set the number of matches and Enable TT after!!!")
  yield("/wait 3")
 --proceed when not moving
  visland_stop_moving()
- yield("/pinteract <wait.5>")
+ yield("/interact") --pinteract doesnt exist?
+  yield("/wait 5")
+
 
 --target the manservant
 --House Fortemps Manservant
- yield("/target Manservant <wait.1>")
+ yield("/target Manservant")
+ yield("/wait 1")
  yield("/vnav moveto "..GetObjectRawXPos(GetTargetName()).." "..GetObjectRawYPos(GetTargetName()).." "..GetObjectRawZPos(GetTargetName()))
  yield("/wait 3")
 --proceed when not moving
  visland_stop_moving()
- yield("/interact <wait.5>")
-
+ yield("/interact")
+yield("/wait 5")
+ 
 --wait a few seconds then start checking status of player condition until its no longer playing TT
 yield("/wait 5")
 

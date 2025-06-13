@@ -62,8 +62,10 @@ if GCrenk < 4 then --we can go up to 4 safely if we are below it. if you put in 
 	yield("/send NUMPAD0")
 	yield("/wait 0.5")
 	yield("/send NUMPAD0")
-	yield("/send ESCAPE <wait.1.5>")
-	yield("/send ESCAPE <wait.1.5>")
+	yield("/send ESCAPE")
+	yield("/wait 1.5")
+	yield("/send ESCAPE")
+	yield("/wait 1.5")
 	yield("/wait 3")
 
 	--wait for char condition 1
@@ -85,8 +87,10 @@ if GCrenk < 7 and GCrenk > 4 then --if we are above 4 and below 7 we can go up t
 	yield("/send NUMPAD0")
 	yield("/wait 0.5")
 	yield("/send NUMPAD0")
-	yield("/send ESCAPE <wait.1.5>")
-	yield("/send ESCAPE <wait.1.5>")
+	yield("/send ESCAPE")
+	yield("/wait 1.5")
+	yield("/send ESCAPE")
+	yield("/wait 1.5")
 	yield("/wait 3")
 
 	--wait for char condition 1
@@ -97,7 +101,8 @@ if GCrenk < 7 and GCrenk > 4 then --if we are above 4 and below 7 we can go up t
 end
 
 -- Teleport back to FC House
-yield("/tp Estate Hall <wait.10>")
+yield("/tp Estate Hall")
+yield("/wait 10")
 yield("/waitaddon _ActionBar <maxwait.600><wait.5>")
 for i=1, 20 do
   yield("/send W")
@@ -106,7 +111,10 @@ end
 yield("/send Right")
 yield("/send Right")
 
-yield("/target Entrance <wait.1>")
+yield("/target Entrance")
+yield("/wait 1")
 yield("/lockon on")
-yield("/automove on <wait.2.5>")
-yield("/automove off <wait.1.5>")
+yield("/automove on")
+yield("/wait 2.5")
+yield("/automove off")
+yield("/wait 1.5")

@@ -25,9 +25,10 @@ function visland_stop_moving()
 end
 
 function open_aetheryte()
- yield("/waitaddon NamePlate <wait.1>")
- yield("/wait 10")
- yield("/target Aetheryte <wait.1>")
+ yield("/waitaddon NamePlate")
+ yield("/wait 1")
+ yield("/target Aetheryte")
+ yield("/wait 1")
  yield("/lockon")
  yield("/automove")
  yield("/send E")
@@ -46,7 +47,8 @@ function open_aetheryte()
 end
 
 --teleport to Ishgard when name plate is ready
-yield("/tp Foundation <wait.8>")
+yield("/tp Foundation")
+yield("/wait 8")
 
 --fire up saucy
 yield("/saucy")
@@ -71,7 +73,8 @@ yield("/visland execonce tthouse")
 visland_stop_moving()
 
 --target manor entrance guy
- yield("/target House Fortemps Guard <wait.1>")
+ yield("/target House Fortemps Guard")
+ yield("/wait 1")
  yield("/lockon")
  yield("/automove")
 --proceed when not moving
@@ -81,7 +84,8 @@ visland_stop_moving()
 
 --target the manservant
 --House Fortemps Manservant
- yield("/target House Fortemps Manservant <wait.1>")
+ yield("/target House Fortemps Manservant")
+ yield("/wait 1")
  yield("/lockon")
  yield("/automove")
 --proceed when not moving

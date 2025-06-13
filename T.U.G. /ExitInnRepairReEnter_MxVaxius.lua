@@ -40,10 +40,14 @@ if NeedsRepair(15) and  GetItemCount(1) > 4999 then
 	yield("/wait 1")
 	yield("/pcall Repair true 1")
 	yield("/wait 1")
-	yield("/send ESCAPE <wait.1.5>")
-	yield("/send ESCAPE <wait.1.5>")
-	yield("/send ESCAPE <wait.1.5>")
-	yield("/send ESCAPE <wait.1>")
+	yield("/send ESCAPE")
+	yield("/wait 1.5")
+	yield("/send ESCAPE")
+	yield("/wait 1.5")
+	yield("/send ESCAPE")
+	yield("/wait 1.5")
+	yield("/send ESCAPE")
+	yield("/wait 1")
 	yield("/wait 3")
 	
 	--reenter the inn room

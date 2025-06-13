@@ -27,7 +27,8 @@ function fishing()
 	--ok we made it to the right character. let us continue.
 	
 	-- Teleport to Lisma
-	yield("/tp Limsa Lominsa Lower Decks <wait.5>")
+	yield("/tp Limsa Lominsa Lower Decks")
+	yield("/wait 5")
 	yield("/waitaddon _ActionBar <maxwait.600>")
 	yield("/wait 10")
 	

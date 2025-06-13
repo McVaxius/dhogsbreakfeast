@@ -22,22 +22,24 @@ FirstRun = 0
  --yield("/waitaddon NowLoading <maxwait.15>")
  yield("/waitaddon NamePlate <maxwait.600><wait.5>")
 
- yield("/tp Ul'dah - Steps of Nald <wait.8>")
+ yield("/tp Ul'dah - Steps of Nald")
+ yield("/wait 8")
  yield("/waitaddon NamePlate <wait.1>")
- yield("<wait.10.0>")
- yield("/target Aetheryte <wait.1>")
+ yield("/wait 10")
+ yield("/target Aetheryte")
+ yield("/wait 1")
  yield("/lockon")
  yield("/automove")
  yield("/send E")
- yield("<wait.0.5>")
+ yield("/wait 0.5")
  yield("/send E")
- yield("<wait.0.5>")
+ yield("/wait 0.5")
  yield("/send E")
- yield("<wait.0.5>")
+ yield("/wait 0.5")
  yield("/send E")
- yield("<wait.0.5>")
+ yield("/wait 0.5")
  yield("/send E")
- yield("<wait.0.5>")
+ yield("/wait 0.5")
  yield("/interact")
  yield("/wait 1")
  yield("/callback SelectString true 0")
@@ -62,34 +64,39 @@ FirstRun = 0
  yield("/visland stop")
  
  --now we buy the buff
-	yield("<wait.5>")
+	yield("/wait 0.5")
 	yield("/target OIC Quartermaster")
 	yield("/lockon")
 	yield("/automove")
-	yield("<wait.5>")
+    yield("/wait 0.5")
 	yield("/send NUMPAD0")
-	yield("/callback SelectString true 0 <wait.1>")
-	yield("/callback SelectString true 0 <wait.1>")
+	yield("/callback SelectString true 0")
+	yield("/wait 1")
+	yield("/callback SelectString true 0")
+	yield("/wait 1")
 
 buycount = 0
 while (buycount < 15) do
 	yield("/callback FreeCompanyExchange false 2 22u")
-	yield("<wait.2>")
+	yield("/wait 2")
 	buycount = buycount + 1
 end
 
-	yield("/send ESCAPE <wait.1.5>")
-	yield("/send ESCAPE <wait.1.5>")
-	yield("/send ESCAPE <wait.1.5>")
+	yield("/send ESCAPE")
+	yield("/wait 1.5")
+	yield("/send ESCAPE")
+	yield("/wait 1.5")
+	yield("/send ESCAPE")
+	yield("/wait 1.5")
 	yield("<wait.5>")
 
 
 --added 5 second wait here because sometimes they get stuck. altho its been biological life form so far....
-yield("<wait.5>")
+yield("/wait 5")
 yield("/tp Estate Hall")
-yield("<wait.1>")
+yield("/wait 1")
 --yield("/waitaddon Nowloading <maxwait.15>")
-yield("<wait.15>")
+yield("/wait 15")
 yield("/waitaddon NamePlate <maxwait.600><wait.5>")
 
 --walk back to entrance properly

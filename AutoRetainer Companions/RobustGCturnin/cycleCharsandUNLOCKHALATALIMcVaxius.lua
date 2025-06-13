@@ -55,11 +55,15 @@ for i=1,#franchise_owners do
 			--normal small house shenanigans
 			yield("/hold W <wait.1.0>")
 			yield("/release W")
-			yield("/target Entrance <wait.1>")
+			yield("/target Entrance")
+			yield("/wait 1")
 			yield("/lockon on")
-			yield("/automove on <wait.2.5>")
-			yield("/automove off <wait.1.5>")
-			yield("/hold Q <wait.2.0>")
+			yield("/automove on")
+			yield("/wait 2.5")
+			yield("/automove off")
+			yield("/wait 1.5")
+			yield("/hold Q")
+			yield("/wait 2")
 			yield("/release Q")
 		end
 		--retainer bell nearby shenanigans
