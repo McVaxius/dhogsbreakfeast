@@ -351,30 +351,32 @@ pandora_interact_toggler_count = 0 -- for checking on pandora interact settings.
 
 --idle shitter list --i don't really care about this list if someone wants to improve it lmk . maybe we could have diff lists and make them an option too? --*
 idle_shitter_list = {
-"/vpose",
+"/vpose", --3.2 msq
 "/laugh",
 "/cry",
 "/dance",
 "/tomescroll", --requires companion app to be setup and linked to acc. reee
-"/study",
+"/study", --firmament
 "/panic",
 "/wave",
 "/goodbye",
 "/yawn",
 "/blowkiss",
-"/bread",
+"/bread", --firmament
 "/examineself",
 "/mandervilledance",
 "/bdance",
+"/thavdance", --80k mgp
 "/tdance",
-"/stepdance",
-"/mmambo",
+"/stepdance", --limsa sidequest
+"/mmambo", --SB manderville
 "/lookout",
-"/pushups",
-"/winded",
+"/pushups", --10 command missions with squad
+"/winded", --3k centurio seals
 "/groundsit",
-"/lean",	
+"/lean",	 --firmament
 "/overreact",
+"/water", --2 achivement certs from old grid
 "/photograph"
 }
 

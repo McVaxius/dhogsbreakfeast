@@ -20,6 +20,16 @@ maybe if i feel like being a sick fuck ill add auto queueing for that sweet expe
 fuckpvp = 1
 fuckme = 0
 
+yield("/title set barago")
+yield("/wait 5")
+yield("/title set garo")
+yield("/wait 5")
+
+--[[wait 5 is for this errror:
+Consecutive text command input is currently restricted.
+Unable to use that title.
+--]]
+
 while fuckpvp == 1 do
 	fuckthis = GetZoneID()
 	fuckyou = 0
