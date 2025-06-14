@@ -1,5 +1,7 @@
 --[[
 Changelog
+v1.5
+its even more reliable fully afk now
 
 v1.0
 First version. deep dungeon party leader for wiggling around DDs using xan's deep dungeon module in VBM

@@ -9,10 +9,6 @@
       {
         "Track": "AOE",
         "Option": "AOE"
-      },
-      {
-        "Track": "Buffs",
-        "Option": "Auto"
       }
     ],
     "BossMod.Autorotation.xan.SMN": [
@@ -277,7 +273,12 @@
         "Option": "Automatic"
       }
     ],
-    "BossMod.Autorotation.xan.TankAI": [],
+    "BossMod.Autorotation.xan.TankAI": [
+      {
+        "Track": "Stance",
+        "Option": "Disabled"
+      }
+    ],
     "BossMod.Autorotation.VeynBRD": [],
     "BossMod.Autorotation.xan.HealerAI": [
       {
@@ -287,16 +288,18 @@
       {
         "Track": "RaiseTargets",
         "Option": "Any dead player"
-      },
-      {
-        "Track": "Esuna",
-        "Option": "Cleanse all party members that have a removable debuff"
       }
     ],
     "BossMod.Autorotation.xan.MeleeAI": [],
     "BossMod.Autorotation.xan.RangedAI": [],
     "BossMod.Autorotation.akechi.AkechiPLD": [],
     "BossMod.Autorotation.xan.SCH": [],
+    "BossMod.Autorotation.xan.PhantomAI": [
+      {
+        "Track": "Chemist",
+        "Option": "InCombat"
+      }
+    ],
     "BossMod.Autorotation.MiscAI.NormalMovement": [
       {
         "Track": "Cast",
