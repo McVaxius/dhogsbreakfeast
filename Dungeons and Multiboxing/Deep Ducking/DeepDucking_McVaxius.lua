@@ -140,7 +140,7 @@ while fatfuck == 1 do
 		yield("/rotation cancel")
 		--now we just need to check if there is a monster somewhat nearby so owe can escape the exit if need be. lets say 30 yalms?
 		if string.len(GetTargetName()) > 1 then --check the target to make sure its valid before checking distance.
-			if distance(GetPlayerRawXPos(), GetPlayerRawYPos(), GetPlayerRawZPos(), GetObjectRawXPos(GetTargetName()),GetObjectRawYPos(GetTargetName()),GetObjectRawZPos(GetTargetName())) < 50 then
+			if distance(GetPlayerRawXPos(), GetPlayerRawYPos(), GetPlayerRawZPos(), GetObjectRawXPos(GetTargetName()),GetObjectRawYPos(GetTargetName()),GetObjectRawZPos(GetTargetName())) < 100 then
 				yield("/vnav moveto "..GetObjectRawXPos(DD_relax).." "..GetObjectRawYPos(DD_relax).." "..GetObjectRawZPos(DD_relax))
 				yield("/echo vnavving to -> "..DD_relax)
 				yield("/wait 5") -- escape the gravitational pull of the floor exit
