@@ -1,7 +1,0 @@
-/trade
-/waitaddon Trade <maxwait.60>
-/pcall Trade false 2 0
-/wait 1
-/pcall Trade false 0 0
-/wait 2
-/loop
