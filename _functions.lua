@@ -1007,3 +1007,24 @@ function grab_aetheryte()
 	yield("/interact")
 	yield("/wait 10")
 end
+
+function GetItemCount(floup)
+	mcFloup = Inventory.GetInventoryItem(floup).Count
+	reeturn = 1 --tempvar
+	if mcFloup == nil
+	reeturn = 0
+	if reeturn == 1 then
+		reeturn = mcFloup
+	end
+	return reeturn
+end
+
+function GetObjectRawXPos(goatCase)
+	return GetEntityByName(goatCase).Entity.Position.X
+end
+function GetObjectRawYPos(goatCase)
+	return GetEntityByName(goatCase).Entity.Position.Y
+end
+function GetObjectRawZPos(goatCase)
+	return GetEntityByName(goatCase).Entity.Position.Z
+end
