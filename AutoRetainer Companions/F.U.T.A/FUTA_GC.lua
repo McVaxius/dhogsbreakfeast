@@ -261,7 +261,7 @@ function Final_GC_Cleaning()
 	--deliveroo i choose you
 	yield("/deliveroo enable")
 	yield("/wait 3")
-	if GetCharacterCondition(35) == true then
+	if Svc.Condition[35] == true then
 		yield("/echo oh boy we forgot to click the squadron stuff before")
 		yield("/wait 10") --we forgot to enable squadrons
 		yield("/wait 1")
@@ -424,7 +424,7 @@ function Final_GC_Cleaning()
 			yield("/wait 1.5")
 			yield("/wait 3")
 			--wait for char condition 1
-			while GetCharacterCondition(32) == true and GetCharacterCondition(35) == true do
+			while Svc.Condition[32] == true and Svc.Condition[35] == true do
 				yield("/wait 1")
 			end
 			yield("/wait 2")

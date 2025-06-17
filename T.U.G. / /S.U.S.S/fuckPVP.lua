@@ -44,7 +44,7 @@ while fuckpvp == 1 do
 			yield("/gaction jump")
 			fuckme = 0
 		end
-		if GetCharacterCondition(10) == false and GetCharacterCondition(4) == false then
+		if Svc.Condition[10] == false and Svc.Condition[4] == false then
 			--yield("/mount \"Chocorpokkur\"")
 			yield("/ac \"Mount Roulette\"")
 		end

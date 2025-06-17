@@ -15,9 +15,9 @@ while GetLevel() < 51 do
     yield("/wait 15")
     yield("/discardall")
     if GetLevel() > 25 then
-        if GetCharacterCondition(26)==true then
-            if GetCharacterCondition(34)==true then
-                if GetCharacterCondition(35)==false then
+        if Svc.Condition[26]==true then
+            if Svc.Condition[34]==true then
+                if Svc.Condition[35]==false then
                     yield("/echo Attempt to buy chocobro skills")
                     --insert callbacks here
                     --open menu?

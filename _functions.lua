@@ -161,10 +161,10 @@ end
 
 function ungabungabunga()
 	--don't bunga bunga if we are not ingame.. it breaks logging in
-	while GetCharacterCondition(1) == false do
+	while Svc.Condition[1] == false do
 		yield("/wait 5") --wait 5 seconds to see if char condition 1 comes back.
 	end
-	if GetCharacterCondition(1) == true then
+	if Svc.Condition[1] == true then
 		tobungaorunga = 0
 		while tobungaorunga == 0 do
 			yield("/send ESCAPE")
@@ -676,7 +676,7 @@ function clean_inventory()
 	yield("/interact")
 --	yield("/automarket start")
 	exit_cleaning = 0
-	while GetCharacterCondition(50) == false and exit_cleaning < 20 do
+	while Svc.Condition[50] == false and exit_cleaning < 20 do
 		yield("/wait 1")
 		exit_cleaning = exit_cleaning + 1
 		yield("/echo Waiting for repricer to start -> "..exit_cleaning.."/20")
@@ -686,7 +686,7 @@ function clean_inventory()
 	exit_cleaning_ISR = 0
 	--forced_am = 0
 	--bungaboard = SetClipboard("123123123")
-	while GetCharacterCondition(50) == true and exit_cleaning_RS < 10 and exit_cleaning_RL < 10 and exit_cleaning_ISR < 10 do
+	while Svc.Condition[50] == true and exit_cleaning_RS < 10 and exit_cleaning_RL < 10 and exit_cleaning_ISR < 10 do
 		yield("/wait 2")
 --		exit_cleaning = exit_cleaning + 1
 		flandom = getRandomNumber(1,20)

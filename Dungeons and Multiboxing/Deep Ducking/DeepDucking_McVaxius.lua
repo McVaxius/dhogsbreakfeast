@@ -175,7 +175,7 @@ while fatfuck == 1 do
 			--but only if we aren't near a cairn 
 			nemm = "Cairn of Passage"
 			poostance = distance(GetPlayerRawXPos(), GetPlayerRawYPos(), GetPlayerRawZPos(), GetObjectRawXPos(nemm),GetObjectRawYPos(nemm),GetObjectRawZPos(nemm))
-			if poostance > 10 and GetCharacterCondition(34) == true then
+			if poostance > 10 and Svc.Condition[34] == true then
 				boop = {
 				"W",
 				"A",
@@ -233,7 +233,7 @@ while fatfuck == 1 do
 			shetzone = GetZoneID()
 			--[[
 			if shetzone > 560 and shetzone < 608 then
-				if GetCharacterCondition(26) == false then
+				if Svc.Condition[26] == false then
 					yield("/hold W <wait.3.0>")
 					yield("/release W")
 				end
@@ -299,7 +299,7 @@ while fatfuck == 1 do
 		--if fanav > 10 and samenav < 10 then
 		nemm = GetTargetName()
 		nemm = nemm or ""
-		if fanav > 30 and GetCharacterCondition(26) == false and string.len(nemm) > 1 then
+		if fanav > 30 and Svc.Condition[26] == false and string.len(nemm) > 1 then
 			fanav = 0
 			yield("/echo attempting to move to -> "..nemm)
 			yield("/vnav moveto "..GetObjectRawXPos(nemm).." "..GetObjectRawYPos(nemm).." "..GetObjectRawZPos(nemm))

@@ -147,7 +147,7 @@ while 1 == 1 do
 	
 --safe check ifs
 if IsPlayerAvailable() then
-if type(GetCharacterCondition(34)) == "boolean" and type(GetCharacterCondition(26)) == "boolean" and type(GetCharacterCondition(4)) == "boolean" then
+if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean" and type(Svc.Condition[4]) == "boolean" then
 --
 	--decide if we are going to bailout - logic stolen from Ritsuko <3
 	zoneleft = GetContentTimeLeft()
@@ -157,7 +157,7 @@ if type(GetCharacterCondition(34)) == "boolean" and type(GetCharacterCondition(2
 			--force_rotation() --refresh the rotationtype when we do this
 		end
 		inprae = maxzone - zoneleft
-		if inprae > hardened_sock and GetCharacterCondition(26) == false then
+		if inprae > hardened_sock and Svc.Condition[26] == false then
 			yield("/echo We bailed from duty -> "..duty_counter)
 			NavRebuild()
 			while not NavIsReady() do
@@ -167,14 +167,14 @@ if type(GetCharacterCondition(34)) == "boolean" and type(GetCharacterCondition(2
 		end
 	end
 
-	if GetCharacterCondition(34) == false then yield("/callback SelectYesno true 0") end	--is there some bullshit and yesalready was disabled outside of the duty? 
+	if Svc.Condition[34] == false then yield("/callback SelectYesno true 0") end	--is there some bullshit and yesalready was disabled outside of the duty? 
 	maxzone = 0--reset the timer for inside prae
 
 	--Food check!
 	statoos = GetStatusTimeRemaining(48)
 	---yield("/echo "..statoos)
 	if type(GetItemCount(feedme)) == "number" then
-		if GetItemCount(feedme) > 0 and statoos < 90 and GetCharacterCondition(34) == false then --refresh food if we are below 15 minutes left
+		if GetItemCount(feedme) > 0 and statoos < 90 and Svc.Condition[34] == false then --refresh food if we are below 15 minutes left
 			yield("/item "..feedmeitem)
 			yield("/echo Attempting to eat "..feedmeitem)
 			yield("/wait 0.5")
@@ -184,10 +184,10 @@ if type(GetCharacterCondition(34)) == "boolean" and type(GetCharacterCondition(2
 	--Do we need repairs? only check outside of duty.
 	--check every 0.3 seconds 8 times so total looop is 2.4 seconds
 	goat = 0
-	while goat < 9 and GetCharacterCondition(34) == false do
+	while goat < 9 and Svc.Condition[34] == false do
 		goat = goat + 1
 		yield("/wait 0.3")
-		if GetCharacterCondition(34) == false then
+		if Svc.Condition[34] == false then
 			--SELF REPAIR
 			local minicounter = 0
 			--check if we even have g8dm, otherwise dont waste time, 10386 is g6dm if you wanna change it, 17837 is g7, 33916 is g8
@@ -209,7 +209,7 @@ if type(GetCharacterCondition(34)) == "boolean" and type(GetCharacterCondition(2
 					  yield("/callback SelectYesno true 0")
 					  yield("/wait 1")
 					end
-					while GetCharacterCondition(39) do yield("/wait 1")
+					while Svc.Condition[39] do yield("/wait 1")
 					yield("/wait 1")
 					yield("/callback Repair true -1")
 					  minicounter = minicounter + 1
@@ -221,7 +221,7 @@ if type(GetCharacterCondition(34)) == "boolean" and type(GetCharacterCondition(2
 				end
 			end
 			--JUST OUTSIDE THE INN REPAIR
-			if NeedsRepair(tornclothes) and GetItemCount(1) > 4999 and GetCharacterCondition(34) == false and GetCharacterCondition(56) == false then --only do this outside of a duty yo
+			if NeedsRepair(tornclothes) and GetItemCount(1) > 4999 and Svc.Condition[34] == false and Svc.Condition[56] == false then --only do this outside of a duty yo
 				yield("/ad repair")
 				goatcounter = 0
 				for goatcounter=1,30 do
@@ -233,26 +233,26 @@ if type(GetCharacterCondition(34)) == "boolean" and type(GetCharacterCondition(2
 			end
 		end
 		--reenter the inn room
-		--if (GetZoneID() ~= 177 and GetZoneID() ~= 178) and GetCharacterCondition(34) == false and NeedsRepair(50) == false then
-		if (GetZoneID() ~= 177 and GetZoneID() ~= 178 and GetZoneID() ~= 179) and GetCharacterCondition(34) == false and IsPlayerAvailable() then
+		--if (GetZoneID() ~= 177 and GetZoneID() ~= 178) and Svc.Condition[34] == false and NeedsRepair(50) == false then
+		if (GetZoneID() ~= 177 and GetZoneID() ~= 178 and GetZoneID() ~= 179) and Svc.Condition[34] == false and IsPlayerAvailable() then
 			yield("/send ESCAPE")
 			yield("/ad stop") --seems to be needed or we get stuck in repair genjutsu
 			yield("/target Antoinaut") --gridania
 			yield("/target Mytesyn")   --limsa
 			yield("/target Otopa")     --uldah
 			yield("/wait 1")
-			if type(GetCharacterCondition(34)) == "boolean" and  GetCharacterCondition(34) == false and IsPlayerAvailable() then
+			if type(Svc.Condition[34]) == "boolean" and  Svc.Condition[34] == false and IsPlayerAvailable() then
 				yield("/lockon on")
 				yield("/automove")
 			end
 			yield("/wait 2.5")
-			if type(GetCharacterCondition(34)) == "boolean" and  GetCharacterCondition(34) == false and IsPlayerAvailable() then
+			if type(Svc.Condition[34]) == "boolean" and  Svc.Condition[34] == false and IsPlayerAvailable() then
 				yield("/callback _Notification true 0 17")
 				yield("/callback ContentsFinderConfirm true 9")
 				yield("/interact")
 			end
 			yield("/wait 1")
-			if type(GetCharacterCondition(34)) == "boolean" and  GetCharacterCondition(34) == false and IsPlayerAvailable() then
+			if type(Svc.Condition[34]) == "boolean" and  Svc.Condition[34] == false and IsPlayerAvailable() then
 				yield("/callback _Notification true 0 17")
 				yield("/callback ContentsFinderConfirm true 9")
 				yield("/callback SelectIconString true 0")
@@ -271,14 +271,14 @@ if type(GetCharacterCondition(34)) == "boolean" and type(GetCharacterCondition(2
 	--
 	--safe check ifs part 2
 	if IsPlayerAvailable() then
-	if type(GetCharacterCondition(34)) == "boolean" and type(GetCharacterCondition(26)) == "boolean" and type(GetCharacterCondition(4)) == "boolean" then
+	if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean" and type(Svc.Condition[4]) == "boolean" then
 	--
 
 	--yield("/echo x diff"..math.abs(x1 - GetPlayerRawXPos()))
 	--check if we are stuck somewhere.
 	--first ensure we are in the duty and not in combat
 
-	if GetZoneID() == 1044 and GetCharacterCondition(26) == false and IsPlayerAvailable() then --Praetorium
+	if GetZoneID() == 1044 and Svc.Condition[26] == false and IsPlayerAvailable() then --Praetorium
 		maxjiggle = 6
 		flurb = "????"
 		for flurby = 1,30 do
@@ -292,7 +292,7 @@ if type(GetCharacterCondition(34)) == "boolean" and type(GetCharacterCondition(2
 			end
 			yield("/wait 0.3")
 		end
-		if flurb == "Clear the Laboratorium Primum: 0/1"  and GetCharacterCondition(26) == false and IsPlayerAvailable() then
+		if flurb == "Clear the Laboratorium Primum: 0/1"  and Svc.Condition[26] == false and IsPlayerAvailable() then
 			flurb = GetNodeText("_ToDoList", 25, 3)
 --this doesnt work the way i intended so removing it for now.
 			--[[yield("/target Shortcut")
@@ -308,19 +308,19 @@ if type(GetCharacterCondition(34)) == "boolean" and type(GetCharacterCondition(2
 				yield("/bmrai on")
 				yield("/rotation auto")
 			end
-			if type(GetTargetName()) == "string" and GetCharacterCondition(26) == false then
+			if type(GetTargetName()) == "string" and Svc.Condition[26] == false then
 				yield("/vnavmesh moveto "..GetTargetRawXPos().." "..GetTargetRawYPos().." "..GetTargetRawZPos())
 			end
 			--]]
 		end
-		if flurb == "Arrive on the Echelon: 0/1"  and GetCharacterCondition(26) == false  and IsPlayerAvailable() then
+		if flurb == "Arrive on the Echelon: 0/1"  and Svc.Condition[26] == false  and IsPlayerAvailable() then
 			maxjiggle = 20
 		end
 	--safe check ifs part 3
 	if IsPlayerAvailable() then
-	if type(GetCharacterCondition(34)) == "boolean" and type(GetCharacterCondition(26)) == "boolean" and type(GetCharacterCondition(4)) == "boolean" then
+	if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean" and type(Svc.Condition[4]) == "boolean" then
 	--
-		if flurb == "Defeat Gaius van Baelsar: 0/1" and GetCharacterCondition(26) == false and GetCharacterCondition(34) == true and IsPlayerAvailable() then
+		if flurb == "Defeat Gaius van Baelsar: 0/1" and Svc.Condition[26] == false and Svc.Condition[34] == true and IsPlayerAvailable() then
 			maxjiggle = 20
 			yield("/target Magitek")
 			yield("/wait 0.5")
@@ -333,7 +333,7 @@ if type(GetCharacterCondition(34)) == "boolean" and type(GetCharacterCondition(2
 			yield("/wait 0.5")
 			yield("/interact")
 			yield("/wait 0.5")
-			if type(GetTargetName()) == "string" and GetTargetName() == "Shortcut" and GetCharacterCondition(26) == false and IsPlayerAvailable() then
+			if type(GetTargetName()) == "string" and GetTargetName() == "Shortcut" and Svc.Condition[26] == false and IsPlayerAvailable() then
 				yield("/ad stop")
 				yield("/interact")
 				yield("/vnavmesh moveto "..GetTargetRawXPos().." "..GetTargetRawYPos().." "..GetTargetRawZPos())
@@ -342,11 +342,11 @@ if type(GetCharacterCondition(34)) == "boolean" and type(GetCharacterCondition(2
 				yield("/bmrai on")
 				yield("/rotation auto")
 			end
-			if type(GetTargetName()) == "string" and GetCharacterCondition(26) == false and IsPlayerAvailable() then
+			if type(GetTargetName()) == "string" and Svc.Condition[26] == false and IsPlayerAvailable() then
 				yield("/interact")
 				yield("/vnavmesh moveto "..GetTargetRawXPos().." "..GetTargetRawYPos().." "..GetTargetRawZPos())
 			end
-			if type(GetTargetName()) ~= "string" and GetCharacterCondition(26) == false and IsPlayerAvailable() then
+			if type(GetTargetName()) ~= "string" and Svc.Condition[26] == false and IsPlayerAvailable() then
 				yield("/wait 1.5")
 				yield("/target Gaius")
 				yield("/wait 1.5")
@@ -365,7 +365,7 @@ if type(GetCharacterCondition(34)) == "boolean" and type(GetCharacterCondition(2
 	--	TargetClosestEnemy(30)
 	--end
 			
-	if GetCharacterCondition(34) == true and GetCharacterCondition(26) == false then
+	if Svc.Condition[34] == true and Svc.Condition[26] == false then
 		if math.abs(x1 - GetPlayerRawXPos()) < 3 and math.abs(y1 - GetPlayerRawYPos()) < 3 and math.abs(z1 - GetPlayerRawZPos()) < 3 then
 			if echo_level < 4 then yield("/echo we havent moved very much something is up ") end
 			jigglecounter = jigglecounter + 1
@@ -398,11 +398,11 @@ if type(GetCharacterCondition(34)) == "boolean" and type(GetCharacterCondition(2
 		end
 		--]]
 	end
-	--if GetCharacterCondition(34) == false then --fix autoqueue just shitting out
+	--if Svc.Condition[34] == false then --fix autoqueue just shitting out
 		--yield("/send U")
 	--end
 	
-	if GetCharacterCondition(34) == true and GetCharacterCondition(26) == false then
+	if Svc.Condition[34] == true and Svc.Condition[26] == false then
 		equip_counter = equip_counter + 1
 		if equip_counter > 50 and finickyclothes == 1 then 
 			yield("/equiprecommended")
@@ -412,7 +412,7 @@ if type(GetCharacterCondition(34)) == "boolean" and type(GetCharacterCondition(2
 		--TargetClosestEnemy()
 		--yield("/ac \"Fester\"") --i dont think we need this.
 	end
-	if GetCharacterCondition(4) == true then --target stuff while on magitek if we don't thave a target. trying to fix this bullashit
+	if Svc.Condition[4] == true then --target stuff while on magitek if we don't thave a target. trying to fix this bullashit
 		--if type(GetTargetName()) ~= "string" then
 			TargetClosestEnemy()
 			yield("/send KEY_2")
@@ -420,7 +420,7 @@ if type(GetCharacterCondition(34)) == "boolean" and type(GetCharacterCondition(2
 		---end
 	end
 
-	if GetCharacterCondition(4) == false and GetCharacterCondition(26) == true then
+	if Svc.Condition[4] == false and Svc.Condition[26] == true then
 		if type(GetTargetName()) ~= "string" then
 			TargetClosestEnemy()
 			--yield("/vnav stop")
@@ -438,7 +438,7 @@ if type(GetCharacterCondition(34)) == "boolean" and type(GetCharacterCondition(2
 		end
 	end
 	
-	if GetCharacterCondition(34) == true then
+	if Svc.Condition[34] == true then
 		x1 = GetPlayerRawXPos()
 		y1 = GetPlayerRawYPos()
 		z1 = GetPlayerRawZPos()
@@ -470,7 +470,7 @@ if type(GetCharacterCondition(34)) == "boolean" and type(GetCharacterCondition(2
 		if echo_level < 4 then yield("/echo We are starting over the duty counter, we passed daily reset time!") end
 	end
 	if IsPlayerAvailable() then
-		if stopcuckingme > 2 and GetCharacterCondition(34) == false and imthecaptainnow == 1 and (GetZoneID() == 177 or GetZoneID() == 178 or GetZoneID() == 179) and not NeedsRepair(tornclothes) then
+		if stopcuckingme > 2 and Svc.Condition[34] == false and imthecaptainnow == 1 and (GetZoneID() == 177 or GetZoneID() == 178 or GetZoneID() == 179) and not NeedsRepair(tornclothes) then
 			whoops = 0
 			boops = 0
 			did_we_clear_it = 0

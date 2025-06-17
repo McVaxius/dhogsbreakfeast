@@ -243,12 +243,12 @@ yield("/wait 2")
 goatshart = 1
 floatblart = 0
 while goatshart == 1 do
-	if GetCharacterCondition(26) == false then
+	if Svc.Condition[26] == false then
 		floatblart = floatblart + 1
 		if floatblart > 3 then
 			goatshart = 0
 		end
-		if GetCharacterCondition(26) == true then
+		if Svc.Condition[26] == true then
 			floatblart = 0
 		end
 	end

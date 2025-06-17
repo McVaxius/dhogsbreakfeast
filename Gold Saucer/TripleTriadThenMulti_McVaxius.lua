@@ -99,7 +99,7 @@ yield("/wait 5")
 --its condition 13 = playing minigame that we care about
 --?? check cond 13 when not cond 13 then we can move on after a short wait
 --??
-while GetCharacterCondition(13)==true do
+while Svc.Condition[13]==true do
 	yield("/wait 1")
 end
 

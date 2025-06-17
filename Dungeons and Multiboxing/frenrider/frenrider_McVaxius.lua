@@ -631,7 +631,7 @@ function are_we_distancing()
 		returnval = 1 --force it if we need to force it.
 		--gawk_gawk_3000("we are Social distancing EVERYWHERE!")
 	end
-	if GetCharacterCondition(34) == false and returnval == 0 then
+	if Svc.Condition[34] == false and returnval == 0 then
 		returnval = 1
 		gawk_gawk_3000("We aren't in a duty so we are social distancing")
 	end --obviously if we aren't in a duty we are going to be social distancing by default
@@ -649,7 +649,7 @@ function checkAREA()
 
 	idle_shitter_counter = idle_shitter_counter + 1
 	--gawk_gawk_3000("idle shitter counter -> "..idle_shitter_counter)
-	if GetCharacterCondition(26) == true then
+	if Svc.Condition[26] == true then
 		idle_shitter_counter = 0
 	end
 
@@ -760,18 +760,18 @@ function clingmove(nemm)
 		return
 	end
 	--jump if we are mounted and below the leader by 10 yalms
-	if (GetObjectRawYPos(nemm) - GetPlayerRawYPos()) > 9 and GetCharacterCondition(4) == true then
+	if (GetObjectRawYPos(nemm) - GetPlayerRawYPos()) > 9 and Svc.Condition[4] == true then
 		yield("/gaction jump")
 	end
 	zclingtype = clingtype
-	if GetCharacterCondition(34) == true then
+	if Svc.Condition[34] == true then
 		zclingtype = clingtypeduty --get diff clingtype in duties
 	end
 	allowmovement = 0  --dont allow movement by default
-	if (follow_in_combat == 1 and GetCharacterCondition(26) == true) or GetCharacterCondition(26) == false then
+	if (follow_in_combat == 1 and Svc.Condition[26] == true) or Svc.Condition[26] == false then
 		allowmovement = 1
 	end
-	if allowmovement == 0 and GetCharacterCondition(26) == true then
+	if allowmovement == 0 and Svc.Condition[26] == true then
 		yield("/vnav stop")
 	end
 	if are_we_DD == 1 then
@@ -789,7 +789,7 @@ function clingmove(nemm)
 	if allowmovement == 1 then
 		--sub-area-transition-hack-while-in-duty
 		if are_we_DD == 0 then
-			if bistance > 20 and GetCharacterCondition(34) == true then --maybe we went through subarea transition in a duty?
+			if bistance > 20 and Svc.Condition[34] == true then --maybe we went through subarea transition in a duty?
 				gawk_gawk_3000(""..nemm.." is kind of far - lets just forge ahead a bit just in case")
 				yield("/hold W <wait.3.0>")
 				yield("/release W")
@@ -806,20 +806,20 @@ function clingmove(nemm)
 				if are_we_social_distancing == 1 and are_we_in_i_zone == 0 and bistance > (hcling + socialdistance_x_wiggle + socialdistance_z_wiggle) then --if we need to spread AND we arent in a zone of interact and not already within the buffer area
 					--*we will do some stuff here - do i need to remove this commment? i think its sorted
 					fartX,fartZ = calculateBufferXY (GetPlayerRawXPos(),GetPlayerRawZPos(),GetObjectRawXPos(nemm),GetObjectRawZPos(nemm))
-					if GetCharacterCondition(77) == false then yield("/vnav moveto "..fartX.." "..GetObjectRawYPos(nemm).." "..fartZ) end
-					if GetCharacterCondition(77) == true then yield("/vnav flyto "..fartX.." "..GetObjectRawYPos(nemm).." "..fartZ) end
+					if Svc.Condition[77] == false then yield("/vnav moveto "..fartX.." "..GetObjectRawYPos(nemm).." "..fartZ) end
+					if Svc.Condition[77] == true then yield("/vnav flyto "..fartX.." "..GetObjectRawYPos(nemm).." "..fartZ) end
 				end
 				if are_we_social_distancing == 0 or are_we_in_i_zone == 1 then --if we don't need to spread OR we are in a zone of interact
-					if GetCharacterCondition(77) == false then yield("/vnav moveto "..GetObjectRawXPos(nemm).." "..GetObjectRawYPos(nemm).." "..GetObjectRawZPos(nemm)) end
-					if GetCharacterCondition(77) == true then yield("/vnav flyto "..GetObjectRawXPos(nemm).." "..GetObjectRawYPos(nemm).." "..GetObjectRawZPos(nemm)) end
+					if Svc.Condition[77] == false then yield("/vnav moveto "..GetObjectRawXPos(nemm).." "..GetObjectRawYPos(nemm).." "..GetObjectRawZPos(nemm)) end
+					if Svc.Condition[77] == true then yield("/vnav flyto "..GetObjectRawXPos(nemm).." "..GetObjectRawYPos(nemm).." "..GetObjectRawZPos(nemm)) end
 				end
 				did_we_try_to_move = 1
 			end
 		end
 		--visland
 		if zclingtype == 1 then
-			if GetCharacterCondition(77) == false then yield("/visland moveto "..GetObjectRawXPos(nemm).." "..GetObjectRawYPos(nemm).." "..GetObjectRawZPos(nemm)) end
-			if GetCharacterCondition(77) == true then yield("/visland flyto "..GetObjectRawXPos(nemm).." "..GetObjectRawYPos(nemm).." "..GetObjectRawZPos(nemm)) end
+			if Svc.Condition[77] == false then yield("/visland moveto "..GetObjectRawXPos(nemm).." "..GetObjectRawYPos(nemm).." "..GetObjectRawZPos(nemm)) end
+			if Svc.Condition[77] == true then yield("/visland flyto "..GetObjectRawXPos(nemm).." "..GetObjectRawYPos(nemm).." "..GetObjectRawZPos(nemm)) end
 			did_we_try_to_move = 1
 		end
 		--not bmr
@@ -851,14 +851,14 @@ function clingmove(nemm)
 		end
 		if zclingtype == 4 then
 			--we only doing this silly method out of combat
-			if GetCharacterCondition(26) == false then
+			if Svc.Condition[26] == false then
 				--yield("/target "..nemm)
 				yield("/target \""..nemm.."\"")
 				yield("/follow")
 				did_we_try_to_move = 1
 			end
 			--if we in combat and target is nemm we will clear it becuase that may bork autotarget from RSR
-			if GetCharacterCondition(26) == true then
+			if Svc.Condition[26] == true then
 				if nemm == GetTargetName() then
 					ClearTarget()
 				end
@@ -867,7 +867,7 @@ function clingmove(nemm)
 	end
 	--[[
 	if did_we_try_to_move == 1 then --check some things just in case
-		if GetCharacterCondition(11) == true then --groundsit
+		if Svc.Condition[11] == true then --groundsit
 			yield("/gaction jump")
 		end
 	end
@@ -909,11 +909,11 @@ function checkzoi()
 	if pandora_interact_toggler_count > 10 then
 		pandora_interact_toggler_count = 0
 		if cbt_edse == 1 then 
-			if GetCharacterCondition(34) == true then
+			if Svc.Condition[34] == true then
 				yield("/cbt enable EnhancedDutyStartEnd")
 				gawk_gawk_3000("enabling CBT->EnhancedDutyStartEnd")
 			end
-			if GetCharacterCondition(34) == false then
+			if Svc.Condition[34] == false then
 				yield("/cbt disable EnhancedDutyStartEnd")
 				gawk_gawk_3000("disabling CBT->EnhancedDutyStartEnd")
 			end
@@ -962,7 +962,7 @@ re_engage = 0 --counter
 renav_check = 0
 
 function IsPlayerReallyAvailable()
-	if IsPlayerAvailable() or GetCharacterCondition(11) then
+	if IsPlayerAvailable() or Svc.Condition[11] then
 		return true
 	end
 	return false
@@ -971,21 +971,21 @@ end
 while weirdvar == 1 do
 	--catch if character is ready before doing anything
 	if IsPlayerReallyAvailable() then
-		if type(GetCharacterCondition(34)) == "boolean" and type(GetCharacterCondition(26)) == "boolean" and type(GetCharacterCondition(4)) == "boolean" then
+		if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean" and type(Svc.Condition[4]) == "boolean" then
 			bistance = distance(GetPlayerRawXPos(), GetPlayerRawYPos(), GetPlayerRawZPos(), GetObjectRawXPos(fren),GetObjectRawYPos(fren),GetObjectRawZPos(fren))
 			if bistance > maxbistance then --follow ourselves if fren too far away or it will do weird shit
 				clingmove(GetCharacterName())
 			end
 
 			--if we in combat and target is <3 yalms dont nav anywhere.
-			if GetCharacterCondition(26) == true and type(GetTargetName()) == "string" and string.len(GetTargetName()) > 1 then
+			if Svc.Condition[26] == true and type(GetTargetName()) == "string" and string.len(GetTargetName()) > 1 then
 				if distance(GetPlayerRawXPos(), GetPlayerRawYPos(), GetPlayerRawZPos(), GetObjectRawXPos(GetTargetName()),GetObjectRawYPos(GetTargetName()),GetObjectRawZPos(GetTargetName())) < 3 then
 					yield("/vnav stop")
 				end
 			end
 
 			--renav condition while in a duty. if we stuck for more than 10 seconds in place. renav damnit
-			if GetCharacterCondition(4) == true and bistance > hcling and GetCharacterCondition(34) == true then 
+			if Svc.Condition[4] == true and bistance > hcling and Svc.Condition[34] == true then 
 				renav_check = renav_check + 1
 				if renav_check > 10 then
 					renav_check = 0
@@ -995,7 +995,7 @@ while weirdvar == 1 do
 			end
 
 			--dismount regardless of in duty or not
-			if IsPartyMemberMounted(shartycardinality) == false and fly_you_fools == true and GetCharacterCondition(4) == true then
+			if IsPartyMemberMounted(shartycardinality) == false and fly_you_fools == true and Svc.Condition[4] == true then
 				--continually try to dismount
 				--bmr follow off.
 				yield("/bmrai follow slot1")
@@ -1014,7 +1014,7 @@ while weirdvar == 1 do
 			
 			re_engage = re_engage + 1
 			if re_engage > 2 then --every 3 seconds we will do rhandling() just to make sure we are attacking stuff if we aren't mounted.
-				if GetCharacterCondition(4) == false then
+				if Svc.Condition[4] == false then
 					rhandling()
 				end
 				re_engage = 0
@@ -1023,7 +1023,7 @@ while weirdvar == 1 do
 			--Food check!
 			statoos = GetStatusTimeRemaining(48)
 			---gawk_gawk_3000(""..statoos)
-			if GetCharacterCondition(26) == false then -- dont eat while fighting it will upset your stomach
+			if Svc.Condition[26] == false then -- dont eat while fighting it will upset your stomach
 				if type(GetItemCount(feedme)) == "number" then
 					if GetItemCount(feedme) > 0 and statoos < 300 then --refresh food if we are below 5 minutes left
 						yield("/item "..feedmeitem)
@@ -1032,14 +1032,14 @@ while weirdvar == 1 do
 				end
 			end
 
-			if GetCharacterCondition(34) == true then --in duty we might do some special things. mostly just follow the leader and let the ai do its thing.
+			if Svc.Condition[34] == true then --in duty we might do some special things. mostly just follow the leader and let the ai do its thing.
 				--bmr follow on
 				--yield("/bmrai follow slot"..fartycardinality.."")
 				--yield("/bmrai follow "..fren)
 				--we will use clingmove not bmrai follow as it breaks pathing from that point onwards
 				clingmove(fren)
 				--allright im getting sick of pratorium. its time to do something.
-				if type(GetZoneID()) == "number" and GetZoneID() == 1044 and GetCharacterCondition(4) then --Praetorium
+				if type(GetZoneID()) == "number" and GetZoneID() == 1044 and Svc.Condition[4] then --Praetorium
 					--if string.len(GetTargetName()) == 0 then
 					TargetClosestEnemy()
 					--end
@@ -1052,7 +1052,7 @@ while weirdvar == 1 do
 				checkzoi()
 			end
 
-			if GetCharacterCondition(34) == false or fake_outdoors_foray == 1 then  --not in duty  or we are in a foray
+			if Svc.Condition[34] == false or fake_outdoors_foray == 1 then  --not in duty  or we are in a foray
 				--SAFETY CHECKS DONE, can do whatever you want now with characterconditions etc			
 				--movement with formation - initially we test while in any situation not just combat
 				--check distance to fren, if its more than cling, then
@@ -1068,7 +1068,7 @@ while weirdvar == 1 do
 					yield("/wait 0.5")
 				end
 				--movement without formation
-				if GetCharacterCondition(26) == true and formation == false then --in combat
+				if Svc.Condition[26] == true and formation == false then --in combat
 					if formation == false then
 						if bistance > hcling and bistance < maxbistance then
 							clingmove(fren) --movement func
@@ -1121,11 +1121,11 @@ while weirdvar == 1 do
 							
 				--the code block that got this all started haha
 				--follow and mount fren
-				if GetCharacterCondition(26) == false then --not in combat
+				if Svc.Condition[26] == false then --not in combat
 					--process repair stuff
 					if repair > 0 then
 						if repair == 1 then
-							if NeedsRepair(tornclothes) and GetItemCount(1) > 4999 and GetCharacterCondition(34) == false and GetCharacterCondition(56) == false then --only do this outside of a duty yo
+							if NeedsRepair(tornclothes) and GetItemCount(1) > 4999 and Svc.Condition[34] == false and Svc.Condition[56] == false then --only do this outside of a duty yo
 								yield("/ad repair")
 								goatcounter = 0
 								for goatcounter=1,30 do
@@ -1138,7 +1138,7 @@ while weirdvar == 1 do
 						end
 						if repair == 2 then
 							--JUST OUTSIDE THE INN REPAIR
-							if NeedsRepair(tornclothes) and GetItemCount(1) > 4999 and GetCharacterCondition(34) == false and GetCharacterCondition(56) == false then --only do this outside of a duty yo
+							if NeedsRepair(tornclothes) and GetItemCount(1) > 4999 and Svc.Condition[34] == false and Svc.Condition[56] == false then --only do this outside of a duty yo
 								yield("/ad repair")
 								goatcounter = 0
 								for goatcounter=1,30 do
@@ -1149,27 +1149,27 @@ while weirdvar == 1 do
 								yield("/ad stop")
 							end
 							--reenter the inn room
-							--if (GetZoneID() ~= 177 and GetZoneID() ~= 178) and GetCharacterCondition(34) == false and NeedsRepair(50) == false then
-							if (GetZoneID() ~= 177 and GetZoneID() ~= 178 and GetZoneID() ~= 179) and GetCharacterCondition(34) == false and IsPlayerReallyAvailable() then
+							--if (GetZoneID() ~= 177 and GetZoneID() ~= 178) and Svc.Condition[34] == false and NeedsRepair(50) == false then
+							if (GetZoneID() ~= 177 and GetZoneID() ~= 178 and GetZoneID() ~= 179) and Svc.Condition[34] == false and IsPlayerReallyAvailable() then
 								yield("/send ESCAPE")
 								yield("/ad stop") --seems to be needed or we get stuck in repair genjutsu
 								yield("/target Antoinaut") --gridania
 								yield("/target Mytesyn")   --limsa
 								yield("/target Otopa")     --uldah
 								yield("/wait 1")
-								if type(GetCharacterCondition(34)) == "boolean" and  GetCharacterCondition(34) == false and IsPlayerReallyAvailable() then
+								if type(Svc.Condition[34]) == "boolean" and  Svc.Condition[34] == false and IsPlayerReallyAvailable() then
 									yield("/lockon on")
 									yield("/automove")
 								end
 								yield("/wait 2.5")
-								if type(GetCharacterCondition(34)) == "boolean" and  GetCharacterCondition(34) == false and IsPlayerReallyAvailable() then
+								if type(Svc.Condition[34]) == "boolean" and  Svc.Condition[34] == false and IsPlayerReallyAvailable() then
 									yield("/callback _Notification true 0 17")
 									yield("/callback ContentsFinderConfirm true 9")
 									--yield("/interact")
 									PandoraSetFeatureState("Auto-interact with Objects in Instances",true)
 								end
 								yield("/wait 1")
-								if type(GetCharacterCondition(34)) == "boolean" and  GetCharacterCondition(34) == false and IsPlayerReallyAvailable() then
+								if type(Svc.Condition[34]) == "boolean" and  Svc.Condition[34] == false and IsPlayerReallyAvailable() then
 									yield("/callback _Notification true 0 17")
 									yield("/callback ContentsFinderConfirm true 9")
 									yield("/callback SelectIconString true 0")
@@ -1183,9 +1183,9 @@ while weirdvar == 1 do
 							end
 						end					
 					end
-					if GetCharacterCondition(4) == true and fly_you_fools == true then
+					if Svc.Condition[4] == true and fly_you_fools == true then
 						--follow the fren
-						if GetCharacterCondition(4) == true and bistance > hcling and PathIsRunning() == false and PathfindInProgress() == false then
+						if Svc.Condition[4] == true and bistance > hcling and PathIsRunning() == false and PathfindInProgress() == false then
 							--gawk_gawk_3000("attempting to fly to fren")
 							clingmove(fren)
 
@@ -1193,7 +1193,7 @@ while weirdvar == 1 do
 							
 						end
 					end
-					if GetCharacterCondition(4) == false and GetCharacterCondition(10) == false then --not mounted and not mounted2 (riding friend)
+					if Svc.Condition[4] == false and Svc.Condition[10] == false then --not mounted and not mounted2 (riding friend)
 						--chocobo stuff. first check if we can fly. if not don't try to chocobo
 						--actually check if we are in a sanctuary first, if true we aren't gonna try to check or do anything.
 						if InSanctuary() == false then
@@ -1223,10 +1223,10 @@ while weirdvar == 1 do
 
 						--gawk_gawk_3000("fly fools .."..tostring(fly_you_fools))
 						if fly_you_fools == true then
-							if GetCharacterCondition(4) == true then
+							if Svc.Condition[4] == true then
 								yield("/rotation cancel") --keep rotations off
 							end
-							if GetCharacterCondition(4) == false and GetCharacterCondition(10) == false and IsPartyMemberMounted(shartycardinality) == true then
+							if Svc.Condition[4] == false and Svc.Condition[10] == false and IsPartyMemberMounted(shartycardinality) == true then
 								--mountup your own mount
 								--cancel movement
 								yield("/mount \""..fool_flier.."\"")

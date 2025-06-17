@@ -26,8 +26,8 @@ dook_muh_jorb = 0
 while cosmic == "shit content" do
 	yield("/wait 5")
 	yield("/echo waiting ..... still crafting or searching")
-	if GetCharacterCondition(1) == false then shit_content = 0 end
-	if GetCharacterCondition(1) == true then
+	if Svc.Condition[1] == false then shit_content = 0 end
+	if Svc.Condition[1] == true then
 		shit_content = shit_content + 1
 		yield("/echo waiting ....."..shit_content.."/10 ticks")
 	end

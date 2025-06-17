@@ -208,7 +208,7 @@ function fishing()
 	yield("/wait 1")
 	fishqtest = false
 	toolong = 0
-	fishqtest = GetCharacterCondition(91)
+	fishqtest = Svc.Condition[91]
 	while (type(fishqtest) == "boolean" and fishqtest == false) do
 		yield("/target Dryskthota")
 		yield("/wait 2")
@@ -217,9 +217,9 @@ function fishing()
 		yield("/wait 1")
 		ungabunga()
 		yield("/wait 10")
-		fishqtest = GetCharacterCondition(91)
+		fishqtest = Svc.Condition[91]
 		toolong = toolong  + 1
-		if GetCharacterCondition(34) == true then  --sometimes we queue instantly. dont wanna get stuck!
+		if Svc.Condition[34] == true then  --sometimes we queue instantly. dont wanna get stuck!
 			fishqtest = true
 		end
 		if toolong > 30 then
@@ -266,11 +266,11 @@ function fishing()
 			visland_stop_moving()
 			omadamkhoneh = -200  --we dont want this to trigger again
 		end
-		if GetCharacterCondition(43)==false then
+		if Svc.Condition[43]==false then
 		   yield("/discardall")
 		   yield("/wait 5")
 		end
-		if GetCharacterCondition(43)==false then
+		if Svc.Condition[43]==false then
 			if GetZoneID() ~= 132 then
 				yield("/ac cast")
 				yield("/wait 1")
@@ -281,9 +281,9 @@ function fishing()
 			yield("/wait 15")
 			yield("/callback IKDResult false 0")
 		end
-		if GetCharacterCondition(33)==true then
-			if GetCharacterCondition(34)==true then
-				if GetCharacterCondition(35)==false then
+		if Svc.Condition[33]==true then
+			if Svc.Condition[34]==true then
+				if Svc.Condition[35]==false then
 				--LEAVE MENU!!!!!!!!
 				yield("/send NUMPAD0")
 				yield("/wait 1")
@@ -370,7 +370,7 @@ while true do
   local currentTime = os.date("*t")
   local formattedTime = string.format("%04d-%02d-%02d %02d:%02d:%02d", currentTime.year, currentTime.month, currentTime.day, currentTime.hour, currentTime.min, currentTime.sec)
 	
-	if GetCharacterCondition(1)==false then
+	if Svc.Condition[1]==false then
 		yield("/wait 30")  -- Wait for 30 seconds because we are at the login screen
 	end
 	
@@ -388,8 +388,8 @@ while true do
 
    --if taskTimes[currentTime.hour] and taskTimeMin[currentTime.min]  then
    if wheeequeheeheheheheheehhhee == 1 then
-	if GetCharacterCondition(31)==false then
-		if GetCharacterCondition(32)==false then
+	if Svc.Condition[31]==false then
+		if Svc.Condition[32]==false then
 			 --yield("/ays multi")
 			 yield("/ays multi d")
 		 	 ungabungabunga() -- we really really try hard to be safe here

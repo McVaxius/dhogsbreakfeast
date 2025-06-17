@@ -69,7 +69,7 @@ if GCrenk < 4 then --we can go up to 4 safely if we are below it. if you put in 
 	yield("/wait 3")
 
 	--wait for char condition 1
-	while GetCharacterCondition(32) == true and GetCharacterCondition(35) == true do
+	while Svc.Condition[32] == true and Svc.Condition[35] == true do
 		yield("/wait 1")
 	end
 	yield("/wait 2")
@@ -94,7 +94,7 @@ if GCrenk < 7 and GCrenk > 4 then --if we are above 4 and below 7 we can go up t
 	yield("/wait 3")
 
 	--wait for char condition 1
-	while GetCharacterCondition(32) == true and GetCharacterCondition(35) == true do
+	while Svc.Condition[32] == true and Svc.Condition[35] == true do
 		yield("/wait 1")
 	end
 	yield("/wait 2")

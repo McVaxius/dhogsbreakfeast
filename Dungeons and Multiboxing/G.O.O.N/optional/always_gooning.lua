@@ -58,10 +58,10 @@ im_a_cuck = 1
 
 while im_a_cuck == 1 do
 	yield("/wait 0.5")
-	if GetCharacterCondition(34) == false then
+	if Svc.Condition[34] == false then
 		im_a_cuck = 0
 	end
-	if GetCharacterCondition(26) == true then
+	if Svc.Condition[26] == true then
 		if distance(GetPlayerRawXPos(), GetPlayerRawYPos(), GetPlayerRawZPos(), GetObjectRawXPos(GetTargetName()),GetObjectRawYPos(GetTargetName()),GetObjectRawZPos(GetTargetName())) > 20 then
 			yield("/vnav moveto "..GetObjectRawXPos(GetTargetName()).." "..GetObjectRawYPos(GetTargetName()).." "..GetObjectRawZPos(GetTargetName()))
 			yield("/echo Attempting Autoduty Calibration --> "..GetTargetName())

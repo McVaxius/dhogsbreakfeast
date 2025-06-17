@@ -95,16 +95,16 @@ function fishing()
 	yield("/wait 1")
 	fishqtest = false
 	toolong = 0
-	fishqtest = GetCharacterCondition(91)
+	fishqtest = Svc.Condition[91]
 	while (type(fishqtest) == "boolean" and fishqtest == false) do
 		yield("/target Dryskthota")
 		yield("/interact")
 		yield("/wait 3")
 		ungabunga()
 		yield("/wait 10")
-		fishqtest = GetCharacterCondition(91)
+		fishqtest = Svc.Condition[91]
 		toolong = toolong  + 1
-		if GetCharacterCondition(34) == true then  --sometimes we queue instantly. dont wanna get stuck!
+		if Svc.Condition[34] == true then  --sometimes we queue instantly. dont wanna get stuck!
 			fishqtest = true
 		end
 		if toolong > 30 then
@@ -136,11 +136,11 @@ function fishing()
 			visland_stop_moving()
 			omadamkhoneh = -200  --we dont want this to trigger again
 		end
-		if GetCharacterCondition(43)==false then
+		if Svc.Condition[43]==false then
 		   delete_my_items_please(do_we_discard)
 		   yield("/wait 5")
 		end
-		if GetCharacterCondition(43)==false then
+		if Svc.Condition[43]==false then
 			if GetZoneID() ~= 132 then
 				yield("/ac cast")
 				yield("/wait 1")
@@ -151,9 +151,9 @@ function fishing()
 			yield("/wait 15")
 			yield("/callback IKDResult false 0")
 		end
-		if GetCharacterCondition(33)==true then
-			if GetCharacterCondition(34)==true then
-				if GetCharacterCondition(35)==false then
+		if Svc.Condition[33]==true then
+			if Svc.Condition[34]==true then
+				if Svc.Condition[35]==false then
 				--LEAVE MENU!!!!!!!!
 				yield("/send NUMPAD0")
 				yield("/wait 1")

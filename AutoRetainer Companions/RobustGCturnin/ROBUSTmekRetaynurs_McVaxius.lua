@@ -248,12 +248,12 @@ function trouble_my_adventure()
 	goatshart = 1
 	floatblart = 0
 	while goatshart == 1 do
-		if GetCharacterCondition(26) == false then
+		if Svc.Condition[26] == false then
 			floatblart = floatblart + 1
 			if floatblart > 3 then
 				goatshart = 0
 			end
-			if GetCharacterCondition(26) == true then
+			if Svc.Condition[26] == true then
 				floatblart = 0
 			end
 		end
@@ -307,7 +307,7 @@ for laziest_bastard = 1, #intern_herder do
 	CharacterSafeWait()
 	yield("/li") --incase we aren't home
 	yield("/wait 1")
-	if GetCharacterCondition(27) == true then --we are going home ahahahaha
+	if Svc.Condition[27] == true then --we are going home ahahahaha
 		yield("/echo 15 second wait")
 		CharacterSafeWait()	
 	end

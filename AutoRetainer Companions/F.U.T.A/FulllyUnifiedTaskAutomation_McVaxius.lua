@@ -377,8 +377,8 @@ end
 
 -- It's fishing time
 if wheeequeheeheheheheheehhhee == 1 then
-    if GetCharacterCondition(31) == false then
-        if GetCharacterCondition(32) == false then
+    if Svc.Condition[31] == false then
+        if Svc.Condition[32] == false then
             ungabungabunga() -- We really try hard to be safe here
             yield("/echo Debug: Preparing for fishing")
             
@@ -524,14 +524,14 @@ if wheeequeheeheheheheheehhhee == 0 then
 			yield("/artisan lists "..FUTA_processors[hoo_arr_weeeeee][7][2].." start")
 			--begin waiting for crafting to finish
 			threetimes = 0
-			while GetCharacterCondition(5) == true or threetimes < 3 do
+			while Svc.Condition[5] == true or threetimes < 3 do
 				yield("/echo Waiting on artisan to finish what its doing....")
 				zungazunga()
 				yield("/wait 5")
-				if GetCharacterCondition(5) == true then
+				if Svc.Condition[5] == true then
 					threetimes = 0 --reset it if we are still changing jobs in between
 				end
-				if GetCharacterCondition(5) == false then 
+				if Svc.Condition[5] == false then 
 					threetimes = threetimes + 1 
 				end
 			end

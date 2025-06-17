@@ -6,12 +6,12 @@ cucked_by_chests = "often"
 while cucked_by_chests == "often" do
 	--safe check ifs
 	if IsPlayerAvailable() then
-	if type(GetCharacterCondition(34)) == "boolean" and type(GetCharacterCondition(26)) == "boolean" and type(GetCharacterCondition(4)) == "boolean" then
-	    if GetCharacterCondition(34) == false then
+	if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean" and type(Svc.Condition[4]) == "boolean" then
+	    if Svc.Condition[34] == false then
 				yield("/ad resume")
 		end
-		if GetCharacterCondition(26) == false and GetCharacterCondition(34) == true then
-		--if GetCharacterCondition(34) == true then
+		if Svc.Condition[26] == false and Svc.Condition[34] == true then
+		--if Svc.Condition[34] == true then
 			zist = GetDistanceToObject("Treasure Coffer")
 			if zist < 20 and zist > 0.1 then
 				yield("/ad pause")

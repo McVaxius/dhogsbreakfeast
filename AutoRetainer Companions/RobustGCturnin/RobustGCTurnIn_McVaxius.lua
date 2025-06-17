@@ -303,7 +303,7 @@ function Final_GC_Cleaning()
 			yield("/wait 1.5")
 			yield("/wait 3")
 			--wait for char condition 1
-			while GetCharacterCondition(32) == true and GetCharacterCondition(35) == true do
+			while Svc.Condition[32] == true and Svc.Condition[35] == true do
 				yield("/wait 1")
 			end
 			yield("/wait 2")
