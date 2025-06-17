@@ -1,7 +1,7 @@
 --[[
 cycle between jobs to get 500k while afk in cosmic using ice cosmic.
 
-requires icecosmic, simpletweaks job change, etc
+requires icecosmic, simpletweaks job change, artisan, etc
 --]]
 
 cosmic = "shit content"
