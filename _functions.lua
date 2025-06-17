@@ -179,7 +179,7 @@ function ungabungabunga()
 			yield("/send ESCAPE")
 			yield("/wait 1")
 			yield("/wait 3")
-			if IsPlayerAvailable() == true then
+			if Player.Available() == true then
 				tobungaorunga = 1
 			end
 		end
@@ -232,12 +232,12 @@ end
 
 function ZoneTransition()
 	yield("/automove off")
-	iswehehe = IsPlayerAvailable() 
+	iswehehe = Player.Available() 
 	iswoah = 0
     repeat 
         yield("/wait 0.5")
         yield("/echo Are we ready? -> "..iswoah.."/20")
-		iswehehe = IsPlayerAvailable() 
+		iswehehe = Player.Available() 
 		iswoah = iswoah + 1
 		if 	iswoah == 5 then if IsAddonReady("SelectYesno") then yield("/callback SelectYesno true 0") end end
 		if 	iswoah == 10 then if IsAddonReady("SelectYesno") then yield("/callback SelectYesno true 0") end end
@@ -253,7 +253,7 @@ function ZoneTransition()
     repeat 
         yield("/wait 0.5")
         yield("/echo Are we ready? (backup check)-> "..iswoah.."/20")
-		iswehehe = IsPlayerAvailable() 
+		iswehehe = Player.Available() 
 		iswoah = iswoah + 1
 		if 	iswoah == 5 then if IsAddonReady("SelectYesno") then yield("/callback SelectYesno true 0") end end
 		if 	iswoah == 10 then if IsAddonReady("SelectYesno") then yield("/callback SelectYesno true 0") end end

@@ -11,7 +11,7 @@ also TURN OF SIMPLE teleport in autoretainer. it is not needed and will cause pr
 --]]
 
 function fartknocker()
-	while IsPlayerAvailable() == false do
+	while Player.Available() == false do
 		yield("/echo waiting on player")
 		yield("/wait 1")
 	end

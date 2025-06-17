@@ -77,7 +77,7 @@ entered_duty = 0
 
 while 1 == 1 do
 --safe check ifs
-if IsPlayerAvailable() then
+if Player.Available() then
 if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean" and type(Svc.Condition[4]) == "boolean" then
 --
 	--is there some bullshit and yesalready was disabled?
@@ -166,7 +166,7 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 	end
 	--
 	--safe check ifs part 2
-	if IsPlayerAvailable() then
+	if Player.Available() then
 	if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean" and type(Svc.Condition[4]) == "boolean" then
 	--
 

@@ -962,7 +962,7 @@ re_engage = 0 --counter
 renav_check = 0
 
 function IsPlayerReallyAvailable()
-	if IsPlayerAvailable() or Svc.Condition[11] then
+	if Player.Available() or Svc.Condition[11] then
 		return true
 	end
 	return false

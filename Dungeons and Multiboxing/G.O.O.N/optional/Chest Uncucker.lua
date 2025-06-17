@@ -5,7 +5,7 @@ cucked_by_chests = "often"
 
 while cucked_by_chests == "often" do
 	--safe check ifs
-	if IsPlayerAvailable() then
+	if Player.Available() then
 	if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean" and type(Svc.Condition[4]) == "boolean" then
 	    if Svc.Condition[34] == false then
 				yield("/ad resume")

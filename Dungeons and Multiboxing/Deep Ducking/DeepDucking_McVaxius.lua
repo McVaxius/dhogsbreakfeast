@@ -148,7 +148,7 @@ while fatfuck == 1 do
 		end
 	end
 
-	if IsPlayerAvailable() == false then
+	if Player.Available() == false then
 		--may as well reset everything if we get to this part
 		yield("/send NUMPAD0")
 		yield("/wait 1")
@@ -159,7 +159,7 @@ while fatfuck == 1 do
 		anal_of_passage = 0
 		yield("/echo resetting all counters - we are transiting floors or floor sets")
 	end
-	if IsPlayerAvailable() then
+	if Player.Available() then
 		--*we should probably check for toad/otter/owl/capybara status and force path to the anal of passage
 		--comment this next line out if you don't want spam
 		--yield("/echo # -> attack->"..fattack.."/5 nav->"..fanav.."/30 stopnav->"..samenav.."/10 wall->"..wallitbro.."/50 anal->"..anal_of_passage.."/180")
