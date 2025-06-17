@@ -218,11 +218,11 @@ function WalkTo(x, y, z)
 	countee = 0
 	while (PathIsRunning() or PathfindInProgress()) do
 		yield("/wait 0.5")
-		--if GetZoneID() == 130 or GetZoneID() == 341 then --130 is uldah. dont need to jump anymore it paths properly. we will test anyways.
+		--if Svc.ClientState.TerritoryType == 130 or Svc.ClientState.TerritoryType == 341 then --130 is uldah. dont need to jump anymore it paths properly. we will test anyways.
 		countee = countee + 1
 		--yield("/echo we are still pathfinding apparently -> countee -> "..countee)
-		if gachi_jumpy == 1 and countee == 10 and GetZoneID() ~= 129 then --we only doing jumps if we configured for it
-		--if GetZoneID() == 341 then --only need to jump in goblet for now
+		if gachi_jumpy == 1 and countee == 10 and Svc.ClientState.TerritoryType ~= 129 then --we only doing jumps if we configured for it
+		--if Svc.ClientState.TerritoryType == 341 then --only need to jump in goblet for now
 			yield("/gaction jump")
 			countee = 0
 			yield("/echo we are REALLY still pathfinding apparently")
@@ -269,18 +269,18 @@ end
 function WalkToGC()
 	yield("/echo processing GC travel request....")
     if GetPlayerGC() == 1 then --toilet
-        if GetZoneID() ~= 129 and GetZoneID() ~= 128 then
+        if Svc.ClientState.TerritoryType ~= 129 and Svc.ClientState.TerritoryType ~= 128 then
 			yield("/tp limsa")
 			yield("/echo attempting to tp to limsa")
 		    ZoneTransition()
 			toiletvisitor = 0
-			while GetZoneID() ~= 129 do  --sometimes things get stuck in limsa or pre-limsa this should solve it.
+			while Svc.ClientState.TerritoryType ~= 129 do  --sometimes things get stuck in limsa or pre-limsa this should solve it.
 				yield("/tp limsa")
 				ZoneTransition()
 			end
 			yield("/echo we in limsa")
 			yield("/wait 5")
-			while GetZoneID() ~= 128 do  --sometimes things get stuck in limsa or pre-limsa this should solve it.
+			while Svc.ClientState.TerritoryType ~= 128 do  --sometimes things get stuck in limsa or pre-limsa this should solve it.
 				toiletvisitor = toiletvisitor + 1
 				if toiletvisitor > 10 then
 					yield("/pcraft stop")
@@ -302,7 +302,7 @@ function WalkToGC()
 			WalkTo(94, 40.5, 74.5)
 		end
     elseif GetPlayerGC() == 2 then --vampire coven
-		while GetZoneID() ~= 132 do
+		while Svc.ClientState.TerritoryType ~= 132 do
 			yield("/tp grid")
 		    ZoneTransition()
 		end
@@ -316,7 +316,7 @@ function WalkToGC()
 			WalkTo(-68.5, -0.5, -8.5)
 		end
     elseif GetPlayerGC() == 3 then --best place in game
-		while GetZoneID() ~= 130 do
+		while Svc.ClientState.TerritoryType ~= 130 do
 			yield("/tp ul'dah")
 		    ZoneTransition()
 		end
@@ -626,7 +626,7 @@ function enter_workshop()
 
 	--workshop ids gob 424, shiro 653, mist 423, emp 984, lav 425
 	attempts = 0 --we will do a max of 5 attempts - and if we are still not inside, we will end SND entirely so it doesnt get caught in buy loop after.
-    zoneczec = GetZoneID()
+    zoneczec = Svc.ClientState.TerritoryType
 	
 	while zoneczec ~= 424 and zoneczec ~= 425 and zoneczec ~= 423 and zoneczec ~= 653 and zoneczec ~= 984 and attempts < 5 do
 		--attempt to enter house
@@ -649,7 +649,7 @@ function enter_workshop()
 			yield("/wait 5")
 		end
 		attempts = attempts + 1
-		zoneczec = GetZoneID()
+		zoneczec = Svc.ClientState.TerritoryType
 	end	
 end
 
@@ -734,7 +734,7 @@ function round(n)
 end
 
 function try_to_buy_fuel(restock_amt)
-    zoneczec = GetZoneID()
+    zoneczec = Svc.ClientState.TerritoryType
 	--only try to actually buy fuel if we are in the workshop
 	if zoneczec == 424 or zoneczec == 425 or zoneczec == 423 or zoneczec == 653 or zoneczec == 984 then
 		--target mammet

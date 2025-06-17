@@ -42,7 +42,7 @@ valid_pvp_areas = {
 }
 
 while fuckpvp == 1 do
-	fuckthis = GetZoneID()
+	fuckthis = Svc.ClientState.TerritoryType
 	fuckyou = 0
 	for i=1,#valid_pvp_areas do
 		if fuckthis == valid_pvp_areas[i] then

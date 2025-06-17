@@ -30,7 +30,7 @@ while (mgf_counter < mgf_sucks) do
     yield("/callback FGSExitDialog true 0")
     --1197 gold saucer blunderville reg area
     --1165 fail guys area
-    if  (GetZoneID()==1165 and in_saucer == 1) then
+    if  (Svc.ClientState.TerritoryType==1165 and in_saucer == 1) then
         in_saucer = 0
     end
     if  (IsInZone(1165)==false and in_saucer == 0) then

@@ -52,7 +52,7 @@ housing_zones =
 badzoyn = 1 --this needs to be global
 
 function bz()
-	zoyn = GetZoneID()
+	zoyn = Svc.ClientState.TerritoryType
 	badzoyn = 1
 	for i=1,#housing_zones do
 		if housing_zones[i] == zoyn then

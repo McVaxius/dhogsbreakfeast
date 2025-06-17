@@ -141,7 +141,7 @@ for i=1,#franchise_owners do
 	--now we have to walk or teleport?!!?!? to fat tony, where is he waiting this time?
 	if tony_type == 0 then
 		yield("/echo "..fat_tony.." is meeting us in the alleyways.. watch your back")
-			while tony_zoneID ~= GetZoneID() do --we are teleporting to Tony's spot
+			while tony_zoneID ~= Svc.ClientState.TerritoryType do --we are teleporting to Tony's spot
 				yield("/tp "..tonys_spot)
 				yield("/wait 2")
 				yield("/callback SelectYesno true 0")

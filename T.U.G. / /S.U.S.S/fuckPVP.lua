@@ -31,7 +31,7 @@ Unable to use that title.
 --]]
 
 while fuckpvp == 1 do
-	fuckthis = GetZoneID()
+	fuckthis = Svc.ClientState.TerritoryType
 	fuckyou = 0
 	if fuckthis == 554 or fuckthis == 888 or fuckthis == 1273 or fuckthis == 431 then
 		fuckyou = 1

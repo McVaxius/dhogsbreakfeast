@@ -196,9 +196,9 @@ function fishing()
 	yield("/bait Versatile Lure")
 	 
 
-	yield("/echo Current area"..GetZoneID())
-	zown = GetZoneID()
-	fzown = GetZoneID()
+	yield("/echo Current area"..Svc.ClientState.TerritoryType)
+	zown = Svc.ClientState.TerritoryType
+	fzown = Svc.ClientState.TerritoryType
 
 	--dryskthota
 	PathfindAndMoveTo(-409.42459106445,3.9999997615814,74.483444213867,false) 
@@ -232,7 +232,7 @@ function fishing()
 	--get current area
 	--check if area has changed every 5 seconds.
 	while (zown == fzown) and (toolong < 30) do
-		fzown = GetZoneID()	
+		fzown = Svc.ClientState.TerritoryType	
 		yield("/wait 5")
 	end
 	--if so then wait for 30 seconds then start heading to the visland location
@@ -261,7 +261,7 @@ function fishing()
 	omadamkhoneh = 0 --counter to stop trying to move to edge since it will do bad stuff outside of instance after
 	while (zown ~= fzown) do
 		omadamkhoneh = omadamkhoneh + 1
-		fzown = GetZoneID()
+		fzown = Svc.ClientState.TerritoryType
 		if omadamkhoneh > 100 then
 			visland_stop_moving()
 			omadamkhoneh = -200  --we dont want this to trigger again
@@ -271,7 +271,7 @@ function fishing()
 		   yield("/wait 5")
 		end
 		if Svc.Condition[43]==false then
-			if GetZoneID() ~= 132 then
+			if Svc.ClientState.TerritoryType ~= 132 then
 				yield("/ac cast")
 				yield("/wait 1")
 			end

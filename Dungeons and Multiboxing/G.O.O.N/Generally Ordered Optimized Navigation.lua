@@ -233,8 +233,8 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 			end
 		end
 		--reenter the inn room
-		--if (GetZoneID() ~= 177 and GetZoneID() ~= 178) and Svc.Condition[34] == false and NeedsRepair(50) == false then
-		if (GetZoneID() ~= 177 and GetZoneID() ~= 178 and GetZoneID() ~= 179) and Svc.Condition[34] == false and Player.Available() then
+		--if (Svc.ClientState.TerritoryType ~= 177 and Svc.ClientState.TerritoryType ~= 178) and Svc.Condition[34] == false and NeedsRepair(50) == false then
+		if (Svc.ClientState.TerritoryType ~= 177 and Svc.ClientState.TerritoryType ~= 178 and Svc.ClientState.TerritoryType ~= 179) and Svc.Condition[34] == false and Player.Available() then
 			yield("/send ESCAPE")
 			yield("/ad stop") --seems to be needed or we get stuck in repair genjutsu
 			yield("/target Antoinaut") --gridania
@@ -278,7 +278,7 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 	--check if we are stuck somewhere.
 	--first ensure we are in the duty and not in combat
 
-	if GetZoneID() == 1044 and Svc.Condition[26] == false and Player.Available() then --Praetorium
+	if Svc.ClientState.TerritoryType == 1044 and Svc.Condition[26] == false and Player.Available() then --Praetorium
 		maxjiggle = 6
 		flurb = "????"
 		for flurby = 1,30 do
@@ -360,8 +360,8 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 	end
 
 	--1044 is prae we only need this there atm
-	if GetZoneID() == 1044 then --Praetorium
-	--if GetZoneID() == 1044 and not HasTarget() then
+	if Svc.ClientState.TerritoryType == 1044 then --Praetorium
+	--if Svc.ClientState.TerritoryType == 1044 and not HasTarget() then
 	--	TargetClosestEnemy(30)
 	--end
 			
@@ -370,7 +370,7 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 			if echo_level < 4 then yield("/echo we havent moved very much something is up ") end
 			jigglecounter = jigglecounter + 1
 		end
-		if jigglecounter > maxjiggle and GetZoneID() == 1044 then --we stuck for 30+ seconds somewhere in praetorium
+		if jigglecounter > maxjiggle and Svc.ClientState.TerritoryType == 1044 then --we stuck for 30+ seconds somewhere in praetorium
 			if echo_level < 4 then yield("/echo attempting to restart AD and hope for the best") end
 			jigglecounter = 0
 			yield("/ad stop")
@@ -446,8 +446,8 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 
 	stopcuckingme = stopcuckingme + 1
 	--autoqueue at the end because its least important thing
-	if type(GetZoneID()) == "number" then
-		zonecheck = GetZoneID()
+	if type(Svc.ClientState.TerritoryType) == "number" then
+		zonecheck = Svc.ClientState.TerritoryType
 		if not (zonecheck == 1044 or zonecheck == 1048) then
 			entered_duty = 0
 		end
@@ -470,7 +470,7 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 		if echo_level < 4 then yield("/echo We are starting over the duty counter, we passed daily reset time!") end
 	end
 	if Player.Available() then
-		if stopcuckingme > 2 and Svc.Condition[34] == false and imthecaptainnow == 1 and (GetZoneID() == 177 or GetZoneID() == 178 or GetZoneID() == 179) and not NeedsRepair(tornclothes) then
+		if stopcuckingme > 2 and Svc.Condition[34] == false and imthecaptainnow == 1 and (Svc.ClientState.TerritoryType == 177 or Svc.ClientState.TerritoryType == 178 or Svc.ClientState.TerritoryType == 179) and not NeedsRepair(tornclothes) then
 			whoops = 0
 			boops = 0
 			did_we_clear_it = 0

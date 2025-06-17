@@ -616,7 +616,7 @@ end
 
 function are_we_distancing()
 	returnval = 0
-	zown = GetZoneID()
+	zown = Svc.ClientState.TerritoryType
 	--are_we_social_distancing = 0
 	for i=1,#duties_with_distancing do
 		if zown == duties_with_distancing[i][1] then
@@ -874,8 +874,8 @@ function clingmove(nemm)
 	--]]
 end
 
-we_are_in = GetZoneID()
-we_were_in = GetZoneID()
+we_are_in = Svc.ClientState.TerritoryType
+we_were_in = Svc.ClientState.TerritoryType
 for i=0,7 do
 	if GetPartyMemberName(i) == fren then
 		shartycardinality = i
@@ -920,7 +920,7 @@ function checkzoi()
 		end
 
 		are_we_in_i_zone = 0
-		GZI = GetZoneID()
+		GZI = Svc.ClientState.TerritoryType
 		if GZI == 1037 then--tam-tara special behaviour since the bossmodule isn't complete and im lazy - it works
 			yield("/target Inconspicuous Imp")
 			double_check_navGO(GetObjectRawXPos("Inconspicuous Imp"),GetObjectRawYPos("Inconspicuous Imp"),GetObjectRawZPos("Inconspicuous Imp"))
@@ -999,7 +999,7 @@ while weirdvar == 1 do
 				--continually try to dismount
 				--bmr follow off.
 				yield("/bmrai follow slot1")
-				if GetZoneID() ~= 1044 then
+				if Svc.ClientState.TerritoryType ~= 1044 then
 					yield("/ac dismount")
 				end
 				yield("/wait 0.5")
@@ -1039,7 +1039,7 @@ while weirdvar == 1 do
 				--we will use clingmove not bmrai follow as it breaks pathing from that point onwards
 				clingmove(fren)
 				--allright im getting sick of pratorium. its time to do something.
-				if type(GetZoneID()) == "number" and GetZoneID() == 1044 and Svc.Condition[4] then --Praetorium
+				if type(Svc.ClientState.TerritoryType) == "number" and Svc.ClientState.TerritoryType == 1044 and Svc.Condition[4] then --Praetorium
 					--if string.len(GetTargetName()) == 0 then
 					TargetClosestEnemy()
 					--end
@@ -1107,7 +1107,7 @@ while weirdvar == 1 do
 				   autotosscount = 0
 				end
 				--check if we changed areas and stop movement and clear target
-				we_are_in = GetZoneID()
+				we_are_in = Svc.ClientState.TerritoryType
 				if we_are_in ~= we_were_in then
 					yield("/wait 0.5")
 					yield("/visland stop")
@@ -1149,8 +1149,8 @@ while weirdvar == 1 do
 								yield("/ad stop")
 							end
 							--reenter the inn room
-							--if (GetZoneID() ~= 177 and GetZoneID() ~= 178) and Svc.Condition[34] == false and NeedsRepair(50) == false then
-							if (GetZoneID() ~= 177 and GetZoneID() ~= 178 and GetZoneID() ~= 179) and Svc.Condition[34] == false and IsPlayerReallyAvailable() then
+							--if (Svc.ClientState.TerritoryType ~= 177 and Svc.ClientState.TerritoryType ~= 178) and Svc.Condition[34] == false and NeedsRepair(50) == false then
+							if (Svc.ClientState.TerritoryType ~= 177 and Svc.ClientState.TerritoryType ~= 178 and Svc.ClientState.TerritoryType ~= 179) and Svc.Condition[34] == false and IsPlayerReallyAvailable() then
 								yield("/send ESCAPE")
 								yield("/ad stop") --seems to be needed or we get stuck in repair genjutsu
 								yield("/target Antoinaut") --gridania

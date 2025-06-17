@@ -230,7 +230,7 @@ while fatfuck == 1 do
 			yield("/bm on")
 			yield("/echo attempting to attack!")
 			--yield("/send KEY_1")
-			shetzone = GetZoneID()
+			shetzone = Svc.ClientState.TerritoryType
 			--[[
 			if shetzone > 560 and shetzone < 608 then
 				if Svc.Condition[26] == false then

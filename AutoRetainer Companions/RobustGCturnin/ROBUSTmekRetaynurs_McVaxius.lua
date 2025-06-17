@@ -289,7 +289,7 @@ function trouble_my_adventure()
 end
 
 function lets_limsa()
-	if GetZoneID() > 129 or GetZoneID() < 129 then
+	if Svc.ClientState.TerritoryType > 129 or Svc.ClientState.TerritoryType < 129 then
 		yield("/tp Limsa")
 		yield("/wait 15") -- give it some time to TP
 		CharacterSafeWait()
