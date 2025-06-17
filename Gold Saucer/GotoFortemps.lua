@@ -8,17 +8,17 @@ function visland_stop_moving()
  yield("/equipguud")
  yield("/wait 3")
  muuv = 1
- muuvX = GetPlayerRawXPos()
- muuvY = GetPlayerRawYPos()
- muuvZ = GetPlayerRawZPos()
+ muuvX = Player.Entity.Position.X
+ muuvY = Player.Entity.Position.Y
+ muuvZ = Player.Entity.Position.Z
  while muuv == 1 do
 	yield("/wait 1")
-	if muuvX == GetPlayerRawXPos() and muuvY == GetPlayerRawYPos() and muuvZ == GetPlayerRawZPos() then
+	if muuvX == Player.Entity.Position.X and muuvY == Player.Entity.Position.Y and muuvZ == Player.Entity.Position.Z then
 		muuv = 0
 	end
-	muuvX = GetPlayerRawXPos()
-	muuvY = GetPlayerRawYPos()
-	muuvZ = GetPlayerRawZPos()
+	muuvX = Player.Entity.Position.X
+	muuvY = Player.Entity.Position.Y
+	muuvZ = Player.Entity.Position.Z
  end
  yield("/echo movement stopped")
  yield("/visland stop")

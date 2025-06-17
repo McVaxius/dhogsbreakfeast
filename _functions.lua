@@ -374,20 +374,20 @@ function visland_stop_moving()
  do_we_force_equip = force_equipstuff or 1  --default is on, unless we specify the global force_equipstuff in the calling script
  muuv = 1
  muuvstop = 0
- muuvX = GetPlayerRawXPos()
- muuvY = GetPlayerRawYPos()
- muuvZ = GetPlayerRawZPos()
+ muuvX = Player.Entity.Position.X
+ muuvY = Player.Entity.Position.Y
+ muuvZ = Player.Entity.Position.Z
  while muuv == 1 do
 	yield("/wait 1")
 	muuvstop = muuvstop + 1
-	if muuvX == GetPlayerRawXPos() and muuvY == GetPlayerRawYPos() and muuvZ == GetPlayerRawZPos() then
+	if muuvX == Player.Entity.Position.X and muuvY == Player.Entity.Position.Y and muuvZ == Player.Entity.Position.Z then
 		muuv = 0
 	end
-	muuvX = GetPlayerRawXPos()
-	muuvY = GetPlayerRawYPos()
-	muuvZ = GetPlayerRawZPos()
+	muuvX = Player.Entity.Position.X
+	muuvY = Player.Entity.Position.Y
+	muuvZ = Player.Entity.Position.Z
 	if muuvstop > 50 then
-		if math.abs(muuvX - GetPlayerRawXPos()) < 2 and math.abs(muuvY - GetPlayerRawYPos()) < 2 and math.abs(muuvZ - GetPlayerRawZPos()) < 2 then
+		if math.abs(muuvX - Player.Entity.Position.X) < 2 and math.abs(muuvY - Player.Entity.Position.Y) < 2 and math.abs(muuvZ - Player.Entity.Position.Z) < 2 then
 			muuv = 0 --we need an escape clause here otherwise some situations we will never achieve success sometimes we are stuck near the target but not quite there.
 		end
 	end
@@ -460,11 +460,11 @@ function return_to_lair()
 end
 
 function double_check_nav(x3, y3, z3)
-	x1 = GetPlayerRawXPos()
-	y1 = GetPlayerRawYPos()
-	z1 = GetPlayerRawZPos()
+	x1 = Player.Entity.Position.X
+	y1 = Player.Entity.Position.Y
+	z1 = Player.Entity.Position.Z
 	yield("/wait 2")
-	if (x1 - GetPlayerRawXPos()) == 0 and (y1 - GetPlayerRawYPos()) == 0 and (z1 - GetPlayerRawZPos()) == 0 then
+	if (x1 - Player.Entity.Position.X) == 0 and (y1 - Player.Entity.Position.Y) == 0 and (z1 - Player.Entity.Position.Z) == 0 then
 		--yield("/vnav rebuild")
 		NavRebuild()
 		while not NavIsReady() do
@@ -476,11 +476,11 @@ function double_check_nav(x3, y3, z3)
 end
 
 function double_check_navGO(x3, y3, z3)
-	x1 = GetPlayerRawXPos()
-	y1 = GetPlayerRawYPos()
-	z1 = GetPlayerRawZPos()
+	x1 = Player.Entity.Position.X
+	y1 = Player.Entity.Position.Y
+	z1 = Player.Entity.Position.Z
 	yield("/wait 2")
-	if (x1 - GetPlayerRawXPos()) == 0 and (y1 - GetPlayerRawYPos()) == 0 and (z1 - GetPlayerRawZPos()) == 0 then
+	if (x1 - Player.Entity.Position.X) == 0 and (y1 - Player.Entity.Position.Y) == 0 and (z1 - Player.Entity.Position.Z) == 0 then
 		--yield("/vnav rebuild")
 		yield("/vnav moveto " .. x3 .. " " .. y3 .. " " .. z3)
 	end
@@ -496,16 +496,16 @@ function return_fc_entrance()
 	yield("/target Entrance")
 	yield("/wait 1")
 	yield("/echo vnavving over")
-	yield("/vnav moveto "..GetTargetRawXPos().." "..GetTargetRawYPos().." "..GetTargetRawZPos())
+	yield("/vnav moveto "..Target.Entity.Position.X.." "..Target.Entity.Position.Y.." "..Target.Entity.Position.Z)
 	yield("/gaction jump")
 	yield("/target Entrance")
 	yield("/wait 1")
 	yield("/echo vnavving over!")
-	yield("/vnav moveto "..GetTargetRawXPos().." "..GetTargetRawYPos().." "..GetTargetRawZPos())
+	yield("/vnav moveto "..Target.Entity.Position.X.." "..Target.Entity.Position.Y.." "..Target.Entity.Position.Z)
 	yield("/wait 1")
 	yield("/gaction jump")
 	yield("/echo double check")
-	double_check_nav(GetTargetRawXPos(),GetTargetRawYPos(),GetTargetRawZPos())
+	double_check_nav(Target.Entity.Position.X,Target.Entity.Position.Y,Target.Entity.Position.Z)
 	visland_stop_moving()
 	yield("/target Entrance")
 	yield("/wait 1")
@@ -983,9 +983,9 @@ function delete_my_items_please(how)
 		yield("/target bell")
 		yield("/wait 1")
 		nemm = "Summoning Bell"
-		poostance = _distance(GetPlayerRawXPos(), GetPlayerRawYPos(), GetPlayerRawZPos(), GetObjectRawXPos(nemm),GetObjectRawYPos(nemm),GetObjectRawZPos(nemm))
+		poostance = _distance(Player.Entity.Position.X, Player.Entity.Position.Y, Player.Entity.Position.Z, GetObjectRawXPos(nemm),GetObjectRawYPos(nemm),GetObjectRawZPos(nemm))
 		if poostance < 11 then
-			yield("/vnav moveto "..GetTargetRawXPos().." "..GetTargetRawYPos().." "..GetTargetRawZPos())
+			yield("/vnav moveto "..Target.Entity.Position.X.." "..Target.Entity.Position.Y.." "..Target.Entity.Position.Z)
 			yield("/wait 4")
 		end
 	end

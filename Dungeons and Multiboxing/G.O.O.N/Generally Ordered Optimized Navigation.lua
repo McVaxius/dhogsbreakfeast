@@ -56,9 +56,9 @@ yield("/echo please get ready for G.O.O.N ing time")
 --yield("/bmrai ui") --open this in case we need to set the preset. at least until we can slash command it.
 
 jigglecounter = 0
-x1 = GetPlayerRawXPos()
-y1 = GetPlayerRawYPos()
-z1 = GetPlayerRawZPos()
+x1 = Player.Entity.Position.X
+y1 = Player.Entity.Position.Y
+z1 = Player.Entity.Position.Z
 
 stopcuckingme = 0    --counter for checking whento pop duty
 
@@ -274,7 +274,7 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 	if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean" and type(Svc.Condition[4]) == "boolean" then
 	--
 
-	--yield("/echo x diff"..math.abs(x1 - GetPlayerRawXPos()))
+	--yield("/echo x diff"..math.abs(x1 - Player.Entity.Position.X))
 	--check if we are stuck somewhere.
 	--first ensure we are in the duty and not in combat
 
@@ -302,14 +302,14 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 			if type(GetTargetName()) == "string" and GetTargetName() == "Shortcut" then
 				yield("/ad stop")
 				yield("/interact")
-				yield("/vnavmesh moveto "..GetTargetRawXPos().." "..GetTargetRawYPos().." "..GetTargetRawZPos())
+				yield("/vnavmesh moveto "..Target.Entity.Position.X.." "..Target.Entity.Position.Y.." "..Target.Entity.Position.Z)
 				yield("/wait 10")
 				yield("/interact")
 				yield("/bmrai on")
 				yield("/rotation auto")
 			end
 			if type(GetTargetName()) == "string" and Svc.Condition[26] == false then
-				yield("/vnavmesh moveto "..GetTargetRawXPos().." "..GetTargetRawYPos().." "..GetTargetRawZPos())
+				yield("/vnavmesh moveto "..Target.Entity.Position.X.." "..Target.Entity.Position.Y.." "..Target.Entity.Position.Z)
 			end
 			--]]
 		end
@@ -336,7 +336,7 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 			if type(GetTargetName()) == "string" and GetTargetName() == "Shortcut" and Svc.Condition[26] == false and Player.Available() then
 				yield("/ad stop")
 				yield("/interact")
-				yield("/vnavmesh moveto "..GetTargetRawXPos().." "..GetTargetRawYPos().." "..GetTargetRawZPos())
+				yield("/vnavmesh moveto "..Target.Entity.Position.X.." "..Target.Entity.Position.Y.." "..Target.Entity.Position.Z)
 				yield("/wait 10")
 				yield("/interact")
 				yield("/bmrai on")
@@ -344,7 +344,7 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 			end
 			if type(GetTargetName()) == "string" and Svc.Condition[26] == false and Player.Available() then
 				yield("/interact")
-				yield("/vnavmesh moveto "..GetTargetRawXPos().." "..GetTargetRawYPos().." "..GetTargetRawZPos())
+				yield("/vnavmesh moveto "..Target.Entity.Position.X.." "..Target.Entity.Position.Y.." "..Target.Entity.Position.Z)
 			end
 			if type(GetTargetName()) ~= "string" and Svc.Condition[26] == false and Player.Available() then
 				yield("/wait 1.5")
@@ -366,7 +366,7 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 	--end
 			
 	if Svc.Condition[34] == true and Svc.Condition[26] == false then
-		if math.abs(x1 - GetPlayerRawXPos()) < 3 and math.abs(y1 - GetPlayerRawYPos()) < 3 and math.abs(z1 - GetPlayerRawZPos()) < 3 then
+		if math.abs(x1 - Player.Entity.Position.X) < 3 and math.abs(y1 - Player.Entity.Position.Y) < 3 and math.abs(z1 - Player.Entity.Position.Z) < 3 then
 			if echo_level < 4 then yield("/echo we havent moved very much something is up ") end
 			jigglecounter = jigglecounter + 1
 		end
@@ -429,7 +429,7 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 			--[[jigglecounter = 0 -- we reset the jiggle counter while we are in combat. combat is good means we are doing something productive
 			if echo_level < 1 then yield("/echo stopping vnav for combat") end
 			if echo_level < 1 then yield("/echo pausing AD for combat") end
-			yield("/vnavmesh moveto "..GetTargetRawXPos().." "..GetTargetRawYPos().." "..GetTargetRawZPos())
+			yield("/vnavmesh moveto "..Target.Entity.Position.X.." "..Target.Entity.Position.Y.." "..Target.Entity.Position.Z)
 			yield("/wait 5")
 			yield("/vnav stop")
 			yield("/wait 0.5")
@@ -439,9 +439,9 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 	end
 	
 	if Svc.Condition[34] == true then
-		x1 = GetPlayerRawXPos()
-		y1 = GetPlayerRawYPos()
-		z1 = GetPlayerRawZPos()
+		x1 = Player.Entity.Position.X
+		y1 = Player.Entity.Position.Y
+		z1 = Player.Entity.Position.Z
 	end
 
 	stopcuckingme = stopcuckingme + 1

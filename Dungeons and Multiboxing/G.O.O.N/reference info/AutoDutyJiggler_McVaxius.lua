@@ -8,14 +8,14 @@
 wheahehhahehhaheohuahoeuhaosdflkj = 1
 
 while wheahehhahehhaheohuahoeuhaosdflkj == 1 do
-	x1 = GetPlayerRawXPos()
-	y1 = GetPlayerRawYPos()
-	z1 = GetPlayerRawZPos()
+	x1 = Player.Entity.Position.X
+	y1 = Player.Entity.Position.Y
+	z1 = Player.Entity.Position.Z
 	yield("/wait 20")
 	if Svc.Condition[34] == true then
 		yield("/vnav stop")
 	end
-	if (x1 - GetPlayerRawXPos()) == 0 and (y1 - GetPlayerRawYPos()) == 0 and (z1 - GetPlayerRawZPos()) == 0 then
+	if (x1 - Player.Entity.Position.X) == 0 and (y1 - Player.Entity.Position.Y) == 0 and (z1 - Player.Entity.Position.Z) == 0 then
 		yield("/echo We havent moved in 20 seconds. its time to slap the machine or jiggle it a bit")
 		yield("/callback SelectYesno true 0")
 		yield("/wait 1")
