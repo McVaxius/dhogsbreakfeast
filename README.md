@@ -3,7 +3,7 @@ its here in the root so you can find it easily.
 please enjoy.
 Also please note when it was last updated in case you using it to light your dumpsters on fire.
 
-##SND ?
+## SND ?
 https://github.com/Jaksuhn/SomethingNeedDoing
 
 ## .7z files
