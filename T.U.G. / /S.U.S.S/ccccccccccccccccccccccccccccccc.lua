@@ -20,6 +20,12 @@ The Clockwork Castletown
 The Red Sands
 --]]
 
+--required now in order to make basic stuff work.
+loadfiyel = os.getenv("appdata").."\\XIVLauncher\\pluginConfigs\\SomethingNeedDoing\\_functions.lua"
+functionsToLoad = loadfile(loadfiyel)
+functionsToLoad()
+
+
 fuckpvp = 1
 fuckme = 0
 
@@ -34,11 +40,11 @@ Unable to use that title.
 --]]
 
 valid_pvp_areas = {
-40027,40030, --palaistra
-40031,40028, --volcanic heart
-40032,40029, --cloud nine
-40037,40036, --clockwork castletown
-40040,40039  --red sands
+1027,1030, --palaistra
+1031,1028, --volcanic heart
+1032, --cloud nine
+1037,1036, --clockwork castletown
+1138  --red sands
 }
 
 while fuckpvp == 1 do
@@ -50,8 +56,11 @@ while fuckpvp == 1 do
 		end
 	end
 	if fuckyou == 1 then
+		--nemm = "Tactical Crystal"
 		nemm = "Tactical Crystal"
 		yield("/vnavmesh moveto "..GetObjectRawXPos(nemm).." "..GetObjectRawYPos(nemm).." "..GetObjectRawZPos(nemm))
+		--DEBUG
+		yield("/echo vnavmesh moveto "..GetObjectRawXPos(nemm).." "..GetObjectRawYPos(nemm).." "..GetObjectRawZPos(nemm))
 		yield("/rotation auto")
 		fuckme = fuckme + 1
 		if fuckme > 3 then
@@ -61,7 +70,7 @@ while fuckpvp == 1 do
 	end
 	yield("/wait 0.5")
 	if fuckyou == 0 then
-		yield("/wait 5") --wait a bit longer if we are outside.
+		yield("/wait 5") --wait a +bit longer if we are outside.
 	end
 	--*add in the logic to requeue and to exit the duty also
 end

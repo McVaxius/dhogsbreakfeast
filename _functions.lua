@@ -1008,6 +1008,7 @@ function grab_aetheryte()
 	yield("/wait 10")
 end
 
+--[[ --commented out until croizat fixes the null default bug
 function GetItemCount(floup)
 	mcFloup = Inventory.GetInventoryItem(floup).Count
 	reeturn = 1 --tempvar
@@ -1018,13 +1019,19 @@ function GetItemCount(floup)
 	end
 	return reeturn
 end
+--]]
 
 function GetObjectRawXPos(goatCase)
+	if GetEntityByName(goatCase).Entity.Position.X == nil then return 0 end
 	return GetEntityByName(goatCase).Entity.Position.X
 end
+
 function GetObjectRawYPos(goatCase)
+	if GetEntityByName(goatCase).Entity.Position.X == nil then return 0 end
 	return GetEntityByName(goatCase).Entity.Position.Y
 end
+
 function GetObjectRawZPos(goatCase)
+	if GetEntityByName(goatCase).Entity.Position.Z == nil then return 0 end
 	return GetEntityByName(goatCase).Entity.Position.Z
 end
