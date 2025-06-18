@@ -1077,6 +1077,7 @@ while weirdvar == 1 do
 					end	
 				end
 				
+				--[[ no we aren't
 				--we are limitbreaking all over ourselves
 				if can_i_lb() == true and limitpct > -1 then
 					GetLimoot = 0 --init lb value. its 10k per 1 bar
@@ -1100,6 +1101,7 @@ while weirdvar == 1 do
 						--gawk_gawk_3000("limitpct "..limitpct.." HPP"..GetTargetHPP().." HP"..GetTargetHP().." get limoot"..GetLimitBreakBarCount() * GetLimitBreakBarValue()) --debug line
 					end
 				end
+				--]] -- this is going to be super broken until we learn more about new-snd. maybe best to have this in a autorot/rsr thing anyways
 
 				autotosscount = autotosscount  + 1
 				if autotoss == true and autotosscount > 100 then

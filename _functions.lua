@@ -1008,7 +1008,6 @@ function grab_aetheryte()
 	yield("/wait 10")
 end
 
---[[ --commented out until croizat fixes the null default bug
 function GetItemCount(floup)
 	mcFloup = Inventory.GetInventoryItem(floup).Count
 	reeturn = 1 --tempvar
@@ -1019,7 +1018,6 @@ function GetItemCount(floup)
 	end
 	return reeturn
 end
---]]
 
 function GetObjectRawXPos(goatCase)
 	if GetEntityByName(goatCase).Entity.Position.X == nil then return 0 end
@@ -1034,4 +1032,18 @@ end
 function GetObjectRawZPos(goatCase)
 	if GetEntityByName(goatCase).Entity.Position.Z == nil then return 0 end
 	return GetEntityByName(goatCase).Entity.Position.Z
+end
+
+function GetLevel(flarglevel)
+	flarglevel = flarglevel or 9000
+	if flarglevel == 9000 then
+		return Player.GetJob(flarglevel).Level
+	end
+	if flarglevel < 9000 then
+		return Player.Job.Level
+	end
+end
+
+function GetClassJobId()
+	return Svc.ClientState.LocalPlayer.ClassJob.RowId
 end
