@@ -1035,7 +1035,7 @@ function GetObjectRawZPos(goatCase)
 end
 
 function GetLevel(pjob)
-	pjob = pjob or 9000
+	pjob = pjob or 9000 --9000 is just so we know they didn't pass something over. there is probably better way but i dont think very hard about these things
 	if pjob < 9000 then
 		return Player.GetJob(pjob).Level
 	end
