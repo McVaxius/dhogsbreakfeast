@@ -944,6 +944,30 @@ function loggabunga(filename, texty)
 	end
 end
 
+function GetAddersGCRank()
+	return Player.GCRankTwinAdders
+end
+
+function GetFlamesGCRank()
+	return Player.GCRankImmortalFlames
+end
+
+function GetMaelstromGCRank()
+	return Player.GCRankMaelstrom
+end
+
+function SetFlamesGCRank(hehe)
+	GCRankImmortalFlames = hehe
+end
+
+function SetAddersGCRank(hehe)
+	Player.GCRankTwinAdders = hehe
+end
+
+function SetMaelstromGCRank(hehe)
+	GCRankMaelstrom = hehe
+end
+
 function check_GC_RANKS(renkk)
 	if GetAddersGCRank() < renkk and GetFlamesGCRank() < renkk and GetMaelstromGCRank() < renkk then
 		loggabunga("FUTA_",logfile_differentiator.." - GC ranks below rank "..renkk.." main GC -> Adders - "..GetAddersGCRank().." - Maelstrom - "..GetMaelstromGCRank().." - Flames - "..GetFlamesGCRank().." - Charname -> "..FUTA_processors[hoo_arr_weeeeee][1][1])
@@ -988,7 +1012,7 @@ function delete_my_items_please(how)
 			yield("/vnav moveto "..Target.Entity.Position.X.." "..Target.Entity.Position.Y.." "..Target.Entity.Position.Z)
 			yield("/wait 4")
 		end
-	end
+	end 
 	if how == 1 then
 		yield("/echo Attempting to delete items")
 		yield("/discardall")
@@ -1008,15 +1032,8 @@ function grab_aetheryte()
 	yield("/wait 10")
 end
 
-function GetItemCount(floup)
-	mcFloup = Inventory.GetInventoryItem(floup).Count
-	reeturn = 1 --tempvar
-	if mcFloup == nil
-	reeturn = 0
-	if reeturn == 1 then
-		reeturn = mcFloup
-	end
-	return reeturn
+function GetItemCount(itemId)
+	return Inventory.GetItemCount(itemId)
 end
 
 function GetObjectRawXPos(goatCase)
@@ -1062,7 +1079,7 @@ function GetStatusTimeRemaining(statusID)
     end
 
     --for i = 0, 29 do -- max 30 statuses
-    for i = 0, statuses.Length - 1
+    for i = 0, statuses.Length - 1 do
         local status = statuses[i]
         if status and status.StatusId == statusID then
             return status.RemainingTime or 0
@@ -1086,14 +1103,13 @@ function GetFullStatusList()
 	end
 
 	--for i = 0, 29 do
-	for i = 0, statuses.Length - 1
+	for i = 0, statuses.Length - 1 do
 		local status = statuses[i]
 		if status and status.StatusId ~= 0 then
 			yield(string.format("/echo [%d] ID: %d  Time: %.2f", i, status.StatusId, status.RemainingTime or 0))
 		end
 	end
 end
-
 
 function IsAddonReady(iar)
 	return GetAddon(iar).Ready
@@ -1107,10 +1123,27 @@ function IsPlayerAvailable()
     return Player.Available
 end
 
-function RestoreYesAlreadY()
+function RestoreYesAlready()
 	IPC.YesAlready.SetPluginEnabled(true)
 end
 
-function PauseYesAlreadY()
+function PauseYesAlready()
 	IPC.YesAlready.SetPluginEnabled(false)
+end
+
+function GetCharacterName()
+	return Player.Entity.Name
+end
+
+function DeliverooIsTurnInRunning()
+	return IPC.Deliveroo.IsTurnInRunning()
+end
+
+function HasPlugin(name)
+	return IPC.IsInstalled(name)
+end
+
+function GetInventoryFreeSlotCount()
+	--yield("/e " ..tostring(Inventory.GetInventoryContainer(luanet.enum(InventoryType, 'Inventory1')).FreeSlots))
+	return Inventory.GetInventoryContainer(luanet.enum(InventoryType, 'Inventory1')).FreeSlots
 end
