@@ -1106,3 +1106,11 @@ end
 function IsPlayerAvailable()
     return Player.Available
 end
+
+function RestoreYesAlreadY()
+	IPC.YesAlready.SetPluginEnabled(true)
+end
+
+function PauseYesAlreadY()
+	IPC.YesAlready.SetPluginEnabled(false)
+end
