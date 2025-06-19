@@ -1093,3 +1093,14 @@ function GetFullStatusList()
 		end
 	end
 end
+
+
+function IsAddonReady(iar)
+	if GetAddon(iar).Ready then return true end
+	else return false end
+end
+
+function IsAddonVisible(iav)
+	if GetAddon(iav).Ready then return true end
+	else return false end
+end
