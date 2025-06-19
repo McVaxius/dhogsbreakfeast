@@ -81,7 +81,7 @@ equip_counter = 0
 while 1 == 1 do
 	yield("/wait 1.5") --the big wait. run the entire fucking script every ? seconds
 --safe check ifs
-if Player.Available() then
+if Player.Available then
 if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean" and type(Svc.Condition[4]) == "boolean" then
 --
 	--is there some bullshit and yesalready was disabled?
@@ -182,7 +182,7 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 	end
 	--
 	--safe check ifs part 2
-	if Player.Available() then
+	if Player.Available then
 	if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean" and type(Svc.Condition[4]) == "boolean" then
 	--
 

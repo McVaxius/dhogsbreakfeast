@@ -18,7 +18,7 @@ this script is just a generic autoduty helper since it makes characters act like
 yield("/wait 1")
 
 --loop wait for is char ready 
-while Player.Available() == false do
+while Player.Available == false do
 	yield("/echo waiting on player")
 	yield("/wait 1")
 end

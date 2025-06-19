@@ -146,7 +146,7 @@ while 1 == 1 do
 	yield("/wait 1.5") --the big wait. run the entire fucking script every ? seconds
 	
 --safe check ifs
-if Player.Available() then
+if Player.Available then
 if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean" and type(Svc.Condition[4]) == "boolean" then
 --
 	--decide if we are going to bailout - logic stolen from Ritsuko <3
@@ -234,25 +234,25 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 		end
 		--reenter the inn room
 		--if (Svc.ClientState.TerritoryType ~= 177 and Svc.ClientState.TerritoryType ~= 178) and Svc.Condition[34] == false and NeedsRepair(50) == false then
-		if (Svc.ClientState.TerritoryType ~= 177 and Svc.ClientState.TerritoryType ~= 178 and Svc.ClientState.TerritoryType ~= 179) and Svc.Condition[34] == false and Player.Available() then
+		if (Svc.ClientState.TerritoryType ~= 177 and Svc.ClientState.TerritoryType ~= 178 and Svc.ClientState.TerritoryType ~= 179) and Svc.Condition[34] == false and Player.Available then
 			yield("/send ESCAPE")
 			yield("/ad stop") --seems to be needed or we get stuck in repair genjutsu
 			yield("/target Antoinaut") --gridania
 			yield("/target Mytesyn")   --limsa
 			yield("/target Otopa")     --uldah
 			yield("/wait 1")
-			if type(Svc.Condition[34]) == "boolean" and  Svc.Condition[34] == false and Player.Available() then
+			if type(Svc.Condition[34]) == "boolean" and  Svc.Condition[34] == false and Player.Available then
 				yield("/lockon on")
 				yield("/automove")
 			end
 			yield("/wait 2.5")
-			if type(Svc.Condition[34]) == "boolean" and  Svc.Condition[34] == false and Player.Available() then
+			if type(Svc.Condition[34]) == "boolean" and  Svc.Condition[34] == false and Player.Available then
 				yield("/callback _Notification true 0 17")
 				yield("/callback ContentsFinderConfirm true 9")
 				yield("/interact")
 			end
 			yield("/wait 1")
-			if type(Svc.Condition[34]) == "boolean" and  Svc.Condition[34] == false and Player.Available() then
+			if type(Svc.Condition[34]) == "boolean" and  Svc.Condition[34] == false and Player.Available then
 				yield("/callback _Notification true 0 17")
 				yield("/callback ContentsFinderConfirm true 9")
 				yield("/callback SelectIconString true 0")
@@ -270,7 +270,7 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 	end
 	--
 	--safe check ifs part 2
-	if Player.Available() then
+	if Player.Available then
 	if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean" and type(Svc.Condition[4]) == "boolean" then
 	--
 
@@ -278,11 +278,11 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 	--check if we are stuck somewhere.
 	--first ensure we are in the duty and not in combat
 
-	if Svc.ClientState.TerritoryType == 1044 and Svc.Condition[26] == false and Player.Available() then --Praetorium
+	if Svc.ClientState.TerritoryType == 1044 and Svc.Condition[26] == false and Player.Available then --Praetorium
 		maxjiggle = 6
 		flurb = "????"
 		for flurby = 1,30 do
-			if Player.Available() then
+			if Player.Available then
 				if GetNodeText("_ToDoList", flurby, 3) == "Arrive at the command chamber: 0/1" then flurb = "Arrive at the command chamber: 0/1" end
 				if GetNodeText("_ToDoList", flurby, 3) == "Clear the command chamber: 0/1" then flurb = "Clear the command chamber: 0/1" end
 				if GetNodeText("_ToDoList", flurby, 3) == "Arrive at the Laboratorium Primum: 0/1" then flurb = "Arrive at the Laboratorium Primum: 0/1" end
@@ -292,7 +292,7 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 			end
 			yield("/wait 0.3")
 		end
-		if flurb == "Clear the Laboratorium Primum: 0/1"  and Svc.Condition[26] == false and Player.Available() then
+		if flurb == "Clear the Laboratorium Primum: 0/1"  and Svc.Condition[26] == false and Player.Available then
 			flurb = GetNodeText("_ToDoList", 25, 3)
 --this doesnt work the way i intended so removing it for now.
 			--[[yield("/target Shortcut")
@@ -313,14 +313,14 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 			end
 			--]]
 		end
-		if flurb == "Arrive on the Echelon: 0/1"  and Svc.Condition[26] == false  and Player.Available() then
+		if flurb == "Arrive on the Echelon: 0/1"  and Svc.Condition[26] == false  and Player.Available then
 			maxjiggle = 20
 		end
 	--safe check ifs part 3
-	if Player.Available() then
+	if Player.Available then
 	if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean" and type(Svc.Condition[4]) == "boolean" then
 	--
-		if flurb == "Defeat Gaius van Baelsar: 0/1" and Svc.Condition[26] == false and Svc.Condition[34] == true and Player.Available() then
+		if flurb == "Defeat Gaius van Baelsar: 0/1" and Svc.Condition[26] == false and Svc.Condition[34] == true and Player.Available then
 			maxjiggle = 20
 			yield("/target Magitek")
 			yield("/wait 0.5")
@@ -333,7 +333,7 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 			yield("/wait 0.5")
 			yield("/interact")
 			yield("/wait 0.5")
-			if type(GetTargetName()) == "string" and GetTargetName() == "Shortcut" and Svc.Condition[26] == false and Player.Available() then
+			if type(GetTargetName()) == "string" and GetTargetName() == "Shortcut" and Svc.Condition[26] == false and Player.Available then
 				yield("/ad stop")
 				yield("/interact")
 				yield("/vnavmesh moveto "..Target.Entity.Position.X.." "..Target.Entity.Position.Y.." "..Target.Entity.Position.Z)
@@ -342,11 +342,11 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 				yield("/bmrai on")
 				yield("/rotation auto")
 			end
-			if type(GetTargetName()) == "string" and Svc.Condition[26] == false and Player.Available() then
+			if type(GetTargetName()) == "string" and Svc.Condition[26] == false and Player.Available then
 				yield("/interact")
 				yield("/vnavmesh moveto "..Target.Entity.Position.X.." "..Target.Entity.Position.Y.." "..Target.Entity.Position.Z)
 			end
-			if type(GetTargetName()) ~= "string" and Svc.Condition[26] == false and Player.Available() then
+			if type(GetTargetName()) ~= "string" and Svc.Condition[26] == false and Player.Available then
 				yield("/wait 1.5")
 				yield("/target Gaius")
 				yield("/wait 1.5")
@@ -469,7 +469,7 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 		duty_counter = 0
 		if echo_level < 4 then yield("/echo We are starting over the duty counter, we passed daily reset time!") end
 	end
-	if Player.Available() then
+	if Player.Available then
 		if stopcuckingme > 2 and Svc.Condition[34] == false and imthecaptainnow == 1 and (Svc.ClientState.TerritoryType == 177 or Svc.ClientState.TerritoryType == 178 or Svc.ClientState.TerritoryType == 179) and not NeedsRepair(tornclothes) then
 			whoops = 0
 			boops = 0

@@ -129,8 +129,9 @@ function Final_GC_Cleaning()
 		purchase_attempts = 0
 		yield("/freecompanycmd")
 		yield("/wait 1")
-		fcpoynts = GetNodeText("FreeCompany", 15)
-		clean_fcpoynts = fcpoynts:gsub(",", "")
+		fcpoynts = Addons.GetAddon("FreeCompany"):GetNode(1, 4, 16, 17)
+		yield("/echo Fc points -> "..tostring(fcpoynts.Text))
+		clean_fcpoynts = fcpoynts.Text:gsub(",", "")
 		numeric_fcpoynts = tonumber(clean_fcpoynts)
 		buymax = 15
 		search_boof = "Seal Sweetener II"
@@ -138,7 +139,7 @@ function Final_GC_Cleaning()
 		yield("/wait 1")
 		while GetStatusTimeRemaining(414) == 0 and numeric_fcpoynts > fcpoint_min and GetItemCount(1) > 16000 do
 			--fire off the buff if they exist
-			yield("/echo FC Seal Buff II")
+			yield("/echo FC Seal Sweetener II Search Algorithm")
 			--yield("/callback FreeCompanyAction false 1 0u <wait.1>")
 			castattempt = 0
 			--credit to https://github.com/WigglyMuffin/SNDScripts/blob/main/vac_functions.lua  for finding the nodetext for this one :~D
@@ -154,17 +155,26 @@ function Final_GC_Cleaning()
 				yield("/echo FC not ready for Seal Sweetener II")
 				buymax = 1 -- only buy one of the garbage buff
 			end
-			for i = 1, 30 do
-				local node_text = GetNodeText("FreeCompanyAction", 5, i, 3)
-				zz = i - 1
-				yield("/echo i = "..zz.." -> "..node_text)
-				yield("/wait 0.3")
-				if type(node_text) == "string" and node_text == search_boof and castattempt == 0 then --we hit it. time to cast it
-					castattempt = 1
-					if IsAddonReady("FreeCompany") then
-						yield("/callback FreeCompanyAction false 1 "..zz.."u")
-						yield("/wait 1")
+			for i = 51001, 51021 do
+				--1,10,14,i,3
+				local node = Addons.GetAddon("FreeCompanyAction"):GetNode(1, 10, 14, i, 3)
+				if node then
+				    node_text = tostring(node.Text or "(no text)")
+					--yield("/echo " .. node_text)
+					zz = i - 51000
+					yield("/echo i = "..zz.." -> "..node_text)
+					yield("/wait 0.3")
+					if type(node_text) == "string" and node_text == search_boof and castattempt == 0 then --we hit it. time to cast it
+						castattempt = 1
+						yield("/echo Cast Attempt for "..search_boof)
+						--yield("/echo Cast Attempt for "..search_boof.. " attempt looks like -> ".."/callback FreeCompanyAction false 1 "..zz.."u")
+						if IsAddonReady("FreeCompany") then
+							yield("/callback FreeCompanyAction false 1 "..zz.."u")
+							yield("/wait 1")
+						end
 					end
+				else
+					yield(string.format("/echo node at index %d is nil", i))
 				end
 			end
 			if IsAddonReady("ContextMenu") then

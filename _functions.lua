@@ -179,7 +179,7 @@ function ungabungabunga()
 			yield("/send ESCAPE")
 			yield("/wait 1")
 			yield("/wait 3")
-			if Player.Available() == true then
+			if Player.Available == true then
 				tobungaorunga = 1
 			end
 		end
@@ -232,12 +232,12 @@ end
 
 function ZoneTransition()
 	yield("/automove off")
-	iswehehe = Player.Available() 
+	iswehehe = Player.Available
 	iswoah = 0
     repeat 
         yield("/wait 0.5")
         yield("/echo Are we ready? -> "..iswoah.."/20")
-		iswehehe = Player.Available() 
+		iswehehe = Player.Available 
 		iswoah = iswoah + 1
 		if 	iswoah == 5 then if IsAddonReady("SelectYesno") then yield("/callback SelectYesno true 0") end end
 		if 	iswoah == 10 then if IsAddonReady("SelectYesno") then yield("/callback SelectYesno true 0") end end
@@ -253,7 +253,7 @@ function ZoneTransition()
     repeat 
         yield("/wait 0.5")
         yield("/echo Are we ready? (backup check)-> "..iswoah.."/20")
-		iswehehe = Player.Available() 
+		iswehehe = Player.Available 
 		iswoah = iswoah + 1
 		if 	iswoah == 5 then if IsAddonReady("SelectYesno") then yield("/callback SelectYesno true 0") end end
 		if 	iswoah == 10 then if IsAddonReady("SelectYesno") then yield("/callback SelectYesno true 0") end end
@@ -532,7 +532,7 @@ end
 
 function are_we_dol()
 	is_it_dol = false
-	yield("Our job is "..GetClassJobId())
+	yield("/echo Our job is "..tostring(GetClassJobId()))
 	if type(GetClassJobId()) == "number" and GetClassJobId() > 7 and GetClassJobId() < 19 then
 		is_it_dol = true
 		yield("/echo We are a Disciple of the (H/L)and")
@@ -543,26 +543,30 @@ end
 function which_cj()
 	highest_cj = 0
 	highest_cj_level = 0
-	yield("Time to figure out which job ID to switch to !")
+	yield("/echo Time to figure out which job ID to switch to !")
 	for i=0,7 do
-		if tonumber(GetLevel(i)) > highest_cj_level then
-			highest_cj_level = GetLevel(i)
-			highest_cj = i
-			yield("/echo Oh my maybe job->"..i.." lv->"..highest_cj_level.." is the highest one?")
+		if tonumber(GetLevel(i)) ~= nil then
+			if tonumber(GetLevel(i)) > highest_cj_level then
+				highest_cj_level = GetLevel(i)
+				highest_cj = i
+				yield("/echo Oh my maybe job->"..i.." lv->"..tostring(highest_cj_level).." is the highest one?")
+			end
 		end
 	end
 	for i=19,29 do
-		if tonumber(GetLevel(i)) > highest_cj_level then
-			highest_cj_level = GetLevel(i)
-			highest_cj = i
-			yield("/echo Oh my maybe job->"..i.." lv->"..highest_cj_level.." is the highest one?")
+		if tonumber(GetLevel(i)) ~= nil then
+			if tonumber(GetLevel(i)) > highest_cj_level then
+				highest_cj_level = GetLevel(i)
+				highest_cj = i
+				yield("/echo Oh my maybe job->"..i.." lv->"..tostring(highest_cj_level).." is the highest one?")
+			end
 		end
 	end
 	return tonumber(highest_cj)
 end
 
 function job_short(which_cj)
-	yield("Time to figure out which job shortname to switch to !")
+	yield("/echo Time to figure out which job shortname to switch to !")
 	if which_cj == -1 then shortjob = "adv" end
 	if which_cj == 1 then shortjob = "gld" 
 		if GetItemCount(4542) > 0 then
@@ -1036,19 +1040,20 @@ function GetItemCount(itemId)
 	return Inventory.GetItemCount(itemId)
 end
 
-function GetObjectRawXPos(goatCase)
-	if GetEntityByName(goatCase).Entity.Position.X == nil then return 0 end
-	return GetEntityByName(goatCase).Entity.Position.X
+function GetObjectRawXPos(name)
+	yield("/echo debug getorxpos")
+	if Entity.GetEntityByName(name) == nil then return 0 end
+	return Entity.GetEntityByName(name).Position.X
 end
 
-function GetObjectRawYPos(goatCase)
-	if GetEntityByName(goatCase).Entity.Position.X == nil then return 0 end
-	return GetEntityByName(goatCase).Entity.Position.Y
+function GetObjectRawYPos(name)
+	if Entity.GetEntityByName(name) == nil then return 0 end
+	return Entity.GetEntityByName(name).Position.Y
 end
 
-function GetObjectRawZPos(goatCase)
-	if GetEntityByName(goatCase).Entity.Position.Z == nil then return 0 end
-	return GetEntityByName(goatCase).Entity.Position.Z
+function GetObjectRawZPos(name)
+	if Entity.GetEntityByName(name) == nil then return 0 end
+	return Entity.GetEntityByName(name).Position.Z
 end
 
 function GetLevel(pjob)
@@ -1111,12 +1116,19 @@ function GetFullStatusList()
 	end
 end
 
-function IsAddonReady(iar)
-	return GetAddon(iar).Ready
+--we can't nodetext wrap
+--[[
+function GetNodeText(varzs)
+	return Addons.GetAddon(varzs).Nodes.Text
+end
+--]]
+
+function IsAddonReady(name)
+	return Addons.GetAddon(name).Ready
 end
 
-function IsAddonVisible(iav)
-	return GetAddon(iav).Ready
+function IsAddonVisible(name)
+	return Addons.GetAddon(name).Exists
 end
 
 function IsPlayerAvailable()
@@ -1146,4 +1158,26 @@ end
 function GetInventoryFreeSlotCount()
 	--yield("/e " ..tostring(Inventory.GetInventoryContainer(luanet.enum(InventoryType, 'Inventory1')).FreeSlots))
 	return Inventory.GetInventoryContainer(luanet.enum(InventoryType, 'Inventory1')).FreeSlots
+end
+
+function GetPlayerGC()
+	return Player.GrandCompany
+end
+
+function PathfindAndMoveTo(x, y, z, tralse)
+	import ("System.Numerics")
+	IPCUPCWEALLPC = Vector3(x, y, z)
+	IPC.vnavmesh.PathfindAndMoveTo(IPCUPCWEALLPC, tralse)
+end
+
+function PathIsRunning()
+	return IPC.vnavmesh.IsRunning()
+end
+
+function PathfindInProgress()
+	return IPC.vnavmesh.PathfindInProgress()
+end
+
+function ClearTarget()
+	Player.Entity:ClearTarget()
 end
