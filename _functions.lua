@@ -1034,12 +1034,12 @@ function GetObjectRawZPos(goatCase)
 	return GetEntityByName(goatCase).Entity.Position.Z
 end
 
-function GetLevel(flarglevel)
-	flarglevel = flarglevel or 9000
-	if flarglevel == 9000 then
-		return Player.GetJob(flarglevel).Level
+function GetLevel(pjob)
+	pjob = pjob or 9000
+	if pjob < 9000 then
+		return Player.GetJob(pjob).Level
 	end
-	if flarglevel < 9000 then
+	if pjob == 9000 then
 		return Player.Job.Level
 	end
 end
