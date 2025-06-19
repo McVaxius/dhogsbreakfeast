@@ -1041,7 +1041,7 @@ function GetItemCount(itemId)
 end
 
 function GetObjectRawXPos(name)
-	yield("/echo debug getorxpos")
+	--yield("/echo debug getorxpos")
 	if Entity.GetEntityByName(name) == nil then return 0 end
 	return Entity.GetEntityByName(name).Position.X
 end
@@ -1087,6 +1087,10 @@ function GetStatusTimeRemaining(statusID)
     for i = 0, statuses.Length - 1 do
         local status = statuses[i]
         if status and status.StatusId == statusID then
+			if status.StatusId == 895 then
+				--yield("/echo we invuln")
+				return 1
+			end
             return status.RemainingTime or 0
         end
     end
