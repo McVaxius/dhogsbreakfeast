@@ -1096,11 +1096,13 @@ end
 
 
 function IsAddonReady(iar)
-	if GetAddon(iar).Ready then return true end
-	else return false end
+	return GetAddon(iar).Ready
 end
 
 function IsAddonVisible(iav)
-	if GetAddon(iav).Ready then return true end
-	else return false end
+	return GetAddon(iav).Ready
+end
+
+function IsPlayerAvailable()
+    return Player.Available
 end
