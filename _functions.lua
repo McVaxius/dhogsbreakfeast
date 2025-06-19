@@ -1047,3 +1047,49 @@ end
 function GetClassJobId()
 	return Svc.ClientState.LocalPlayer.ClassJob.RowId
 end
+
+function GetStatusTimeRemaining(statusID)
+    local player = Svc.ClientState.LocalPlayer
+    if not player then
+    --    yield("/echo Player is nil")
+        return 0
+    end
+
+    local statuses = player.StatusList
+    if not statuses then
+   --     yield("/echo StatusList is nil")
+        return 0
+    end
+
+    --for i = 0, 29 do -- max 30 statuses
+    for i = 0, statuses.Length - 1
+        local status = statuses[i]
+        if status and status.StatusId == statusID then
+            return status.RemainingTime or 0
+        end
+    end
+
+    return 0
+end
+
+function GetFullStatusList()
+	local player = Svc.ClientState.LocalPlayer
+	if not player then
+		yield("/echo Player is nil")
+		return
+	end
+
+	local statuses = player.StatusList
+	if not statuses then
+		yield("/echo StatusList is nil")
+		return
+	end
+
+	--for i = 0, 29 do
+	for i = 0, statuses.Length - 1
+		local status = statuses[i]
+		if status and status.StatusId ~= 0 then
+			yield(string.format("/echo [%d] ID: %d  Time: %.2f", i, status.StatusId, status.RemainingTime or 0))
+		end
+	end
+end
