@@ -93,7 +93,7 @@ while fuckpvp == 1 do
 			yield("/vnavmesh moveto "..GetObjectRawXPos(nemm).." "..GetObjectRawYPos(nemm).." "..GetObjectRawZPos(nemm))
 			yield("/hold "..cardinal_wardinal[cardinal_wardinal_flardinal])
 			yield("/hold W")
-			--yield("/gaction jump")
+			yield("/gaction jump")
 			yield("/wait 0.5")
 			yield("/release "..cardinal_wardinal[cardinal_wardinal_flardinal])
 			yield("/release W")
