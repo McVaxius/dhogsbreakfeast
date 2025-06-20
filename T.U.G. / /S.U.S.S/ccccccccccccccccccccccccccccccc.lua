@@ -100,7 +100,7 @@ while fuckpvp == 1 do
 			end
 			yield("/hold "..cardinal_wardinal[cardinal_wardinal_flardinal])
 			--yield("/gaction jump")
-			yield("/wait 0.5")
+			yield("/wait 1")
 			yield("/release "..cardinal_wardinal[cardinal_wardinal_flardinal])
 			--yield("/release W")
 			cardinal_wardinal_flardinal = cardinal_wardinal_flardinal + 1
@@ -134,6 +134,7 @@ while fuckpvp == 1 do
 	yield("/wait 0.5")
 	if fuckyou == 0 then
 		yield("/wait 5") --wait a +bit longer if we are outside.
+		yield("/release W")
 		if Svc.Condition[91] == false then 
 			yield("/dutyfinder") --try autoqueue with cbt if we aren't queueing for a duty.
 		end
