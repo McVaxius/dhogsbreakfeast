@@ -91,10 +91,14 @@ while fuckpvp == 1 do
 		zoob = 0
 		yield("/release W")
 		while GetStatusTimeRemaining(895) == 1 do --spawn/respawn invuln
+			zoob = zoob + 1
 			--yield("/echo zoobilee zoo!")
-			yield("/vnavmesh moveto "..GetObjectRawXPos(nemm).." "..GetObjectRawYPos(nemm).." "..GetObjectRawZPos(nemm))
-			yield("/hold "..cardinal_wardinal[cardinal_wardinal_flardinal])
 			yield("/hold W")
+			if zoob > 10 then
+				yield("/vnavmesh moveto "..GetObjectRawXPos(nemm).." "..GetObjectRawYPos(nemm).." "..GetObjectRawZPos(nemm))
+				zoob = 0
+			end
+			yield("/hold "..cardinal_wardinal[cardinal_wardinal_flardinal])
 			--yield("/gaction jump")
 			yield("/wait 0.5")
 			yield("/release "..cardinal_wardinal[cardinal_wardinal_flardinal])
