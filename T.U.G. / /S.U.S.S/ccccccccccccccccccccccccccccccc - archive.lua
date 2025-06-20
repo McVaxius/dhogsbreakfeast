@@ -48,7 +48,7 @@ yield("/wait 5")
 yield("/title set garo")
 yield("/wait 5")
 
---[[wait 5 is for this error:
+--[[wait 5 is for this errror:
 Consecutive text command input is currently restricted.
 Unable to use that title.
 --]]
@@ -116,17 +116,17 @@ while fuckpvp == 1 do
 			yield("/pvpac sprint")
 			yield("/hold W")
 			yield("/vnavmesh moveto "..GetObjectRawXPos(nemm).." "..GetObjectRawYPos(nemm).." "..GetObjectRawZPos(nemm))
---			if zoob > 3 then
+			if zoob > 3 then
 				zoob = 0
 				yield("/gaction jump")
 				yield("/hold "..cardinal_wardinal[cardinal_wardinal_flardinal])
 				yield("/release "..cardinal_wardinal[cardinal_wardinal_flardinal])
 				--yield("/release W")
 				cardinal_wardinal_flardinal = cardinal_wardinal_flardinal + 1
---			end
-			yield("/wait 5")
+			end
+			yield("/wait 0.5")
 			if cardinal_wardinal_flardinal > #cardinal_wardinal then cardinal_wardinal_flardinal = 1 end
-		
+			
 			--yield("/vnav stop")
 			--[[
 			yield("/hold "..cardinal_wardinal[cardinal_wardinal_flardinal])
