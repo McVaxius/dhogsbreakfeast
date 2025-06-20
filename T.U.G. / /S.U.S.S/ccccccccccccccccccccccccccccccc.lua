@@ -70,10 +70,19 @@ cardinal_wardinal = {
 }
 
 cardinal_wardinal_flardinal = 1
+safeX = 0
+safeY = 0
+safeZ = 0
+safetyMove = 0
 
 while fuckpvp == 1 do
+	if Svc.Condition[34] == false and safetyMove == 1 then
+		safetyMove = 0
+		yield("/echo resetting safetymove to 0")
+	end
 	fuckthis = Svc.ClientState.TerritoryType
 	fuckyou = 0
+	shafetyCounter = 0
 	--[[
 	for i=1,#valid_pvp_areas do
 		if fuckthis == valid_pvp_areas[i] then
@@ -90,17 +99,33 @@ while fuckpvp == 1 do
 		--end
 		zoob = 0
 		yield("/release W")
-		while GetStatusTimeRemaining(895) == 1 do --spawn/respawn invuln
+		while GetStatusTimeRemaining(895) == 0 and Svc.Condition[34] and safetyMove == 0 do --spawn/respawn invuln
+			safeX = Player.Entity.Position.X
+			safeY = Player.Entity.Position.Y
+			safeZ = Player.Entity.Position.Z
+			safetyMove = 1
+			yield("/echo grabbing safety x y z and setting safetyMove to 1")
+		end
+		while GetStatusTimeRemaining(895) == 1 and Svc.Condition[34] and safetyMove == 1 do --spawn/respawn invuln with safety xyz
+			yield("/vnavmesh moveto "..safeX.." "..safeY.." "..safeZ)
+			yield("/wait 0.5")
+			shafetyCounter = shafetyCounter + 1
+			if shafetyCounter > 3 then
+				yield("/echo we escaping safely")
+				shafetyCounter = 0
+			end
+		end
+		while GetStatusTimeRemaining(895) == 1 and Svc.Condition[34] and safetyMove == 0 do --spawn/respawn invuln
 			zoob = zoob + 1
 			yield("/pvpac sprint")
 			yield("/hold W")
-			if zoob > 10 then
+			--if zoob > 10 then
 				yield("/vnavmesh moveto "..GetObjectRawXPos(nemm).." "..GetObjectRawYPos(nemm).." "..GetObjectRawZPos(nemm))
 				zoob = 0
-			end
+			--end
 			yield("/hold "..cardinal_wardinal[cardinal_wardinal_flardinal])
-			--yield("/gaction jump")
-			yield("/wait 1")
+			yield("/gaction jump")
+			yield("/wait 0.5")
 			yield("/release "..cardinal_wardinal[cardinal_wardinal_flardinal])
 			--yield("/release W")
 			cardinal_wardinal_flardinal = cardinal_wardinal_flardinal + 1
