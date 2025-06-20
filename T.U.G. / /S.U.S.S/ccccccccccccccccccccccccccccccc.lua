@@ -149,7 +149,8 @@ while fuckpvp == 1 do
 		if fuckme > 5 then
 			--yield("/gaction jump")
 			fuckme = 0
-			yield("/pvpac \"limit break\"")
+			--yield("/pvpac \"limit break\"")
+			yield("/pvpac \"Final Fantasia\"") -- bard
 			yield("/echo halfassed limit break attempt")
 		end
 	end
