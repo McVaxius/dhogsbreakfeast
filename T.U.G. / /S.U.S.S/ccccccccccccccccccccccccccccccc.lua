@@ -88,15 +88,17 @@ while fuckpvp == 1 do
 		--if GetStatusTimeRemaining(895) ~= 1 then--dont nav if we invuln
 			yield("/vnavmesh moveto "..GetObjectRawXPos(nemm).." "..GetObjectRawYPos(nemm).." "..GetObjectRawZPos(nemm))
 		--end
-		
+		zoob = 0
+		yield("/release W")
 		while GetStatusTimeRemaining(895) == 1 do --spawn/respawn invuln
+			--yield("/echo zoobilee zoo!")
 			yield("/vnavmesh moveto "..GetObjectRawXPos(nemm).." "..GetObjectRawYPos(nemm).." "..GetObjectRawZPos(nemm))
 			yield("/hold "..cardinal_wardinal[cardinal_wardinal_flardinal])
 			yield("/hold W")
-			yield("/gaction jump")
+			--yield("/gaction jump")
 			yield("/wait 0.5")
 			yield("/release "..cardinal_wardinal[cardinal_wardinal_flardinal])
-			yield("/release W")
+			--yield("/release W")
 			cardinal_wardinal_flardinal = cardinal_wardinal_flardinal + 1
 			if cardinal_wardinal_flardinal > #cardinal_wardinal then cardinal_wardinal_flardinal = 1 end
 			
