@@ -76,6 +76,37 @@ safeY = 0
 safeZ = 0
 safetyMove = 0
 
+reach_out_and_LIMITBREAKSOMEONE = {
+	{"Phalanx", 19},
+	{"Primal Scream", 21},
+	{"Eventide", 32},
+	{"Relentless Rush", 37},
+	{"Terminal Trigger", 37},
+	{"Afflatus Purgation", 24},
+	{"Celestial River", 33},
+	{"Mesotes", 40},
+	{"Mesotes", 40},
+	{"Final Fantasia", 23},
+	{"Marksman's Spite", 31},
+	{"Contradance", 38},
+	{"Terminal Trigger", 37},
+	{"Meteodrive", 20},
+	{"Sky High", 22},
+	{"Sky Shatter", 22},
+	{"Sky Shatter", 22},
+	{"Seiton Tenchu", 30},
+	{"Seiton Tenchu", 30},
+	{"Zantetsuken", 34},
+	{"Tenebrae Lemurum", 39},
+	{"Soul Resonance", 25},
+	{"Summon Bahamut", 27},
+	{"Summon Phoenix", 27},
+	{"World-swallower", 41},
+	{"Advent of Chocobastion", 42},
+	{"Southern Cross", 35},
+	{"Seraphism", 28}
+}
+
 while fuckpvp == 1 do
 	if Svc.Condition[34] == false and safetyMove == 1 then
 		safetyMove = 0
@@ -147,10 +178,17 @@ while fuckpvp == 1 do
 		yield("/rotation auto")
 		fuckme = fuckme + 1
 		if fuckme > 5 then
+			jobronies = GetClassJobId()
 			--yield("/gaction jump")
 			fuckme = 0
 			--yield("/pvpac \"limit break\"")
-			yield("/pvpac \"Final Fantasia\"") -- bard
+			--yield("/pvpac \"Final Fantasia\"") -- bard
+			for i=1,#reach_out_and_LIMITBREAKSOMEONE do
+				if jobronies == reach_out_and_LIMITBREAKSOMEONE[i][2] then
+					yield("/pvpac \""..reach_out_and_LIMITBREAKSOMEONE[i][1].."\"") -- any
+					yield("/wait 0.1") --juuuust in case there is a 2nd one in the list
+				end
+			end
 			yield("/echo halfassed limit break attempt")
 		end
 	end
