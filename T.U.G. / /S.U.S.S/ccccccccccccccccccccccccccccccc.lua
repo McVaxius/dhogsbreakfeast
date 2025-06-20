@@ -82,7 +82,6 @@ while fuckpvp == 1 do
 	end
 	fuckthis = Svc.ClientState.TerritoryType
 	fuckyou = 0
-	shafetyCounter = 0
 	--[[
 	for i=1,#valid_pvp_areas do
 		if fuckthis == valid_pvp_areas[i] then
@@ -110,10 +109,7 @@ while fuckpvp == 1 do
 			yield("/vnavmesh moveto "..safeX.." "..safeY.." "..safeZ)
 			yield("/wait 0.5")
 			shafetyCounter = shafetyCounter + 1
-			if shafetyCounter > 3 then
-				yield("/echo we escaping safely")
-				shafetyCounter = 0
-			end
+			yield("/echo we escaping safely")
 		end
 		while GetStatusTimeRemaining(895) == 1 and Svc.Condition[34] and safetyMove == 0 do --spawn/respawn invuln
 			zoob = zoob + 1
@@ -150,10 +146,11 @@ while fuckpvp == 1 do
 		--yield("/echo vnavmesh moveto "..GetObjectRawXPos(nemm).." "..GetObjectRawYPos(nemm).." "..GetObjectRawZPos(nemm))
 		yield("/rotation auto")
 		fuckme = fuckme + 1
-		if fuckme > 30 then
+		if fuckme > 5 then
 			--yield("/gaction jump")
 			fuckme = 0
 			yield("/pvpac \"limit break\"")
+			yield("/echo halfassed limit break attempt")
 		end
 	end
 	yield("/wait 0.5")
