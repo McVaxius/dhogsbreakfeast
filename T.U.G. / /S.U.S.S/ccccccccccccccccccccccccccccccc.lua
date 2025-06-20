@@ -92,7 +92,7 @@ while fuckpvp == 1 do
 		yield("/release W")
 		while GetStatusTimeRemaining(895) == 1 do --spawn/respawn invuln
 			zoob = zoob + 1
-			--yield("/echo zoobilee zoo!")
+			-yield("/pvpac sprint")
 			yield("/hold W")
 			if zoob > 10 then
 				yield("/vnavmesh moveto "..GetObjectRawXPos(nemm).." "..GetObjectRawYPos(nemm).." "..GetObjectRawZPos(nemm))
@@ -125,9 +125,10 @@ while fuckpvp == 1 do
 		--yield("/echo vnavmesh moveto "..GetObjectRawXPos(nemm).." "..GetObjectRawYPos(nemm).." "..GetObjectRawZPos(nemm))
 		yield("/rotation auto")
 		fuckme = fuckme + 1
-		if fuckme > 3 then
+		if fuckme > 30 then
 			--yield("/gaction jump")
 			fuckme = 0
+			yield("/pvpac \"limit break\"")
 		end
 	end
 	yield("/wait 0.5")
