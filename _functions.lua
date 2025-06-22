@@ -1013,7 +1013,7 @@ function delete_my_items_please(how)
 		nemm = "Summoning Bell"
 		poostance = _distance(Player.Entity.Position.X, Player.Entity.Position.Y, Player.Entity.Position.Z, GetObjectRawXPos(nemm),GetObjectRawYPos(nemm),GetObjectRawZPos(nemm))
 		if poostance < 11 then
-			yield("/vnav moveto "..Target.Entity.Position.X.." "..Target.Entity.Position.Y.." "..Target.Entity.Position.Z)
+			yield("/vnav moveto "..GetObjectRawXPos(nemm).." "..GetObjectRawYPos(nemm).." "..GetObjectRawZPos(nemm))
 			yield("/wait 4")
 		end
 	end 
