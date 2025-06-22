@@ -44,9 +44,9 @@ fuckpvp = 1
 fuckme = 0
 
 yield("/title set barago")
-yield("/wait 5")
+yield("/wait 3")
 yield("/title set garo")
-yield("/wait 5")
+yield("/wait 3")
 
 --[[wait 5 is for this error:
 Consecutive text command input is currently restricted.
@@ -63,10 +63,10 @@ valid_pvp_areas = {
 
 cardinal_wardinal = {
 --"W",
---"A",
+"A"--,
 --"S",
 --"D"
-"Q"--, --strafe left
+--"Q"--, --strafe left
 --"E"  --strafe right
 }
 
@@ -153,9 +153,13 @@ while fuckpvp == 1 do
 	--			if zoob > 3 then
 					zoob = 0
 					yield("/gaction jump")
-					yield("/hold "..cardinal_wardinal[cardinal_wardinal_flardinal])
-					yield("/release "..cardinal_wardinal[cardinal_wardinal_flardinal])
-					--yield("/release W")
+					yield("/release W")
+					yield("/hold A")
+					yield("/hold S")
+					yield("/wait 1")
+					--yield("/release "..cardinal_wardinal[cardinal_wardinal_flardinal])
+					yield("/release A")
+					yield("/release S")
 					cardinal_wardinal_flardinal = cardinal_wardinal_flardinal + 1
 	--			end
 				if cardinal_wardinal_flardinal > #cardinal_wardinal then cardinal_wardinal_flardinal = 1 end
