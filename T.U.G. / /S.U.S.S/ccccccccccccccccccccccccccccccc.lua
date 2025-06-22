@@ -111,6 +111,8 @@ while fuckpvp == 1 do
 	if Svc.Condition[34] == false and safetyMove == 1 then
 		safetyMove = 0
 		yield("/echo resetting safetymove to 0")
+		yield("/hold W")
+		yield("/release W")
 	end
 	fuckthis = Svc.ClientState.TerritoryType
 	fuckyou = 0
@@ -197,8 +199,6 @@ while fuckpvp == 1 do
 	yield("/wait 0.5")
 	if fuckyou == 0 then
 		yield("/wait 5") --wait a +bit longer if we are outside.
-		yield("/hold W")
-		yield("/release W")
 		if Svc.Condition[91] == false then 
 			yield("/dutyfinder") --try autoqueue with cbt if we aren't queueing for a duty.
 		end
