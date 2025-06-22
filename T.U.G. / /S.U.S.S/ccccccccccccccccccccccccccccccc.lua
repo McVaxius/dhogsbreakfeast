@@ -66,8 +66,8 @@ cardinal_wardinal = {
 --"A",
 --"S",
 --"D"
-"Q", --strafe left
-"E"  --strafe right
+"Q"--, --strafe left
+--"E"  --strafe right
 }
 
 cardinal_wardinal_flardinal = 1
@@ -197,6 +197,7 @@ while fuckpvp == 1 do
 	yield("/wait 0.5")
 	if fuckyou == 0 then
 		yield("/wait 5") --wait a +bit longer if we are outside.
+		yield("/hold W")
 		yield("/release W")
 		if Svc.Condition[91] == false then 
 			yield("/dutyfinder") --try autoqueue with cbt if we aren't queueing for a duty.
