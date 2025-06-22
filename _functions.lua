@@ -1016,6 +1016,8 @@ function delete_my_items_please(how)
 			yield("/vnav moveto "..GetObjectRawXPos(nemm).." "..GetObjectRawYPos(nemm).." "..GetObjectRawZPos(nemm))
 			yield("/wait 4")
 		end
+		yield("/ays itemsell") --npc AND retainer selling --* this actually doesn't work yet. we'd need to stop AR entirely and then re enable it.  this is doable but can be a problem as it will run post ar process again
+			--figured it out - if we have salvage to sell, then we have a reason to reset AR
 	end 
 	if how == 1 then
 		yield("/echo Attempting to delete items")

@@ -130,7 +130,7 @@ while fuckpvp == 1 do
 		--end
 		zoob = 0
 		yield("/release W")
-		while GetStatusTimeRemaining(895) == 0 and Svc.Condition[34] and safetyMove == 0 do --spawn/respawn invuln
+		while GetStatusTimeRemaining(895) == 0 and Svc.Condition[34] and Svc.Condition[1] and safetyMove == 0 do --spawn/respawn invuln
 			safeX = Player.Entity.Position.X
 			safeY = Player.Entity.Position.Y
 			safeZ = Player.Entity.Position.Z
@@ -144,19 +144,21 @@ while fuckpvp == 1 do
 		end
 		while GetStatusTimeRemaining(895) == 1 and Svc.Condition[34] and safetyMove == 0 do --spawn/respawn invuln
 			zoob = zoob + 1
-			yield("/pvpac sprint")
-			yield("/hold W")
-			yield("/vnavmesh moveto "..GetObjectRawXPos(nemm).." "..GetObjectRawYPos(nemm).." "..GetObjectRawZPos(nemm))
---			if zoob > 3 then
-				zoob = 0
-				yield("/gaction jump")
-				yield("/hold "..cardinal_wardinal[cardinal_wardinal_flardinal])
-				yield("/release "..cardinal_wardinal[cardinal_wardinal_flardinal])
-				--yield("/release W")
-				cardinal_wardinal_flardinal = cardinal_wardinal_flardinal + 1
---			end
-			yield("/wait 5")
-			if cardinal_wardinal_flardinal > #cardinal_wardinal then cardinal_wardinal_flardinal = 1 end
+			if zoob > 50 then
+				yield("/pvpac sprint")
+				yield("/hold W")
+				yield("/vnavmesh moveto "..GetObjectRawXPos(nemm).." "..GetObjectRawYPos(nemm).." "..GetObjectRawZPos(nemm))
+	--			if zoob > 3 then
+					zoob = 0
+					yield("/gaction jump")
+					yield("/hold "..cardinal_wardinal[cardinal_wardinal_flardinal])
+					yield("/release "..cardinal_wardinal[cardinal_wardinal_flardinal])
+					--yield("/release W")
+					cardinal_wardinal_flardinal = cardinal_wardinal_flardinal + 1
+	--			end
+				if cardinal_wardinal_flardinal > #cardinal_wardinal then cardinal_wardinal_flardinal = 1 end
+			end
+			yield("/wait 0.1")
 		
 			--yield("/vnav stop")
 			--[[
