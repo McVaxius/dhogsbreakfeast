@@ -143,26 +143,24 @@ while fuckpvp == 1 do
 			yield("/vnavmesh moveto "..safeX.." "..safeY.." "..safeZ)
 			yield("/wait 0.5")
 			yield("/echo we escaping safely")
+			zoob = zoob + 1
+			if zoob > 50 then
+					yield("/pvpac sprint")
+					zoob = 0
+					yield("/hold A")
+					yield("/wait 0.5")
+					yield("/release A")
+			end
 		end
 		while GetStatusTimeRemaining(895) == 1 and Svc.Condition[34] and safetyMove == 0 do --spawn/respawn invuln
 			zoob = zoob + 1
 			if zoob > 50 then
 				yield("/pvpac sprint")
-				yield("/hold W")
 				yield("/vnavmesh moveto "..GetObjectRawXPos(nemm).." "..GetObjectRawYPos(nemm).." "..GetObjectRawZPos(nemm))
-	--			if zoob > 3 then
-					zoob = 0
-					yield("/gaction jump")
-					yield("/release W")
-					yield("/hold A")
-					yield("/hold S")
-					yield("/wait 1")
-					--yield("/release "..cardinal_wardinal[cardinal_wardinal_flardinal])
-					yield("/release A")
-					yield("/release S")
-					cardinal_wardinal_flardinal = cardinal_wardinal_flardinal + 1
-	--			end
-				if cardinal_wardinal_flardinal > #cardinal_wardinal then cardinal_wardinal_flardinal = 1 end
+				zoob = 0
+				yield("/hold A")
+				yield("/wait 0.5")
+				yield("/release A")
 			end
 			yield("/wait 0.1")
 		
