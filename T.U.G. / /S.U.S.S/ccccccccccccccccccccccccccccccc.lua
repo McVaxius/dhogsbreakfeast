@@ -54,23 +54,13 @@ Unable to use that title.
 --]]
 
 valid_pvp_areas = {
-1027,1030, --palaistra
-1031,1028, --volcanic heart
-1032, 1034, --cloud nine
-1037,1036, --clockwork castletown
-1138  --red sands
+    [1032] = "D",  -- palaistra  --VERIFIED technically A works here too but we won't risk it
+    [1033] = "D",  -- volcanic heart
+    [429] = "A",  -- cloud nine i think its 1131 but we need confirmation
+    [1116] = "A",  -- clockwork castletown --VERIFIED
+    [1138] = "A"   -- red sands
 }
 
-cardinal_wardinal = {
---"W",
-"A"--,
---"S",
---"D"
---"Q"--, --strafe left
---"E"  --strafe right
-}
-
-cardinal_wardinal_flardinal = 1
 safeX = 0
 safeY = 0
 safeZ = 0
@@ -123,7 +113,10 @@ while fuckpvp == 1 do
 		end
 	end
 	--]]
-	if Svc.Condition[34] == true then fuckyou = 1 end
+	if Svc.Condition[34] == true then
+		fuckyou = 1
+		
+	end
 	if fuckyou == 1 then
 		--nemm = "Tactical Crystal"
 		nemm = "Tactical Crystal"
@@ -147,9 +140,10 @@ while fuckpvp == 1 do
 			if zoob > 50 then
 					yield("/pvpac sprint")
 					zoob = 0
-					yield("/hold A")
+					validmove = valid_pvp_areas[fuckthis] or "A" -- A works on most of them
+					yield("/hold "..validmove)
 					yield("/wait 0.5")
-					yield("/release A")
+					yield("/release "..validmove)
 			end
 		end
 		while GetStatusTimeRemaining(895) == 1 and Svc.Condition[34] and safetyMove == 0 do --spawn/respawn invuln
@@ -164,20 +158,6 @@ while fuckpvp == 1 do
 			end
 			yield("/wait 0.1")
 		
-			--yield("/vnav stop")
-			--[[
-			yield("/hold "..cardinal_wardinal[cardinal_wardinal_flardinal])
-			nextinal = cardinal_wardinal_flardinal + 1
-			if nextinal > #cardinal_wardinal then nextinal = 1 end
-			for z=1,10 do
-				yield("/hold "..cardinal_wardinal[nextinal])
-				yield("/wait 0.1")
-				yield("/release "..cardinal_wardinal[nextinal])
-			end
-			yield("/release "..cardinal_wardinal[cardinal_wardinal_flardinal])
-			cardinal_wardinal_flardinal = cardinal_wardinal_flardinal + 1
-			if cardinal_wardinal_flardinal > #cardinal_wardinal then cardinal_wardinal_flardinal = 1 end
-			--]]
 		end
 		--DEBUG
 		--yield("/echo vnavmesh moveto "..GetObjectRawXPos(nemm).." "..GetObjectRawYPos(nemm).." "..GetObjectRawZPos(nemm))

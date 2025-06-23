@@ -1122,10 +1122,38 @@ function GetFullStatusList()
 	end
 end
 
---we can't nodetext wrap
---[[
-function GetNodeText(varzs)
-	return Addons.GetAddon(varzs).Nodes.Text
+--[[fake and non working
+function GetPartyStatusTimeRemaining(pID, statusID)
+	local pm = Svc.GroupManager:GetPartyMember(0)
+	if pm and pm.StatusManager then
+		local sm = pm.StatusManager
+		for i = 0, sm.StatusCount - 1 do
+			local s = sm:GetStatus(i)
+			if s and s.StatusId ~= 0 then
+				yield(string.format("/echo Buff %d = ID:%d Time:%.2f", i, s.StatusId, s.RemainingTime or 0))
+			end
+		end
+	end
+end
+
+function GetFullPartyStatusList()
+	for i = 0, Svc.GroupManager.MemberCount - 1 do
+		local member = Svc.GroupManager:GetPartyMember(i)
+		if member then
+			local sm = member.StatusManager
+			if sm then
+				for j = 0, sm.StatusCount - 1 do
+					local s = sm:GetStatus(j)
+					if s and s.StatusId ~= 0 then
+						yield(string.format(
+							"/echo Member[%d] Status[%d]: ID=%d Time=%.2f Stack=%d",
+							i, j, s.StatusId, s.RemainingTime or 0, s.StackCount or 0
+						))
+					end
+				end
+			end
+		end
+	end
 end
 --]]
 
