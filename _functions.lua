@@ -1163,7 +1163,8 @@ end
 
 function GetInventoryFreeSlotCount()
 	--yield("/e " ..tostring(Inventory.GetInventoryContainer(luanet.enum(InventoryType, 'Inventory1')).FreeSlots))
-	return Inventory.GetInventoryContainer(luanet.enum(InventoryType, 'Inventory1')).FreeSlots
+	--return Inventory.GetInventoryContainer(luanet.enum(InventoryType, 'Inventory1')).FreeSlots
+	return Inventory.GetFreeInventorySlots()
 end
 
 function GetPlayerGC()
