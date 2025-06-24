@@ -53,12 +53,13 @@ Consecutive text command input is currently restricted.
 Unable to use that title.
 --]]
 
+--Q strafe left, E Strafe right
 valid_pvp_areas = {
-    [1032] = "D",  -- palaistra  --VERIFIED technically A works here too but we won't risk it
-    [1033] = "D",  -- volcanic heart
-    [429] = "A",  -- cloud nine i think its 1131 but we need confirmation
-    [1116] = "A",  -- clockwork castletown --VERIFIED
-    [1138] = "A"   -- red sands
+    [1032] = "E",  -- palaistra  --VERIFIED
+    [1033] = "E",  -- volcanic heart
+    [1034] = "Q",  -- cloud nine --VERIFIED
+    [1116] = "Q",  -- clockwork castletown --VERIFIED
+    [1138] = "Q"   -- red sands --VERIFIED
 }
 
 safeX = 0
@@ -121,9 +122,13 @@ while fuckpvp == 1 do
 		--nemm = "Tactical Crystal"
 		nemm = "Tactical Crystal"
 		--if GetStatusTimeRemaining(895) ~= 1 then--dont nav if we invuln
-			yield("/vnavmesh moveto "..GetObjectRawXPos(nemm).." "..GetObjectRawYPos(nemm).." "..GetObjectRawZPos(nemm))
+		rX = getRandomNumber(0,2)
+		rZ = getRandomNumber(0,2)
+		--this should have some wiggle
+		yield("/vnavmesh moveto "..GetObjectRawXPos(nemm)+rX.." "..GetObjectRawYPos(nemm).." "..GetObjectRawZPos(nemm)+rZ)
 		--end
 		zoob = 0
+		ZOOB = 0
 		yield("/release W")
 		while GetStatusTimeRemaining(895) == 0 and Svc.Condition[34] and Svc.Condition[1] and safetyMove == 0 do --spawn/respawn invuln
 			safeX = Player.Entity.Position.X
@@ -134,15 +139,21 @@ while fuckpvp == 1 do
 		end
 		while GetStatusTimeRemaining(895) == 1 and Svc.Condition[34] and safetyMove == 1 do --spawn/respawn invuln with safety xyz
 			yield("/vnavmesh moveto "..safeX.." "..safeY.." "..safeZ)
-			yield("/wait 0.5")
+--			if GetStatusTimeRemaining(895) == 1 then yield("/wait 0.5") end
+--			if GetStatusTimeRemaining(895) == 1 then yield("/wait 0.5") end
 			yield("/echo we escaping safely")
 			zoob = zoob + 1
+			ZOOB = ZOOB + 1
 			if zoob > 50 then
 					yield("/pvpac sprint")
+--					yield("/vnav stop")
 					zoob = 0
-					validmove = valid_pvp_areas[fuckthis] or "A" -- A works on most of them
+					validmove = valid_pvp_areas[fuckthis] or "Q" -- Q works on most of them
 					yield("/hold "..validmove)
-					yield("/wait 0.5")
+					if GetStatusTimeRemaining(895) == 1 then yield("/wait 0.5") end
+					if GetStatusTimeRemaining(895) == 1 then yield("/wait 0.5") end
+					if GetStatusTimeRemaining(895) == 1 then yield("/wait 0.5") end
+					if GetStatusTimeRemaining(895) == 1 then yield("/wait 0.5") end
 					yield("/release "..validmove)
 			end
 		end
@@ -151,10 +162,17 @@ while fuckpvp == 1 do
 			if zoob > 50 then
 				yield("/pvpac sprint")
 				yield("/vnavmesh moveto "..GetObjectRawXPos(nemm).." "..GetObjectRawYPos(nemm).." "..GetObjectRawZPos(nemm))
+--				if GetStatusTimeRemaining(895) == 1 then yield("/wait 0.5") end
+--				if GetStatusTimeRemaining(895) == 1 then yield("/wait 0.5") end
 				zoob = 0
-				yield("/hold A")
-				yield("/wait 0.5")
-				yield("/release A")
+				validmove = valid_pvp_areas[fuckthis] or "Q" -- Q works on most of them
+--				yield("/vnav stop")
+				yield("/hold "..validmove)
+				if GetStatusTimeRemaining(895) == 1 then yield("/wait 0.5") end
+				if GetStatusTimeRemaining(895) == 1 then yield("/wait 0.5") end
+				if GetStatusTimeRemaining(895) == 1 then yield("/wait 0.5") end
+				if GetStatusTimeRemaining(895) == 1 then yield("/wait 0.5") end
+				yield("/release "..validmove)
 			end
 			yield("/wait 0.1")
 		
@@ -165,9 +183,7 @@ while fuckpvp == 1 do
 		fuckme = fuckme + 1
 		if fuckme > 5 then
 			jobronies = GetClassJobId()
-			--yield("/gaction jump")
 			fuckme = 0
-			--yield("/pvpac \"limit break\"")
 			--yield("/pvpac \"Final Fantasia\"") -- bard
 			for i=1,#reach_out_and_LIMITBREAKSOMEONE do
 				if jobronies == reach_out_and_LIMITBREAKSOMEONE[i][2] then
