@@ -54,12 +54,24 @@ Unable to use that title.
 --]]
 
 --Q strafe left, E Strafe right
+--[[
 valid_pvp_areas = {
     [1032] = "E",  -- palaistra  --VERIFIED
     [1033] = "E",  -- volcanic heart
     [1034] = "Q",  -- cloud nine --VERIFIED
     [1116] = "Q",  -- clockwork castletown --VERIFIED
     [1138] = "Q"   -- red sands --VERIFIED
+}
+--]]
+
+--we gonna make xyz locs,  [zone] = {x1, y1, z1, x2, y2, z2}
+--THANKS HYPERBOREA
+valid_pvp_escape = {
+    [1032] = {1, 2, 3, 4, 5, 6},  -- palaistra
+    [1033] = {1, 2, 3, 4, 5, 6},  -- volcanic heart
+    [1034] = {1, 2, 3, 4, 5, 6},  -- cloud nine
+    [1116] = {1, 2, 3, 4, 5, 6},  -- clockwork castletown
+    [1138] = {1, 2, 3, 4, 5, 6}   -- red sands
 }
 
 safeX = 0
@@ -116,12 +128,15 @@ while fuckpvp == 1 do
 	--]]
 	if Svc.Condition[34] == true then
 		fuckyou = 1
-		
+		yield("/echo we have entered the pvp match - please wait 20 seconds before more stuff happens")
+		yield("/wait 20")
+		yield("/mmambo")
+		yield("/wait 5")
 	end
 	if fuckyou == 1 then
 		--nemm = "Tactical Crystal"
 		nemm = "Tactical Crystal"
-		--if GetStatusTimeRemaining(895) ~= 1 then--dont nav if we invuln
+		--wigglevars
 		rX = getRandomNumber(0,2)
 		rZ = getRandomNumber(0,2)
 		--this should have some wiggle
@@ -130,6 +145,7 @@ while fuckpvp == 1 do
 		zoob = 0
 		ZOOB = 0
 		yield("/release W")
+--[[
 		while GetStatusTimeRemaining(895) == 0 and Svc.Condition[34] and Svc.Condition[1] and safetyMove == 0 do --spawn/respawn invuln
 			safeX = Player.Entity.Position.X
 			safeY = Player.Entity.Position.Y
@@ -137,48 +153,30 @@ while fuckpvp == 1 do
 			safetyMove = 1
 			yield("/echo grabbing safety x y z and setting safetyMove to 1")
 		end
+--]]
 		while GetStatusTimeRemaining(895) == 1 and Svc.Condition[34] and safetyMove == 1 do --spawn/respawn invuln with safety xyz
 			yield("/vnavmesh moveto "..safeX.." "..safeY.." "..safeZ)
 --			if GetStatusTimeRemaining(895) == 1 then yield("/wait 0.5") end
 --			if GetStatusTimeRemaining(895) == 1 then yield("/wait 0.5") end
 			yield("/echo we escaping safely")
-			zoob = zoob + 1
-			ZOOB = ZOOB + 1
-			if zoob > 50 then
-					yield("/pvpac sprint")
---					yield("/vnav stop")
-					zoob = 0
-					validmove = valid_pvp_areas[fuckthis] or "Q" -- Q works on most of them
-					yield("/hold "..validmove)
-					if GetStatusTimeRemaining(895) == 1 then yield("/wait 0.5") end
-					if GetStatusTimeRemaining(895) == 1 then yield("/wait 0.5") end
-					if GetStatusTimeRemaining(895) == 1 then yield("/wait 0.5") end
-					if GetStatusTimeRemaining(895) == 1 then yield("/wait 0.5") end
-					yield("/release "..validmove)
-			end
+			yield("/wait 0.1")
 		end
 		while GetStatusTimeRemaining(895) == 1 and Svc.Condition[34] and safetyMove == 0 do --spawn/respawn invuln
-			zoob = zoob + 1
-			if zoob > 50 then
-				yield("/pvpac sprint")
-				yield("/vnavmesh moveto "..GetObjectRawXPos(nemm).." "..GetObjectRawYPos(nemm).." "..GetObjectRawZPos(nemm))
---				if GetStatusTimeRemaining(895) == 1 then yield("/wait 0.5") end
---				if GetStatusTimeRemaining(895) == 1 then yield("/wait 0.5") end
-				zoob = 0
-				validmove = valid_pvp_areas[fuckthis] or "Q" -- Q works on most of them
---				yield("/vnav stop")
-				yield("/hold "..validmove)
-				if GetStatusTimeRemaining(895) == 1 then yield("/wait 0.5") end
-				if GetStatusTimeRemaining(895) == 1 then yield("/wait 0.5") end
-				if GetStatusTimeRemaining(895) == 1 then yield("/wait 0.5") end
-				if GetStatusTimeRemaining(895) == 1 then yield("/wait 0.5") end
-				yield("/release "..validmove)
+			yield("/pvpac sprint")
+			safeX = valid_pvp_escape[fuckthis][4]
+			safeY = valid_pvp_escape[fuckthis][5]
+			safeZ = valid_pvp_escape[fuckthis][6]
+			if mydistto(valid_pvp_escape[fuckthis][1],valid_pvp_escape[fuckthis][2],valid_pvp_escape[fuckthis][3]) < 20 then
+				safeX = valid_pvp_escape[fuckthis][1]
+				safeY = valid_pvp_escape[fuckthis][2]
+				safeZ = valid_pvp_escape[fuckthis][3]				
 			end
+			safetyMove = 1
+			yield("/echo grabbing safety x y z and setting safetyMove to 1")
+			yield("/vnavmesh moveto "..safeX.." "..safeY.." "..safeZ)
 			yield("/wait 0.1")
-		
 		end
 		--DEBUG
-		--yield("/echo vnavmesh moveto "..GetObjectRawXPos(nemm).." "..GetObjectRawYPos(nemm).." "..GetObjectRawZPos(nemm))
 		yield("/rotation auto")
 		fuckme = fuckme + 1
 		if fuckme > 5 then
@@ -202,5 +200,4 @@ while fuckpvp == 1 do
 		end
 	end
 	--exit via cbt
-	--Instances.DutyFinder:OpenRouletteDuty(number)
 end

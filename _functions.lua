@@ -1216,3 +1216,21 @@ end
 function ClearTarget()
 	Player.Entity:ClearTarget()
 end
+
+function mydistto(x2, y2, z2)
+	x1 = Player.Entity.Position.X
+	y1 = Player.Entity.Position.Y
+	z1 = Player.Entity.Position.Z
+	if type(x1) ~= "number" then x1 = 0 end
+	if type(y1) ~= "number" then y1 = 0 end
+	if type(z1) ~= "number" then z1 = 0 end
+	if type(x2) ~= "number" then x2 = 0 end
+	if type(y2) ~= "number" then y2	= 0 end
+	if type(z2) ~= "number" then z2 = 0 end
+	zoobz = math.sqrt((x2 - x1)^2 + (y2 - y1)^2 + (z2 - z1)^2)
+	if type(zoobz) ~= "number" then
+		zoobz = 0
+	end
+    --return math.sqrt((x2 - x1)^2 + (y2 - y1)^2 + (z2 - z1)^2)
+    return zoobz
+end
