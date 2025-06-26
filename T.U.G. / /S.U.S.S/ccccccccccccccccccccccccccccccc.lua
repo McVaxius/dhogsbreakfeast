@@ -144,19 +144,8 @@ while fuckpvp == 1 do
 		zoob = 0
 		ZOOB = 0
 		yield("/release W")
---[[
-		while GetStatusTimeRemaining(895) == 0 and Svc.Condition[34] and Svc.Condition[1] and safetyMove == 0 do --spawn/respawn invuln
-			safeX = Player.Entity.Position.X
-			safeY = Player.Entity.Position.Y
-			safeZ = Player.Entity.Position.Z
-			safetyMove = 1
-			yield("/echo grabbing safety x y z and setting safetyMove to 1")
-		end
---]]
 		while GetStatusTimeRemaining(895) == 1 and Svc.Condition[34] and safetyMove == 1 do --spawn/respawn invuln with safety xyz
 			yield("/vnavmesh moveto "..safeX.." "..safeY.." "..safeZ)
---			if GetStatusTimeRemaining(895) == 1 then yield("/wait 0.5") end
---			if GetStatusTimeRemaining(895) == 1 then yield("/wait 0.5") end
 			yield("/echo we escaping safely")
 			yield("/wait 0.1")
 		end
