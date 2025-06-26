@@ -140,7 +140,7 @@ function fishing()
 		   delete_my_items_please(do_we_discard)
 		   yield("/wait 5")
 		end
-		if Svc.Condition[43]==false then
+		while Svc.Condition[43]==false and Svc.Condition[34] do
 			if Svc.ClientState.TerritoryType ~= 132 then
 				randomNum = getRandomNumber(113,4043)
 				randomNum = (randomNum * -1) / 1000
