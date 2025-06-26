@@ -305,8 +305,8 @@ if FUTA_processors[hoo_arr_weeeeee][2][2] > -1 then  -- -1 is ignore+disable for
 	--we dont have a fishing level setup
     yield("/echo Let's see if fishing is even a thing on this char and update the database")
 	yield("/wait 0.5")	
-	if tonumber(GetLevel(17)) > 0 then
-		FUTA_processors[hoo_arr_weeeeee][2][2] = tonumber(GetLevel(17))
+	if tonumber(GetLevel(18)) > 0 then
+		FUTA_processors[hoo_arr_weeeeee][2][2] = tonumber(GetLevel(18))
 		if FUTA_processors[hoo_arr_weeeeee][2][2] == 99999 then --*this doesnt work atm
 			xp = GetNodeText("_Exp", 3)
 			xpxp = string.match(xp, "%d[%d.,]*"):gsub(",", "")  -- Remove commas
@@ -318,7 +318,7 @@ if FUTA_processors[hoo_arr_weeeeee][2][2] > -1 then  -- -1 is ignore+disable for
 		tablebunga(FUTA_config_file, "FUTA_processors", folderPath)
 		yield("/echo tablebunga() completed successfully w new fishing data")
 	end
-	if tonumber(GetLevel(17)) == 0 then
+	if tonumber(GetLevel(18)) == 0 then
 		FUTA_processors[hoo_arr_weeeeee][2][2] = -1  --fishing is disabled don't check it again
 		tablebunga(FUTA_config_file, "FUTA_processors", folderPath)
 		yield("/echo this char is not a fisher")
