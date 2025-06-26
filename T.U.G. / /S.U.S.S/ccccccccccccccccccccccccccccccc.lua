@@ -13,6 +13,9 @@ instructions:
 setup CBT auto exit duty, and auto queue
 
 target "Tactical Crystal"
+status 3016 when its at the start of match until one team moves it
+status 2988 whe its trying to break through to next checkpoint
+
 zones->
 The Palaistra
 The Volcanic Heart

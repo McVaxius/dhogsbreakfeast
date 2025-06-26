@@ -92,13 +92,16 @@ end
 
 
 function become_feesher()
+	--[[
 	if GetItemCount(2571) > 0 then yield("/equipitem 2571") end --weathered fishing rod
 	yield("/wait 0.5")
 	if GetItemCount(35393) > 0 then yield("/equipitem 35393") end --integral fishing rod
 	yield("/wait 0.5")
+	--]]
 	yield("/equipjob fsh")
 	yield("/wait 0.5")
 	--check if we can become fisher
+	--[[
 	if GetItemCount(35393) == 0 and GetItemCount(2571) == 0 and GetClassJobId() ~= 18 then
 		visland_stop_moving()
 		yield("/vnavmesh moveto -246.67446899414 16.199998855591 41.268531799316")
@@ -119,17 +122,22 @@ function become_feesher()
 		visland_stop_moving()
 		ungabunga()
 	end
+	--]]
+	--[[
 	if GetItemCount(2571) > 0 then yield("/equipitem 2571") end --weathered fishing rod
 	yield("/wait 0.5")
 	if GetItemCount(35393) > 0 then yield("/equipitem 35393") end --integral fishing rod
 	yield("/wait 0.5")
+	==]]
 	yield("/equipjob fsh")
 	yield("/wait 0.5")
 	ungabunga()
+	--[[
 	if GetItemCount(2571) > 0 then yield("/equipitem 2571") end --weathered fishing rod
 	yield("/wait 0.5")
 	if GetItemCount(35393) > 0 then yield("/equipitem 35393") end --integral fishing rod
 	yield("/wait 0.5")
+	==]]
 	yield("/equipjob fsh")
 	yield("/wait 0.5")
 end
