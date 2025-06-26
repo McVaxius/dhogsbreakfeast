@@ -119,7 +119,7 @@ reach_out_and_LIMITBREAKSOMEONE = {
 while fuckpvp == 1 do
 	if Svc.Condition[34] == false and safetyMove == 1 then
 		safetyMove = 0
-		yield("/echo resetting safetymove to 0")
+		yield("/echo resetting safetyMove to 0")
 		yield("/hold W")
 		yield("/release W")
 		fuckyou = 0
@@ -142,12 +142,16 @@ while fuckpvp == 1 do
 		yield("/vnavmesh moveto "..GetObjectRawXPos(nemm)+rX.." "..GetObjectRawYPos(nemm).." "..GetObjectRawZPos(nemm)+rZ)
 		--end
 		zoob = 0
-		ZOOB = 0
 		yield("/release W")
 		while GetStatusTimeRemaining(895) == 1 and Svc.Condition[34] and safetyMove == 1 do --spawn/respawn invuln with safety xyz
 			yield("/vnavmesh moveto "..safeX.." "..safeY.." "..safeZ)
 			yield("/echo we escaping safely")
 			yield("/wait 0.1")
+			zoob = zoob + 1
+			if zoob > 50 then
+				zoob = 0
+				safetyMove = 0
+			end
 		end
 		while GetStatusTimeRemaining(895) == 1 and Svc.Condition[34] and safetyMove == 0 do --spawn/respawn invuln
 			yield("/pvpac sprint")
