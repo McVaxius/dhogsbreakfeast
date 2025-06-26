@@ -1061,7 +1061,7 @@ end
 function GetLevel(pjob)
 	pjob = pjob or 9000 --9000 is just so we know they didn't pass something over. there is probably better way but i dont think very hard about these things
 	if pjob < 9000 then
-		return Player.GetJob(pjob).Level
+		return Player.GetJob(pjob + 1).Level
 	end
 	if pjob == 9000 then
 		return Player.Job.Level
