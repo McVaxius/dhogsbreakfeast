@@ -83,6 +83,7 @@ safeX = 0
 safeY = 0
 safeZ = 0
 safetyMove = 0
+fuckyou = 0
 
 reach_out_and_LIMITBREAKSOMEONE = {
 	{"Phalanx", 19},
@@ -124,17 +125,10 @@ while fuckpvp == 1 do
 		fuckyou = 0
 	end
 	fuckthis = Svc.ClientState.TerritoryType
-	--[[
-	for i=1,#valid_pvp_areas do
-		if fuckthis == valid_pvp_areas[i] then
-			fuckyou = 1
-		end
-	end
-	--]]
 	if Svc.Condition[34] == true and fuckyou == 0 then
 		fuckyou = 1
-		yield("/echo we have entered the pvp match - please wait 20 seconds before more stuff happens")
-		yield("/wait 20")
+		yield("/echo we have entered the pvp match - please wait 35 seconds before more stuff happens")
+		yield("/wait 35")
 		yield("/mmambo")
 		yield("/wait 5")
 	end
