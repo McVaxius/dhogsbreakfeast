@@ -42,6 +42,7 @@ functionsToLoad()
 
 fuckpvp = 1
 fuckme = 0
+case_choice = -1
 
 yield("/title set barago")
 yield("/wait 3")
@@ -67,8 +68,8 @@ valid_pvp_areas = {
 --we gonna make xyz locs,  [zone] = {x1, y1, z1, x2, y2, z2}
 --THANKS HYPERBOREA
 valid_pvp_escape = {
-    [1032] = {76.440093994141, 3.9999783039093, -10.122094154358, 77.285011291504, 3.9999830722809, 9.9324369430542},  -- palaistra
-    [1058] = {76.440093994141, 3.9999783039093, -10.122094154358, 77.285011291504, 3.9999830722809, 9.9324369430542},  -- palaistra 2 (?!?!?)
+    [1032] = {70.08521270752, 3.9999997615814, -9.7963066101074, -72.121978759766, 3.9999887943268, 9.7666854858398},  -- palaistra
+    [1058] = {70.08521270752, 3.9999997615814, -9.7963066101074, -72.121978759766, 3.9999887943268, 9.7666854858398},  -- palaistra (?!?!?)
     [1033] = {60.159770965576, -1.5, -20.096973419189, -59.741413116455, -1.5, -20.130617141724},  -- volcanic heart
     [1059] = {60.159770965576, -1.5, -20.096973419189, -59.741413116455, -1.5, -20.130617141724},  -- volcanic heart 2 (?!?!?)
     [1034] = {-90.087173461914, 6.2741222381592, 78.478736877441, 89.641860961914, 6.2917737960815, -72.475570678711},  -- cloud nine
@@ -123,6 +124,7 @@ while fuckpvp == 1 do
 		yield("/hold W")
 		yield("/release W")
 		fuckyou = 0
+		case_choice = -11
 	end
 	fuckthis = Svc.ClientState.TerritoryType
 	if Svc.Condition[34] == true and fuckyou == 0 then
@@ -142,10 +144,15 @@ while fuckpvp == 1 do
 		yield("/vnavmesh moveto "..GetObjectRawXPos(nemm)+rX.." "..GetObjectRawYPos(nemm).." "..GetObjectRawZPos(nemm)+rZ)
 		--end
 		zoob = 0
+		case_choice = -1
 		yield("/release W")
+		--[[
 		while GetStatusTimeRemaining(895) == 1 and Svc.Condition[34] and safetyMove == 1 do --spawn/respawn invuln with safety xyz
+			safeX = valid_pvp_escape[fuckthis][1+case_choice]
+			safeY = valid_pvp_escape[fuckthis][2+case_choice]
+			safeZ = valid_pvp_escape[fuckthis][3+case_choice]
 			yield("/vnavmesh moveto "..safeX.." "..safeY.." "..safeZ)
-			yield("/echo we escaping safely")
+			--yield("/echo we escaping safely")
 			yield("/wait 0.1")
 			zoob = zoob + 1
 			if zoob > 50 then
@@ -153,21 +160,28 @@ while fuckpvp == 1 do
 				safetyMove = 0
 			end
 		end
-		while GetStatusTimeRemaining(895) == 1 and Svc.Condition[34] and safetyMove == 0 do --spawn/respawn invuln
+		--]]
+		while GetStatusTimeRemaining(895) == 1 and Svc.Condition[34] and case_choice == -1 do --spawn/respawn invuln
 			yield("/pvpac sprint")
 			--test both cases
-			case_choice = 0
+			
 			safeX = valid_pvp_escape[fuckthis][1]
 			safeY = valid_pvp_escape[fuckthis][2]
-			safeZ = valid_pvp_escape[fuckthis][3]				
+			safeZ = valid_pvp_escape[fuckthis][3]
+			disturbed = mydistto(safeX,safeY,safeZ)
+			if disturbed < 20 then case_choice = 0 end
+
 			safeX = valid_pvp_escape[fuckthis][4]
 			safeY = valid_pvp_escape[fuckthis][5]
 			safeZ = valid_pvp_escape[fuckthis][6]
-			if mydistto(safeX,safeY,safeZ) < 20 then
+			disturbed = mydistto(safeX,safeY,safeZ)
+			if disturbed < 20 then case_choice = 3 end
+
+			if case_choice > -1 then 
+				safetyMove = 1 
+				yield("/echo grabbing safety x y z - we chose case_choice -> "..case_choice.." disturbed -> "..disturbed)
+				yield("/vnavmesh moveto "..valid_pvp_escape[fuckthis][1+case_choice].." "..valid_pvp_escape[fuckthis][2+case_choice].." "..valid_pvp_escape[fuckthis][3+case_choice])
 			end
-			safetyMove = 1
-			yield("/echo grabbing safety x y z and setting safetyMove to 1")
-			yield("/vnavmesh moveto "..safeX.." "..safeY.." "..safeZ)
 			yield("/wait 0.1")
 		end
 		--DEBUG
@@ -183,7 +197,7 @@ while fuckpvp == 1 do
 					yield("/wait 0.1") --juuuust in case there is a 2nd one in the list
 				end
 			end
-			yield("/echo halfassed limit break attempt")
+			--yield("/echo halfassed limit break attempt")
 		end
 	end
 	yield("/wait 0.5")
