@@ -52,6 +52,10 @@ end
 	yield("/vbm ar set DD")
 	yield("/rotation off") -- RSR please will cause AI movement problems
 --]]
+loadfiyel = os.getenv("appdata").."\\XIVLauncher\\pluginConfigs\\SomethingNeedDoing\\_functions.lua"
+functionsToLoad = loadfile(loadfiyel)
+functionsToLoad()
+
 --important variables
 fatfuck = 1
 number_of_party = 4 --how many poople in party hah well we will check anyhow
