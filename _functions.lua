@@ -1234,3 +1234,19 @@ function mydistto(x2, y2, z2)
     --return math.sqrt((x2 - x1)^2 + (y2 - y1)^2 + (z2 - z1)^2)
     return zoobz
 end
+
+function GetPlayerRawXPos()
+	return Player.Entity.Position.X
+end
+
+function GetPlayerRawYPos()
+	return Player.Entity.Position.Y
+end
+
+function GetPlayerRawZPos()
+	return Player.Entity.Position.Z
+end
+
+function GetTargetName()
+	return Entity.Target.Name
+end
