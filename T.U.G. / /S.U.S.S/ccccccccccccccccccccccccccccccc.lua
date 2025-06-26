@@ -155,13 +155,15 @@ while fuckpvp == 1 do
 		end
 		while GetStatusTimeRemaining(895) == 1 and Svc.Condition[34] and safetyMove == 0 do --spawn/respawn invuln
 			yield("/pvpac sprint")
+			--test both cases
+			case_choice = 0
+			safeX = valid_pvp_escape[fuckthis][1]
+			safeY = valid_pvp_escape[fuckthis][2]
+			safeZ = valid_pvp_escape[fuckthis][3]				
 			safeX = valid_pvp_escape[fuckthis][4]
 			safeY = valid_pvp_escape[fuckthis][5]
 			safeZ = valid_pvp_escape[fuckthis][6]
-			if mydistto(valid_pvp_escape[fuckthis][1],valid_pvp_escape[fuckthis][2],valid_pvp_escape[fuckthis][3]) < 20 then
-				safeX = valid_pvp_escape[fuckthis][1]
-				safeY = valid_pvp_escape[fuckthis][2]
-				safeZ = valid_pvp_escape[fuckthis][3]				
+			if mydistto(safeX,safeY,safeZ) < 20 then
 			end
 			safetyMove = 1
 			yield("/echo grabbing safety x y z and setting safetyMove to 1")
