@@ -8,7 +8,7 @@ Yesalready configs
 	/Retire to an inn room.*/
 "Bothers"
 	[x] Contents Finder Confirm  (auto confirm queueing)
-
+--*plan to remove any yesalready configs i will improve this stuff soon™
 --]]
 
 function fishing()  
