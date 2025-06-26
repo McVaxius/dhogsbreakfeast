@@ -129,10 +129,12 @@ while fuckpvp == 1 do
 	fuckthis = Svc.ClientState.TerritoryType
 	if Svc.Condition[34] == true and fuckyou == 0 then
 		fuckyou = 1
+		--[[
 		yield("/echo we have entered the pvp match - please wait 35 seconds before more stuff happens")
 		yield("/wait 35")
 		yield("/mmambo")
 		yield("/wait 5")
+		--]]
 	end
 	if fuckyou == 1 then
 		--nemm = "Tactical Crystal"
@@ -164,22 +166,26 @@ while fuckpvp == 1 do
 		while GetStatusTimeRemaining(895) == 1 and Svc.Condition[34] and case_choice == -1 do --spawn/respawn invuln
 			yield("/pvpac sprint")
 			--test both cases
+			disturbed_table = {1,2,3,4}
+			if case_choice == -1 then yield("/vnav stop") end
 			
 			safeX = valid_pvp_escape[fuckthis][1]
 			safeY = valid_pvp_escape[fuckthis][2]
 			safeZ = valid_pvp_escape[fuckthis][3]
-			disturbed = mydistto(safeX,safeY,safeZ)
-			if disturbed < 20 then case_choice = 0 end
+			disturbed_table[1] = mydistto(safeX,safeY,safeZ)
+			yield("/echo disturbed casetest 0 -> "..disturbed_table[1])
+			if disturbed_table[1] < 40 then case_choice = 0 end
 
 			safeX = valid_pvp_escape[fuckthis][4]
 			safeY = valid_pvp_escape[fuckthis][5]
 			safeZ = valid_pvp_escape[fuckthis][6]
-			disturbed = mydistto(safeX,safeY,safeZ)
-			if disturbed < 20 then case_choice = 3 end
+			disturbed_table[4] = mydistto(safeX,safeY,safeZ)
+			yield("/echo disturbed casetest 3 -> "..disturbed_table[4])
+			if disturbed_table[4] < 40 then case_choice = 3 end
 
 			if case_choice > -1 then 
 				safetyMove = 1 
-				yield("/echo grabbing safety x y z - we chose case_choice -> "..case_choice.." disturbed -> "..disturbed)
+				yield("/echo grabbing safety x y z - we chose case_choice -> "..case_choice.." disturbed -> "..disturbed_table[1+case_choice])
 				yield("/vnavmesh moveto "..valid_pvp_escape[fuckthis][1+case_choice].." "..valid_pvp_escape[fuckthis][2+case_choice].." "..valid_pvp_escape[fuckthis][3+case_choice])
 			end
 			yield("/wait 0.1")
