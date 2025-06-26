@@ -2161,7 +2161,10 @@ function GetZoneID()
 end
 
 function GetBuddyTimeRemaining()	
-	ctime = Instances.Buddy.CompanionInfo.TimeLeft or 0
+	ctime = 0
+	if InSanctuary() == false then
+		ctime = Instances.Buddy.CompanionInfo.TimeLeft or 0
+	end
 	return ctime
 end
 
@@ -2179,7 +2182,8 @@ function GetPartyMemberName(gpmi)
 end
 
 function InSanctuary()
-	return Player.CanMount
+	if Player.CanMount then return false end
+	if Player.CanMount == false then return true end
 end
 
 function HasFlightUnlocked()
