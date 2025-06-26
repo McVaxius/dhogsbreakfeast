@@ -10,7 +10,7 @@ https://github.com/Jaksuhn/SomethingNeedDoing
 Don't ask for support with those scripts.  they are just there just in case someone wants to touch them. they are from old-snd
 
 ## What is working
- - [x] [F.U.T.A.]: https://github.com/McVaxius/dhogsbreakfeast/tree/main/AutoRetainer%20Companions/F.U.T.A (including GC and Fishing)
+ - [x] [F.U.T.A.](https://github.com/McVaxius/dhogsbreakfeast/tree/main/AutoRetainer%20Companions/F.U.T.A) (including GC and Fishing)
  - [x] Frenrider
  - [ ] DeepDucking (needs new nodetext stuff)
  - [ ] G.O.O.N. (needs new nodetext stuff)
