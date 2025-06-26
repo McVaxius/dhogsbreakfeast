@@ -2141,3 +2141,12 @@ end
 function GetCharacterCondition(zup)
 	return Svc.Condition[zup]
 end
+
+function NeedsRepair(pcct)
+	repairList = Inventory.GetItemsInNeedOfRepairs(pcct)
+	if repairList.Count == 0 then
+		return false
+	else
+		return true
+	end
+end
