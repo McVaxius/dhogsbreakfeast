@@ -53,6 +53,9 @@ Todo:
 movement back to entrance -> update method to get to entrance, and add an option to skip pathing and just tp to entrance.
 
 ]]
+loadfiyel = os.getenv("appdata").."\\XIVLauncher\\pluginConfigs\\SomethingNeedDoing\\_functions.lua"
+functionsToLoad = loadfile(loadfiyel)
+functionsToLoad()
 
 --Start because nobody read the instructions at the top <3
 PandoraSetFeatureState("Auto-Fill Numeric Dialogs", false) 
@@ -151,11 +154,6 @@ function are_we_there_yet_jimmy()
 	end
 	return woah_bruv
 end
-
-loadfiyel = os.getenv("appdata").."\\XIVLauncher\\pluginConfigs\\SomethingNeedDoing\\_functions.lua"
-functionsToLoad = loadfile(loadfiyel)
-functionsToLoad()
-DidWeLoadcorrectly()
 
 --the boss wants that monthly gil payment, have your bagman ready with the gil. 
 --If he has to come pick it up himself its gonna get messy

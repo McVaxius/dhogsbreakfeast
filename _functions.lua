@@ -1042,6 +1042,9 @@ function GetItemCount(itemId)
 	return Inventory.GetItemCount(itemId)
 end
 
+function GetGil()
+	return Inventory.GetItemCount(1)
+end
 function GetObjectRawXPos(name)
 	--yield("/echo debug getorxpos")
 	if Entity.GetEntityByName(name) == nil then return 0 end
@@ -2212,4 +2215,16 @@ end
 
 function PandoraSetFeatureState(zfeatureName, zenabled)
 	IPC.PandorasBox.SetFeatureEnabled(zfeatureName, zenabled)
+end
+
+function DropboxSetItemQuantity(id, hq, quantity)
+	IPC.Dropbox.SetItemQuantity(id, hq, quantity)
+end
+
+function DropboxIsBusy()
+	return IPC.Dropbox.IsBusy()
+end
+
+function DropboxStart()
+	IPC.Dropbox.BeginTradingQueue()
 end

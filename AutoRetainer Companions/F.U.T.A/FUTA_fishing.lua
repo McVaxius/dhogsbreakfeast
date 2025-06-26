@@ -144,8 +144,7 @@ function fishing()
 			if Svc.ClientState.TerritoryType ~= 132 then
 				randomNum = getRandomNumber(113,4043)
 				randomNum = (randomNum * -1) / 1000
-				yield("/vnav stop")
-				yield("/visland moveto 7.451 6.750 "..randomNum)
+				yield("/vnav moveto 7.451 6.750 "..randomNum)
 				yield("/ac cast")
 				yield("/wait 0.1")
 			end
