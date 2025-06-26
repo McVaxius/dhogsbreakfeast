@@ -2102,8 +2102,13 @@ function PathfindInProgress()
 end
 
 function ClearTarget()
-	Player.Entity:ClearTarget()
+    if Player.Entity and Player.Entity.ClearTarget then
+        Player.Entity:ClearTarget()
+    else
+        yield("/echo Failed to clear target: Player.Entity or ClearTarget missing")
+    end
 end
+
 
 function mydistto(x2, y2, z2)
 	x1 = Player.Entity.Position.X
@@ -2169,8 +2174,13 @@ function GetBuddyTimeRemaining()
 end
 
 function IsPartyMemberMounted(frend)
-	return Entity.GetEntityByName(frend).IsMounted
+    local ent = Entity.GetEntityByName(frend)
+    if ent and ent.IsMounted ~= nil then
+        return ent.IsMounted
+    end
+    return false -- or nil, if you want to signal "unknown"
 end
+
 
 function TargetClosestEnemy()
 	--* who knows
