@@ -44,6 +44,7 @@ fuckpvp = 1
 fuckme = 0
 case_choice = -1
 
+--comment these out if you dont need the garo title mounts
 yield("/title set barago")
 yield("/wait 3")
 yield("/title set garo")
@@ -53,18 +54,6 @@ yield("/wait 3")
 Consecutive text command input is currently restricted.
 Unable to use that title.
 --]]
-
---Q strafe left, E Strafe right
---[[
-valid_pvp_areas = {
-    [1032] = "E",  -- palaistra  --VERIFIED
-    [1033] = "E",  -- volcanic heart
-    [1034] = "Q",  -- cloud nine --VERIFIED
-    [1116] = "Q",  -- clockwork castletown --VERIFIED
-    [1138] = "Q"   -- red sands --VERIFIED
-}
---]]
-
 --we gonna make xyz locs,  [zone] = {x1, y1, z1, x2, y2, z2}
 --THANKS HYPERBOREA
 valid_pvp_escape = {
@@ -129,9 +118,10 @@ while fuckpvp == 1 do
 	fuckthis = Svc.ClientState.TerritoryType
 	if Svc.Condition[34] == true and fuckyou == 0 then
 		fuckyou = 1
-		yield("/echo we have entered the pvp match - please wait 35 seconds before more stuff happens")
-		yield("/wait 35")
-		yield("/mmambo")
+		waiteeng = 40
+		yield("/echo we have entered the pvp match - please wait "..waiteeng.." seconds before more stuff happens")
+		yield("/wait "..waiteeng)
+		yield("/mmambo") --change it to something else if you like.
 		yield("/wait 5")
 	end
 	if fuckyou == 1 then
@@ -150,7 +140,7 @@ while fuckpvp == 1 do
 			yield("/pvpac sprint")
 			--test both cases
 			disturbed_table = {1,2,3,4}
-			if case_choice == -1 then yield("/vnav stop") end
+			if case_choice == -1 then yield("/vnav stop") end  --this way it doesnt get caught in corner before we are ready for a table selection
 			
 			safeX = valid_pvp_escape[fuckthis][1]
 			safeY = valid_pvp_escape[fuckthis][2]
