@@ -2154,3 +2154,16 @@ end
 function GetZoneID()
 	return Svc.ClientState.TerritoryType
 end
+
+function GetBuddyTimeRemaining()
+	return Instances.Buddy.CompanionInfo.TimeLeft
+end
+
+function IsPartyMemberMounted(frend)
+	return Entity.GetEntityByName(frend).IsMounted
+end
+
+function TargetClosestEnemy()
+	--* who knows
+	yield("/keypress TAB")
+end

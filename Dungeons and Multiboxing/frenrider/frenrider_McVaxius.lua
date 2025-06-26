@@ -741,7 +741,7 @@ function checkAREA()
 		end
 	end
 
-	if IsPartyMemberMounted(shartycardinality) == true and fly_you_fools == false then
+	if IsPartyMemberMounted(fren) == true and fly_you_fools == false then
 		are_we_social_distancing = 0 --turn off social distancing if the party leader is mounted.
 	end
 end
@@ -995,7 +995,7 @@ while weirdvar == 1 do
 			end
 
 			--dismount regardless of in duty or not
-			if IsPartyMemberMounted(shartycardinality) == false and fly_you_fools == true and Svc.Condition[4] == true then
+			if IsPartyMemberMounted(fren) == false and fly_you_fools == true and Svc.Condition[4] == true then
 				--continually try to dismount
 				--bmr follow off.
 				yield("/bmrai follow slot1")
@@ -1228,7 +1228,7 @@ while weirdvar == 1 do
 							if Svc.Condition[4] == true then
 								yield("/rotation cancel") --keep rotations off
 							end
-							if Svc.Condition[4] == false and Svc.Condition[10] == false and IsPartyMemberMounted(shartycardinality) == true then
+							if Svc.Condition[4] == false and Svc.Condition[10] == false and IsPartyMemberMounted(fren) == true then
 								--mountup your own mount
 								--cancel movement
 								yield("/mount \""..fool_flier.."\"")
@@ -1240,7 +1240,7 @@ while weirdvar == 1 do
 								--yield("/lockon on")
 							end
 						end
-						if IsPartyMemberMounted(shartycardinality) == true and fly_you_fools == false then
+						if IsPartyMemberMounted(fren) == true and fly_you_fools == false then
 							--for i=1,7 do
 								--yield("/ridepillion <"..partycardinality.."> "..i)
 								counting_fartula()

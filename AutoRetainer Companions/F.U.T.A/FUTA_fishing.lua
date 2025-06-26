@@ -123,7 +123,7 @@ function fishing()
 	--if so then wait for 30 seconds then start heading to the visland location
 	yield("/wait 30")
 
-	local randomNum = getRandomNumber(113,4043)
+	randomNum = getRandomNumber(113,4043)
 	randomNum = (randomNum * -1) / 1000
 	yield("/visland moveto 7.451 6.750 "..randomNum)
 
@@ -142,6 +142,9 @@ function fishing()
 		end
 		if Svc.Condition[43]==false then
 			if Svc.ClientState.TerritoryType ~= 132 then
+				randomNum = getRandomNumber(113,4043)
+				randomNum = (randomNum * -1) / 1000
+				yield("/visland moveto 7.451 6.750 "..randomNum)
 				yield("/ac cast")
 				yield("/wait 1")
 			end
