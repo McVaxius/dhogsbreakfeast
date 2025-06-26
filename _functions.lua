@@ -92,9 +92,9 @@ end
 
 
 function become_feesher()
-	yield("/equipitem 2571") --weathered fishing rod
+	if GetItemCount(2571) > 0 then yield("/equipitem 2571") end --weathered fishing rod
 	yield("/wait 0.5")
-	yield("/equipitem 35393") --integral fishing rod
+	if GetItemCount(35393) > 0 then yield("/equipitem 35393") end --integral fishing rod
 	yield("/wait 0.5")
 	yield("/equipjob fsh")
 	yield("/wait 0.5")
@@ -119,16 +119,16 @@ function become_feesher()
 		visland_stop_moving()
 		ungabunga()
 	end
-	yield("/equipitem 2571") --weathered fishing rod
+	if GetItemCount(2571) > 0 then yield("/equipitem 2571") end --weathered fishing rod
 	yield("/wait 0.5")
-	yield("/equipitem 35393") --integral fishing rod
+	if GetItemCount(35393) > 0 then yield("/equipitem 35393") end --integral fishing rod
 	yield("/wait 0.5")
 	yield("/equipjob fsh")
 	yield("/wait 0.5")
 	ungabunga()
-	yield("/equipitem 2571") --weathered fishing rod
+	if GetItemCount(2571) > 0 then yield("/equipitem 2571") end --weathered fishing rod
 	yield("/wait 0.5")
-	yield("/equipitem 35393") --integral fishing rod
+	if GetItemCount(35393) > 0 then yield("/equipitem 35393") end --integral fishing rod
 	yield("/wait 0.5")
 	yield("/equipjob fsh")
 	yield("/wait 0.5")
