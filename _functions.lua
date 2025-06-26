@@ -1008,6 +1008,8 @@ function delete_my_items_please(how)
 	if how == 0 then
 		yield("/echo not deleting or desynthing items")
 		--* here we can check for distance to a retainer bell and go to it if its within 10 yalms
+		--*let's only do this while we AREN'T on a boat and after considering the problems with it. for now we gonna comment it out as its an annoying problem
+		--[[
 		yield("/target bell")
 		yield("/wait 1")
 		nemm = "Summoning Bell"
@@ -1018,6 +1020,7 @@ function delete_my_items_please(how)
 		end
 		yield("/ays itemsell") --npc AND retainer selling --* this actually doesn't work yet. we'd need to stop AR entirely and then re enable it.  this is doable but can be a problem as it will run post ar process again
 			--figured it out - if we have salvage to sell, then we have a reason to reset AR
+		--]]
 	end 
 	if how == 1 then
 		yield("/echo Attempting to delete items")
