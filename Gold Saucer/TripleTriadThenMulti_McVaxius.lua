@@ -115,4 +115,4 @@ visland_stop_moving()
 
 yield("/wait 5")
 yield("/ays multi")
-yield("/pcraft stop")
+yield("/pcraft stop all")

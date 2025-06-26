@@ -105,7 +105,7 @@ YesAlready -> YesNo -> /Purchase the action .*/
 
 --debug new stuff
 --yield("FC Tag hehehe -> "..generateFiveDigitText(process_tags))
---yield("/pcraft stop")
+--yield("/pcraft stop all")
 
 -- Specify the path to your text file
 --[[

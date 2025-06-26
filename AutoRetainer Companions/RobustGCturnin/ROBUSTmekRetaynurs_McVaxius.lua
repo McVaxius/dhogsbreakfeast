@@ -318,7 +318,7 @@ for laziest_bastard = 1, #intern_herder do
 		yield("/echo We have a problem. You mispelled a name somewhere.  You are on "..GetCharacterName(true).." but you should be on "..intern_herder[laziest_bastard][1])
 		if stop_on_error == 1 then
 			yield("/echo the script stops here")
-			yield("/pcraft stop")
+			yield("/pcraft stop all")
 		end
 	end
 	--check where we are. if not limsa lets limsa
@@ -344,4 +344,4 @@ end
 
 --turn on the taps again :~D
 yield("/ays multi e")
-yield("/pcraft stop")
+yield("/pcraft stop all")

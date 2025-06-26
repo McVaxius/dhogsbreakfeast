@@ -283,7 +283,7 @@ function WalkToGC()
 			while Svc.ClientState.TerritoryType ~= 128 do  --sometimes things get stuck in limsa or pre-limsa this should solve it.
 				toiletvisitor = toiletvisitor + 1
 				if toiletvisitor > 10 then
-					yield("/pcraft stop")
+					yield("/pcraft stop all")
 					yield("/vnav stop")
 				end
 				yield("/li aftcastle") 

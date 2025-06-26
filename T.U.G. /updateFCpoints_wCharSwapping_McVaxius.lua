@@ -30,4 +30,4 @@ for _, char in ipairs(chars_points) do
 yield("/wait 3")
 --last one out turn off the lights
 yield("/ays multi")
-yield("/pcraft stop")
+yield("/pcraft stop all")

@@ -150,7 +150,7 @@ DidWeLoadcorrectly()
 
 --debug new stuff
 --yield("FC Tag hehehe -> "..generateFiveDigitText(process_tags))
---yield("/pcraft stop")
+--yield("/pcraft stop all")
 
 -- Specify the path to your text file
 --[[
@@ -620,4 +620,4 @@ if process_players > 0 then
 end
 --last one out turn off the lights
 yield("/ays multi e")
-yield("/pcraft stop")
+yield("/pcraft stop all")
