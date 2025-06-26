@@ -124,17 +124,15 @@ while fuckpvp == 1 do
 		yield("/hold W")
 		yield("/release W")
 		fuckyou = 0
-		case_choice = -11
+		case_choice = -1
 	end
 	fuckthis = Svc.ClientState.TerritoryType
 	if Svc.Condition[34] == true and fuckyou == 0 then
 		fuckyou = 1
-		--[[
 		yield("/echo we have entered the pvp match - please wait 35 seconds before more stuff happens")
 		yield("/wait 35")
 		yield("/mmambo")
 		yield("/wait 5")
-		--]]
 	end
 	if fuckyou == 1 then
 		--nemm = "Tactical Crystal"
@@ -148,21 +146,6 @@ while fuckpvp == 1 do
 		zoob = 0
 		case_choice = -1
 		yield("/release W")
-		--[[
-		while GetStatusTimeRemaining(895) == 1 and Svc.Condition[34] and safetyMove == 1 do --spawn/respawn invuln with safety xyz
-			safeX = valid_pvp_escape[fuckthis][1+case_choice]
-			safeY = valid_pvp_escape[fuckthis][2+case_choice]
-			safeZ = valid_pvp_escape[fuckthis][3+case_choice]
-			yield("/vnavmesh moveto "..safeX.." "..safeY.." "..safeZ)
-			--yield("/echo we escaping safely")
-			yield("/wait 0.1")
-			zoob = zoob + 1
-			if zoob > 50 then
-				zoob = 0
-				safetyMove = 0
-			end
-		end
-		--]]
 		while GetStatusTimeRemaining(895) == 1 and Svc.Condition[34] and case_choice == -1 do --spawn/respawn invuln
 			yield("/pvpac sprint")
 			--test both cases
@@ -173,19 +156,19 @@ while fuckpvp == 1 do
 			safeY = valid_pvp_escape[fuckthis][2]
 			safeZ = valid_pvp_escape[fuckthis][3]
 			disturbed_table[1] = mydistto(safeX,safeY,safeZ)
-			yield("/echo disturbed casetest 0 -> "..disturbed_table[1])
+			--yield("/echo disturbed casetest 0 -> "..disturbed_table[1])
 			if disturbed_table[1] < 40 then case_choice = 0 end
 
 			safeX = valid_pvp_escape[fuckthis][4]
 			safeY = valid_pvp_escape[fuckthis][5]
 			safeZ = valid_pvp_escape[fuckthis][6]
 			disturbed_table[4] = mydistto(safeX,safeY,safeZ)
-			yield("/echo disturbed casetest 3 -> "..disturbed_table[4])
+			--yield("/echo disturbed casetest 3 -> "..disturbed_table[4])
 			if disturbed_table[4] < 40 then case_choice = 3 end
 
 			if case_choice > -1 then 
 				safetyMove = 1 
-				yield("/echo grabbing safety x y z - we chose case_choice -> "..case_choice.." disturbed -> "..disturbed_table[1+case_choice])
+				--yield("/echo grabbing safety x y z - we chose case_choice -> "..case_choice.." disturbed -> "..disturbed_table[1+case_choice])
 				yield("/vnavmesh moveto "..valid_pvp_escape[fuckthis][1+case_choice].." "..valid_pvp_escape[fuckthis][2+case_choice].." "..valid_pvp_escape[fuckthis][3+case_choice])
 			end
 			yield("/wait 0.1")
