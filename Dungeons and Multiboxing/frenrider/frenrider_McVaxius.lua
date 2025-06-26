@@ -89,6 +89,10 @@ I will do it a bit later once i uhh. make a lookup table for this trash here:
 -- Purpose: to have default .ini values and version control on configs
 -- Personal ini file
 -- if you want to use my ini file serializer just copy form start of inizer to end of inizer and look at how i implemented settings and go nuts :~D
+loadfiyel = os.getenv("appdata").."\\XIVLauncher\\pluginConfigs\\SomethingNeedDoing\\_functions.lua"
+functionsToLoad = loadfile(loadfiyel)
+functionsToLoad()
+
 tempchar = GetCharacterName()
 tempchar = tempchar:gsub("%s", "")  -- Remove all spaces
 tempchar = tempchar:gsub("'", "")   -- Remove all apostrophes
@@ -102,9 +106,6 @@ open_on_next_load = 0          -- Set this to 1 if you want the next time the sc
 -- VERSION VAR --
 -- VERSION VAR --
 vershun = 1                    -- Version number used to decide if you want to delete/remake the ini files on next load. useful if your changing party leaders for groups of chars or new version of script with fundamental changes
-loadfiyel = os.getenv("appdata").."\\XIVLauncher\\pluginConfigs\\SomethingNeedDoing\\_functions.lua"
-functionsToLoad = loadfile(loadfiyel)
-functionsToLoad()
 ini_check("version", vershun)
 -- VERSION VAR --
 -- VERSION VAR --
@@ -891,11 +892,11 @@ countfartula = 2
 function counting_fartula()
 countfartula = 2 --redeclare dont worry its fine. we need this so we can do it later in the code for recalibration
 	while countfartula < 9 do
-		yield("/target <"..countfartula..">")
+		yield("/target \"<"..countfartula..">\"")
 		yield("/wait 0.5")
 		gawk_gawk_3000("is it "..GetTargetName().."?")
 		if GetTargetName() == fren then
-			fartycardinality = countfartula
+			fartycardinality = countfartula + 1
 			countfartula = 9
 			--yield("Aha... count fartula is -> "..fartycardinality)
 		end
@@ -1191,7 +1192,7 @@ while weirdvar == 1 do
 							--gawk_gawk_3000("attempting to fly to fren")
 							clingmove(fren)
 
-							yield("/target <"..fartycardinality..">")
+							yield("/target \"<"..fartycardinality..">\"")
 							
 						end
 					end
@@ -1244,7 +1245,7 @@ while weirdvar == 1 do
 							--for i=1,7 do
 								--yield("/ridepillion <"..partycardinality.."> "..i)
 								counting_fartula()
-								yield("/ridepillion <"..fartycardinality.."> 2")
+								yield("/ridepillion \"<"..tostring(fartycardinality)..">\" 2")
 								yield("/rotation Cancel")
 							--end
 							gawk_gawk_3000("Attempting to Mount Friend")

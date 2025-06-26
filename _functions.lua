@@ -1178,6 +1178,7 @@ function PauseYesAlready()
 end
 
 function GetCharacterName(im_a_cheeky_monkey)
+	if im_a_cheeky_monkey == nil then im_a_cheeky_monkey = false end
 	if im_a_cheeky_monkey == false then
 		return Player.Entity.Name
 	end
@@ -2135,7 +2136,11 @@ function GetPlayerRawZPos()
 end
 
 function GetTargetName()
-	return Entity.Target.Name
+    local returntarget = "nyetnyetnyetnyetnyetnyet"
+    if Entity.Target and Entity.Target.Name then
+        returntarget = Entity.Target.Name
+    end
+    return returntarget
 end
 
 function GetCharacterCondition(zup)
@@ -2155,8 +2160,9 @@ function GetZoneID()
 	return Svc.ClientState.TerritoryType
 end
 
-function GetBuddyTimeRemaining()
-	return Instances.Buddy.CompanionInfo.TimeLeft
+function GetBuddyTimeRemaining()	
+	ctime = Instances.Buddy.CompanionInfo.TimeLeft or 0
+	return ctime
 end
 
 function IsPartyMemberMounted(frend)
@@ -2166,4 +2172,30 @@ end
 function TargetClosestEnemy()
 	--* who knows
 	yield("/keypress TAB")
+end
+
+function GetPartyMemberName(gpmi)
+	return Entity.GetPartyMember(gpmi).Name
+end
+
+function InSanctuary()
+	return Player.CanMount
+end
+
+function HasFlightUnlocked()
+	return Player.CanFly
+end
+
+
+function IsInFate()
+	asdf = false
+	if Fates.CurrentFate and Fates.CurrentFate.InFate then
+		asdf = true
+	end
+	return asdf
+	--yield("/echo we in fate -> "..asdf)
+end
+
+function PandoraSetFeatureState(zfeatureName, zenabled)
+	IPC.PandorasBox.SetFeatureEnabled(zfeatureName, zenabled)
 end
