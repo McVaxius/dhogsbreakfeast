@@ -146,7 +146,7 @@ function fishing()
 				randomNum = (randomNum * -1) / 1000
 				yield("/visland moveto 7.451 6.750 "..randomNum)
 				yield("/ac cast")
-				yield("/wait 1")
+				yield("/wait 0.1")
 			end
 		end
 		--try to exit the completion window faster
