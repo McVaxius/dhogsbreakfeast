@@ -2150,3 +2150,7 @@ function NeedsRepair(pcct)
 		return true
 	end
 end
+
+function GetZoneID()
+	return Svc.ClientState.TerritoryType
+end
