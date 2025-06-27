@@ -184,7 +184,7 @@ while fuckpvp == 1 do
 		--DEBUG
 		yield("/rotation auto")
 		fuckme = fuckme + 1
-		if fuckme > 5 then
+		if fuckme > 5 and Svc.Condition[34] == true then
 			jobronies = GetClassJobId()
 			fuckme = 0
 			--yield("/pvpac \"Final Fantasia\"") -- bard
