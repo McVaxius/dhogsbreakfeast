@@ -2239,3 +2239,7 @@ end
 function DropboxStart()
 	IPC.Dropbox.BeginTradingQueue()
 end
+
+function GetContentTimeLeft()
+	return InstancedContent.ContentTimeLeft
+end

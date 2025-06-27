@@ -142,11 +142,11 @@ function fishing()
 		end
 		while Svc.Condition[43]==false and Svc.Condition[34] do
 			if Svc.ClientState.TerritoryType ~= 132 then
-				randomNum = getRandomNumber(113,4043)
-				randomNum = (randomNum * -1) / 1000
-				yield("/vnav moveto 7.451 6.750 "..randomNum)
+				--randomNum = getRandomNumber(113,4043)
+				--randomNum = (randomNum * -1) / 1000
+				--yield("/vnav moveto 7.451 6.750 "..randomNum)
 				yield("/ac cast")
-				yield("/wait 0.1")
+				yield("/wait 1")
 			end
 		end
 		--try to exit the completion window faster

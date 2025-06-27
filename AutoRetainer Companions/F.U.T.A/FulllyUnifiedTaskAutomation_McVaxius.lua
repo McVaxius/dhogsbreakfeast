@@ -308,8 +308,8 @@ if FUTA_processors[hoo_arr_weeeeee][2][2] > -1 then  -- -1 is ignore+disable for
 	if tonumber(GetLevel(17)) > 0 then
 		FUTA_processors[hoo_arr_weeeeee][2][2] = tonumber(GetLevel(17))
 		if FUTA_processors[hoo_arr_weeeeee][2][2] == 99999 then --*this doesnt work atm
-			xp = GetNodeText("_Exp", 3)
-			xpxp = string.match(xp, "%d[%d.,]*"):gsub(",", "")  -- Remove commas
+			xp = Addons.GetAddon("_Exp"):GetNode(1, 4)
+			xpxp = string.match(xp.Text, "%d[%d.,]*"):gsub(",", "")  -- Remove commas
 			yield("/echo Cleaned xp string: " .. xpxp)
 			local xp_numeric = tonumber(xpxp) or 0  -- Convert to number, default to 0 if nil
 			yield("/echo partial levle in 99 is  -> ".. xp_numeric / 25000000)
@@ -402,9 +402,9 @@ if wheeequeheeheheheheheehhhee == 1 then
                 currentTime = os.date("*t")
                 formattedTime = string.format("%04d-%02d-%02d %02d:%02d:%02d", currentTime.year, currentTime.month, currentTime.day, currentTime.hour, currentTime.min, currentTime.sec)
                 FUTA_processors[lowestID][2][2] = GetLevel()
-				xp = GetNodeText("_Exp", 3)
+				xp = Addons.GetAddon("_Exp"):GetNode(1, 4)
 				yield("/echo current xp: "..string.match(xp, "%d[%d.,]*"))
-				xpxp = string.match(xp, "%d[%d.,]*")
+				xpxp = string.match(xp.Text, "%d[%d.,]*")
                 file:write(formattedTime.." - "..logfile_differentiator.."["..lowestID.."] - "..FUTA_processors[lowestID][1][1].." - Fisher Lv - "..FUTA_processors[lowestID][2][2].." - XP -> "..xpxp.."\n")
                 file:close()
                 yield("/echo Text has been written to '" .. folderPath .. "FeeshLevels.txt'")
