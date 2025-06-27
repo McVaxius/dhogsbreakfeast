@@ -119,13 +119,24 @@ while fuckpvp == 1 do
 		case_choice = -1
 	end
 	fuckthis = Svc.ClientState.TerritoryType
-	if Svc.Condition[34] == true and fuckyou == 0 then
-		fuckyou = 1
-		waiteeng = 40
-		yield("/echo we have entered the pvp match - please wait "..waiteeng.." seconds before more stuff happens")
-		yield("/wait "..waiteeng)
-		yield("/mmambo") --change it to something else if you like.
-		yield("/wait 5")
+	doop = 0
+	moop = 0
+	while Svc.Condition[34] == true and fuckyou == 0 do  --timer is paused at 30.998_ seconds until we are able to move our chars around
+		if doop == 0 then
+			yield("/echo we have entered the pvp match - please wait before more stuff happens the timer is paused at 30.998 seconds atm")
+			yield("/vnav stop")
+			doop = 1
+		end
+		if moop == 0 and GetContentTimeLeft() < 29 and GetContentTimeLeft() > 1 then
+			yield("/echo we are free from the confines of the intro portraits")
+			yield("/mmambo") --change it to something else if you like.
+			moop = 1
+		end
+		if GetContentTimeLeft() < 5 or GetContentTimeLeft() > 100 then  --this way it will catch case of waiting too long
+			fuckyou = 1
+			yield("/echo the gate is open .. let's gooooooooooo!")
+		end
+		yield("/wait 0.1")
 	end
 	if fuckyou == 1 then
 		--nemm = "Tactical Crystal"

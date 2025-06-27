@@ -2241,5 +2241,7 @@ function DropboxStart()
 end
 
 function GetContentTimeLeft()
-	return InstancedContent.ContentTimeLeft
+--	if Svc.Condition[34] == false then return 0 end
+--	if Svc.Condition[34] == true and InstancedContent.ContentTimeLeft > 0 then return InstancedContent.ContentTimeLeft end
+	return InstancedContent.ContentTimeLeft --turns out we don't need to nil check this one.
 end
