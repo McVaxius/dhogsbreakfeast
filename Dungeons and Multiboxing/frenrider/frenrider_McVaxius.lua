@@ -1200,7 +1200,7 @@ while weirdvar == 1 do
 						--chocobo stuff. first check if we can fly. if not don't try to chocobo
 						--actually check if we are in a sanctuary first, if true we aren't gonna try to check or do anything.
 						if InSanctuary() == false then
-							if HasFlightUnlocked() == true or force_gyasahl == true then
+							--if HasFlightUnlocked() == true or force_gyasahl == true then
 								--check if chocobro is up or (soon) not!
 								if GetBuddyTimeRemaining() < 900 and GetItemCount(4868) > 0 then
 									yield("/visland stop")
@@ -1209,7 +1209,7 @@ while weirdvar == 1 do
 									yield("/wait 3")
 									yield("/cac \""..companionstrat.."\"")
 								end
-							end
+							--end
 						end
 						--yield("/target <cross>")
 						if formation == false then
