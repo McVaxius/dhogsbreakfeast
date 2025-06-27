@@ -46,6 +46,8 @@ functionsToLoad()
 fuckpvp = 1
 fuckme = 0
 case_choice = -1
+doop = 0
+moop = 0
 
 --comment these out if you dont need the garo title mounts
 yield("/title set barago")
@@ -112,10 +114,12 @@ reach_out_and_LIMITBREAKSOMEONE = {
 while fuckpvp == 1 do
 	if Svc.Condition[34] == false and safetyMove == 1 then
 		safetyMove = 0
-		yield("/echo resetting safetyMove to 0")
+		yield("/echo resetting safetyMove to 0 - we are out of duty")
 		yield("/hold W")
 		yield("/release W")
 		fuckyou = 0
+		doop = 0
+		moop = 0
 		case_choice = -1
 	end
 	fuckthis = Svc.ClientState.TerritoryType
