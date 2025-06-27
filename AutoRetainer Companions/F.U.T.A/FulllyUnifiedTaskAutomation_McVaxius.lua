@@ -403,7 +403,7 @@ if wheeequeheeheheheheheehhhee == 1 then
                 formattedTime = string.format("%04d-%02d-%02d %02d:%02d:%02d", currentTime.year, currentTime.month, currentTime.day, currentTime.hour, currentTime.min, currentTime.sec)
                 FUTA_processors[lowestID][2][2] = GetLevel()
 				xp = Addons.GetAddon("_Exp"):GetNode(1, 4)
-				yield("/echo current xp: "..string.match(xp, "%d[%d.,]*"))
+				yield("/echo current xp: "..string.match(xp.Text, "%d[%d.,]*"))
 				xpxp = string.match(xp.Text, "%d[%d.,]*")
                 file:write(formattedTime.." - "..logfile_differentiator.."["..lowestID.."] - "..FUTA_processors[lowestID][1][1].." - Fisher Lv - "..FUTA_processors[lowestID][2][2].." - XP -> "..xpxp.."\n")
                 file:close()
