@@ -469,6 +469,8 @@ function return_to_lair()
 	ZoneTransition()
 	yield("/waitaddon NamePlate <maxwait.600>")
 	yield("/wait 5")
+	return_fc_entrance() --does the same thing just enters target
+	open_house_door() --opens the door to house
 end
 
 function double_check_nav(x3, y3, z3)
