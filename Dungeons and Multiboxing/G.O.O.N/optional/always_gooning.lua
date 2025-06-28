@@ -62,11 +62,11 @@ while im_a_cuck == 1 do
 		im_a_cuck = 0
 	end
 	if Svc.Condition[26] == true then
-		if distance(Player.Entity.Position.X, Player.Entity.Position.Y, Player.Entity.Position.Z, GetObjectRawXPos(GetTargetName()),GetObjectRawYPos(GetTargetName()),GetObjectRawZPos(GetTargetName())) > 20 then
+		if distance(EntityPlayerPositionX, EntityPlayerPositionY, EntityPlayerPositionZ, GetObjectRawXPos(GetTargetName()),GetObjectRawYPos(GetTargetName()),GetObjectRawZPos(GetTargetName())) > 20 then
 			yield("/vnav moveto "..GetObjectRawXPos(GetTargetName()).." "..GetObjectRawYPos(GetTargetName()).." "..GetObjectRawZPos(GetTargetName()))
 			yield("/echo Attempting Autoduty Calibration --> "..GetTargetName())
 		end
-		if distance(Player.Entity.Position.X, Player.Entity.Position.Y, Player.Entity.Position.Z, GetObjectRawXPos(GetTargetName()),GetObjectRawYPos(GetTargetName()),GetObjectRawZPos(GetTargetName())) < 5 then
+		if distance(EntityPlayerPositionX, EntityPlayerPositionY, EntityPlayerPositionZ, GetObjectRawXPos(GetTargetName()),GetObjectRawYPos(GetTargetName()),GetObjectRawZPos(GetTargetName())) < 5 then
 			yield("/vnav stop")
 		end
 	end

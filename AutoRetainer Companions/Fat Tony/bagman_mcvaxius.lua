@@ -88,7 +88,7 @@ in this case it won't use the table at all
 --[[
 if all of these are not 42069420, then we will try to go there at the very end of the process otherwise we will go directly to fat tony himself
 get yourself x y z this way if you want
-yield("/echo "..Player.Entity.Position.X.." "..Player.Entity.Position.Y.." "..Player.Entity.Position.Z.."")
+yield("/echo "..EntityPlayerPositionX.." "..EntityPlayerPositionY.." "..EntityPlayerPositionZ.."")
 ]]
 tony_x = 42069420
 tony_y = 42069420
@@ -97,7 +97,7 @@ tony_z = 42069420
 --[[
 how do i get an xyz?
 run this:
-yield("/echo "..Player.Entity.Position.X.." "..Player.Entity.Position.Y.." "..Player.Entity.Position.Z.."")
+yield("/echo "..EntityPlayerPositionX.." "..EntityPlayerPositionY.." "..EntityPlayerPositionZ.."")
 ]]
 
 --[[
@@ -219,8 +219,8 @@ local function shake_hands()
 	end
 	
 	--we got fat tony.  we just need to make sure he is within targeting distance. say <1 yalms before we continue
-	while distance(Player.Entity.Position.X, Player.Entity.Position.Y, Player.Entity.Position.Z, GetObjectRawXPos(fat_tony),GetObjectRawYPos(fat_tony),GetObjectRawZPos(fat_tony)) > 1.5 do
-		yield("/echo this fat bastard better hurry up he is  "..distance(Player.Entity.Position.X, Player.Entity.Position.Y, Player.Entity.Position.Z, GetObjectRawXPos(fat_tony),GetObjectRawYPos(fat_tony),GetObjectRawZPos(fat_tony)).." away!")
+	while distance(EntityPlayerPositionX, EntityPlayerPositionY, EntityPlayerPositionZ, GetObjectRawXPos(fat_tony),GetObjectRawYPos(fat_tony),GetObjectRawZPos(fat_tony)) > 1.5 do
+		yield("/echo this fat bastard better hurry up he is  "..distance(EntityPlayerPositionX, EntityPlayerPositionY, EntityPlayerPositionZ, GetObjectRawXPos(fat_tony),GetObjectRawYPos(fat_tony),GetObjectRawZPos(fat_tony)).." away!")
 		yield("/target \""..fat_tony.."\"")   --just in case we had wrong "tony" targeted
 		yield("/wait 1")
 	end

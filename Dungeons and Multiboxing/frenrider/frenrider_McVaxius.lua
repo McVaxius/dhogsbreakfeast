@@ -761,7 +761,7 @@ function clingmove(nemm)
 		return
 	end
 	--jump if we are mounted and below the leader by 10 yalms
-	if (GetObjectRawYPos(nemm) - Player.Entity.Position.Y) > 9 and Svc.Condition[4] == true then
+	if (GetObjectRawYPos(nemm) - EntityPlayerPositionY) > 9 and Svc.Condition[4] == true then
 		yield("/gaction jump")
 	end
 	zclingtype = clingtype
@@ -777,7 +777,7 @@ function clingmove(nemm)
 	end
 	if are_we_DD == 1 then
 		DD_relax = "Cairn of Passage"
-		if distance(Player.Entity.Position.X, Player.Entity.Position.Y, Player.Entity.Position.Z, GetObjectRawXPos(DD_relax),GetObjectRawYPos(DD_relax),GetObjectRawZPos(DD_relax)) < 5 then
+		if distance(EntityPlayerPositionX, EntityPlayerPositionY, EntityPlayerPositionZ, GetObjectRawXPos(DD_relax),GetObjectRawYPos(DD_relax),GetObjectRawZPos(DD_relax)) < 5 then
 			yield("/bmrai off")
 			yield("/rotation auto")
 			yield("/echo CHILLING a sec so we can actually travel to the next floor")
@@ -806,7 +806,7 @@ function clingmove(nemm)
 			--* are they still jittering on bubble follow mode?
 				if are_we_social_distancing == 1 and are_we_in_i_zone == 0 and bistance > (hcling + socialdistance_x_wiggle + socialdistance_z_wiggle) then --if we need to spread AND we arent in a zone of interact and not already within the buffer area
 					--*we will do some stuff here - do i need to remove this commment? i think its sorted
-					fartX,fartZ = calculateBufferXY (Player.Entity.Position.X,Player.Entity.Position.Z,GetObjectRawXPos(nemm),GetObjectRawZPos(nemm))
+					fartX,fartZ = calculateBufferXY (EntityPlayerPositionX,EntityPlayerPositionZ,GetObjectRawXPos(nemm),GetObjectRawZPos(nemm))
 					if Svc.Condition[77] == false then yield("/vnav moveto "..fartX.." "..GetObjectRawYPos(nemm).." "..fartZ) end
 					if Svc.Condition[77] == true then yield("/vnav flyto "..fartX.." "..GetObjectRawYPos(nemm).." "..fartZ) end
 				end
@@ -831,7 +831,7 @@ function clingmove(nemm)
 		end
 		--bmr
 		if zclingtype == 2 then
-			bistance = distance(Player.Entity.Position.X, Player.Entity.Position.Y, Player.Entity.Position.Z, GetObjectRawXPos(nemm),GetObjectRawYPos(nemm),GetObjectRawZPos(nemm))
+			bistance = distance(EntityPlayerPositionX, EntityPlayerPositionY, EntityPlayerPositionZ, GetObjectRawXPos(nemm),GetObjectRawYPos(nemm),GetObjectRawZPos(nemm))
 			if bistance < maxbistance then
 				yield("/bmrai followtarget on")
 				yield("/bmrai followoutofcombat on")
@@ -973,14 +973,14 @@ while weirdvar == 1 do
 	--catch if character is ready before doing anything
 	if IsPlayerReallyAvailable() then
 		if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean" and type(Svc.Condition[4]) == "boolean" then
-			bistance = distance(Player.Entity.Position.X, Player.Entity.Position.Y, Player.Entity.Position.Z, GetObjectRawXPos(fren),GetObjectRawYPos(fren),GetObjectRawZPos(fren))
+			bistance = distance(EntityPlayerPositionX, EntityPlayerPositionY, EntityPlayerPositionZ, GetObjectRawXPos(fren),GetObjectRawYPos(fren),GetObjectRawZPos(fren))
 			if bistance > maxbistance then --follow ourselves if fren too far away or it will do weird shit
 				clingmove(GetCharacterName())
 			end
 
 			--if we in combat and target is <3 yalms dont nav anywhere.
 			if Svc.Condition[26] == true and type(GetTargetName()) == "string" and string.len(GetTargetName()) > 1 then
-				if distance(Player.Entity.Position.X, Player.Entity.Position.Y, Player.Entity.Position.Z, GetObjectRawXPos(GetTargetName()),GetObjectRawYPos(GetTargetName()),GetObjectRawZPos(GetTargetName())) < 3 then
+				if distance(EntityPlayerPositionX, EntityPlayerPositionY, EntityPlayerPositionZ, GetObjectRawXPos(GetTargetName()),GetObjectRawYPos(GetTargetName()),GetObjectRawZPos(GetTargetName())) < 3 then
 					yield("/vnav stop")
 				end
 			end
@@ -1214,7 +1214,7 @@ while weirdvar == 1 do
 						--yield("/target <cross>")
 						if formation == false then
 							--check distance to fren, if its more than cling, then
-							bistance = distance(Player.Entity.Position.X, Player.Entity.Position.Y, Player.Entity.Position.Z, GetObjectRawXPos(fren),GetObjectRawYPos(fren),GetObjectRawZPos(fren))
+							bistance = distance(EntityPlayerPositionX, EntityPlayerPositionY, EntityPlayerPositionZ, GetObjectRawXPos(fren),GetObjectRawYPos(fren),GetObjectRawZPos(fren))
 							if bistance > hcling and bistance < maxbistance then
 							--yield("/target \""..fren.."\"")
 								--PathfindAndMoveTo(GetObjectRawXPos(fren),GetObjectRawYPos(fren),GetObjectRawZPos(fren), false)

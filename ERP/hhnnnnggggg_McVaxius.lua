@@ -44,9 +44,9 @@ end
 while hhhnnnggg == 1 do
 	HHNNGG = HHNNGG + 1
 	yield("/wait 1") -- we work in seconds
-	hnnggg = Player.Entity.Position.X
-	hnngggg = Player.Entity.Position.Y
-	hnnggggg = Player.Entity.Position.Z
+	hnnggg = EntityPlayerPositionX
+	hnngggg = EntityPlayerPositionY
+	hnnggggg = EntityPlayerPositionZ
 	for hng=1,#hhnnngs do
 		yield("/wait 0.3") -- this should be safe for cycling between elements of table while calling SND functions
 		if HHNNGG > hhnnngs[hng][3] then -- if we are above the repeat interval actually check to see if we should do this

@@ -380,24 +380,39 @@ function force_equip()
  end
 end
 
+function EntityPlayerPositionX()
+	if Entity.Player.Position then return Entity.Player.Position.X end
+	return 0
+end
+
+function EntityPlayerPositionY()
+	if Entity.Player.Position then return Entity.Player.Position.Y end
+	return 0
+end
+
+function EntityPlayerPositionZ()
+	if Entity.Player.Position then return Entity.Player.Position.Z end
+	return 0
+end
+
 function visland_stop_moving()
  do_we_force_equip = force_equipstuff or 1  --default is on, unless we specify the global force_equipstuff in the calling script
  muuv = 1
  muuvstop = 0
- muuvX = Player.Entity.Position.X
- muuvY = Player.Entity.Position.Y
- muuvZ = Player.Entity.Position.Z
+ muuvX = EntityPlayerPositionX
+ muuvY = EntityPlayerPositionY
+ muuvZ = EntityPlayerPositionZ
  while muuv == 1 do
 	yield("/wait 1")
 	muuvstop = muuvstop + 1
-	if muuvX == Player.Entity.Position.X and muuvY == Player.Entity.Position.Y and muuvZ == Player.Entity.Position.Z then
+	if muuvX == EntityPlayerPositionX and muuvY == EntityPlayerPositionY and muuvZ == EntityPlayerPositionZ then
 		muuv = 0
 	end
-	muuvX = Player.Entity.Position.X
-	muuvY = Player.Entity.Position.Y
-	muuvZ = Player.Entity.Position.Z
+	muuvX = EntityPlayerPositionX
+	muuvY = EntityPlayerPositionY
+	muuvZ = EntityPlayerPositionZ
 	if muuvstop > 50 then
-		if math.abs(muuvX - Player.Entity.Position.X) < 2 and math.abs(muuvY - Player.Entity.Position.Y) < 2 and math.abs(muuvZ - Player.Entity.Position.Z) < 2 then
+		if math.abs(muuvX - EntityPlayerPositionX) < 2 and math.abs(muuvY - EntityPlayerPositionY) < 2 and math.abs(muuvZ - EntityPlayerPositionZ) < 2 then
 			muuv = 0 --we need an escape clause here otherwise some situations we will never achieve success sometimes we are stuck near the target but not quite there.
 		end
 	end
@@ -471,14 +486,15 @@ function return_to_lair()
 	yield("/wait 5")
 	return_fc_entrance() --does the same thing just enters target
 	open_house_door() --opens the door to house
+	--wait a bit then go back to fc house
 end
 
 function double_check_nav(x3, y3, z3)
-	x1 = Player.Entity.Position.X
-	y1 = Player.Entity.Position.Y
-	z1 = Player.Entity.Position.Z
+	x1 = EntityPlayerPositionX
+	y1 = EntityPlayerPositionY
+	z1 = EntityPlayerPositionZ
 	yield("/wait 2")
-	if (x1 - Player.Entity.Position.X) == 0 and (y1 - Player.Entity.Position.Y) == 0 and (z1 - Player.Entity.Position.Z) == 0 then
+	if (x1 - EntityPlayerPositionX) == 0 and (y1 - EntityPlayerPositionY) == 0 and (z1 - EntityPlayerPositionZ) == 0 then
 		--yield("/vnav rebuild")
 		NavRebuild()
 		while not NavIsReady() do
@@ -490,11 +506,11 @@ function double_check_nav(x3, y3, z3)
 end
 
 function double_check_navGO(x3, y3, z3)
-	x1 = Player.Entity.Position.X
-	y1 = Player.Entity.Position.Y
-	z1 = Player.Entity.Position.Z
+	x1 = EntityPlayerPositionX
+	y1 = EntityPlayerPositionY
+	z1 = EntityPlayerPositionZ
 	yield("/wait 2")
-	if (x1 - Player.Entity.Position.X) == 0 and (y1 - Player.Entity.Position.Y) == 0 and (z1 - Player.Entity.Position.Z) == 0 then
+	if (x1 - EntityPlayerPositionX) == 0 and (y1 - EntityPlayerPositionY) == 0 and (z1 - EntityPlayerPositionZ) == 0 then
 		--yield("/vnav rebuild")
 		yield("/vnav moveto " .. x3 .. " " .. y3 .. " " .. z3)
 	end
@@ -1039,7 +1055,7 @@ function delete_my_items_please(how)
 		yield("/target bell")
 		yield("/wait 1")
 		nemm = "Summoning Bell"
-		poostance = _distance(Player.Entity.Position.X, Player.Entity.Position.Y, Player.Entity.Position.Z, GetObjectRawXPos(nemm),GetObjectRawYPos(nemm),GetObjectRawZPos(nemm))
+		poostance = _distance(EntityPlayerPositionX, EntityPlayerPositionY, EntityPlayerPositionZ, GetObjectRawXPos(nemm),GetObjectRawYPos(nemm),GetObjectRawZPos(nemm))
 		if poostance < 11 then
 			yield("/vnav moveto "..GetObjectRawXPos(nemm).." "..GetObjectRawYPos(nemm).." "..GetObjectRawZPos(nemm))
 			yield("/wait 4")
@@ -1212,10 +1228,10 @@ end
 function GetCharacterName(im_a_cheeky_monkey)
 	if im_a_cheeky_monkey == nil then im_a_cheeky_monkey = false end
 	if im_a_cheeky_monkey == false then
-		return Player.Entity.Name
+		return Entity.Player.Name
 	end
 	if im_a_cheeky_monkey == true then
-		pen = Player.Entity.Name
+		pen = Entity.Player.Name
 		homeworld_lookup = {
 			[0] = "crossworld",
 			[1] = "reserved1",
@@ -2134,18 +2150,18 @@ function PathfindInProgress()
 end
 
 function ClearTarget()
-    if Player.Entity and Player.Entity.ClearTarget then
-        Player.Entity:ClearTarget()
+    if Entity.Player and Entity.Player.ClearTarget then
+        Entity.Player:ClearTarget()
     else
-        yield("/echo Failed to clear target: Player.Entity or ClearTarget missing")
+        yield("/echo Failed to clear target: Entity.Player or ClearTarget missing")
     end
 end
 
 
 function mydistto(x2, y2, z2)
-	x1 = Player.Entity.Position.X
-	y1 = Player.Entity.Position.Y
-	z1 = Player.Entity.Position.Z
+	x1 = EntityPlayerPositionX
+	y1 = EntityPlayerPositionY
+	z1 = EntityPlayerPositionZ
 	if type(x1) ~= "number" then x1 = 0 end
 	if type(y1) ~= "number" then y1 = 0 end
 	if type(z1) ~= "number" then z1 = 0 end
@@ -2161,15 +2177,15 @@ function mydistto(x2, y2, z2)
 end
 
 function GetPlayerRawXPos()
-	return Player.Entity.Position.X
+	return EntityPlayerPositionX
 end
 
 function GetPlayerRawYPos()
-	return Player.Entity.Position.Y
+	return EntityPlayerPositionY
 end
 
 function GetPlayerRawZPos()
-	return Player.Entity.Position.Z
+	return EntityPlayerPositionZ
 end
 
 function GetTargetName()

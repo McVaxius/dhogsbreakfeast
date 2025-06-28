@@ -56,9 +56,9 @@ yield("/echo please get ready for G.O.O.N ing time")
 --yield("/bmrai ui") --open this in case we need to set the preset. at least until we can slash command it.
 
 jigglecounter = 0
-x1 = Player.Entity.Position.X
-y1 = Player.Entity.Position.Y
-z1 = Player.Entity.Position.Z
+x1 = EntityPlayerPositionX
+y1 = EntityPlayerPositionY
+z1 = EntityPlayerPositionZ
 
 stopcuckingme = 0    --counter for checking whento pop duty
 
@@ -274,7 +274,7 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 	if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean" and type(Svc.Condition[4]) == "boolean" then
 	--
 
-	--yield("/echo x diff"..math.abs(x1 - Player.Entity.Position.X))
+	--yield("/echo x diff"..math.abs(x1 - EntityPlayerPositionX))
 	--check if we are stuck somewhere.
 	--first ensure we are in the duty and not in combat
 
@@ -366,7 +366,7 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 	--end
 			
 	if Svc.Condition[34] == true and Svc.Condition[26] == false then
-		if math.abs(x1 - Player.Entity.Position.X) < 3 and math.abs(y1 - Player.Entity.Position.Y) < 3 and math.abs(z1 - Player.Entity.Position.Z) < 3 then
+		if math.abs(x1 - EntityPlayerPositionX) < 3 and math.abs(y1 - EntityPlayerPositionY) < 3 and math.abs(z1 - EntityPlayerPositionZ) < 3 then
 			if echo_level < 4 then yield("/echo we havent moved very much something is up ") end
 			jigglecounter = jigglecounter + 1
 		end
@@ -439,9 +439,9 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 	end
 	
 	if Svc.Condition[34] == true then
-		x1 = Player.Entity.Position.X
-		y1 = Player.Entity.Position.Y
-		z1 = Player.Entity.Position.Z
+		x1 = EntityPlayerPositionX
+		y1 = EntityPlayerPositionY
+		z1 = EntityPlayerPositionZ
 	end
 
 	stopcuckingme = stopcuckingme + 1
