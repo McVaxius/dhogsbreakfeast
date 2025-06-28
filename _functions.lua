@@ -345,7 +345,9 @@ end
 function TargetedInteract(target)
     yield("/target "..target)
 	yield("/wait 0.5")
-    yield("/interact")
+	if Entity.Target then
+		yield("/interact")
+	end
 	yield("/wait 1")
 end
 
@@ -441,7 +443,9 @@ function return_to_inn()
 	visland_stop_moving() --added so we don't accidentally end before we get to the inn person
 	yield("/target Antoinaut")
 	yield("/wait 0.5")
-	yield("/interact")
+	if Entity.Target then
+		yield("/interact")
+	end
 end
 
 function return_to_fc()
@@ -528,10 +532,14 @@ end
 function open_house_door()
 	yield("/target Entrance")
 	yield("/wait 1")
-	yield("/interact")
+	if Entity.Target then
+		yield("/interact")
+	end
 	yield("/wait 1")
 	if IsAddonReady("SelectYesno") then yield("/callback SelectYesno true 0") end
-	yield("/interact")
+	if Entity.Target then
+		yield("/interact")
+	end
 	yield("/wait 1")
 	if IsAddonReady("SelectYesno") then yield("/callback SelectYesno true 0") end
 end
@@ -540,8 +548,10 @@ function return_fc_near_bell()
 	yield("/target \"Summoning Bell\"")
 	yield("/wait 2")
 	--PathfindAndMoveTo(GetObjectRawXPos("Summoning Bell"), GetObjectRawYPos("Summoning Bell"), GetObjectRawZPos("Summoning Bell"), false)
-	WalkTo(GetObjectRawXPos("Summoning Bell"), GetObjectRawYPos("Summoning Bell"), GetObjectRawZPos("Summoning Bell"))
-	visland_stop_moving() --added so we don't accidentally end before we get to the bell
+	if Entity.Target then
+		WalkTo(GetObjectRawXPos("Summoning Bell"), GetObjectRawYPos("Summoning Bell"), GetObjectRawZPos("Summoning Bell"))
+		visland_stop_moving() --added so we don't accidentally end before we get to the bell
+	end
 end
 
 function are_we_dol()
