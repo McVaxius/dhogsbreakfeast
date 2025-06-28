@@ -100,9 +100,9 @@ while fuckpvp == 1 do
 		zoob = 0
 		yield("/release W")
 		while GetStatusTimeRemaining(895) == 0 and Svc.Condition[34] and safetyMove == 0 do --spawn/respawn invuln
-			safeX = EntityPlayerPositionX
-			safeY = EntityPlayerPositionY
-			safeZ = EntityPlayerPositionZ
+			safeX = EntityPlayerPositionX()
+			safeY = EntityPlayerPositionY()
+			safeZ = EntityPlayerPositionZ()
 			safetyMove = 1
 			yield("/echo grabbing safety x y z and setting safetyMove to 1")
 		end

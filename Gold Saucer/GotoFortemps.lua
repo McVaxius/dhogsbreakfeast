@@ -8,17 +8,17 @@ function visland_stop_moving()
  yield("/equipguud")
  yield("/wait 3")
  muuv = 1
- muuvX = EntityPlayerPositionX
- muuvY = EntityPlayerPositionY
- muuvZ = EntityPlayerPositionZ
+ muuvX = EntityPlayerPositionX()
+ muuvY = EntityPlayerPositionY()
+ muuvZ = EntityPlayerPositionZ()
  while muuv == 1 do
 	yield("/wait 1")
-	if muuvX == EntityPlayerPositionX and muuvY == EntityPlayerPositionY and muuvZ == EntityPlayerPositionZ then
+	if muuvX == EntityPlayerPositionX() and muuvY == EntityPlayerPositionY() and muuvZ == EntityPlayerPositionZ() then
 		muuv = 0
 	end
-	muuvX = EntityPlayerPositionX
-	muuvY = EntityPlayerPositionY
-	muuvZ = EntityPlayerPositionZ
+	muuvX = EntityPlayerPositionX()
+	muuvY = EntityPlayerPositionY()
+	muuvZ = EntityPlayerPositionZ()
  end
  yield("/echo movement stopped")
  yield("/visland stop")

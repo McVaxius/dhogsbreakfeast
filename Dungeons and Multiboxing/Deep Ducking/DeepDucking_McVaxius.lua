@@ -106,9 +106,9 @@ samenav = 0
 wallitbro = 0
 anal_of_passage = 0
 
-rpX = EntityPlayerPositionX
-rpY = EntityPlayerPositionY
-rpZ = EntityPlayerPositionZ
+rpX = EntityPlayerPositionX()
+rpY = EntityPlayerPositionY()
+rpZ = EntityPlayerPositionZ()
 
 
 while fatfuck == 1 do
@@ -125,7 +125,7 @@ while fatfuck == 1 do
 	yield("/attack")	
 	if string.len(GetTargetName()) > 1 then --check the target to make sure its valid before checking distance.
 		if tonumber(GetLevel(GetClassJobId())) < 60 then --if if we aren't leveled to max in potd for example. i need to see if i can figure out which dd we in
-			if distance(EntityPlayerPositionX, EntityPlayerPositionY, EntityPlayerPositionZ, GetObjectRawXPos(GetTargetName()),GetObjectRawYPos(GetTargetName()),GetObjectRawZPos(GetTargetName())) < 50 then
+			if distance(EntityPlayerPositionX(), EntityPlayerPositionY(), EntityPlayerPositionZ(), GetObjectRawXPos(GetTargetName()),GetObjectRawYPos(GetTargetName()),GetObjectRawZPos(GetTargetName())) < 50 then
 				yield("/vnav moveto "..GetObjectRawXPos(GetTargetName()).." "..GetObjectRawYPos(GetTargetName()).." "..GetObjectRawZPos(GetTargetName()))
 				yield("/echo vnavving to -> "..GetTargetName())
 				yield("/wait 15") -- escape the gravitational pull of the floor exit
@@ -134,7 +134,7 @@ while fatfuck == 1 do
 	end
 	
 	DD_relax = "Cairn of Passage"
-	if distance(EntityPlayerPositionX, EntityPlayerPositionY, EntityPlayerPositionZ, GetObjectRawXPos(DD_relax),GetObjectRawYPos(DD_relax),GetObjectRawZPos(DD_relax)) < 50 then
+	if distance(EntityPlayerPositionX(), EntityPlayerPositionY(), EntityPlayerPositionZ(), GetObjectRawXPos(DD_relax),GetObjectRawYPos(DD_relax),GetObjectRawZPos(DD_relax)) < 50 then
 		yield("/bmrai off")
 		yield("/rotation auto")
 		yield("/echo CHILLING a sec so we can actually travel to the next floor")
@@ -144,7 +144,7 @@ while fatfuck == 1 do
 		yield("/rotation cancel")
 		--now we just need to check if there is a monster somewhat nearby so owe can escape the exit if need be. lets say 30 yalms?
 		if string.len(GetTargetName()) > 1 then --check the target to make sure its valid before checking distance.
-			if distance(EntityPlayerPositionX, EntityPlayerPositionY, EntityPlayerPositionZ, GetObjectRawXPos(GetTargetName()),GetObjectRawYPos(GetTargetName()),GetObjectRawZPos(GetTargetName())) < 100 then
+			if distance(EntityPlayerPositionX(), EntityPlayerPositionY(), EntityPlayerPositionZ(), GetObjectRawXPos(GetTargetName()),GetObjectRawYPos(GetTargetName()),GetObjectRawZPos(GetTargetName())) < 100 then
 				yield("/vnav moveto "..GetObjectRawXPos(DD_relax).." "..GetObjectRawYPos(DD_relax).." "..GetObjectRawZPos(DD_relax))
 				yield("/echo vnavving to -> "..DD_relax)
 				yield("/wait 5") -- escape the gravitational pull of the floor exit
@@ -178,7 +178,7 @@ while fatfuck == 1 do
 			--this will not occur if we aren't in a duty.
 			--but only if we aren't near a cairn 
 			nemm = "Cairn of Passage"
-			poostance = distance(EntityPlayerPositionX, EntityPlayerPositionY, EntityPlayerPositionZ, GetObjectRawXPos(nemm),GetObjectRawYPos(nemm),GetObjectRawZPos(nemm))
+			poostance = distance(EntityPlayerPositionX(), EntityPlayerPositionY(), EntityPlayerPositionZ(), GetObjectRawXPos(nemm),GetObjectRawYPos(nemm),GetObjectRawZPos(nemm))
 			if poostance > 10 and Svc.Condition[34] == true then
 				boop = {
 				"W",
@@ -310,9 +310,9 @@ while fatfuck == 1 do
 			yield("/wait 1")
 		end
 
-		npX = EntityPlayerPositionX
-		npY = EntityPlayerPositionY
-		npZ = EntityPlayerPositionZ
+		npX = EntityPlayerPositionX()
+		npY = EntityPlayerPositionY()
+		npZ = EntityPlayerPositionZ()
 		if npX < 0 then npX = npX * -1 end
 		if npY < 0 then npX = npY * -1 end
 		if npZ < 0 then npX = npZ * -1 end
@@ -323,9 +323,9 @@ while fatfuck == 1 do
 		rpY = npY
 		rpZ = npZ
 		--[[
-		if math.abs(EntityPlayerPositionX-rpX) < 3 then samenav = samenav + 1 end
-		if math.abs(EntityPlayerPositionY-rpY) < 3 then samenav = samenav + 1 end
-		if math.abs(EntityPlayerPositionZ-rpZ) < 3 then samenav = samenav + 1 end
+		if math.abs(EntityPlayerPositionX()-rpX) < 3 then samenav = samenav + 1 end
+		if math.abs(EntityPlayerPositionY()-rpY) < 3 then samenav = samenav + 1 end
+		if math.abs(EntityPlayerPositionZ()-rpZ) < 3 then samenav = samenav + 1 end
 		--]]
 		
 		if samenav > 10 then

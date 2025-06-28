@@ -399,20 +399,20 @@ function visland_stop_moving()
  do_we_force_equip = force_equipstuff or 1  --default is on, unless we specify the global force_equipstuff in the calling script
  muuv = 1
  muuvstop = 0
- muuvX = EntityPlayerPositionX
- muuvY = EntityPlayerPositionY
- muuvZ = EntityPlayerPositionZ
+ muuvX = EntityPlayerPositionX()
+ muuvY = EntityPlayerPositionY()
+ muuvZ = EntityPlayerPositionZ()
  while muuv == 1 do
 	yield("/wait 1")
 	muuvstop = muuvstop + 1
-	if muuvX == EntityPlayerPositionX and muuvY == EntityPlayerPositionY and muuvZ == EntityPlayerPositionZ then
+	if muuvX == EntityPlayerPositionX() and muuvY == EntityPlayerPositionY() and muuvZ == EntityPlayerPositionZ() then
 		muuv = 0
 	end
-	muuvX = EntityPlayerPositionX
-	muuvY = EntityPlayerPositionY
-	muuvZ = EntityPlayerPositionZ
+	muuvX = EntityPlayerPositionX()
+	muuvY = EntityPlayerPositionY()
+	muuvZ = EntityPlayerPositionZ()
 	if muuvstop > 50 then
-		if math.abs(muuvX - EntityPlayerPositionX) < 2 and math.abs(muuvY - EntityPlayerPositionY) < 2 and math.abs(muuvZ - EntityPlayerPositionZ) < 2 then
+		if math.abs(muuvX - EntityPlayerPositionX()) < 2 and math.abs(muuvY - EntityPlayerPositionY()) < 2 and math.abs(muuvZ - EntityPlayerPositionZ()) < 2 then
 			muuv = 0 --we need an escape clause here otherwise some situations we will never achieve success sometimes we are stuck near the target but not quite there.
 		end
 	end
@@ -490,11 +490,11 @@ function return_to_lair()
 end
 
 function double_check_nav(x3, y3, z3)
-	x1 = EntityPlayerPositionX
-	y1 = EntityPlayerPositionY
-	z1 = EntityPlayerPositionZ
+	x1 = EntityPlayerPositionX()
+	y1 = EntityPlayerPositionY()
+	z1 = EntityPlayerPositionZ()
 	yield("/wait 2")
-	if (x1 - EntityPlayerPositionX) == 0 and (y1 - EntityPlayerPositionY) == 0 and (z1 - EntityPlayerPositionZ) == 0 then
+	if (x1 - EntityPlayerPositionX()) == 0 and (y1 - EntityPlayerPositionY()) == 0 and (z1 - EntityPlayerPositionZ()) == 0 then
 		--yield("/vnav rebuild")
 		NavRebuild()
 		while not NavIsReady() do
@@ -506,11 +506,11 @@ function double_check_nav(x3, y3, z3)
 end
 
 function double_check_navGO(x3, y3, z3)
-	x1 = EntityPlayerPositionX
-	y1 = EntityPlayerPositionY
-	z1 = EntityPlayerPositionZ
+	x1 = EntityPlayerPositionX()
+	y1 = EntityPlayerPositionY()
+	z1 = EntityPlayerPositionZ()
 	yield("/wait 2")
-	if (x1 - EntityPlayerPositionX) == 0 and (y1 - EntityPlayerPositionY) == 0 and (z1 - EntityPlayerPositionZ) == 0 then
+	if (x1 - EntityPlayerPositionX()) == 0 and (y1 - EntityPlayerPositionY()) == 0 and (z1 - EntityPlayerPositionZ()) == 0 then
 		--yield("/vnav rebuild")
 		yield("/vnav moveto " .. x3 .. " " .. y3 .. " " .. z3)
 	end
@@ -1055,7 +1055,7 @@ function delete_my_items_please(how)
 		yield("/target bell")
 		yield("/wait 1")
 		nemm = "Summoning Bell"
-		poostance = _distance(EntityPlayerPositionX, EntityPlayerPositionY, EntityPlayerPositionZ, GetObjectRawXPos(nemm),GetObjectRawYPos(nemm),GetObjectRawZPos(nemm))
+		poostance = _distance(EntityPlayerPositionX(), EntityPlayerPositionY(), EntityPlayerPositionZ(), GetObjectRawXPos(nemm),GetObjectRawYPos(nemm),GetObjectRawZPos(nemm))
 		if poostance < 11 then
 			yield("/vnav moveto "..GetObjectRawXPos(nemm).." "..GetObjectRawYPos(nemm).." "..GetObjectRawZPos(nemm))
 			yield("/wait 4")
@@ -2159,9 +2159,9 @@ end
 
 
 function mydistto(x2, y2, z2)
-	x1 = EntityPlayerPositionX
-	y1 = EntityPlayerPositionY
-	z1 = EntityPlayerPositionZ
+	x1 = EntityPlayerPositionX()
+	y1 = EntityPlayerPositionY()
+	z1 = EntityPlayerPositionZ()
 	if type(x1) ~= "number" then x1 = 0 end
 	if type(y1) ~= "number" then y1 = 0 end
 	if type(z1) ~= "number" then z1 = 0 end
@@ -2177,15 +2177,15 @@ function mydistto(x2, y2, z2)
 end
 
 function GetPlayerRawXPos()
-	return EntityPlayerPositionX
+	return EntityPlayerPositionX()
 end
 
 function GetPlayerRawYPos()
-	return EntityPlayerPositionY
+	return EntityPlayerPositionY()
 end
 
 function GetPlayerRawZPos()
-	return EntityPlayerPositionZ
+	return EntityPlayerPositionZ()
 end
 
 function GetTargetName()
