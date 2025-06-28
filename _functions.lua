@@ -504,17 +504,23 @@ function return_fc_entrance()
 	yield("/target Entrance")
 	yield("/wait 1")
 	yield("/echo vnavving over")
-	yield("/vnav moveto "..Target.Entity.Position.X.." "..Target.Entity.Position.Y.." "..Target.Entity.Position.Z)
+	if Entity.Target then
+		yield("/vnav moveto "..Entity.Target.Position.X.." "..Entity.Target.Position.Y.." "..Entity.Target.Position.Z)
+	end
 	yield("/gaction jump")
 	yield("/target Entrance")
 	yield("/wait 1")
 	yield("/echo vnavving over!")
-	yield("/vnav moveto "..Target.Entity.Position.X.." "..Target.Entity.Position.Y.." "..Target.Entity.Position.Z)
+	if Entity.Target then
+		yield("/vnav moveto "..Entity.Target.Position.X.." "..Entity.Target.Position.Y.." "..Entity.Target.Position.Z)
+	end
 	yield("/wait 1")
 	yield("/gaction jump")
 	yield("/echo double check")
-	double_check_nav(Target.Entity.Position.X,Target.Entity.Position.Y,Target.Entity.Position.Z)
-	visland_stop_moving()
+	if Entity.Target then
+		double_check_nav(Entity.Target.Position.X,Entity.Target.Position.Y,Entity.Target.Position.Z)
+		visland_stop_moving()
+	end
 	yield("/target Entrance")
 	yield("/wait 1")
 end
