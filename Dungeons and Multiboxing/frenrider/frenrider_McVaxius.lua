@@ -627,6 +627,7 @@ function are_we_distancing()
 			if socialdistancing > 0 then 
 				--gawk_gawk_3000("We are in a social distancing area (foray) -> "..duties_with_distancing[i][2].."("..duties_with_distancing[i][1]..")")
 				returnval = 1
+				fake_outdoors_foray = 1
 				--are_we_social_distancing = 1
 			end
 		end
@@ -737,10 +738,10 @@ function checkAREA()
 	end
 
 	are_we_social_distancing = are_we_distancing()
-	fake_outdoors_foray = 0
+	--fake_outdoors_foray = 0
 	maxbistance = cached_maxbistance
 	if are_we_social_distancing == 1 then
-		fake_outdoors_foray = 1
+		--fake_outdoors_foray = 1
 		maxbistance = maxbistance_foray
 		--yield("/echo fake outdoors -> "..fake_outdoors_foray)
 		if socialdistancing > cling then
@@ -754,7 +755,7 @@ function checkAREA()
 end
 
 function clingmove(nemm)
-	checkAREA()
+	--checkAREA() --no this is too expensive , its in the main loop now
 	did_we_try_to_move = 0
 	if GetTargetName() == "Vault Door" then --we in a treasure map dungeon and need to click the door without following the fren
 		--yield("/interact") --no this is dangerous
@@ -796,7 +797,7 @@ function clingmove(nemm)
 	if allowmovement == 1 then
 		--sub-area-transition-hack-while-in-duty
 		if are_we_DD == 0 then
-			if bistance > 20 and Svc.Condition[34] == true then --maybe we went through subarea transition in a duty?
+			if bistance > 20 and Svc.Condition[34] == true and fake_outdoors_foray == 0 then --maybe we went through subarea transition in a duty?
 				gawk_gawk_3000(""..nemm.." is kind of far - lets just forge ahead a bit just in case")
 				yield("/hold W <wait.3.0>")
 				yield("/release W")
@@ -975,6 +976,9 @@ function IsPlayerReallyAvailable()
 	return false
 end
 
+
+largebuttfucks = 0 --some forced checks becuase we are a shitty coder
+
 while weirdvar == 1 do
 	--catch if character is ready before doing anything
 	if IsPlayerReallyAvailable() then
@@ -982,6 +986,12 @@ while weirdvar == 1 do
 			bistance = distance(EntityPlayerPositionX(), EntityPlayerPositionY(), EntityPlayerPositionZ(), GetObjectRawXPos(fren),GetObjectRawYPos(fren),GetObjectRawZPos(fren))
 			if bistance > maxbistance then --follow ourselves if fren too far away or it will do weird shit
 				clingmove(GetCharacterName())
+			end
+			
+			largebuttfucks = largebuttfucks + 1
+			if largebuttfucks > 5 then
+				largebuttfucks = 0
+				checkAREA()
 			end
 
 			--if we in combat and target is <3 yalms dont nav anywhere.
@@ -1044,7 +1054,13 @@ while weirdvar == 1 do
 				--yield("/bmrai follow slot"..fartycardinality.."")
 				--yield("/bmrai follow "..fren)
 				--we will use clingmove not bmrai follow as it breaks pathing from that point onwards
-				clingmove(fren)
+				
+				--we need to test the bistance
+				--clingmove(fren)
+				bistance = distance(EntityPlayerPositionX(), EntityPlayerPositionY(), EntityPlayerPositionZ(), GetObjectRawXPos(fren),GetObjectRawYPos(fren),GetObjectRawZPos(fren))
+				if bistance > maxbistance then --follow ourselves if fren too far away or it will do weird shit
+					clingmove(GetCharacterName())
+				end
 				--allright im getting sick of pratorium. its time to do something.
 				if type(Svc.ClientState.TerritoryType) == "number" and Svc.ClientState.TerritoryType == 1044 and Svc.Condition[4] then --Praetorium
 					--if string.len(GetTargetName()) == 0 then
