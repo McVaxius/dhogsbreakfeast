@@ -152,6 +152,7 @@ socialdistancing_indoors = ini_check("socialdistancing_indoors", 0)	-- if this v
 socialdistance_x_wiggle = ini_check("socialdistance_x_wiggle", 1) -- wiggle +/- this many yalms on the x axis during social distancing
 socialdistance_z_wiggle = ini_check("socialdistance_z_wiggle", 1) -- wiggle +/- this many yalms on the z axis during social distancing
 maxbistance = ini_check("maxbistance", 500) 				-- Max distance from fren that we will actually chase them, so that we dont get zone hopping situations ;p
+maxbistance_foray = ini_check("maxbistance_foray", 50) 		-- Max distance for forays - this will make transitioning via mini aetherytes less annoying.
 ddistance = ini_check("ddistance", 100) 					-- DEEP DUNGEON RELATED - if your in a deep dungeon should we even follow? add this to "cling" if we are in a DD, 100 is default
 follow_in_combat = ini_check("follow_in_combat", 42)		-- 0 = dont follow the leader while in combat, 1 = follow the leader while in combat, 42 = let a table decide based on job/role
 fdistance = ini_check("fdistance", 0) 						-- F.A.T.E. related - if your in a fate, add some more padding to "cling" default is 20 for now until some testing is done
@@ -349,6 +350,8 @@ idle_shitter_counter = 0 --counter for the idle shitters
 
 pandora_interact_toggler_count = 0 -- for checking on pandora interact settings.
 pandora_interact_toggler_count = 0 -- for checking on pandora interact settings.
+
+cached_maxbistance = maxbistance  --store so we can set it for forays
 
 --idle shitter list --i don't really care about this list if someone wants to improve it lmk . maybe we could have diff lists and make them an option too? --*
 idle_shitter_list = {
@@ -735,9 +738,11 @@ function checkAREA()
 
 	are_we_social_distancing = are_we_distancing()
 	fake_outdoors_foray = 0
+	maxbistance = cached_maxbistance
 	if are_we_social_distancing == 1 then
 		fake_outdoors_foray = 1
-		yield("/echo fake outdoors -> "..fake_outdoors_foray)
+		maxbistance = maxbistance_foray
+		--yield("/echo fake outdoors -> "..fake_outdoors_foray)
 		if socialdistancing > cling then
 			hcling = socialdistancing
 		end
