@@ -992,6 +992,13 @@ while weirdvar == 1 do
 			if largebuttfucks > 5 then
 				largebuttfucks = 0
 				checkAREA()
+				--check for being dead and yesalready.  if we have the yesno and we aren't dead. then choose yes.
+				if IsAddonReady("SelectYesno") and Svc.Condition[2] == false and fake_outdoors_foray == 1 then
+					yield("/wait 3") --just wait a sec just in case
+					if IsAddonReady("SelectYesno") and Svc.Condition[2] == false then
+						yield("/callback SelectYesno true 0")
+					end
+				end
 			end
 
 			--if we in combat and target is <3 yalms dont nav anywhere.
