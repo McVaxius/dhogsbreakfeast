@@ -737,6 +737,7 @@ function checkAREA()
 	fake_outdoors_foray = 0
 	if are_we_social_distancing == 1 then
 		fake_outdoors_foray = 1
+		yield("/echo fake outdoors -> "..fake_outdoors_foray)
 		if socialdistancing > cling then
 			hcling = socialdistancing
 		end
@@ -1054,6 +1055,7 @@ while weirdvar == 1 do
 			end
 
 			if Svc.Condition[34] == false or fake_outdoors_foray == 1 then  --not in duty  or we are in a foray
+		yield("/echo fake outdoors 2 -> "..fake_outdoors_foray)
 				--SAFETY CHECKS DONE, can do whatever you want now with characterconditions etc			
 				--movement with formation - initially we test while in any situation not just combat
 				--check distance to fren, if its more than cling, then
@@ -1196,13 +1198,15 @@ while weirdvar == 1 do
 							
 						end
 					end
-					if Svc.Condition[4] == false and Svc.Condition[10] == false then --not mounted and not mounted2 (riding friend)
+					largefondles = 0
+					if Svc.Condition[34] == false or fake_outdoors_foray == 1 then largefondles = 1 end
+					if Svc.Condition[4] == false and Svc.Condition[10] == false and largefondles == 1 then --not mounted and not mounted2 (riding friend)
 						--chocobo stuff. first check if we can fly. if not don't try to chocobo
 						--actually check if we are in a sanctuary first, if true we aren't gonna try to check or do anything.
 						if InSanctuary() == false then
 							--if HasFlightUnlocked() == true or force_gyasahl == true then
 								--check if chocobro is up or (soon) not!
-								if GetBuddyTimeRemaining() < 900 and GetItemCount(4868) > 0 then
+								if GetBuddyTimeRemaining() < 900 and GetItemCount(4868) > 0 and Svc.Condition[34] == false then
 									yield("/visland stop")
 									yield("/vnavmesh stop")
 									yield("/item Gysahl Greens")
@@ -1244,6 +1248,7 @@ while weirdvar == 1 do
 						if IsPartyMemberMounted(fren) == true and fly_you_fools == false then
 							--for i=1,7 do
 								--yield("/ridepillion <"..partycardinality.."> "..i)
+								yield("/echo fake outdoors 3 -> "..fake_outdoors_foray)
 								counting_fartula()
 								yield("/ridepillion \"<"..tostring(fartycardinality)..">\" 2")
 								yield("/rotation Cancel")
