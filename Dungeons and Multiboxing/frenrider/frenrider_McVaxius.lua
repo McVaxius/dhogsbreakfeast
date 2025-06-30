@@ -989,7 +989,7 @@ while weirdvar == 1 do
 			end
 			
 			largebuttfucks = largebuttfucks + 1
-			if largebuttfucks > 5 then
+			if largebuttfucks > 2 then
 				largebuttfucks = 0
 				checkAREA()
 				--check for being dead and yesalready.  if we have the yesno and we aren't dead. then choose yes.
