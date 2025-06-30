@@ -505,6 +505,14 @@ function double_check_nav(x3, y3, z3)
 	end
 end
 
+function NavRebuild()
+	IPC.vnavmesh.Rebuild()
+end
+
+function NavIsReady()
+	return IPC.vnavmesh.IsReady()
+end
+
 function double_check_navGO(x3, y3, z3)
 	x1 = EntityPlayerPositionX()
 	y1 = EntityPlayerPositionY()
