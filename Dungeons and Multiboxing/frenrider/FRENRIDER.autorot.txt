@@ -300,6 +300,16 @@
         "Option": "InCombat"
       }
     ],
+    "BossMod.Autorotation.xan.Caster": [
+      {
+        "Track": "Raise",
+        "Option": "Allow raising without Swiftcast (not applicable to RDM)"
+      },
+      {
+        "Track": "RaiseTargets",
+        "Option": "Any dead player"
+      }
+    ],
     "BossMod.Autorotation.MiscAI.NormalMovement": [
       {
         "Track": "Cast",
