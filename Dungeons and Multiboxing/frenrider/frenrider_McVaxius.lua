@@ -1,5 +1,10 @@
 --[[
 Changelog
+v2.5
+more cleanups for DD and Frenrider autorots - they can rez on casters now. thanks xan
+added new var for forays
+clicks yes in forays
+
 v2.4
 deep dungeon area transitions should be more reliable now and not rubber banding back and forth while "fren" is at the exit, waiting
 
