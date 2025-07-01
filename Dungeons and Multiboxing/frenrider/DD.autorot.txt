@@ -9,10 +9,6 @@
       {
         "Track": "AOE",
         "Option": "AOE"
-      },
-      {
-        "Track": "Buffs",
-        "Option": "Auto"
       }
     ],
     "BossMod.Autorotation.xan.SMN": [
@@ -292,10 +288,6 @@
       {
         "Track": "RaiseTargets",
         "Option": "Any dead player"
-      },
-      {
-        "Track": "Esuna",
-        "Option": "Cleanse all party members that have a removable debuff"
       }
     ],
     "BossMod.Autorotation.xan.MeleeAI": [],
@@ -303,6 +295,16 @@
     "BossMod.Autorotation.VeynBRD": [],
     "BossMod.Autorotation.akechi.AkechiPLD": [],
     "BossMod.Autorotation.xan.SCH": [],
+    "BossMod.Autorotation.xan.Caster": [
+      {
+        "Track": "Raise",
+        "Option": "Allow raising without Swiftcast (not applicable to RDM)"
+      },
+      {
+        "Track": "RaiseTargets",
+        "Option": "Any dead player"
+      }
+    ],
     "BossMod.Autorotation.MiscAI.NormalMovement": [
       {
         "Track": "Cast",
