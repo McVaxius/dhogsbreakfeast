@@ -58,7 +58,7 @@ functionsToLoad()
 
 --important variables
 fatfuck = 1
-number_of_party = 4 --how many poople in party hah well we will check anyhow
+number_of_party_config = 4 --how many poople in party hah well we will check anyhow
 
 yield("/bmrai setpresetname DD")
 
@@ -84,7 +84,7 @@ function getRandomNumber(min, max)
 end
 
 function pooplecheck()
-	number_of_party = 4
+	number_of_party = number_of_party_config
 	number_of_party = number_of_party - 1 --index starts at 0 anyways
 	for poopy=0,number_of_party-1 do
 		if string.len(GetPartyMemberName(poopy)) < 1 then number_of_party = number_of_party - 1 end
@@ -97,6 +97,7 @@ function pooplecheck()
 	number_of_party = number_of_party - 1
 	if number_of_party < 0 then number_of_party = 0 end
 end
+
 pooplecheck()
 
 --counters

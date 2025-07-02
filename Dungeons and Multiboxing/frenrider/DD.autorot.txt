@@ -308,7 +308,7 @@
     "BossMod.Autorotation.MiscAI.NormalMovement": [
       {
         "Track": "Cast",
-        "Option": "DropMove"
+        "Option": "Leeway"
       }
     ]
   }

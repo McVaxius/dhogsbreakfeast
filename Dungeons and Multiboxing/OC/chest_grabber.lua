@@ -26,5 +26,5 @@ while grabbyhands == 1 do
 			end
 		end
 	end
-	yield("/wait 0.5")
+	yield("/wait 2")
 end
