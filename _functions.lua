@@ -2149,6 +2149,10 @@ function PathfindAndMoveTo(x, y, z, tralse)
 	IPC.vnavmesh.PathfindAndMoveTo(IPCUPCWEALLPC, tralse)
 end
 
+function PathtoName(nemm)
+	PathfindAndMoveTo(GetObjectRawXPos(nemm),GetObjectRawYPos(nemm),GetObjectRawZPos(nemm),false)
+end
+
 function PathIsRunning()
 	return IPC.vnavmesh.IsRunning()
 end
