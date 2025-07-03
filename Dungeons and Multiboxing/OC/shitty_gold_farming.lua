@@ -57,7 +57,8 @@ while im_a_lazy_fuck == true do
 		yield("/wait 0.1")
 		yield("/ac sprint")
 		if Entity.Target and Entity.Target.Name then
-			if (Entity.Target.Position.Y - Entity.Player.Position.Y) < 0.1 or Entity.Player.Position.Y > Entity.Target.Position.Y or Entity.Target.DistanceTo < 5 then
+			--if (Entity.Target.Position.Y - Entity.Player.Position.Y) < 0.1 or Entity.Player.Position.Y > Entity.Target.Position.Y or Entity.Target.DistanceTo < 5 then
+			if Entity.Target.DistanceTo < 3 then
 				yield("/ac Shield Lob")
 			end
 		end
