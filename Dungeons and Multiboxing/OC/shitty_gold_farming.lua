@@ -21,13 +21,13 @@ feedme = 46003
 function checkfood()
 	--Food check!
 	statoos = GetStatusTimeRemaining(48)
-	if Svc.Condition[26] == false then -- dont eat while fighting it will upset your stomach
+--	if Svc.Condition[26] == false then -- dont eat while fighting it will upset your stomach
 		if type(GetItemCount(feedme)) == "number" then
 			if GetItemCount(feedme) > 0 and statoos < 300 then --refresh food if we are below 5 minutes left
 				yield("/item "..feedmeitem)
 			end
 		end
-	end
+--	end
 end
 
 while im_a_lazy_fuck == true do
@@ -43,9 +43,11 @@ while im_a_lazy_fuck == true do
 				yield("/wait 0.5")
 				yield("/release S")
 				jiggletome = 0
+				--yield("/echo test 1")
 				checkfood()
 			end
 			if jiggletome > 50 then
+				--yield("/echo test 2")
 				checkfood()
 				jiggletome = 0
 			end
