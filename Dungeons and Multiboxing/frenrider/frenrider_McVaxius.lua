@@ -1294,8 +1294,11 @@ while weirdvar == 1 do
 								--yield("/echo fake outdoors 3 -> "..fake_outdoors_foray)
 								counting_fartula()
 								--yield("/ridepillion "..fucket..tostring(fartycardinality)..fucket2.." 2")
-								yield("/ridepillion "..fucket..fartycardinality..fucket2.." 2")
-								yield("/echo RIDE PILLION DOESNT WORK TURN ON AUTO PILLION FOR NOW FROM CBT")
+								--yield("/ridepillion "..fucket..fartycardinality..fucket2.." 2")
+								yield("/target \""..fren.."\"")
+								yield("/wait 0.1")
+								yield("/ridepillion <t> 2")
+								--yield("/echo RIDE PILLION DOESNT WORK TURN ON AUTO PILLION FOR NOW FROM CBT")
 								yield("/rotation Cancel")
 							--end
 							gawk_gawk_3000("Attempting to Mount Friend")
