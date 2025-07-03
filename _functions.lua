@@ -2297,3 +2297,21 @@ function GetContentTimeLeft()
 --	if Svc.Condition[34] == true and InstancedContent.ContentTimeLeft > 0 then return InstancedContent.ContentTimeLeft end
 	return InstancedContent.ContentTimeLeft --turns out we don't need to nil check this one.
 end
+
+function WaitForTarget(limit,waitt) --incremenets of 0.1
+	limitcounter = 10 or limit
+	counterlimit = 0
+	actualwaitt = 10 or waitt
+	while counterlimit < limitcounter do
+		counterlimit = counterlimit + 1
+		yield("/wait 0.1")
+		if Entity.Target and Entity.Target.Name then
+			counterlimit = limitcounter
+		end
+	end
+	waitcount = 0
+	while waitcount < actualwaitt do
+		yield("/wait 0.1")
+		waitcount = waitcount + 1
+	end
+end

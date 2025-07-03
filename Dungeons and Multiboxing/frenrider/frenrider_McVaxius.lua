@@ -1068,7 +1068,9 @@ while weirdvar == 1 do
 			if Svc.Condition[26] == false then -- dont eat while fighting it will upset your stomach
 				if type(GetItemCount(feedme)) == "number" then
 					if GetItemCount(feedme) > 0 and statoos < 300 then --refresh food if we are below 5 minutes left
-						yield("/item "..feedmeitem)
+						--yield("/item "..feedmeitem)
+						yield("/wait 0.5")
+						Inventory.GetInventoryItem(tonumber(feedme)):Use()
 						gawk_gawk_3000("Attempting to eat "..feedmeitem)
 					end
 				end

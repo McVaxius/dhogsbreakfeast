@@ -15,10 +15,11 @@ functionsToLoad()
 im_a_lazy_fuck = true
 goatfuck = "Lesser Cry of Havoc"
 jiggletome = 0
-feedmeitem = "Mate Cookie<hq>"
+--feedmeitem = "Mate Cookie<hq>"
 feedme = 46003
 statoos = 0
 nemm = "hehe"
+farreacher = 0
 
 function checkfood()
 	--Food check!
@@ -26,7 +27,9 @@ function checkfood()
 --	if Svc.Condition[26] == false then -- dont eat while fighting it will upset your stomach
 		if type(GetItemCount(feedme)) == "number" then
 			if GetItemCount(feedme) > 0 and statoos < 300 then --refresh food if we are below 5 minutes left
-				yield("/item "..feedmeitem)
+				--yield("/item "..feedmeitem)
+				yield("/wait 0.5")
+				Inventory.GetInventoryItem(tonumber(feedme)):Use()
 			end
 		end
 --	end
@@ -67,9 +70,13 @@ while im_a_lazy_fuck == true do
 		end
 	end
 	while GetCharacterCondition(26) == false do
+		farreacher = farreacher + 1
 		yield("/wait 0.1")
 		yield("/ac sprint")
 		statoos = GetStatusTimeRemaining(44) --brink of death (50%) --dont vnav if we recently died we need to chill until it goes away
+		if statoos == 0 then
+			statoos = GetStatusTimeRemaining(43) --weakness from first death 25%
+		end
 		if Entity.Target and Entity.Target.Name then
 			--if (Entity.Target.Position.Y - Entity.Player.Position.Y) < 0.1 or Entity.Player.Position.Y > Entity.Target.Position.Y or Entity.Target.DistanceTo < 5 then
 		end
@@ -77,17 +84,26 @@ while im_a_lazy_fuck == true do
 			yield("/target \"Crescent Geshunpest\"")
 			nemm = "Crescent Geshunpest"
 			floop = 0
+			if Entity.Target and Entity.Target.Name then WaitForTarget(20,2) end
 			lob()
 			if statoos == 0 then
 				--PathtoName(nemm)
-				PathtoTarget()
+				PathtoTarget(5)
 			end
 		end
 		if floop == 0 then
 			yield("/target \"Lesser Cry of Havoc\"")
 			nemm = "Lesser Cry of Havoc"
 			floop = floop + 1
+			if Entity.Target and Entity.Target.Name then WaitForTarget(20,2) end
 			lob()
+			if statoos == 0 then
+				PathtoTarget(5)
+			end
+		end
+		if statoos == 0 and farreacher > 15 then --every 15 sec we will shif tif we stuck
+			PathtoName(nemm)
+			farreacher = 0
 		end
 		if statoos > 0 then
 			yield("/vnav stop")
