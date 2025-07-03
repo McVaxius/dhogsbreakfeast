@@ -1097,6 +1097,14 @@ while weirdvar == 1 do
 					if flandom == 1 then yield("/send E") end
 					yield("/wait 0.5")
 				end
+				if (Svc.Condition[26] == true and follow_in_combat == 1 and fake_outdoors_foray == 0) or Svc.Condition[26] == false then --in combat with forced follow, or no forced follow
+					if formation == false then
+						if bistance > hcling and bistance < maxbistance then
+							clingmove(fren) --movement func
+						end
+						yield("/wait 0.5")
+					end	
+				end
 				pandora_interact_toggler_count = pandora_interact_toggler_count + 1
 				checkzoi()
 			end
