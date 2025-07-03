@@ -354,8 +354,8 @@ fake_outdoors_foray = 0 --usually forays let us mount so we need to flag this
 idle_shitter_counter = 0 --counter for the idle shitters
 
 pandora_interact_toggler_count = 0 -- for checking on pandora interact settings.
-pandora_interact_toggler_count = 0 -- for checking on pandora interact settings.
-
+fucket = "<"  --because
+fucket2 = ">" --becuse
 cached_maxbistance = maxbistance  --store so we can set it for forays
 
 --idle shitter list --i don't really care about this list if someone wants to improve it lmk . maybe we could have diff lists and make them an option too? --*
@@ -649,6 +649,8 @@ function are_we_distancing()
 end
 
 function checkAREA()
+	--yield("/echo are we social distancing?-1")
+
 	are_we_DD = 0 --always reset this just in case
 	hcling = cling
 	if are_we_social_distancing == 1 then
@@ -741,7 +743,7 @@ function checkAREA()
 		hcling = cling
 		hcling_counter = 0
 	end
-
+	--yield("/echo are we social distancing?")
 	are_we_social_distancing = are_we_distancing()
 	--fake_outdoors_foray = 0
 	maxbistance = cached_maxbistance
@@ -760,7 +762,7 @@ function checkAREA()
 end
 
 function clingmove(nemm)
-	--checkAREA() --no this is too expensive , its in the main loop now
+	--checkAREA()  --no this is too expensive
 	did_we_try_to_move = 0
 	if GetTargetName() == "Vault Door" then --we in a treasure map dungeon and need to click the door without following the fren
 		--yield("/interact") --no this is dangerous
@@ -900,17 +902,24 @@ end
 partycardinality = partycardinality + 1
 --turns out the above is worthless and not what i wanted for pillion. but we keep it anyways in case we need the data for something.
 
-countfartula = 2
+
+countfartula = 1
 function counting_fartula()
-countfartula = 2 --redeclare dont worry its fine. we need this so we can do it later in the code for recalibration
+countfartula = 1 --redeclare dont worry its fine. we need this so we can do it later in the code for recalibration
 	while countfartula < 9 do
-		yield("/target \"<"..countfartula..">\"")
+		yield("/target "..fucket..countfartula..fucket2)
+		--yield("/echo "..fucket..countfartula..fucket2)
+		--yield("/target \"<"..countfartula..">\"")
+		--yield("/echo \"<"..countfartula.."\>")
+		--yield("/echo nem nem nem -> "..countfartula)
 		yield("/wait 0.5")
+		--yield("/echo name -> "..GetTargetName())
 		gawk_gawk_3000("is it "..GetTargetName().."?")
 		if GetTargetName() == fren then
-			fartycardinality = countfartula + 1
+			--fartycardinality = countfartula + 1
+			fartycardinality = countfartula
 			countfartula = 9
-			--yield("Aha... count fartula is -> "..fartycardinality)
+			--yield("/echo Aha... count fartula is -> "..fartycardinality)
 		end
 		countfartula = countfartula + 1
 	end
@@ -981,8 +990,7 @@ function IsPlayerReallyAvailable()
 	return false
 end
 
-
-largebuttfucks = 0 --some forced checks becuase we are a shitty coder
+largebuttfucks = 0
 
 while weirdvar == 1 do
 	--catch if character is ready before doing anything
@@ -1005,7 +1013,7 @@ while weirdvar == 1 do
 					end
 				end
 			end
-
+			
 			--if we in combat and target is <3 yalms dont nav anywhere.
 			if Svc.Condition[26] == true and type(GetTargetName()) == "string" and string.len(GetTargetName()) > 1 then
 				if distance(EntityPlayerPositionX(), EntityPlayerPositionY(), EntityPlayerPositionZ(), GetObjectRawXPos(GetTargetName()),GetObjectRawYPos(GetTargetName()),GetObjectRawZPos(GetTargetName())) < 3 then
@@ -1069,6 +1077,7 @@ while weirdvar == 1 do
 				
 				--we need to test the bistance
 				--clingmove(fren)
+				--yield("/echo fake -> "..fake_outdoors_foray)
 				bistance = distance(EntityPlayerPositionX(), EntityPlayerPositionY(), EntityPlayerPositionZ(), GetObjectRawXPos(fren),GetObjectRawYPos(fren),GetObjectRawZPos(fren))
 				if bistance > maxbistance then --follow ourselves if fren too far away or it will do weird shit
 					clingmove(GetCharacterName())
@@ -1088,7 +1097,7 @@ while weirdvar == 1 do
 			end
 
 			if Svc.Condition[34] == false or fake_outdoors_foray == 1 then  --not in duty  or we are in a foray
-		yield("/echo fake outdoors 2 -> "..fake_outdoors_foray)
+		--yield("/echo fake outdoors 2 -> "..fake_outdoors_foray)
 				--SAFETY CHECKS DONE, can do whatever you want now with characterconditions etc			
 				--movement with formation - initially we test while in any situation not just combat
 				--check distance to fren, if its more than cling, then
@@ -1227,7 +1236,8 @@ while weirdvar == 1 do
 							--gawk_gawk_3000("attempting to fly to fren")
 							clingmove(fren)
 
-							yield("/target \"<"..fartycardinality..">\"")
+							--yield("/target \"<"..fartycardinality..">\"")
+							yield("/target "..fucket..fartycardinality..fucket2)
 							
 						end
 					end
@@ -1281,9 +1291,11 @@ while weirdvar == 1 do
 						if IsPartyMemberMounted(fren) == true and fly_you_fools == false then
 							--for i=1,7 do
 								--yield("/ridepillion <"..partycardinality.."> "..i)
-								yield("/echo fake outdoors 3 -> "..fake_outdoors_foray)
+								--yield("/echo fake outdoors 3 -> "..fake_outdoors_foray)
 								counting_fartula()
-								yield("/ridepillion \"<"..tostring(fartycardinality)..">\" 2")
+								--yield("/ridepillion "..fucket..tostring(fartycardinality)..fucket2.." 2")
+								yield("/ridepillion "..fucket..fartycardinality..fucket2.." 2")
+								yield("/echo RIDE PILLION DOESNT WORK TURN ON AUTO PILLION FOR NOW FROM CBT")
 								yield("/rotation Cancel")
 							--end
 							gawk_gawk_3000("Attempting to Mount Friend")
