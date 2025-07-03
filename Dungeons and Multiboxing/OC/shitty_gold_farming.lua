@@ -72,7 +72,10 @@ while im_a_lazy_fuck == true do
 			floop = 0
 			floop = floop + 1
 		end
-		PathtoName(nemm)
+		statoos = GetStatusTimeRemaining(44) --brink of death (50%) --dont vnav if we recently died we need to chill until it goes away
+		if statoos == 0 then
+			PathtoName(nemm)
+		end
 		--PathtoTarget()
 	end
 end
