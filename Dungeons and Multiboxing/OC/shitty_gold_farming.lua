@@ -19,7 +19,6 @@ while im_a_lazy_fuck == true do
 		yield("/vnav stop")
 	end
 	while GetCharacterCondition(26) == false do
---		floop = floop + 1
 		yield("/wait 0.1")
 		yield("/ac sprint")
 		yield("/ac Shield Lob")
@@ -31,6 +30,7 @@ while im_a_lazy_fuck == true do
 			yield("/target Geshunpest")
 			nemm = "Geshunpest"
 			floop = 0
+			floop = floop + 1
 		end
 		PathtoName(nemm)
 		--PathtoTarget()
