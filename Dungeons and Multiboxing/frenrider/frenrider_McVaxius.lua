@@ -656,6 +656,9 @@ function checkAREA()
 	if are_we_social_distancing == 1 then
 		hcling = cling + ( socialdistance_x_wiggle + socialdistance_z_wiggle ) / 2   --we need more wiggle room outside.
 	end
+	if fake_outdoors_foray == 1 then
+		hcling = 2.6 + ( socialdistance_x_wiggle + socialdistance_z_wiggle ) / 2   --we need more wiggle room outside. everything should be close as we can get lost in tunnels
+	end
 	--are_we_social_distancing = 0
 	hcling_counter = hcling_counter + 1
 

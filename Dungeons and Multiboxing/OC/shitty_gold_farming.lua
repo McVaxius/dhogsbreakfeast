@@ -15,6 +15,20 @@ functionsToLoad()
 im_a_lazy_fuck = true
 goatfuck = "Lesser Cry of Havoc"
 jiggletome = 0
+feedmeitem = "Mate Cookie<hq>"
+feedme = 46003
+
+function checkfood()
+	--Food check!
+	statoos = GetStatusTimeRemaining(48)
+	if Svc.Condition[26] == false then -- dont eat while fighting it will upset your stomach
+		if type(GetItemCount(feedme)) == "number" then
+			if GetItemCount(feedme) > 0 and statoos < 300 then --refresh food if we are below 5 minutes left
+				yield("/item "..feedmeitem)
+			end
+		end
+	end
+end
 
 while im_a_lazy_fuck == true do
 	yield("/wait 0.1")
@@ -26,8 +40,12 @@ while im_a_lazy_fuck == true do
 		if Entity.Target and Entity.Target.Name then
 			if (Entity.Player.Position.Y - Entity.Target.Position.X) ^ 2 > 0.5 and jiggletome > 50 then
 				yield("/hold S")
-				yield("/wait 3")
+				yield("/wait 0.5")
 				yield("/release S")
+				jiggletome = 0
+			end
+			if jiggletome > 50 then
+				checkfood()
 				jiggletome = 0
 			end
 		end
