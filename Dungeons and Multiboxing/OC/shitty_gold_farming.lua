@@ -38,11 +38,12 @@ while im_a_lazy_fuck == true do
 		yield("/vnav stop")
 		--check Y heights. if they aren't within 0.1 yalms then lets press back a bit
 		if Entity.Target and Entity.Target.Name then
-			if (Entity.Player.Position.Y - Entity.Target.Position.X) ^ 2 > 0.5 and jiggletome > 50 then
+			if (Entity.Target.Position.Y - Entity.Player.Position.Y) > 0.5 and jiggletome > 50 then
 				yield("/hold S")
 				yield("/wait 0.5")
 				yield("/release S")
 				jiggletome = 0
+				checkfood()
 			end
 			if jiggletome > 50 then
 				checkfood()
@@ -53,7 +54,11 @@ while im_a_lazy_fuck == true do
 	while GetCharacterCondition(26) == false do
 		yield("/wait 0.1")
 		yield("/ac sprint")
-		yield("/ac Shield Lob")
+		if Entity.Target and Entity.Target.Name then
+			if (Entity.Target.Position.Y - Entity.Player.Position.Y) < 0.1 or Entity.Player.Position.Y > Entity.Target.Position.Y or Entity.Target.DistanceTo < 5 then
+				yield("/ac Shield Lob")
+			end
+		end
 		if floop == 0 then
 			yield("/target \"Lesser Cry of Havoc\"")
 			nemm = "Lesser Cry of Havoc"
