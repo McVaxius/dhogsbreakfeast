@@ -298,6 +298,10 @@
       {
         "Track": "Chemist",
         "Option": "InCombat"
+      },
+      {
+        "Track": "Predict",
+        "Option": "Don\u0027t use"
       }
     ],
     "BossMod.Autorotation.xan.Caster": [
