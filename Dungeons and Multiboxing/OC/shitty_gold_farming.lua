@@ -3,6 +3,9 @@ shitty gold farming in west caves
 7.2, 19.4
 
 requires a party of 4 (max) around KL 20
+
+what is intersting is that pathing to name will always path to the first spawn which is up in the corner of hte cave but it will pause to do combat as it goes there
+so it will always complete the loop.  this will work until something about snd/dalamud changes in how lists are made of objects haha.
 --]]
 
 loadfiyel = os.getenv("appdata").."\\XIVLauncher\\pluginConfigs\\SomethingNeedDoing\\_functions.lua"
@@ -11,12 +14,23 @@ functionsToLoad()
 
 im_a_lazy_fuck = true
 goatfuck = "Lesser Cry of Havoc"
+jiggletome = 0
 
 while im_a_lazy_fuck == true do
 	yield("/wait 0.1")
 	floop = 0
+	jiggletome = jiggletome + 1
 	if GetCharacterCondition(26) then
 		yield("/vnav stop")
+		--check Y heights. if they aren't within 0.1 yalms then lets press back a bit
+		if Entity.Target and Entity.Target.Name then
+			if (Entity.Player.Position.Y - Entity.Target.Position.X) ^ 2 > 0.5 and jiggletome > 50 then
+				yield("/hold S")
+				yield("/wait 3")
+				yield("/release S")
+				jiggletome = 0
+			end
+		end
 	end
 	while GetCharacterCondition(26) == false do
 		yield("/wait 0.1")

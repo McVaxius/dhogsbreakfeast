@@ -1092,7 +1092,8 @@ function grab_aetheryte()
 end
 
 function GetItemCount(itemId)
-	return Inventory.GetItemCount(itemId)
+	asdf = Inventory.GetHqItemCount(itemId) + Inventory.GetItemCount(itemId)
+	return asdf
 end
 
 function GetGil()
@@ -1152,7 +1153,6 @@ function GetStatusTimeRemaining(statusID)
             return status.RemainingTime or 0
         end
     end
-
     return 0
 end
 

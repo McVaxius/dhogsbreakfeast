@@ -806,7 +806,8 @@ function clingmove(nemm)
 		if are_we_DD == 0 then
 			if bistance > 20 and Svc.Condition[34] == true and fake_outdoors_foray == 0 then --maybe we went through subarea transition in a duty?
 				gawk_gawk_3000(""..nemm.." is kind of far - lets just forge ahead a bit just in case")
-				yield("/hold W <wait.3.0>")
+				yield("/hold W")
+				yield("/wait 3")
 				yield("/release W")
 				did_we_try_to_move = 1
 			end
