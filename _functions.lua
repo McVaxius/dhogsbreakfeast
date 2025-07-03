@@ -2149,6 +2149,12 @@ function PathfindAndMoveTo(x, y, z, tralse)
 	IPC.vnavmesh.PathfindAndMoveTo(IPCUPCWEALLPC, tralse)
 end
 
+function PathtoTarget()
+	if Entity.Target and Entity.Target.Name then
+		PathfindAndMoveTo(Entity.Target.Position.X,Entity.Target.Position.Y,Entity.Target.Position.Z,false)
+	end
+end
+
 function PathtoName(nemm)
 	PathfindAndMoveTo(GetObjectRawXPos(nemm),GetObjectRawYPos(nemm),GetObjectRawZPos(nemm),false)
 end

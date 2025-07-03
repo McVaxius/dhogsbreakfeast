@@ -17,6 +17,8 @@ goatfuck = "Lesser Cry of Havoc"
 jiggletome = 0
 feedmeitem = "Mate Cookie<hq>"
 feedme = 46003
+statoos = 0
+nemm = "hehe"
 
 function checkfood()
 	--Food check!
@@ -30,10 +32,26 @@ function checkfood()
 --	end
 end
 
+function lob()
+		if Entity.Target and Entity.Target.Name then
+			if Entity.Target.DistanceTo < 4 then
+				yield("/ac Shield Lob")
+			end
+			--yield("/echo dist to "..nemm.." -> "..Entity.Target.DistanceTo)
+		end
+end
+
 while im_a_lazy_fuck == true do
 	yield("/wait 0.1")
 	floop = 0
 	jiggletome = jiggletome + 1
+	if GetCharacterCondition(26) == false then
+		if jiggletome > 50 then
+			--yield("/echo test 2")
+			checkfood()
+			jiggletome = 0
+		end
+	end
 	if GetCharacterCondition(26) then
 		yield("/vnav stop")
 		--check Y heights. if they aren't within 0.1 yalms then lets press back a bit
@@ -46,36 +64,33 @@ while im_a_lazy_fuck == true do
 				--yield("/echo test 1")
 				checkfood()
 			end
-			if jiggletome > 50 then
-				--yield("/echo test 2")
-				checkfood()
-				jiggletome = 0
-			end
 		end
 	end
 	while GetCharacterCondition(26) == false do
 		yield("/wait 0.1")
 		yield("/ac sprint")
+		statoos = GetStatusTimeRemaining(44) --brink of death (50%) --dont vnav if we recently died we need to chill until it goes away
 		if Entity.Target and Entity.Target.Name then
 			--if (Entity.Target.Position.Y - Entity.Player.Position.Y) < 0.1 or Entity.Player.Position.Y > Entity.Target.Position.Y or Entity.Target.DistanceTo < 5 then
-			if Entity.Target.DistanceTo < 3 then
-				yield("/ac Shield Lob")
+		end
+		if floop > 0 then
+			yield("/target \"Crescent Geshunpest\"")
+			nemm = "Crescent Geshunpest"
+			floop = 0
+			lob()
+			if statoos == 0 then
+				--PathtoName(nemm)
+				PathtoTarget()
 			end
 		end
 		if floop == 0 then
 			yield("/target \"Lesser Cry of Havoc\"")
 			nemm = "Lesser Cry of Havoc"
-		end
-		if floop > 0 then
-			yield("/target Geshunpest")
-			nemm = "Geshunpest"
-			floop = 0
 			floop = floop + 1
+			lob()
 		end
-		statoos = GetStatusTimeRemaining(44) --brink of death (50%) --dont vnav if we recently died we need to chill until it goes away
-		if statoos == 0 then
-			PathtoName(nemm)
+		if statoos > 0 then
+			yield("/vnav stop")
 		end
-		--PathtoTarget()
 	end
 end
