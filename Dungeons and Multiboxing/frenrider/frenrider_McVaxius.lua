@@ -1283,6 +1283,20 @@ while weirdvar == 1 do
 								clingmove(fren) --movement func
 								--gawk_gawk_3000("DEBUG line 467ish")
 							end
+							if Entity.GetEntityByName(fren).CurrentHp == 0 and fake_outdoors_foray == 1 then --get people dead around corner in dungeon during gold farm
+								clingmove(fren)
+								yield("/wait 0.5")
+								clingmove(fren)
+								yield("/wait 0.5")
+								clingmove(fren)
+								yield("/wait 0.5")
+								clingmove(fren)
+								yield("/wait 0.5")
+								clingmove(fren)
+								yield("/wait 0.5")
+								clingmove(fren)
+								yield("/wait 0.5")
+							end
 							yield("/wait 0.5")
 						end	
 

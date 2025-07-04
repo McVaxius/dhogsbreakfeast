@@ -15,6 +15,7 @@ functionsToLoad()
 im_a_lazy_fuck = true
 goatfuck = "Lesser Cry of Havoc"
 jiggletome = 0
+morejiggle = 0
 --feedmeitem = "Mate Cookie<hq>"
 feedme = 46003
 statoos = 0
@@ -48,6 +49,11 @@ while im_a_lazy_fuck == true do
 	yield("/wait 0.1")
 	floop = 0
 	jiggletome = jiggletome + 1
+	morejiggle = morejiggle + 1
+	if morejiggle > 5 then
+		yield("/generalaction \"Phantom Action III\"") --counterstance on monk
+		morejiggle = 0
+	end
 	if GetCharacterCondition(26) == false then
 		if jiggletome > 50 then
 			--yield("/echo test 2")
@@ -70,6 +76,11 @@ while im_a_lazy_fuck == true do
 		end
 	end
 	while GetCharacterCondition(26) == false do
+		morejiggle = morejiggle + 1
+		if morejiggle > 5 then
+			yield("/generalaction \"Phantom Action III\"") --counterstance on monk
+			morejiggle = 0
+		end
 		farreacher = farreacher + 1
 		yield("/wait 0.1")
 		yield("/ac sprint")
