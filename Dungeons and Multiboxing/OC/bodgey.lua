@@ -6,6 +6,6 @@ while dodgey_bodger do
 	yield("/wait 5")
 	if Svc.Condition[4] == true or Svc.Condition[10] == true then
 		yield("/gaction jump")
-		yield("/echo wheeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee . i am jumping !!!!!!!!!!!!!.")
+		--yield("/echo wheeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee . i am jumping !!!!!!!!!!!!!.")
 	end
 end

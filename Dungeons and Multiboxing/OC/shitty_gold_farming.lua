@@ -6,6 +6,10 @@ requires a party of 4 (max) around KL 20
 
 what is intersting is that pathing to name will always path to the first spawn which is up in the corner of hte cave but it will pause to do combat as it goes there
 so it will always complete the loop.  this will work until something about snd/dalamud changes in how lists are made of objects haha.
+
+some notes
+RSR is better than BM for healer rotations
+Wrath and RSR both seem to have more phantom stuff than BM will test today
 --]]
 
 loadfiyel = os.getenv("appdata").."\\XIVLauncher\\pluginConfigs\\SomethingNeedDoing\\_functions.lua"
