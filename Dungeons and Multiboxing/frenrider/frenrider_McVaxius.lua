@@ -1144,7 +1144,7 @@ while weirdvar == 1 do
 							end
 						end
 					end
-					if Entity.GetEntityByName(fren).CurrentHp == 0 and fake_outdoors_foray == 1 then
+					--[[if Entity.GetEntityByName(fren).CurrentHp == 0 and fake_outdoors_foray == 1 then
 						clingmove(fren)
 						yield("/wait 0.5")
 						clingmove(fren)
@@ -1157,7 +1157,7 @@ while weirdvar == 1 do
 						yield("/wait 0.5")
 						clingmove(fren)
 						yield("/wait 0.5")
-					end
+					end--]]--this is bad the previous thing should solve this.
 				end
 				
 				--[[ no we aren't
