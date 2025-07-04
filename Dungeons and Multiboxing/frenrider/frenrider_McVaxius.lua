@@ -1135,6 +1135,29 @@ while weirdvar == 1 do
 						end
 						yield("/wait 0.5")
 					end	
+					if fake_outdoors_foray == 1 then --if they are elevated we need to get into LOS
+						if Entity.Target and Entity.Target.Name then 
+							elle_vation = math.abs(Entity.Target.Position.Y - Entity.Player.Position.Y)
+							if elle_vation > 0.5 then
+								--yield("/echo height -> "..elle_vation)
+								clingmove(fren) --movement func
+							end
+						end
+					end
+					if Entity.GetEntityByName(fren).CurrentHp == 0 and fake_outdoors_foray == 1 then
+						clingmove(fren)
+						yield("/wait 0.5")
+						clingmove(fren)
+						yield("/wait 0.5")
+						clingmove(fren)
+						yield("/wait 0.5")
+						clingmove(fren)
+						yield("/wait 0.5")
+						clingmove(fren)
+						yield("/wait 0.5")
+						clingmove(fren)
+						yield("/wait 0.5")
+					end
 				end
 				
 				--[[ no we aren't
@@ -1282,20 +1305,6 @@ while weirdvar == 1 do
 								--PathfindAndMoveTo(GetObjectRawXPos(fren),GetObjectRawYPos(fren),GetObjectRawZPos(fren), false)
 								clingmove(fren) --movement func
 								--gawk_gawk_3000("DEBUG line 467ish")
-							end
-							if Entity.GetEntityByName(fren).CurrentHp == 0 and fake_outdoors_foray == 1 then --get people dead around corner in dungeon during gold farm
-								clingmove(fren)
-								yield("/wait 0.5")
-								clingmove(fren)
-								yield("/wait 0.5")
-								clingmove(fren)
-								yield("/wait 0.5")
-								clingmove(fren)
-								yield("/wait 0.5")
-								clingmove(fren)
-								yield("/wait 0.5")
-								clingmove(fren)
-								yield("/wait 0.5")
 							end
 							yield("/wait 0.5")
 						end	
