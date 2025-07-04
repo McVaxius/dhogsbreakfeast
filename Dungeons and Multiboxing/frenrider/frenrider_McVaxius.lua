@@ -66,7 +66,7 @@ discardhelper
 cutscene skipper (MSQ roullette cutscenes)
 lazyloot plugin (if your doing anything other than fates)
 VBM/BMR (bmr has slash commands for following and more modules)
-RSR
+RSR (probably better for healers tbh)
 
 ***Few annoying problems that still exist and some thoughts
 *no mounting in forays??? i added fake_outdoors_foray to allow for that. we will have to actually test it later

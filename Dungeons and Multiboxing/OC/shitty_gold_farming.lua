@@ -38,7 +38,7 @@ end
 
 function lob()
 		if Entity.Target and Entity.Target.Name then
-			if Entity.Target.DistanceTo < 4 then
+			if Entity.Target.DistanceTo < 5 then
 				yield("/ac Shield Lob")
 			end
 			--yield("/echo dist to "..nemm.." -> "..Entity.Target.DistanceTo)
@@ -97,10 +97,10 @@ while im_a_lazy_fuck == true do
 			floop = 0
 			if Entity.Target and Entity.Target.Name then WaitForTarget(20,2) end
 			lob()
-			if statoos == 0 then
+			--[[if statoos == 0 then
 				--PathtoName(nemm)
 				PathtoTarget(5)
-			end
+			end--]]
 		end
 		if floop == 0 then
 			yield("/target \"Lesser Cry of Havoc\"")
