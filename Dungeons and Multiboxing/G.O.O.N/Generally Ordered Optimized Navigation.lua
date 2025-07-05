@@ -27,7 +27,7 @@ Yesalready configs (maybe only the first one is needed since the rest are done v
 	"Lists"
 		/Retire to an inn room.*/
 
-Enhanced Duty start/end
+CBT -> Enhanced Duty start/end
 	duty start -> /pcraft run start_gooning
 	duty end -> /ad stop
 	leave duty -> 10 seconds
@@ -52,6 +52,10 @@ you first setup unsync+level sync . since it will never unhceck level sync. then
 and then let goon do its thing
 minor qol just to see the times in a nice chat window
 --]]
+loadfiyel = os.getenv("appdata").."\\XIVLauncher\\pluginConfigs\\SomethingNeedDoing\\_functions.lua"
+functionsToLoad = loadfile(loadfiyel)
+functionsToLoad()
+
 yield("/echo please get ready for G.O.O.N ing time")
 --yield("/bmrai ui") --open this in case we need to set the preset. at least until we can slash command it.
 
@@ -62,22 +66,25 @@ z1 = EntityPlayerPositionZ()
 
 stopcuckingme = 0    --counter for checking whento pop duty
 
+--[[ this no longer works and i dont feel like fixing it
 --if its a cross world party everyone will make a queue attempt
 function isLeader()
     return (GetCharacterName() == GetPartyMemberName(GetPartyLeadIndex()))
 end
 
-imthecaptainnow = 0  --set this to 1 if its the party leader
+imthecaptainnow = 0  --set this to 1 if this char is the party leader
 
 if isLeader() then 
 	imthecaptainnow = 1 
 	yield("/echo I am the party leader i guess")
 end
+--]]
 
 -----------------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------------
 --------EDITABLE SETTINGS!---------------------------------------------------------------------------------------
+imthecaptainnow = 0  --set this to 1 if this char is the party leader
 duty_counter = 0	 --set it to 0 if its the first run of the "day"
 					 --change this if you want to restart a "run" at a higher counter level becuase you were alreaday running it.
 					 --just set it to whatever the last "current duty count" was from echos
@@ -281,19 +288,20 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 	if Svc.ClientState.TerritoryType == 1044 and Svc.Condition[26] == false and Player.Available then --Praetorium
 		maxjiggle = 6
 		flurb = "????"
-		for flurby = 1,30 do
+		for flurby = 22001,22006 do
 			if Player.Available then
-				if GetNodeText("_ToDoList", flurby, 3) == "Arrive at the command chamber: 0/1" then flurb = "Arrive at the command chamber: 0/1" end
-				if GetNodeText("_ToDoList", flurby, 3) == "Clear the command chamber: 0/1" then flurb = "Clear the command chamber: 0/1" end
-				if GetNodeText("_ToDoList", flurby, 3) == "Arrive at the Laboratorium Primum: 0/1" then flurb = "Arrive at the Laboratorium Primum: 0/1" end
-				if GetNodeText("_ToDoList", flurby, 3) == "Clear the Laboratorium Primum: 0/1" then flurb = "Clear the Laboratorium Primum: 0/1" end
-				if GetNodeText("_ToDoList", flurby, 3) == "Arrive on the Echelon: 0/1" then flurb = "Arrive on the Echelon: 0/1" end
-				if GetNodeText("_ToDoList", flurby, 3) == "Defeat Gaius van Baelsar: 0/1" then flurb = "Defeat Gaius van Baelsar: 0/1" end
+				snoop = Addons.GetAddon("_ToDoList"):GetNode(1, flurby, 6).Text
+				if snoop == "Arrive at the command chamber: 0/1" then flurb = "Arrive at the command chamber: 0/1" end
+				if snoop == "Clear the command chamber: 0/1" then flurb = "Clear the command chamber: 0/1" end
+				if snoop == "Arrive at the Laboratorium Primum: 0/1" then flurb = "Arrive at the Laboratorium Primum: 0/1" end
+				if snoop == "Clear the Laboratorium Primum: 0/1" then flurb = "Clear the Laboratorium Primum: 0/1" end
+				if snoop == "Arrive on the Echelon: 0/1" then flurb = "Arrive on the Echelon: 0/1" end
+				if snoop == "Defeat Gaius van Baelsar: 0/1" then flurb = "Defeat Gaius van Baelsar: 0/1" end
 			end
 			yield("/wait 0.3")
 		end
 		if flurb == "Clear the Laboratorium Primum: 0/1"  and Svc.Condition[26] == false and Player.Available then
-			flurb = GetNodeText("_ToDoList", 25, 3)
+			flurb = Addons.GetAddon("_ToDoList"):GetNode(1, 22003, 6).Text
 --this doesnt work the way i intended so removing it for now.
 			--[[yield("/target Shortcut")
 			yield("/wait 0.5")

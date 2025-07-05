@@ -12,7 +12,6 @@ type this or copy paste it into there:
 /pcraft run start_gooning
 
 --]]
-
 yield("/wait 1")
 
 --loop wait for is char ready 
