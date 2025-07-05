@@ -42,7 +42,7 @@ end
 
 function lob()
 		if Entity.Target and Entity.Target.Name then
-			if Entity.Target.DistanceTo < 5 then
+			if Entity.Target.DistanceTo < 10 then
 				yield("/ac Shield Lob")
 			end
 			--yield("/echo dist to "..nemm.." -> "..Entity.Target.DistanceTo)
@@ -66,7 +66,6 @@ while im_a_lazy_fuck == true do
 		end
 	end
 	if GetCharacterCondition(26) then
-		yield("/vnav stop")
 		--check Y heights. if they aren't within 0.1 yalms then lets press back a bit
 		if Entity.Target and Entity.Target.Name then
 			if (Entity.Target.Position.Y - Entity.Player.Position.Y) > 0.5 and jiggletome > 50 then
@@ -77,6 +76,13 @@ while im_a_lazy_fuck == true do
 				--yield("/echo test 1")
 				checkfood()
 			end
+		end
+		--safe spot is -711.080, 115.388, -84.512
+		if mydistto(-711.080, 115.388, -84.512) < 1 then
+			yield("/vnav stop")
+		end
+		if mydistto(-711.080, 115.388, -84.512) > 10 then
+			PathfindAndMoveTo(-711.080, 115.388, -84.512, false)
 		end
 	end
 	while GetCharacterCondition(26) == false do
