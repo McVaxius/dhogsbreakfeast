@@ -3,6 +3,10 @@ shitty gold farming in west caves
 7.2, 19.4
 
 requires a party of 4 (max) around KL 20
+tank 	dps 	dps 		healer
+knight 	ninja 	time mage 	bard
+
+its shit but it can reach 1k gold per hour with party of 4 "real actual players"
 
 what is intersting is that pathing to name will always path to the first spawn which is up in the corner of hte cave but it will pause to do combat as it goes there
 so it will always complete the loop.  this will work until something about snd/dalamud changes in how lists are made of objects haha.
@@ -42,9 +46,9 @@ end
 
 function lob()
 		if Entity.Target and Entity.Target.Name then
-			if Entity.Target.DistanceTo < 20 then
+			--if Entity.Target.DistanceTo < 30 then
 				yield("/ac Shield Lob")
-			end
+			--end
 			--yield("/echo dist to "..nemm.." -> "..Entity.Target.DistanceTo)
 		end
 end
@@ -107,6 +111,7 @@ while im_a_lazy_fuck == true do
 			nemm = "Crescent Geshunpest"
 			local entity = closest_thing(nemm)
 			entity:SetAsTarget()
+			yield("/send TAB")
 			--closest_thing(nemm)
 			floop = 0
 			if Entity.Target and Entity.Target.Name then WaitForTarget(20,2) end
@@ -122,6 +127,7 @@ while im_a_lazy_fuck == true do
 			--closest_thing(nemm)
 			local entity = closest_thing(nemm)
 			entity:SetAsTarget()
+			yield("/send TAB")
 			--entity:Interact()
 			floop = floop + 1
 			if Entity.Target and Entity.Target.Name then WaitForTarget(20,2) end
