@@ -86,7 +86,7 @@ end
 -----------------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------------
 --------EDITABLE SETTINGS!---------------------------------------------------------------------------------------
-imthecaptainnow = 0  --set this to 1 if this char is the party leader
+imthecaptainnow = 1  --set this to 1 if this char is the party leader
 duty_counter = 0	 --set it to 0 if its the first run of the "day"
 					 --change this if you want to restart a "run" at a higher counter level becuase you were alreaday running it.
 					 --just set it to whatever the last "current duty count" was from echos
@@ -246,7 +246,7 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 		if (Svc.ClientState.TerritoryType ~= 177 and Svc.ClientState.TerritoryType ~= 178 and Svc.ClientState.TerritoryType ~= 179) and Svc.Condition[34] == false and Player.Available then
 			yield("/send ESCAPE")
 			yield("/ad stop") --seems to be needed or we get stuck in repair genjutsu
-			yield("/target Antoinaut") --gridania
+			yield("	` Antoinaut") --gridania
 			yield("/target Mytesyn")   --limsa
 			yield("/target Otopa")     --uldah
 			yield("/wait 1")
@@ -346,7 +346,9 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 			if type(GetTargetName()) == "string" and GetTargetName() == "Shortcut" and Svc.Condition[26] == false and Player.Available then
 				yield("/ad stop")
 				yield("/interact")
-				yield("/vnavmesh moveto "..Target.Entity.Position.X.." "..Target.Entity.Position.Y.." "..Target.Entity.Position.Z)
+				if Entity.Target and Entity.Target.Name then
+					yield("/vnavmesh moveto "..Target.Entity.Position.X.." "..Target.Entity.Position.Y.." "..Target.Entity.Position.Z)
+				end
 				yield("/wait 10")
 				yield("/interact")
 				yield("/bmrai on")
@@ -354,7 +356,9 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 			end
 			if type(GetTargetName()) == "string" and Svc.Condition[26] == false and Player.Available then
 				yield("/interact")
-				yield("/vnavmesh moveto "..Target.Entity.Position.X.." "..Target.Entity.Position.Y.." "..Target.Entity.Position.Z)
+				if Entity.Target and Entity.Target.Name then
+					yield("/vnavmesh moveto "..Target.Entity.Position.X.." "..Target.Entity.Position.Y.." "..Target.Entity.Position.Z)
+				end
 			end
 			if type(GetTargetName()) ~= "string" and Svc.Condition[26] == false and Player.Available then
 				yield("/wait 1.5")

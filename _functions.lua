@@ -2315,3 +2315,7 @@ function WaitForTarget(limit,waitt) --incremenets of 0.1
 		waitcount = waitcount + 1
 	end
 end
+
+function OpenRegularDuty(x)
+	Instances.DutyFinder:OpenRegularDuty(x)
+end
