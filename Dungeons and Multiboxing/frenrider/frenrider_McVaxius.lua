@@ -174,7 +174,8 @@ bossmodAI = ini_check("bossmodAI", "on")						-- do we want bossmodAI to be "on"
 positional_in_combat = ini_check("positional_in_combat", 42)	-- 0 = front, 1 = back, 2 = any, use 42 if you want a table to decide.
 maxAIdistance = ini_check("maxAIdistance", 424242) 				-- distance to targets in combat w BMR, if you dont want to pick, use 424242, otherwise melee 2.6 and caster 10
 limitpct = ini_check("limitpct", -1)							-- What percentage of life on target should we use LB at. It will automatically use LB3 if that's the cap or it will use LB2 if that's the cap, -1 disables it
-rotationplogon = ini_check("rotationplogon", "RSR")				-- Which plogon for rotations? valid options are BMR, VBM, RSR --does wrath have slash commands now? can we add it?
+rotationplogon = ini_check("rotationplogon", "RSR")				-- Which plogon for rotations? valid options are BMR, VBM, RSR, WRATH
+rotationplogon_foray = ini_check("rotationplogon_foray", "WRATH")-- same as above but i recommend wrath as it's the onyl one with phantom job auto
 ----------------------------
 ---EXP / FOOD / REPAIR
 ----------------------------
@@ -290,21 +291,38 @@ if rotationplogon == "BMR" then
 end
 
 --rotation handling
+--rotation handling
 function rhandling()
+	if fake_outdoors_foray == 1 then
+		rotationplogon = rotationplogon_foray
+	end
 	if rotationplogon == "BMR" or rotationplogon == "VBM" then
 		flooppy = "bmr"
 		if rotationplogon == "VBM" then flooppy = "vbm" end
 		yield("/rotation cancel")  --turn off RSR
+		yield("/wrath auto off")  --turn off Wrath
 		if autorotationtype ~= "none" then
 			yield("/"..flooppy.." ar set "..autorotationtype)
 			yield("/bmrai followtarget on")
 			yield("/bmrai followoutofcombat on")
 		end
 	end
-	if rotationplogon == "RSR" then
-		yield("/bmr ar toggle") --turn off Boss Mod
-		if rotationtype ~= "none" then
-			yield("/rotation "..rotationtype)
+	if rotationplogon == "RSR" or rotationplogon == "WRATH" then
+		--yield("/bmr ar toggle") --turn off Boss Mod -- wtf is this?
+		if HasPlugin("BossMod") then yield("/bmr ar set none") end
+		if HasPlugin("BossModReborn") then yield("/vbm ar set none") end
+		yield("/bmrai setpresetname Disabled")
+		if rotationplogon == "RSR" then
+			if rotationtype ~= "none" then
+				yield("/rotation "..rotationtype)
+				yield("/wrath auto off")  --turn off Wrath
+				yield("/bmrai setpresetname AutoDuty Passive")
+			end
+		end
+		if rotationplogon == "WRATH" then
+			yield("/wrath auto on")  --turn on Wrath
+			yield("/rotation cancel")  --turn off RSR
+			yield("/bmrai setpresetname AutoDuty Passive")
 		end
 	end
 end
