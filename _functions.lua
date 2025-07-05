@@ -2319,3 +2319,80 @@ end
 function OpenRegularDuty(x)
 	Instances.DutyFinder:OpenRegularDuty(x)
 end
+
+function BroCheck(index)
+	--check if anyone is dead
+	return Entity.GetPartyMember(index).CurrentHp
+end
+
+--code from Erisen @ https://discord.com/channels/1001823907193552978/1196163718216679514/1391171759621017731
+function closest_thing(name)
+    if EntityWrapper == nil then
+        EntityWrapper = load_type('SomethingNeedDoing.LuaMacro.Wrappers.EntityWrapper')
+    end
+    local closest = nil
+    local distance = nil
+    for i=0,Svc.Objects.Length-1 do
+        local obj = Svc.Objects[i]
+        if obj~=nil and obj.Name.TextValue == name then
+            local t_distance = mydistto(obj)
+            if closest == nil then
+                closest = obj
+                distance = t_distance
+            elseif t_distance < distance then
+                closest = obj
+                distance = t_distance
+            end
+        end
+    end
+    return EntityWrapper(closest)
+end
+function load_type(type_path)
+    local assembly = mysplit(type_path)
+--    log_debug("Loading assembly", assembly)
+    luanet.load_assembly(assembly)
+--    log_debug("Wrapping type", type_path)
+    local type_var = luanet.import_type(type_path)
+--    log_debug("Wrapped type", type_var)
+    return type_var
+end
+function mysplit(inputstr)
+    for str in string.gmatch(inputstr, "[^%.]+") do
+        return str
+    end
+end
+
+
+--[[
+code from nonu https://discord.com/channels/1001823907193552978/1196163718216679514/1385624616734691339
+function FindNearestObjectByName(targetName)
+    local player = Svc.ClientState.LocalPlayer
+    local closestObject = nil
+    local closestDistance = math.huge
+
+    for i = 0, Svc.Objects.Length - 1 do
+        local obj = Svc.Objects[i]
+        if obj ~= nil and obj.Position ~= nil and obj.Name ~= nil then
+            local name = obj.Name.TextValue
+            if string.find(string.lower(name), string.lower(targetName)) then
+                local distance = GetDistance(obj.Position, player.Position)
+                if distance < closestDistance then
+                    closestDistance = distance
+                    closestObject = obj
+                end
+            end
+        end
+    end
+
+    if closestObject then
+        local name = closestObject.Name.TextValue
+        local pos = closestObject.Position
+        LogInfo("[NonuLuaLib] Found nearest '%s': %s (%.2f units) | XYZ: (%.3f, %.3f, %.3f)",
+            targetName, name, closestDistance, pos.X, pos.Y, pos.Z)
+    else
+        LogInfo("[NonuLuaLib] No object matching '%s' found nearby.", targetName)
+    end
+
+    return closestObject, closestDistance
+end
+--]]

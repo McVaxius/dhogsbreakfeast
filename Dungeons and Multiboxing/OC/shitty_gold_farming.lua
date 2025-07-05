@@ -33,7 +33,7 @@ function checkfood()
 		if type(GetItemCount(feedme)) == "number" then
 			if GetItemCount(feedme) > 0 and statoos < 300 then --refresh food if we are below 5 minutes left
 				--yield("/item "..feedmeitem)
-				yield("/wait 0.5")
+				yield("/wait 0.1")
 				Inventory.GetInventoryItem(tonumber(feedme)):Use()
 			end
 		end
@@ -42,7 +42,7 @@ end
 
 function lob()
 		if Entity.Target and Entity.Target.Name then
-			if Entity.Target.DistanceTo < 10 then
+			if Entity.Target.DistanceTo < 20 then
 				yield("/ac Shield Lob")
 			end
 			--yield("/echo dist to "..nemm.." -> "..Entity.Target.DistanceTo)
@@ -103,8 +103,11 @@ while im_a_lazy_fuck == true do
 			--if (Entity.Target.Position.Y - Entity.Player.Position.Y) < 0.1 or Entity.Player.Position.Y > Entity.Target.Position.Y or Entity.Target.DistanceTo < 5 then
 		end
 		if floop > 0 then
-			yield("/target \"Crescent Geshunpest\"")
+			--yield("/target \"Crescent Geshunpest\"")
 			nemm = "Crescent Geshunpest"
+			local entity = closest_thing(nemm)
+			entity:SetAsTarget()
+			--closest_thing(nemm)
 			floop = 0
 			if Entity.Target and Entity.Target.Name then WaitForTarget(20,2) end
 			lob()
@@ -114,8 +117,12 @@ while im_a_lazy_fuck == true do
 			end--]]
 		end
 		if floop == 0 then
-			yield("/target \"Lesser Cry of Havoc\"")
+			--yield("/target \"Lesser Cry of Havoc\"")
 			nemm = "Lesser Cry of Havoc"
+			--closest_thing(nemm)
+			local entity = closest_thing(nemm)
+			entity:SetAsTarget()
+			--entity:Interact()
 			floop = floop + 1
 			if Entity.Target and Entity.Target.Name then WaitForTarget(20,2) end
 			lob()
