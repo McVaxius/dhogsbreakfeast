@@ -19,6 +19,8 @@ Simpletweaks -> targeting fix
 SND -> disable snd targeting + disable addon errors (everything under /target and /waitaddon)
 AD -> Turn off "Leave Duty" and or change to leave only when duty is complete and not path complete
 
+This script placed into your SND folder -> https://raw.githubusercontent.com/McVaxius/dhogsbreakfeast/refs/heads/main/_functions.lua
+
 Yesalready configs (maybe only the first one is needed since the rest are done via callbacks w ya off) also make sure yesalready is on :p ad turns it off sometimes (???)
 	"YesNo"
 		Return to the starting point for the Praetorium?   ※You may be unable to re-enter ongoing battles.
