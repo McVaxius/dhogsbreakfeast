@@ -4,9 +4,9 @@ shitty gold farming in west caves
 
 requires a party of 4 (max) around KL 20 - using wrath as the rotation plogon
 tank 	dps 	dps 		healer
-knight 	thief 	time mage 	bard
+knight 	thief 	time mage 	cannoneer
 
-i got 1120 gold per hour with no +1 gear. will have some +1 gear soon and will update
+i am getting closer to 1200 gold per hour with +1 gear on two slots per char
 
 its shit but it can reach 1k gold per hour with party of 4 "real actual players"
 
@@ -59,11 +59,13 @@ while im_a_lazy_fuck == true do
 	yield("/wait 0.1")
 	floop = 0
 	jiggletome = jiggletome + 1
+	--[[
 	morejiggle = morejiggle + 1
 	if morejiggle > 5 then
 		yield("/generalaction \"Phantom Action III\"") --counterstance on monk
 		morejiggle = 0
 	end
+	--]]
 	if GetCharacterCondition(26) == false then
 		if jiggletome > 50 then
 			--yield("/echo test 2")
@@ -84,15 +86,27 @@ while im_a_lazy_fuck == true do
 			end
 		end
 		--safe spot is -711.080, 115.388, -84.512
-		while mydistto(-711.080, 115.388, -84.512) > 10 do
+		dontfightwithBM = 0
+		while mydistto(-711.080, 115.388, -84.512) > 15 and dontfightwithBM < 10 do
 			if mydistto(-711.080, 115.388, -84.512) > 10 and IPC.vnavmesh.IsRunning() == false then PathfindAndMoveTo(-711.080, 115.388, -84.512, false) end
-			if mydistto(-711.080, 115.388, -84.512) < 1 then
+			if mydistto(-711.080, 115.388, -84.512) < 10 then
+				dontfightwithBM = dontfightwithBM + 1
+			end
+			if mydistto(-711.080, 115.388, -84.512) < 1 and dontfightwithBM < 10 then
+				dontfightwithBM = dontfightwithBM + 1
 				yield("/vnav stop")
 				zoop = 0
 				while Svc.Condition[26] and zoop < 100 do
 					yield("/wait 0.1")
 					zoop = zoop + 1
 					zoop = 0
+				end
+				if dontfightwithBM > 5 then
+					while Svc.Condition[26] and zoop < 100 do
+						yield("/wait 0.1")
+						zoop = zoop + 1
+						zoop = 0
+					end
 				end
 			end
 			yield("/wait 0.1")
