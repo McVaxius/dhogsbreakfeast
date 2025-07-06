@@ -332,6 +332,7 @@ function rhandling()
 				--random chance
 				if getRandomNumber(1,5) < 2 then
 					yield("/send KEY_1") -- who knows what it is. it will activate something
+					yield("/echo attempting to attack")
 				end
 			end
 		end
