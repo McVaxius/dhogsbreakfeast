@@ -330,7 +330,7 @@ function rhandling()
 			end
 			if statoos > 0 then
 				--random chance
-				if getRandomNumber(1,5) < 2 then
+				if getRandomNumber(1,7) < 2 then
 					yield("/send KEY_1") -- who knows what it is. it will activate something
 					yield("/echo attempting to attack")
 				end

@@ -84,10 +84,16 @@ while im_a_lazy_fuck == true do
 			end
 		end
 		--safe spot is -711.080, 115.388, -84.512
-		while mydistto(-711.080, 115.388, -84.512) > 15 do
+		while mydistto(-711.080, 115.388, -84.512) > 10 do
 			if IPC.vnavmesh.IsRunning() == false then PathfindAndMoveTo(-711.080, 115.388, -84.512, false) end
 			if mydistto(-711.080, 115.388, -84.512) < 1 then
 				yield("/vnav stop")
+				zoop = 0
+				while Svc.Condition[26] and zoop < 100 do
+					yield("/wait 0.1")
+					zoop = zoop + 1
+					zoop = 0
+				end
 			end
 			yield("/wait 0.1")
 		end
