@@ -37,6 +37,7 @@ feedme = 46003
 statoos = 0
 nemm = "hehe"
 farreacher = 0
+fuck = 0
 
 function checkfood()
 	--Food check!
@@ -45,7 +46,7 @@ function checkfood()
 		if type(GetItemCount(feedme)) == "number" then
 			if GetItemCount(feedme) > 0 and statoos < 300 then --refresh food if we are below 5 minutes left
 				--yield("/item "..feedmeitem)
-				yield("/wait 0.1")
+				yield("/wait 0.03")
 				Inventory.GetInventoryItem(tonumber(feedme)):Use()
 			end
 		end
@@ -53,12 +54,13 @@ function checkfood()
 end
 
 function lob()
-		if Entity.Target and Entity.Target.Name then
-			--if Entity.Target.DistanceTo < 30 then
-				yield("/ac Shield Lob")
-			--end
-			--yield("/echo dist to "..nemm.." -> "..Entity.Target.DistanceTo)
-		end
+	if Entity.Target and Entity.Target.Name then
+		--if Entity.Target.DistanceTo < 30 then
+			yield("/ac Shield Lob")
+			yield("/autoattack")
+		--end
+		--yield("/echo dist to "..nemm.." -> "..Entity.Target.DistanceTo)
+	end
 end
 
 directions = {
@@ -67,7 +69,7 @@ directions = {
 directioncounter = 1
 
 while im_a_lazy_fuck == true do
-	yield("/wait 0.1")
+	yield("/wait 0.03")
 	floop = 0
 	jiggletome = jiggletome + 1
 	--[[
@@ -85,8 +87,10 @@ while im_a_lazy_fuck == true do
 		end
 	end
 	if GetCharacterCondition(26) then
-		--check Y heights. if they aren't within 0.1 yalms then lets press back a bit
+				yield("/vnav stop")
+		--check Y heights. if they aren't within 0.03 yalms then lets press back a bit
 		if Entity.Target and Entity.Target.Name then
+		--[[
 			if (Entity.Target.Position.Y - Entity.Player.Position.Y) > 0.5 and jiggletome > 50 then
 				yield("/hold S")
 				yield("/wait 0.5")
@@ -95,8 +99,10 @@ while im_a_lazy_fuck == true do
 				--yield("/echo test 1")
 				checkfood()
 			end
+			--]]
 		end
 		--safe spot is -711.080, 115.388, -84.512
+		--[[
 		dontfightwithBM = 0
 		while mydistto(-711.080, 115.388, -84.512) > 10 and dontfightwithBM < 10 do
 			dontfightwithBM = dontfightwithBM + 0.05
@@ -109,20 +115,21 @@ while im_a_lazy_fuck == true do
 				yield("/vnav stop")
 				zoop = 0
 				while Svc.Condition[26] and zoop < 100 do
-					yield("/wait 0.1")
+					yield("/wait 0.03")
 					zoop = zoop + 1
 					zoop = 0
 				end
 				if dontfightwithBM > 5 then
 					while Svc.Condition[26] and zoop < 100 do
-						yield("/wait 0.1")
+						yield("/wait 0.03")
 						zoop = zoop + 1
 						zoop = 0
 					end
 				end
 			end
-			yield("/wait 0.1")
+			yield("/wait 0.03")
 		end
+		--]]
 	end
 	while GetCharacterCondition(26) == false do
 		--[[morejiggle = morejiggle + 1
@@ -131,14 +138,14 @@ while im_a_lazy_fuck == true do
 			morejiggle = 0
 		end--]]
 		farreacher = farreacher + 1
-		yield("/wait 0.1")
+		yield("/wait 0.03")
 		yield("/ac sprint")
 		statoos = GetStatusTimeRemaining(44) --brink of death (50%) --dont vnav if we recently died we need to chill until it goes away
 		if statoos == 0 then
 			statoos = GetStatusTimeRemaining(43) --weakness from first death 25%
 		end
 		if Entity.Target and Entity.Target.Name then
-			--if (Entity.Target.Position.Y - Entity.Player.Position.Y) < 0.1 or Entity.Player.Position.Y > Entity.Target.Position.Y or Entity.Target.DistanceTo < 5 then
+			--if (Entity.Target.Position.Y - Entity.Player.Position.Y) < 0.03 or Entity.Player.Position.Y > Entity.Target.Position.Y or Entity.Target.DistanceTo < 5 then
 		end
 		if floop > 0 then
 			--yield("/target \"Crescent Geshunpest\"")
@@ -148,14 +155,19 @@ while im_a_lazy_fuck == true do
 			--[[
 			directioncounter = directioncounter + 1
 			yield("/hold "..directions[directioncounter])
-			yield("/wait 0.1")
+			yield("/wait 0.03")
 			yield("/release "..directions[directioncounter])
 			yield("/send END")--]]
+			yield("/hold LEFT")
+			yield("/hold UP")
+			yield("/wait 0.03")
+			yield("/release LEFT")
+			yield("/release UP")
 			yield("/send TAB")
 			if directioncounter == 4 then directioncounter = 1 end
 			--closest_thing(nemm)
 			floop = 0
-			if Entity.Target and Entity.Target.Name then WaitForTarget(20,2) end
+			--if Entity.Target and Entity.Target.Name then WaitForTarget(2,2) end
 			lob()
 			--[[if statoos == 0 then
 				--PathtoName(nemm)
@@ -172,23 +184,50 @@ while im_a_lazy_fuck == true do
 			--[[
 			directioncounter = directioncounter + 1
 			yield("/hold "..directions[directioncounter])
-			yield("/wait 0.1")
+			yield("/wait 0.03")
 			yield("/release "..directions[directioncounter])
 			yield("/send END")--]]
+			yield("/hold LEFT")
+			yield("/hold UP")
+			yield("/wait 0.03")
+			yield("/release LEFT")
+			yield("/release UP")
 			yield("/send TAB")
 			if directioncounter == 4 then directioncounter = 1 end
 			--entity:Interact()
 			floop = floop + 1
-			if Entity.Target and Entity.Target.Name then WaitForTarget(20,2) end
+			--if Entity.Target and Entity.Target.Name then WaitForTarget(2,2) end
 			lob()
 			if statoos == 0 then
 				PathtoTarget(5)
 			end
 		end
-		if statoos == 0 and farreacher > 15 then --every 15 sec we will shif tif we stuck
-			PathtoName(nemm)  --this seems to be a source of grief and displeasure
+		if statoos == 0 and farreacher > 3 then --every 3 sec we will shift if we stuck
+			if fuck == 0 then fuck = getRandomNumber(1,2) end
+			if fuck == 4 then fuck = 2 end
+			if fuck == 3 then fuck = 1 end
+			if fuck == 1 then 
+				--PathfindAndMoveTo(-710.9921875, 116.20941925049, -95.165382385254, false)
+				PathfindAndMoveTo(-766.90051269531, 89.673217773438, -0.038971096277237, false)
+				fuck = 4
+				--yield("/wait 4")
+				waitforcombat(40)
+			end
+			if fuck == 2 then
+				PathtoName(nemm)
+				fuck = 3
+				yield("/wait 3")
+				waitforcombat(30)
+			end --this seems to be a source of grief and displeasure
+--			if mydistto(-711.080, 115.388, -84.512) > 100 then
+			if mydistto(-766.90051269531, 89.673217773438, -0.038971096277237) > 100 then
+				--PathfindAndMoveTo(-710.9921875, 116.20941925049, -95.165382385254, false)
+				PathfindAndMoveTo(-766.90051269531, 89.673217773438, -0.038971096277237, false)
+				--yield("/wait 10")
+				waitforcombat(100)
+			end
 			farreacher = 0
-			yield("/wait 3")
+			yield("/echo lets wander a bit and see whats up....")
 			yield("/vnav stop")
 		end
 		if statoos > 0 then

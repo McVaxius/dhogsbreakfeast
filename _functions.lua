@@ -2398,3 +2398,15 @@ function FindNearestObjectByName(targetName)
     return closestObject, closestDistance
 end
 --]]
+
+function waitforcombat(x)
+	xx = 0
+	while Svc.Condition[26] == false and xx < x do  
+		yield("/wait 0.1")
+		xx = xx + 1
+		yield("/send TAB")
+		yield("/ac Shield Lob")
+	end
+	yield("/vnav stop")
+	
+end
