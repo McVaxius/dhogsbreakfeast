@@ -85,7 +85,7 @@ while im_a_lazy_fuck == true do
 		end
 		--safe spot is -711.080, 115.388, -84.512
 		while mydistto(-711.080, 115.388, -84.512) > 10 do
-			if IPC.vnavmesh.IsRunning() == false then PathfindAndMoveTo(-711.080, 115.388, -84.512, false) end
+			if mydistto(-711.080, 115.388, -84.512) > 10 and IPC.vnavmesh.IsRunning() == false then PathfindAndMoveTo(-711.080, 115.388, -84.512, false) end
 			if mydistto(-711.080, 115.388, -84.512) < 1 then
 				yield("/vnav stop")
 				zoop = 0
@@ -99,11 +99,11 @@ while im_a_lazy_fuck == true do
 		end
 	end
 	while GetCharacterCondition(26) == false do
-		morejiggle = morejiggle + 1
+		--[[morejiggle = morejiggle + 1
 		if morejiggle > 5 then
 			yield("/generalaction \"Phantom Action III\"") --counterstance on monk
 			morejiggle = 0
-		end
+		end--]]
 		farreacher = farreacher + 1
 		yield("/wait 0.1")
 		yield("/ac sprint")
