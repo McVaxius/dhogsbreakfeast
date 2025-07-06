@@ -2326,6 +2326,8 @@ function BroCheck(index)
 end
 
 --code from Erisen @ https://discord.com/channels/1001823907193552978/1196163718216679514/1391171759621017731
+--Erisen — 6:27 PM
+--looks like there should just be a .IsDead or .IsTargetable which might be what you want to check for
 function closest_thing(name)
     if EntityWrapper == nil then
         EntityWrapper = load_type('SomethingNeedDoing.LuaMacro.Wrappers.EntityWrapper')

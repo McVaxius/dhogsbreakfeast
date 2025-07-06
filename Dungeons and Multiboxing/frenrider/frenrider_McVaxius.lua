@@ -323,6 +323,17 @@ function rhandling()
 			yield("/wrath auto on")  --turn on Wrath
 			yield("/rotation cancel")  --turn off RSR
 			yield("/bmrai setpresetname AutoDuty Passive")
+			--wrath doesn't auto start combos after death in some cases. so let's force that
+			statoos = GetStatusTimeRemaining(44) --brink of death (50%) --dont vnav if we recently died we need to chill until it goes away
+			if statoos == 0 then
+				statoos = GetStatusTimeRemaining(43) --weakness from first death 25%
+			end
+			if statoos > 0 then
+				--random chance
+				if getRandomNumber(1,5) < 2 then
+					yield("/send KEY_1") -- who knows what it is. it will activate something
+				end
+			end
 		end
 	end
 end

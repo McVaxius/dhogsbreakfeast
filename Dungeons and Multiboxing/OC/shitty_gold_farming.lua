@@ -2,9 +2,11 @@
 shitty gold farming in west caves
 7.2, 19.4
 
-requires a party of 4 (max) around KL 20
+requires a party of 4 (max) around KL 20 - using wrath as the rotation plogon
 tank 	dps 	dps 		healer
-knight 	ninja 	time mage 	bard
+knight 	thief 	time mage 	bard
+
+i got 1120 gold per hour with no +1 gear. will have some +1 gear soon and will update
 
 its shit but it can reach 1k gold per hour with party of 4 "real actual players"
 
