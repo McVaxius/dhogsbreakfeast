@@ -6,7 +6,13 @@ requires a party of 4 (max) around KL 20 - using wrath as the rotation plogon
 tank 	dps 	dps 		healer
 knight 	thief 	time mage 	cannoneer
 
-i am getting closer to 1200 gold per hour with +1 gear on two slots per char
+i am getting closer to 1300 gold per hour with +1 gear on three slots per char
+w 0 it was around 1120
+w 1 it was around 1150
+w 2 it was around 1200
+w 3 it was around 1300
+w 4 it was around ?
+w 5 i didn't test im done for now.
 
 its shit but it can reach 1k gold per hour with party of 4 "real actual players"
 
@@ -55,6 +61,11 @@ function lob()
 		end
 end
 
+directions = {
+"W","A","S","D"
+}
+directioncounter = 1
+
 while im_a_lazy_fuck == true do
 	yield("/wait 0.1")
 	floop = 0
@@ -87,12 +98,13 @@ while im_a_lazy_fuck == true do
 		end
 		--safe spot is -711.080, 115.388, -84.512
 		dontfightwithBM = 0
-		while mydistto(-711.080, 115.388, -84.512) > 15 and dontfightwithBM < 10 do
+		while mydistto(-711.080, 115.388, -84.512) > 10 and dontfightwithBM < 10 do
+			dontfightwithBM = dontfightwithBM + 0.05
 			if mydistto(-711.080, 115.388, -84.512) > 10 and IPC.vnavmesh.IsRunning() == false then PathfindAndMoveTo(-711.080, 115.388, -84.512, false) end
 			if mydistto(-711.080, 115.388, -84.512) < 10 then
 				dontfightwithBM = dontfightwithBM + 1
 			end
-			if mydistto(-711.080, 115.388, -84.512) < 1 and dontfightwithBM < 10 then
+			if mydistto(-711.080, 115.388, -84.512) < 5 and dontfightwithBM < 10 then
 				dontfightwithBM = dontfightwithBM + 1
 				yield("/vnav stop")
 				zoop = 0
@@ -133,7 +145,14 @@ while im_a_lazy_fuck == true do
 			nemm = "Crescent Geshunpest"
 			local entity = closest_thing(nemm)
 			entity:SetAsTarget()
+			--[[
+			directioncounter = directioncounter + 1
+			yield("/hold "..directions[directioncounter])
+			yield("/wait 0.1")
+			yield("/release "..directions[directioncounter])
+			yield("/send END")--]]
 			yield("/send TAB")
+			if directioncounter == 4 then directioncounter = 1 end
 			--closest_thing(nemm)
 			floop = 0
 			if Entity.Target and Entity.Target.Name then WaitForTarget(20,2) end
@@ -149,7 +168,15 @@ while im_a_lazy_fuck == true do
 			--closest_thing(nemm)
 			local entity = closest_thing(nemm)
 			entity:SetAsTarget()
+			directioncounter = directioncounter + 1
+			--[[
+			directioncounter = directioncounter + 1
+			yield("/hold "..directions[directioncounter])
+			yield("/wait 0.1")
+			yield("/release "..directions[directioncounter])
+			yield("/send END")--]]
 			yield("/send TAB")
+			if directioncounter == 4 then directioncounter = 1 end
 			--entity:Interact()
 			floop = floop + 1
 			if Entity.Target and Entity.Target.Name then WaitForTarget(20,2) end
@@ -159,8 +186,10 @@ while im_a_lazy_fuck == true do
 			end
 		end
 		if statoos == 0 and farreacher > 15 then --every 15 sec we will shif tif we stuck
-			PathtoName(nemm)
+			PathtoName(nemm)  --this seems to be a source of grief and displeasure
 			farreacher = 0
+			yield("/wait 3")
+			yield("/vnav stop")
 		end
 		if statoos > 0 then
 			yield("/vnav stop")
