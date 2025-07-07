@@ -288,6 +288,10 @@ function Final_GC_Cleaning()
 	
 	--loop until deliveroo done if we aren't using the hack.
 --	if FUTA_processors[hoo_arr_weeeeee][3][4] == 0 then
+
+--thanks for this info @Kiarra
+--*IPC.AutoRetainer.EnqueueInitiation() and dellyroo = IPC.AutoRetainer.IsBusy() is what you want
+
 		dellyroo = true
 		dellyroo = DeliverooIsTurnInRunning()
 		dellycount = 0
