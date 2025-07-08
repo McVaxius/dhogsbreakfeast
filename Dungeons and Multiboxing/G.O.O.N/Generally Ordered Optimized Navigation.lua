@@ -343,27 +343,29 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 			yield("/wait 0.5")
 			yield("/interact")
 			yield("/wait 0.5")
-			if type(GetTargetName()) == "string" and GetTargetName() == "Shortcut" and Svc.Condition[26] == false and Player.Available then
-				yield("/ad stop")
-				yield("/interact")
-				if Entity.Target and Entity.Target.Name then
-					yield("/vnavmesh moveto "..Target.Entity.Position.X.." "..Target.Entity.Position.Y.." "..Target.Entity.Position.Z)
+			if Entity.Target and Entity.Target.Name then
+				if type(GetTargetName()) == "string" and GetTargetName() == "Shortcut" and Svc.Condition[26] == false and Player.Available then
+					yield("/ad stop")
+					yield("/interact")
+					if Entity.Target and Entity.Target.Name then
+						yield("/vnavmesh moveto "..Target.Entity.Position.X.." "..Target.Entity.Position.Y.." "..Target.Entity.Position.Z)
+					end
+					yield("/wait 10")
+					yield("/interact")
+					yield("/bmrai on")
+					yield("/rotation auto")
 				end
-				yield("/wait 10")
-				yield("/interact")
-				yield("/bmrai on")
-				yield("/rotation auto")
-			end
-			if type(GetTargetName()) == "string" and Svc.Condition[26] == false and Player.Available then
-				yield("/interact")
-				if Entity.Target and Entity.Target.Name then
-					yield("/vnavmesh moveto "..Target.Entity.Position.X.." "..Target.Entity.Position.Y.." "..Target.Entity.Position.Z)
+				if type(GetTargetName()) == "string" and Svc.Condition[26] == false and Player.Available then
+					yield("/interact")
+					if Entity.Target and Entity.Target.Name then
+						yield("/vnavmesh moveto "..Target.Entity.Position.X.." "..Target.Entity.Position.Y.." "..Target.Entity.Position.Z)
+					end
 				end
-			end
-			if type(GetTargetName()) ~= "string" and Svc.Condition[26] == false and Player.Available then
-				yield("/wait 1.5")
-				yield("/target Gaius")
-				yield("/wait 1.5")
+				if type(GetTargetName()) ~= "string" and Svc.Condition[26] == false and Player.Available then
+					yield("/wait 1.5")
+					yield("/target Gaius")
+					yield("/wait 1.5")
+				end
 			end
 		end
 		--
@@ -435,20 +437,22 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 	end
 
 	if Svc.Condition[4] == false and Svc.Condition[26] == true then
-		if type(GetTargetName()) ~= "string" then
-			TargetClosestEnemy()
-			--yield("/vnav stop")
-			--yield("/ad pause")
-			yield("/wait 0.5")
-			--[[jigglecounter = 0 -- we reset the jiggle counter while we are in combat. combat is good means we are doing something productive
-			if echo_level < 1 then yield("/echo stopping vnav for combat") end
-			if echo_level < 1 then yield("/echo pausing AD for combat") end
-			yield("/vnavmesh moveto "..Target.Entity.Position.X.." "..Target.Entity.Position.Y.." "..Target.Entity.Position.Z)
-			yield("/wait 5")
-			yield("/vnav stop")
-			yield("/wait 0.5")
-			yield("/ad resume")
-			if echo_level < 1 then yield("/echo resuming AD") end--]]
+		if Entity.Target and Entity.Target.Name then
+			if type(GetTargetName()) ~= "string" then
+				TargetClosestEnemy()
+				--yield("/vnav stop")
+				--yield("/ad pause")
+				yield("/wait 0.5")
+				--[[jigglecounter = 0 -- we reset the jiggle counter while we are in combat. combat is good means we are doing something productive
+				if echo_level < 1 then yield("/echo stopping vnav for combat") end
+				if echo_level < 1 then yield("/echo pausing AD for combat") end
+				yield("/vnavmesh moveto "..Target.Entity.Position.X.." "..Target.Entity.Position.Y.." "..Target.Entity.Position.Z)
+				yield("/wait 5")
+				yield("/vnav stop")
+				yield("/wait 0.5")
+				yield("/ad resume")
+				if echo_level < 1 then yield("/echo resuming AD") end--]]
+			end
 		end
 	end
 	
