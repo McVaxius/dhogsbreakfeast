@@ -233,10 +233,11 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 			if NeedsRepair(tornclothes) and GetItemCount(1) > 4999 and Svc.Condition[34] == false and Svc.Condition[56] == false then --only do this outside of a duty yo
 				yield("/ad repair")
 				goatcounter = 0
-				for goatcounter=1,30 do
-					yield("/wait 0.5")
-					yield("/callback _Notification true 0 17")
-					yield("/callback ContentsFinderConfirm true 9")
+				while NeedsRepair(tornclothes) and goatcounter < 3600 do
+					yield("/wait 0.05")
+					if IsAddonVisible("_Notification") then yield("/callback _Notification true 0 17") end
+					if IsAddonVisible("ContentsFinderConfirm") then yield("/callback ContentsFinderConfirm true 9") end
+					goatcounter = goatcounter + 1
 				end
 				yield("/ad stop")
 			end
@@ -246,27 +247,27 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 		if (Svc.ClientState.TerritoryType ~= 177 and Svc.ClientState.TerritoryType ~= 178 and Svc.ClientState.TerritoryType ~= 179) and Svc.Condition[34] == false and Player.Available then
 			yield("/send ESCAPE")
 			yield("/ad stop") --seems to be needed or we get stuck in repair genjutsu
-			yield("	` Antoinaut") --gridania
+			yield("/target Antoinaut") --gridania
 			yield("/target Mytesyn")   --limsa
 			yield("/target Otopa")     --uldah
 			yield("/wait 1")
-			if type(Svc.Condition[34]) == "boolean" and  Svc.Condition[34] == false and Player.Available then
+			if type(Svc.Condition[34]) == "boolean" and Svc.Condition[34] == false and Player.Available then
 				yield("/lockon on")
 				yield("/automove")
 			end
 			yield("/wait 2.5")
-			if type(Svc.Condition[34]) == "boolean" and  Svc.Condition[34] == false and Player.Available then
-				yield("/callback _Notification true 0 17")
-				yield("/callback ContentsFinderConfirm true 9")
+			if type(Svc.Condition[34]) == "boolean" and Svc.Condition[34] == false and Player.Available then
+				if IsAddonVisible("_Notification") then yield("/callback _Notification true 0 17") end
+				if IsAddonVisible("ContentsFinderConfirm") then yield("/callback ContentsFinderConfirm true 9") end
 				yield("/interact")
 			end
 			yield("/wait 1")
-			if type(Svc.Condition[34]) == "boolean" and  Svc.Condition[34] == false and Player.Available then
-				yield("/callback _Notification true 0 17")
-				yield("/callback ContentsFinderConfirm true 9")
+			if type(Svc.Condition[34]) == "boolean" and Svc.Condition[34] == false and Player.Available then
+				if IsAddonVisible("_Notification") then yield("/callback _Notification true 0 17") end
+				if IsAddonVisible("ContentsFinderConfirm") then yield("/callback ContentsFinderConfirm true 9") end
 				yield("/callback SelectIconString true 0")
-				yield("/callback _Notification true 0 17")
-				yield("/callback ContentsFinderConfirm true 9")
+				if IsAddonVisible("_Notification") then yield("/callback _Notification true 0 17") end
+				if IsAddonVisible("ContentsFinderConfirm") then yield("/callback ContentsFinderConfirm true 9") end
 				yield("/callback SelectString true 0")
 				yield("/wait 1")
 			end

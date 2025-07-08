@@ -2408,5 +2408,4 @@ function waitforcombat(x)
 		yield("/ac Shield Lob")
 	end
 	yield("/vnav stop")
-	
 end
