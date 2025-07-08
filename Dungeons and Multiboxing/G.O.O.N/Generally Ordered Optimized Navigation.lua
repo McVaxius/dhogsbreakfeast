@@ -338,14 +338,12 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 			yield("/target Shortcut")
 			yield("/wait 0.5")
 			yield("/interact")
-			yield("/hold W")
-			yield("/wait 2")
-			yield("/release W")
-			yield("/wait 0.5")
+			yield("/automove on")
+			yield("/wait 3")
 			yield("/interact")
 			yield("/wait 0.5")
 			if Entity.Target and Entity.Target.Name then
-				if type(GetTargetName()) == "string" and GetTargetName() == "Shortcut" and Svc.Condition[26] == false and Player.Available then
+				if GetTargetName() == "Shortcut" and Svc.Condition[26] == false and Player.Available then
 					yield("/ad stop")
 					yield("/interact")
 					if Entity.Target and Entity.Target.Name then
@@ -357,19 +355,17 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 					yield("/rotation auto")
 				end
 				if Entity.Target and Entity.Target.Name then
-					if type(GetTargetName()) == "string" and Svc.Condition[26] == false and Player.Available then
+					if Svc.Condition[26] == false and Player.Available then
 						yield("/interact")
 						if Entity.Target and Entity.Target.Name then
 							yield("/vnavmesh moveto "..Target.Entity.Position.X.." "..Target.Entity.Position.Y.." "..Target.Entity.Position.Z)
 						end
 					end
 				end
-				if Entity.Target and Entity.Target.Name then
-					if type(GetTargetName()) ~= "string" and Svc.Condition[26] == false and Player.Available then
-						yield("/wait 1.5")
-						yield("/target Gaius")
-						yield("/wait 1.5")
-					end
+				if Svc.Condition[26] == false and Player.Available then
+					yield("/wait 1.5")
+					yield("/target Gaius")
+					yield("/wait 1.5")
 				end
 			end
 		end
