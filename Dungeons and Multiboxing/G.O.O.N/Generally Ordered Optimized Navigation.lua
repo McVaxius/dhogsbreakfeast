@@ -359,6 +359,7 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 				if Entity.Target and Entity.Target.Name then
 					if Svc.Condition[26] == false and Player.Available then
 						yield("/interact")
+						yield("/wait 0.5")
 						if Entity.Target and Entity.Target.Name then
 							yield("/vnavmesh moveto "..Target.Entity.Position.X.." "..Target.Entity.Position.Y.." "..Target.Entity.Position.Z)
 						end
@@ -368,6 +369,9 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 					yield("/wait 1.5")
 					yield("/target Gaius")
 					yield("/wait 1.5")
+					if Entity.Target and Entity.Target.Name then
+						yield("/vnav stop")
+					end
 				end
 			end
 		end
