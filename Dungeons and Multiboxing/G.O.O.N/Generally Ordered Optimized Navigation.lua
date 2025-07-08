@@ -356,16 +356,20 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 					yield("/bmrai on")
 					yield("/rotation auto")
 				end
-				if type(GetTargetName()) == "string" and Svc.Condition[26] == false and Player.Available then
-					yield("/interact")
-					if Entity.Target and Entity.Target.Name then
-						yield("/vnavmesh moveto "..Target.Entity.Position.X.." "..Target.Entity.Position.Y.." "..Target.Entity.Position.Z)
+				if Entity.Target and Entity.Target.Name then
+					if type(GetTargetName()) == "string" and Svc.Condition[26] == false and Player.Available then
+						yield("/interact")
+						if Entity.Target and Entity.Target.Name then
+							yield("/vnavmesh moveto "..Target.Entity.Position.X.." "..Target.Entity.Position.Y.." "..Target.Entity.Position.Z)
+						end
 					end
 				end
-				if type(GetTargetName()) ~= "string" and Svc.Condition[26] == false and Player.Available then
-					yield("/wait 1.5")
-					yield("/target Gaius")
-					yield("/wait 1.5")
+				if Entity.Target and Entity.Target.Name then
+					if type(GetTargetName()) ~= "string" and Svc.Condition[26] == false and Player.Available then
+						yield("/wait 1.5")
+						yield("/target Gaius")
+						yield("/wait 1.5")
+					end
 				end
 			end
 		end
