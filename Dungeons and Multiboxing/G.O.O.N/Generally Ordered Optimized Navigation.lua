@@ -14,6 +14,8 @@ Vnavmesh
 Simpletweaks
 
 Configurations (NOT OPTIONAL.  THEY ARE ABSOLUTELY MANDATORY)
+game -> don't have it in controller mode or it will start chatting (!?!?!?!?!?!) Thanks @Arcorius for this
+
 Pandora -> actually have this disabled it causes problems.
 Simpletweaks -> targeting fix
 SND -> disable snd targeting + disable addon errors (everything under /target and /waitaddon)
