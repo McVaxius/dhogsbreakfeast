@@ -2250,7 +2250,7 @@ end
 
 function TargetClosestEnemy()
 	--* who knows
-	yield("/keypress TAB")
+	yield("/send TAB")
 end
 
 function GetPartyMemberName(gpmi)
