@@ -98,7 +98,8 @@ feedme = 4745		 --itemID for food to eat. use simple tweaks ShowID to find it (t
 feedmeitem = "Orange Juice"  --add the <hq> if its HQ
 --feedmeitem = "Baked Eggplant<hq>"  --remove the <hq> if its not HQ
 
-tornclothes = 25 --pct to try to repair at
+--tornclothes = 25 --pct to try to repair at
+tornclothes = -1 --pct to try to repair at
 finickyclothes = 0 --0 = dont auto equip, 1 = autoequip, useful if you have bis that isnt max level, default set to NOT equip so peopel can manage their BIS
 
 --bm_preset = "AutoDuty" --if you set it to "none" it wont use bmr. this is for the preset to use.
@@ -232,7 +233,7 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 				end
 			end
 			--JUST OUTSIDE THE INN REPAIR
-			if NeedsRepair(tornclothes) and GetItemCount(1) > 4999 and Svc.Condition[34] == false and Svc.Condition[56] == false then --only do this outside of a duty yo
+			if NeedsRepair(tornclothes) and tornclothes > -1 and GetItemCount(1) > 4999 and Svc.Condition[34] == false and Svc.Condition[56] == false then --only do this outside of a duty yo
 				yield("/ad repair")
 				goatcounter = 0
 				while NeedsRepair(tornclothes) and goatcounter < 3600 do
