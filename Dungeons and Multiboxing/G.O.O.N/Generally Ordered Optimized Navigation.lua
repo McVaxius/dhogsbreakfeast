@@ -88,7 +88,7 @@ end
 -----------------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------------
 --------EDITABLE SETTINGS!---------------------------------------------------------------------------------------
-imthecaptainnow = 1  --set this to 1 if this char is the party leader
+imthecaptainnow = 0  --set this to 1 if this char is the party leader
 duty_counter = 0	 --set it to 0 if its the first run of the "day"
 					 --change this if you want to restart a "run" at a higher counter level becuase you were alreaday running it.
 					 --just set it to whatever the last "current duty count" was from echos
@@ -360,9 +360,9 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 					if Svc.Condition[26] == false and Player.Available then
 						yield("/interact")
 						yield("/wait 0.5")
-						if Entity.Target and Entity.Target.Name then
+						--[[if Entity.Target and Entity.Target.Name then
 							yield("/vnavmesh moveto "..Target.Entity.Position.X.." "..Target.Entity.Position.Y.." "..Target.Entity.Position.Z)
-						end
+						end--]]
 					end
 				end
 				if Svc.Condition[26] == false and Player.Available then
