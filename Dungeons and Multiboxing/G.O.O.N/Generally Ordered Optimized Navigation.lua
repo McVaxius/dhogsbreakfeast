@@ -18,7 +18,6 @@ game -> don't have it in controller mode or it will start chatting (!?!?!?!?!?!)
 
 Pandora -> actually have this disabled it causes problems.
 Simpletweaks -> targeting fix
-SND -> disable snd targeting + disable addon errors (everything under /target and /waitaddon)
 AD -> Turn off "Leave Duty" and or change to leave only when duty is complete and not path complete
 
 This script placed into your SND folder -> https://raw.githubusercontent.com/McVaxius/dhogsbreakfeast/refs/heads/main/_functions.lua
@@ -157,425 +156,295 @@ end
 while 1 == 1 do
 	yield("/wait 1.5") --the big wait. run the entire fucking script every ? seconds
 	
---safe check ifs
-if Player.Available then
-if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean" and type(Svc.Condition[4]) == "boolean" then
---
-	--decide if we are going to bailout - logic stolen from Ritsuko <3
-	zoneleft = GetContentTimeLeft()
-	if type(zoneleft) == "number" and zoneleft > 100 then
-		if zoneleft > maxzone then
-			maxzone = zoneleft
-			--force_rotation() --refresh the rotationtype when we do this
-		end
-		inprae = maxzone - zoneleft
-		if inprae > hardened_sock and Svc.Condition[26] == false then
-			yield("/echo We bailed from duty -> "..duty_counter)
-			NavRebuild()
-			while not NavIsReady() do
-				yield("/wait 1")
-			end
-			leaveDuty()
-		end
-	end
-
-	if Svc.Condition[34] == false then yield("/callback SelectYesno true 0") end	--is there some bullshit and yesalready was disabled outside of the duty? 
-	maxzone = 0--reset the timer for inside prae
-
-	--Food check!
-	statoos = GetStatusTimeRemaining(48)
-	---yield("/echo "..statoos)
-	if type(GetItemCount(feedme)) == "number" then
-		if GetItemCount(feedme) > 0 and statoos < 90 and Svc.Condition[34] == false then --refresh food if we are below 15 minutes left
-			yield("/item "..feedmeitem)
-			yield("/echo Attempting to eat "..feedmeitem)
-			yield("/wait 0.5")
-		end
-	end
-
-	--Do we need repairs? only check outside of duty.
-	--check every 0.3 seconds 8 times so total looop is 2.4 seconds
-	goat = 0
-	while goat < 9 and Svc.Condition[34] == false do
-		goat = goat + 1
-		yield("/wait 0.3")
-		if Svc.Condition[34] == false then
-			--SELF REPAIR
-			local minicounter = 0
-			--check if we even have g8dm, otherwise dont waste time, 10386 is g6dm if you wanna change it, 17837 is g7, 33916 is g8
-			if GetItemCount(33916) > 0 then
-				if NeedsRepair(99) then
-					yield("/wait 10")
-					while not IsAddonVisible("Repair") do
-					  yield("/generalaction repair")
-					  yield("/wait 1")
-					  minicounter = minicounter + 1
-					  if minicounter > 20 then
-						minicounter = 0
-						break
-					  end
-					end
-					yield("/callback Repair true 0")
-					yield("/wait 0.1")
-					if IsAddonVisible("SelectYesno") then
-					  yield("/callback SelectYesno true 0")
-					  yield("/wait 1")
-					end
-					while Svc.Condition[39] do yield("/wait 1")
-					yield("/wait 1")
-					yield("/callback Repair true -1")
-					  minicounter = minicounter + 1
-					  if minicounter > 20 then
-						minicounter = 0
-						break
-					  end
-					end
-				end
-			end
-			--JUST OUTSIDE THE INN REPAIR
-			if NeedsRepair(tornclothes) and tornclothes > -1 and GetItemCount(1) > 4999 and Svc.Condition[34] == false and Svc.Condition[56] == false then --only do this outside of a duty yo
-				yield("/ad repair")
-				goatcounter = 0
-				while NeedsRepair(tornclothes) and goatcounter < 3600 do
-					yield("/wait 0.05")
-					if IsAddonVisible("_Notification") then yield("/callback _Notification true 0 17") end
-					if IsAddonVisible("ContentsFinderConfirm") then yield("/callback ContentsFinderConfirm true 9") end
-					goatcounter = goatcounter + 1
-				end
-				yield("/ad stop")
-			end
-		end
-		--reenter the inn room
-		--if (Svc.ClientState.TerritoryType ~= 177 and Svc.ClientState.TerritoryType ~= 178) and Svc.Condition[34] == false and NeedsRepair(50) == false then
-		if (Svc.ClientState.TerritoryType ~= 177 and Svc.ClientState.TerritoryType ~= 178 and Svc.ClientState.TerritoryType ~= 179) and Svc.Condition[34] == false and Player.Available then
-			yield("/send ESCAPE")
-			yield("/ad stop") --seems to be needed or we get stuck in repair genjutsu
-			yield("/target Antoinaut") --gridania
-			yield("/target Mytesyn")   --limsa
-			yield("/target Otopa")     --uldah
-			yield("/wait 1")
-			if type(Svc.Condition[34]) == "boolean" and Svc.Condition[34] == false and Player.Available then
-				yield("/lockon on")
-				yield("/automove")
-			end
-			yield("/wait 2.5")
-			if type(Svc.Condition[34]) == "boolean" and Svc.Condition[34] == false and Player.Available then
-				if IsAddonVisible("_Notification") then yield("/callback _Notification true 0 17") end
-				if IsAddonVisible("ContentsFinderConfirm") then yield("/callback ContentsFinderConfirm true 9") end
-				yield("/interact")
-			end
-			yield("/wait 1")
-			if type(Svc.Condition[34]) == "boolean" and Svc.Condition[34] == false and Player.Available then
-				if IsAddonVisible("_Notification") then yield("/callback _Notification true 0 17") end
-				if IsAddonVisible("ContentsFinderConfirm") then yield("/callback ContentsFinderConfirm true 9") end
-				yield("/callback SelectIconString true 0")
-				if IsAddonVisible("_Notification") then yield("/callback _Notification true 0 17") end
-				if IsAddonVisible("ContentsFinderConfirm") then yield("/callback ContentsFinderConfirm true 9") end
-				yield("/callback SelectString true 0")
-				yield("/wait 1")
-			end
-			--yield("/wait 8")
-			--RestoreYesAlready()
-		end
-	end
-	--end safe check one
-	end
-	end
-	--
-	--safe check ifs part 2
+	--GIANT SAFETY CHECK SO SCRIPT DOESNT SHIT THE BED
 	if Player.Available then
-	if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean" and type(Svc.Condition[4]) == "boolean" then
-	--
-
-	--yield("/echo x diff"..math.abs(x1 - EntityPlayerPositionX()))
-	--check if we are stuck somewhere.
-	--first ensure we are in the duty and not in combat
-
-	if Svc.ClientState.TerritoryType == 1044 and Svc.Condition[26] == false and Player.Available then --Praetorium
-		maxjiggle = 6
-		flurb = "????"
-		for flurby = 22001,22006 do
-			if Player.Available then
-				snoop = Addons.GetAddon("_ToDoList"):GetNode(1, flurby, 6).Text
-				if snoop == "Arrive at the command chamber: 0/1" then flurb = "Arrive at the command chamber: 0/1" end
-				if snoop == "Clear the command chamber: 0/1" then flurb = "Clear the command chamber: 0/1" end
-				if snoop == "Arrive at the Laboratorium Primum: 0/1" then flurb = "Arrive at the Laboratorium Primum: 0/1" end
-				if snoop == "Clear the Laboratorium Primum: 0/1" then flurb = "Clear the Laboratorium Primum: 0/1" end
-				if snoop == "Arrive on the Echelon: 0/1" then flurb = "Arrive on the Echelon: 0/1" end
-				if snoop == "Defeat Gaius van Baelsar: 0/1" then flurb = "Defeat Gaius van Baelsar: 0/1" end
-			end
-			yield("/wait 0.3")
-		end
-		if flurb == "Clear the Laboratorium Primum: 0/1"  and Svc.Condition[26] == false and Player.Available then
-			flurb = Addons.GetAddon("_ToDoList"):GetNode(1, 22003, 6).Text
---this doesnt work the way i intended so removing it for now.
-			--[[yield("/target Shortcut")
-			yield("/wait 0.5")
-			yield("/target Nero")
-			yield("/wait 0.5")
-			if type(GetTargetName()) == "string" and GetTargetName() == "Shortcut" then
-				yield("/ad stop")
-				yield("/interact")
-				yield("/vnavmesh moveto "..Target.Entity.Position.X.." "..Target.Entity.Position.Y.." "..Target.Entity.Position.Z)
-				yield("/wait 10")
-				yield("/interact")
-				yield("/bmrai on")
-				yield("/rotation auto")
-			end
-			if type(GetTargetName()) == "string" and Svc.Condition[26] == false then
-				yield("/vnavmesh moveto "..Target.Entity.Position.X.." "..Target.Entity.Position.Y.." "..Target.Entity.Position.Z)
-			end
-			--]]
-		end
-		if flurb == "Arrive on the Echelon: 0/1"  and Svc.Condition[26] == false  and Player.Available then
-			maxjiggle = 20
-		end
-	--safe check ifs part 3
-	if Player.Available then
-	if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean" and type(Svc.Condition[4]) == "boolean" then
-	--
-		if flurb == "Defeat Gaius van Baelsar: 0/1" and Svc.Condition[26] == false and Svc.Condition[34] == true and Player.Available then
-			maxjiggle = 20
-			yield("/target Magitek")
-			yield("/wait 0.5")
-			yield("/target Shortcut")
-			yield("/wait 0.5")
-			yield("/interact")
-			yield("/automove on")
-			yield("/wait 3")
-			yield("/interact")
-			yield("/wait 0.5")
-			if Entity.Target and Entity.Target.Name then
-				if GetTargetName() == "Shortcut" and Svc.Condition[26] == false and Player.Available then
-					yield("/ad stop")
-					yield("/interact")
-					if Entity.Target and Entity.Target.Name then
-						yield("/vnavmesh moveto "..Target.Entity.Position.X.." "..Target.Entity.Position.Y.." "..Target.Entity.Position.Z)
-					end
-					yield("/wait 10")
-					yield("/interact")
-					yield("/bmrai on")
-					yield("/rotation auto")
-				end
-				if Entity.Target and Entity.Target.Name then
-					if Svc.Condition[26] == false and Player.Available then
-						yield("/interact")
-						yield("/wait 0.5")
-						--[[if Entity.Target and Entity.Target.Name then
-							yield("/vnavmesh moveto "..Target.Entity.Position.X.." "..Target.Entity.Position.Y.." "..Target.Entity.Position.Z)
-						end--]]
-					end
-				end
-				if Svc.Condition[26] == false and Player.Available then
-					yield("/wait 1.5")
-					yield("/target Gaius")
-					yield("/wait 1.5")
-					if Entity.Target and Entity.Target.Name then
-						yield("/vnav stop")
-					end
-				end
-			end
-		end
+		if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean" and type(Svc.Condition[4]) == "boolean" then
 		--
-		end
-		end
-		--
-		if echo_level < 3 then yield("/echo Prae Duty Progress -> "..flurb) end
-	end
+			--decide if we are going to bailout - logic stolen from Ritsuko <3
+			zoneleft = GetContentTimeLeft()
+			if type(zoneleft) == "number" and zoneleft > 100 then
+				if zoneleft > maxzone then
+					maxzone = zoneleft
+					--force_rotation() --refresh the rotationtype when we do this
+				end
+				inprae = maxzone - zoneleft
+				if inprae > hardened_sock and Svc.Condition[26] == false then
+					yield("/echo We bailed from duty -> "..duty_counter)
+					NavRebuild()
+					while not NavIsReady() do
+						yield("/wait 1")
+					end
+					leaveDuty()
+				end
+			end
 
-	--1044 is prae we only need this there atm
-	if Svc.ClientState.TerritoryType == 1044 then --Praetorium
-	--if Svc.ClientState.TerritoryType == 1044 and not HasTarget() then
-	--	TargetClosestEnemy(30)
-	--end
-			
-	if Svc.Condition[34] == true and Svc.Condition[26] == false then
-		if math.abs(x1 - EntityPlayerPositionX()) < 3 and math.abs(y1 - EntityPlayerPositionY()) < 3 and math.abs(z1 - EntityPlayerPositionZ()) < 3 then
-			if echo_level < 4 then yield("/echo we havent moved very much something is up ") end
-			jigglecounter = jigglecounter + 1
-		end
-		if jigglecounter > maxjiggle and Svc.ClientState.TerritoryType == 1044 then --we stuck for 30+ seconds somewhere in praetorium
-			if echo_level < 4 then yield("/echo attempting to restart AD and hope for the best") end
-			jigglecounter = 0
-			yield("/ad stop")
-			yield("/wait 2")
-			yield("/return")
-			yield("/wait 1")
-			yield("/callback SelectYesno true 0")
-			yield("/wait 12")
-			yield("/ad start")
-			yield("/wait 2")
-		end
-	end
-			
---[[
-		local mytarget = GetTargetName()
-		if type(mytarget) == "string" and mytarget ~= "Phantom Gaius" then
-			local ndist = GetDistanceToObject(null)
-			local gdist = GetDistanceToObject("Phantom Gaius")
-			local deltadist = ndist - gdist
-			if (deltadist > 1 or deltadist < -1) and gdist < 100 then
-				if echo_level < 1 then yield("/echo targeting nearby enemy!") end
-				TargetClosestEnemy()
-				--yield("/vnav stop")
-			end
-		end
-		--]]
-	end
-	--if Svc.Condition[34] == false then --fix autoqueue just shitting out
-		--yield("/send U")
-	--end
-	
-	if Svc.Condition[34] == true and Svc.Condition[26] == false then
-		equip_counter = equip_counter + 1
-		if equip_counter > 50 and finickyclothes == 1 then 
-			yield("/equiprecommended")
-			yield("/wait 0.5")
-			equip_counter = 0
-		end
-		--TargetClosestEnemy()
-		--yield("/ac \"Fester\"") --i dont think we need this.
-	end
-	if Svc.Condition[4] == true then --target stuff while on magitek if we don't thave a target. trying to fix this bullashit
-		--if type(GetTargetName()) ~= "string" then
-			TargetClosestEnemy()
-			yield("/send KEY_2")
-			yield("/wait 0.5")
-		---end
-	end
+			if Svc.Condition[34] == false then yield("/callback SelectYesno true 0") end	--is there some bullshit and yesalready was disabled outside of the duty? 
+			maxzone = 0--reset the timer for inside prae
 
-	if Svc.Condition[4] == false and Svc.Condition[26] == true then
-		if Entity.Target and Entity.Target.Name then
-			if type(GetTargetName()) ~= "string" then
-				TargetClosestEnemy()
-				--yield("/vnav stop")
-				--yield("/ad pause")
-				yield("/wait 0.5")
-				--[[jigglecounter = 0 -- we reset the jiggle counter while we are in combat. combat is good means we are doing something productive
-				if echo_level < 1 then yield("/echo stopping vnav for combat") end
-				if echo_level < 1 then yield("/echo pausing AD for combat") end
-				yield("/vnavmesh moveto "..Target.Entity.Position.X.." "..Target.Entity.Position.Y.." "..Target.Entity.Position.Z)
-				yield("/wait 5")
-				yield("/vnav stop")
-				yield("/wait 0.5")
-				yield("/ad resume")
-				if echo_level < 1 then yield("/echo resuming AD") end--]]
-			end
-		end
-	end
-	
-	if Svc.Condition[34] == true then
-		x1 = EntityPlayerPositionX()
-		y1 = EntityPlayerPositionY()
-		z1 = EntityPlayerPositionZ()
-	end
-
-	stopcuckingme = stopcuckingme + 1
-	--autoqueue at the end because its least important thing
-	if type(Svc.ClientState.TerritoryType) == "number" then
-		zonecheck = Svc.ClientState.TerritoryType
-		if not (zonecheck == 1044 or zonecheck == 1048) then
-			entered_duty = 0
-		end
-		if (zonecheck == 1044 or zonecheck == 1048) and entered_duty == 0 then
-			entered_duty = 1
-			if (duty_counter < 20 and zonecheck ~= 1048) or zonecheck == 1044 or (zonecheck == 1048 and duty_counter > 98) then --don't count yesterday's last decumana in the counter!
-				duty_counter = duty_counter + 1
-			end
-			if debug_counter == 0 then
-				if echo_level < 4 then yield("/echo This is duty # -> "..duty_counter) end
-			end
-			if debug_counter > 0 then
-				if echo_level < 4 then yield("/echo This is duty # -> "..duty_counter.." Runs since last crash -> "..(duty_counter-debug_counter)) end
-			end
-			
-		end
-	end
-	if os.date("!*t").hour > 6 and os.date("!*t").hour < 8 and duty_counter > 20 then --theres no way we can do 20 prae in 1 hour so this should cover rollover from the previous day
-		duty_counter = 0
-		if echo_level < 4 then yield("/echo We are starting over the duty counter, we passed daily reset time!") end
-	end
-	if Player.Available then
-		if stopcuckingme > 2 and Svc.Condition[34] == false and imthecaptainnow == 1 and (Svc.ClientState.TerritoryType == 177 or Svc.ClientState.TerritoryType == 178 or Svc.ClientState.TerritoryType == 179) and not NeedsRepair(tornclothes) then
-			whoops = 0
-			boops = 0
-			did_we_clear_it = 0
-			if itworksonmymachine == 1 or duty_counter == 99 or duty_counter == 0 then --we only have to clear the DF if we are clearing the DF, we should probably do it before switching to decu or back to prae
-				yield("/finder")
-				yield("/wait 0.5")
-				while not IsAddonVisible("ContentsFinder") and whoops == 0 do
-					yield("/waitaddon ContentsFinder")
+			--Food check!
+			statoos = GetStatusTimeRemaining(48)
+			---yield("/echo "..statoos)
+			if type(GetItemCount(feedme)) == "number" then
+				if GetItemCount(feedme) > 0 and statoos < 90 and Svc.Condition[34] == false then --refresh food if we are below 15 minutes left
+					yield("/item "..feedme)
+					yield("/echo Attempting to eat "..feedmeitem)
 					yield("/wait 0.5")
-					boops = boops + 1
-					if boops > 10 then whoops = 1 end
-				end -- safety check before callback
-				if IsAddonVisible("ContentsFinder") then did_we_clear_it = 1 end
-				yield("/wait 1")
-				yield("/callback ContentsFinder true 12 1")
-				yield("/send ESCAPE")
+				end
 			end
-			--[[
-			--first we must unselect the duty that is selected. juuust in case
-			if GetNodeText("ContentsFinder", 14) == "The Praetorium" then
-				yield("/callback ContentsFinder true 3 15")
-			end
-			if GetNodeText("ContentsFinder", 14) == "Porta Decumana" then
-				yield("/callback ContentsFinder true 3 4")
-			end
-			--]]
-			if echo_level < 2 then yield("/echo attempting to trigger duty finder") end
-			--yield("/callback ContentsFinder true 12 1")
-			if did_we_clear_it == 1 or itworksonmymachine == 0 then  --we need to make sure we cleared CF before we try to queue for something.
-			whoops = 0
-			boops = 0
-				if duty_counter < 99 then
-					--OpenRegularDuty(1044) --Praetorium	
-					if echo_level < 3 then yield("/echo Trying to start Praetorium") end
-					if itworksonmymachine == 0 then
-						yield("/ad stop")
-						yield("/wait 0.5")
-						yield("/ad queue The Praetorium")
+
+			--Do we need repairs? only check outside of duty.
+			--check every 0.3 seconds 8 times so total looop is 2.4 seconds
+			goat = 0
+			while goat < 9 and Svc.Condition[34] == false do
+				goat = goat + 1
+				yield("/wait 0.3")
+				if Svc.Condition[34] == false then
+					--SELF REPAIR
+					local minicounter = 0
+					--check if we even have g8dm, otherwise dont waste time, 10386 is g6dm if you wanna change it, 17837 is g7, 33916 is g8
+					if GetItemCount(33916) > 0 then
+						if NeedsRepair(99) then
+							yield("/wait 10")
+							while not IsAddonVisible("Repair") do
+							  yield("/generalaction repair")
+							  yield("/wait 1")
+							  minicounter = minicounter + 1
+							  if minicounter > 20 then
+								minicounter = 0
+								break
+							  end
+							end
+							yield("/callback Repair true 0")
+							yield("/wait 0.1")
+							if IsAddonVisible("SelectYesno") then
+							  yield("/callback SelectYesno true 0")
+							  yield("/wait 1")
+							end
+							while Svc.Condition[39] do yield("/wait 1")
+							yield("/wait 1")
+							yield("/callback Repair true -1")
+							  minicounter = minicounter + 1
+							  if minicounter > 20 then
+								minicounter = 0
+								break
+							  end
+							end
+						end
 					end
-					if itworksonmymachine == 1 then
-						while not IsAddonVisible("ContentsFinder") and whoops == 0 do
-							OpenRegularDuty(16) --Praetorium	
-							yield("/waitaddon ContentsFinder")
-							yield("/wait 0.5")
-							boops = boops + 1
-							if boops > 10 then whoops = 1 end
-						end -- safety check before callback
-						yield("/wait 3")
-						yield("/callback ContentsFinder true 3 15")
+					--JUST OUTSIDE THE INN REPAIR
+					if NeedsRepair(tornclothes) and tornclothes > -1 and GetItemCount(1) > 4999 and Svc.Condition[34] == false and Svc.Condition[56] == false then --only do this outside of a duty yo
+						yield("/ad repair")
+						goatcounter = 0
+						while NeedsRepair(tornclothes) and goatcounter < 3600 do
+							yield("/wait 0.05")
+							if IsAddonVisible("_Notification") then yield("/callback _Notification true 0 17") end
+							if IsAddonVisible("ContentsFinderConfirm") then yield("/callback ContentsFinderConfirm true 9") end
+							goatcounter = goatcounter + 1
+						end
+						yield("/ad stop")
 					end
 				end
-				if duty_counter > 98 then
-					if echo_level < 3 then yield("/echo Trying to start Porta") end
-					if itworksonmymachine == 0 then
-						yield("/ad stop")
-						yield("/wait 0.5")
-						yield("/ad queue Porta Decumana")
+				--reenter the inn room
+				--if (Svc.ClientState.TerritoryType ~= 177 and Svc.ClientState.TerritoryType ~= 178) and Svc.Condition[34] == false and NeedsRepair(50) == false then
+				if (Svc.ClientState.TerritoryType ~= 177 and Svc.ClientState.TerritoryType ~= 178 and Svc.ClientState.TerritoryType ~= 179) and Svc.Condition[34] == false and Player.Available then
+					yield("/send ESCAPE")
+					yield("/ad stop") --seems to be needed or we get stuck in repair genjutsu
+					yield("/target Antoinaut") --gridania
+					yield("/target Mytesyn")   --limsa
+					yield("/target Otopa")     --uldah
+					yield("/wait 1")
+					if type(Svc.Condition[34]) == "boolean" and Svc.Condition[34] == false and Player.Available then
+						yield("/lockon on")
+						yield("/automove")
 					end
-					if itworksonmymachine == 1 then
-						while not IsAddonVisible("ContentsFinder") and whoops == 0 do
-							OpenRegularDuty(830) --Decumana
-							yield("/waitaddon ContentsFinder")
-							yield("/wait 0.5")
-							boops = boops + 1
-							if boops > 10 then whoops = 1 end
-						end -- safety check before callback
-						yield("/wait 3")
-						--OpenRegularDuty(1048) --Decumana
-						yield("/callback ContentsFinder true 3 4")
+					yield("/wait 2.5")
+					if type(Svc.Condition[34]) == "boolean" and Svc.Condition[34] == false and Player.Available then
+						if IsAddonVisible("_Notification") then yield("/callback _Notification true 0 17") end
+						if IsAddonVisible("ContentsFinderConfirm") then yield("/callback ContentsFinderConfirm true 9") end
+						yield("/interact")
 					end
+					yield("/wait 1")
+					if type(Svc.Condition[34]) == "boolean" and Svc.Condition[34] == false and Player.Available then
+						if IsAddonVisible("_Notification") then yield("/callback _Notification true 0 17") end
+						if IsAddonVisible("ContentsFinderConfirm") then yield("/callback ContentsFinderConfirm true 9") end
+						yield("/callback SelectIconString true 0")
+						if IsAddonVisible("_Notification") then yield("/callback _Notification true 0 17") end
+						if IsAddonVisible("ContentsFinderConfirm") then yield("/callback ContentsFinderConfirm true 9") end
+						yield("/callback SelectString true 0")
+						yield("/wait 1")
+					end
+					--yield("/wait 8")
+					--RestoreYesAlready()
 				end
-				yield("/callback ContentsFinder true 12 0")
-				stopcuckingme = 0
 			end
+			--end safe check one			
 		end
 	end
+			--
+			--safe check ifs part 2
+			if Player.Available then
+			if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean" and type(Svc.Condition[4]) == "boolean" then
+			--
 
---safe check ends
-end
-end
----
+			--yield("/echo x diff"..math.abs(x1 - EntityPlayerPositionX()))
+			--check if we are stuck somewhere.
+			--first ensure we are in the duty and not in combat
+
+			if Svc.ClientState.TerritoryType == 1044 and Svc.Condition[26] == false and Player.Available then --Praetorium
+				maxjiggle = 6
+			
+			--1044 is prae we only need this there atm
+			if Svc.ClientState.TerritoryType == 1044 then --Praetorium
+				if Svc.Condition[34] == true and Svc.Condition[26] == false then
+					if math.abs(x1 - EntityPlayerPositionX()) < 3 and math.abs(y1 - EntityPlayerPositionY()) < 3 and math.abs(z1 - EntityPlayerPositionZ()) < 3 then
+						if echo_level < 4 then yield("/echo we havent moved very much something is up ") end
+						jigglecounter = jigglecounter + 1
+					end
+					if jigglecounter > maxjiggle and Svc.ClientState.TerritoryType == 1044 then --we stuck for 30+ seconds somewhere in praetorium
+						if echo_level < 4 then yield("/echo attempting to restart AD and hope for the best") end
+						jigglecounter = 0
+						yield("/ad stop")
+						yield("/wait 2")
+						yield("/return")
+						yield("/wait 1")
+						yield("/callback SelectYesno true 0")
+						yield("/wait 12")
+						yield("/ad start")
+						yield("/wait 2")
+					end
+				end
+			end
+			
+			if Svc.Condition[34] == true and Svc.Condition[26] == false then
+				equip_counter = equip_counter + 1
+				if equip_counter > 50 and finickyclothes == 1 then 
+					yield("/equiprecommended")
+					yield("/wait 0.5")
+					equip_counter = 0
+				end
+				--TargetClosestEnemy()
+				--yield("/ac \"Fester\"") --i dont think we need this.
+			end
+			if Svc.Condition[4] == true then --target stuff while on magitek if we don't thave a target. trying to fix this bullashit
+				--if type(GetTargetName()) ~= "string" then
+					TargetClosestEnemy()
+					yield("/send KEY_2")
+					yield("/wait 0.5")
+				---end
+			end
+
+			if Svc.Condition[4] == false and Svc.Condition[26] == true then
+				if Entity.Target and Entity.Target.Name then
+					if type(GetTargetName()) ~= "string" then
+						TargetClosestEnemy()
+						yield("/wait 0.5")
+					end
+				end
+			end
+			
+			if Svc.Condition[34] == true then
+				x1 = EntityPlayerPositionX()
+				y1 = EntityPlayerPositionY()
+				z1 = EntityPlayerPositionZ()
+			end
+
+			stopcuckingme = stopcuckingme + 1
+			--autoqueue at the end because its least important thing
+			if type(Svc.ClientState.TerritoryType) == "number" then
+				zonecheck = Svc.ClientState.TerritoryType
+				if not (zonecheck == 1044 or zonecheck == 1048) then
+					entered_duty = 0
+				end
+				if (zonecheck == 1044 or zonecheck == 1048) and entered_duty == 0 then
+					entered_duty = 1
+					if (duty_counter < 20 and zonecheck ~= 1048) or zonecheck == 1044 or (zonecheck == 1048 and duty_counter > 98) then --don't count yesterday's last decumana in the counter!
+						duty_counter = duty_counter + 1
+					end
+					if debug_counter == 0 then
+						if echo_level < 4 then yield("/echo This is duty # -> "..duty_counter) end
+					end
+					if debug_counter > 0 then
+						if echo_level < 4 then yield("/echo This is duty # -> "..duty_counter.." Runs since last crash -> "..(duty_counter-debug_counter)) end
+					end
+					
+				end
+			end
+			if os.date("!*t").hour > 6 and os.date("!*t").hour < 8 and duty_counter > 20 then --theres no way we can do 20 prae in 1 hour so this should cover rollover from the previous day
+				duty_counter = 0
+				if echo_level < 4 then yield("/echo We are starting over the duty counter, we passed daily reset time!") end
+			end
+			if Player.Available then
+				if stopcuckingme > 2 and Svc.Condition[34] == false and imthecaptainnow == 1 and (Svc.ClientState.TerritoryType == 177 or Svc.ClientState.TerritoryType == 178 or Svc.ClientState.TerritoryType == 179) and (not NeedsRepair(tornclothes) or tornclothes > -1) then
+					whoops = 0
+					boops = 0
+					did_we_clear_it = 0
+					if itworksonmymachine == 1 or duty_counter == 99 or duty_counter == 0 then --we only have to clear the DF if we are clearing the DF, we should probably do it before switching to decu or back to prae
+						yield("/finder")
+						yield("/wait 0.5")
+						while not IsAddonVisible("ContentsFinder") and whoops == 0 do
+							yield("/dutyfinder")
+							yield("/wait 0.5")
+							boops = boops + 1
+							if boops > 10 then whoops = 1 end
+						end -- safety check before callback
+						if IsAddonVisible("ContentsFinder") then did_we_clear_it = 1 end
+						yield("/wait 1")
+						yield("/callback ContentsFinder true 12 1")
+						yield("/send ESCAPE")
+					end
+					if echo_level < 2 then yield("/echo attempting to trigger duty finder") end
+					--yield("/callback ContentsFinder true 12 1")
+					if did_we_clear_it == 1 or itworksonmymachine == 0 then  --we need to make sure we cleared CF before we try to queue for something.
+					whoops = 0
+					boops = 0
+						if duty_counter < 99 then
+							--OpenRegularDuty(1044) --Praetorium	
+							if echo_level < 3 then yield("/echo Trying to start Praetorium") end
+							if itworksonmymachine == 0 then
+								yield("/ad stop")
+								yield("/wait 0.5")
+								yield("/ad queue The Praetorium")
+							end
+							if itworksonmymachine == 1 then
+								while not IsAddonVisible("ContentsFinder") and whoops == 0 do
+									OpenRegularDuty(16) --Praetorium	
+									yield("/dutyfinder ContentsFinder")
+									yield("/wait 0.5")
+									boops = boops + 1
+									if boops > 10 then whoops = 1 end
+								end -- safety check before callback
+								yield("/wait 3")
+								yield("/callback ContentsFinder true 3 15")
+							end
+						end
+						if duty_counter > 98 then
+							if echo_level < 3 then yield("/echo Trying to start Porta") end
+							if itworksonmymachine == 0 then
+								yield("/ad stop")
+								yield("/wait 0.5")
+								yield("/ad queue Porta Decumana")
+							end
+							if itworksonmymachine == 1 then
+								while not IsAddonVisible("ContentsFinder") and whoops == 0 do
+										OpenRegularDuty(830) --Decumana
+									yield("/dutyfinder ContentsFinder")
+									yield("/wait 0.5")
+									boops = boops + 1
+									if boops > 10 then whoops = 1 end
+								end -- safety check before callback
+								yield("/wait 3")
+								--OpenRegularDuty(1048) --Decumana
+								yield("/callback ContentsFinder true 3 4")
+							end
+						end
+						yield("/callback ContentsFinder true 12 0")
+						stopcuckingme = 0
+					end
+				end
+			end
+		--safe check ends
+		end
+	end
+	---
+	end
 end
