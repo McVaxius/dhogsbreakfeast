@@ -24,7 +24,6 @@ This script placed into your SND folder -> https://raw.githubusercontent.com/McV
 
 Yesalready configs (maybe only the first one is needed since the rest are done via callbacks w ya off) also make sure yesalready is on :p ad turns it off sometimes (???)
 	"YesNo"
-		Return to the starting point for the Praetorium?   ※You may be unable to re-enter ongoing battles.
 		/Repair all displayed items for.*/
 		/Exit.*/
 	"Lists"
@@ -35,6 +34,11 @@ CBT -> Enhanced Duty start/end
 	duty end -> /ad stop
 	leave duty -> 10 seconds
 Use whatever path you want. but i reccommend the included path file for all party members. W2W Ritsuko etc.
+
+FIX:
+REMOVE THIS FROM YESALREADY
+		Return to the starting point for the Praetorium?   ※You may be unable to re-enter ongoing battles.
+
 
 recommended party:
 war dps dps sch
@@ -244,6 +248,7 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 				yield("/ad stop")
 			end
 		end
+
 		--reenter the inn room
 		--if (Svc.ClientState.TerritoryType ~= 177 and Svc.ClientState.TerritoryType ~= 178) and Svc.Condition[34] == false and NeedsRepair(50) == false then
 		if (Svc.ClientState.TerritoryType ~= 177 and Svc.ClientState.TerritoryType ~= 178 and Svc.ClientState.TerritoryType ~= 179) and Svc.Condition[34] == false and Player.Available then
@@ -297,6 +302,20 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 	--end
 			
 	if Svc.Condition[34] == true and Svc.Condition[26] == false and Svc.ClientState.TerritoryType == 1044 then
+		entitty = 0
+		while Entity.GetEntityByName(GetCharacterName(false).CurrentHp == 0 do
+			yield("/echo We died........counting to 5 (3 sec per) then we resetting to entrance..."..entitty.."/5")
+			yield("/wait 3")
+			entitty = entitty + 1
+			if entitty > 5 then
+--				if IsAddonReady("SelectYesno") and Svc.Condition[2] == false then --i dont know what the addon for rez box is called.
+					yield("/callback SelectYesno true 0")
+--				end
+				yield("/ad stop")
+				yield("/wait 10")
+				yield("/ad start")
+			end
+		end
 		yield("/send TAB")
 		yield("/target Gaius")
 		if Entity.Target and Entity.Target.Name then
