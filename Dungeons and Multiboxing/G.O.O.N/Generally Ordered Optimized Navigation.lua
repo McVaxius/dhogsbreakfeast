@@ -332,6 +332,7 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 		if jigglecounter > maxjiggle and Svc.ClientState.TerritoryType == 1044 then --we stuck for 30+ seconds somewhere in praetorium
 			if echo_level < 4 then yield("/echo attempting to restart AD and hope for the best") end
 			jigglecounter = 0
+			yield("/echo attempting to restart AD and hope for the best")
 			yield("/ad stop")
 			yield("/wait 2")
 			yield("/return")
