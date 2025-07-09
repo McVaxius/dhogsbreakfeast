@@ -303,7 +303,7 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 			
 	if Svc.Condition[34] == true and Svc.Condition[26] == false and Svc.ClientState.TerritoryType == 1044 then
 		entitty = 0
-		while Entity.GetEntityByName(GetCharacterName(false).CurrentHp == 0 do
+		while Entity.GetEntityByName(GetCharacterName(false)).CurrentHp == 0 do
 			yield("/echo We died........counting to 5 (3 sec per) then we resetting to entrance..."..entitty.."/5")
 			yield("/wait 3")
 			entitty = entitty + 1
