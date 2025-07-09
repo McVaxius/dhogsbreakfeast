@@ -326,7 +326,7 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 	end
 	if Svc.Condition[34] == true and Svc.Condition[26] == false then
 		if math.abs(x1 - EntityPlayerPositionX()) < 3 and math.abs(y1 - EntityPlayerPositionY()) < 3 and math.abs(z1 - EntityPlayerPositionZ()) < 3 then
-			if echo_level < 4 then yield("/echo we havent moved very much something is up -> "..jigglecounter.."/"..maxjiggle) end
+			if echo_level < 4 then yield("/echo We havent moved very much something is up -> "..jigglecounter.."/"..maxjiggle.." cycles to return!") end
 			jigglecounter = jigglecounter + 1
 		end
 		if jigglecounter > maxjiggle and Svc.ClientState.TerritoryType == 1044 then --we stuck for 30+ seconds somewhere in praetorium
