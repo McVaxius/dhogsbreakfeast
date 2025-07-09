@@ -113,7 +113,7 @@ itworksonmymachine = 0 --0 means use ad start (pre-select "regular" mode first i
 hardened_sock = 1200 		 --bailout from duty in 1200 seconds (20 minutes)
 echo_level = 3 		 --3 only show important stuff, 2 show the progress messages, 1 show more, 0 show all
 debug_counter = 0 --if this is >0 then subtract from the total duties . useful for checking for crashes just enter in the duty_counter value+1 of the last crash, so if you crashed at duty counter 5, enter in a 6 for this value
-maxjiggle = 15 --how much default time (# of loops of the script) before we jiggle the char in prae
+maxjiggle = 30 --how much default time (# of loops of the script) before we jiggle the char in prae
 -----------------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------------
@@ -346,7 +346,7 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 	end
 	--if Svc.Condition[34] == false then --fix autoqueue just shitting out
 		--yield("/send U")
-	--end
+	--`
 	
 	if Svc.Condition[34] == true and Svc.Condition[26] == false then
 		equip_counter = equip_counter + 1
@@ -367,6 +367,7 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 	end
 
 	if Svc.Condition[4] == false and Svc.Condition[26] == true then
+		jigglecounter = 0
 		if Entity.Target and Entity.Target.Name then
 			if type(GetTargetName()) ~= "string" then
 				TargetClosestEnemy()
