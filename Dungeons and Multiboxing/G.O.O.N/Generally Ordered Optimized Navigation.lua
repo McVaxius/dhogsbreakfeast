@@ -106,6 +106,7 @@ feedmeitem = "Orange Juice"  --add the <hq> if its HQ
 --tornclothes = 25 --pct to try to repair at
 tornclothes = -1 --pct to try to repair at
 finickyclothes = 0 --0 = dont auto equip, 1 = autoequip, useful if you have bis that isnt max level, default set to NOT equip so peopel can manage their BIS
+ducttape = 33916 --check if we even have g8dm, otherwise dont waste time, 10386 is g6dm if you wanna change it, 17837 is g7, 33916 is g8
 
 --bm_preset = "AutoDuty" --if you set it to "none" it wont use bmr. this is for the preset to use.
 bm_preset = "none" --if you set it to "none" it wont use bmr and instead it will use RSR. this is for the preset to use.
@@ -207,8 +208,7 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 		if Svc.Condition[34] == false then
 			--SELF REPAIR
 			local minicounter = 0
-			--check if we even have g8dm, otherwise dont waste time, 10386 is g6dm if you wanna change it, 17837 is g7, 33916 is g8
-			if GetItemCount(33916) > 0 then
+			if GetItemCount(ducttape) > 0 then
 				if NeedsRepair(99) then
 					yield("/wait 10")
 					while not IsAddonVisible("Repair") do
