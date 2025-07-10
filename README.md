@@ -22,7 +22,7 @@ Don't ask for support with those scripts.  they are just there just in case some
  - [ ] [ERP](https://github.com/McVaxius/dhogsbreakfeast/tree/main/ERP) untested might need _functions.lua
  - [x] Some other unimportant stuff
 
-## [GOON] (https://github.com/McVaxius/dhogsbreakfeast/tree/main/Dungeons%20and%20Multiboxing/G.O.O.N)
+## [GOON]
  - [x] Configurable Food
  - [ ] Configurable Pots
  - [x] Self Repair
