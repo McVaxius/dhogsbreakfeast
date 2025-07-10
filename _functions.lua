@@ -2409,3 +2409,11 @@ function waitforcombat(x)
 	end
 	yield("/vnav stop")
 end
+
+function WaitForAddon(x, t)
+	tt = 0
+	while IsAddonReady(x) == false and tt < t do
+		yield("/wait 1")
+		tt = tt + 1
+	end
+end
