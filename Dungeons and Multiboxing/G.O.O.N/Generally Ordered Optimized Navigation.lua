@@ -127,6 +127,8 @@ entered_duty = 0
 equip_counter = 0
 inprae = 0
 maxzone = 0
+someone_took_the_duct_tape = 0
+checking_the_duct_tape = 0
 
 function force_rotation()
 	if bm_preset == "none" then
@@ -161,7 +163,8 @@ function leaveDuty()
 end
 
 while 1 == 1 do
-	yield("/wait 1.5") --the big wait. run the entire fucking script every ? seconds
+	yield("/wait 2") --the big wait. run the entire fucking script every 2 seconds
+	checking_the_duct_tape = checking_the_duct_tape + 1
 	
 --safe check ifs
 if Player.Available then
@@ -198,7 +201,12 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 			yield("/wait 0.5")
 		end
 	end
-
+	
+	--do we need to need npc repairs? check INSIDE duty
+	if NeedsRepair(tornclothes) and tornclothes > -1 and GetItemCount(1) > 4999 and Svc.Condition[34] == true and IPC.Automaton.IsTweakEnabled("AutoQueue") == true then
+		IPC.Automaton.SetTweakState("AutoQueue", false)
+	end
+	
 	--Do we need repairs? only check outside of duty.
 	--check every 0.3 seconds 8 times so total looop is 2.4 seconds
 	goat = 0
@@ -239,19 +247,34 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 			end
 			--JUST OUTSIDE THE INN REPAIR
 			if NeedsRepair(tornclothes) and tornclothes > -1 and GetItemCount(1) > 4999 and Svc.Condition[34] == false and Svc.Condition[56] == false then --only do this outside of a duty yo
-				yield("/ad repair")
 				goatcounter = 0
-				while NeedsRepair(tornclothes) and goatcounter < 3600 do
+				if imthecaptainnow == 0 then
+					someone_took_the_duct_tape = someone_took_the_duct_tape + 1
+				end
+				--[[while NeedsRepair(tornclothes) and goatcounter < 3600 do
 					yield("/wait 0.05")
 					if IsAddonVisible("_Notification") then yield("/callback _Notification true 0 17") end
 					if IsAddonVisible("ContentsFinderConfirm") then yield("/callback ContentsFinderConfirm true 9") end
 					goatcounter = goatcounter + 1
+				end-]]
+				if (imthecaptainnow == 0 and someone_took_the_duct_tape > 10) or (imthecaptainnow == 1 and IPC.Automaton.IsTweakEnabled("AutoQueue") == false) then --we've been outside of prae for 20+ seconds or we are the party leader and autoqueue is disabled
+					yield("/ad repair")
+					while NeedsRepair(tornclothes) and goatcounter < 3600 do
+						yield("/wait 0.1")
+						goatcounter = goatcounter + 1
+					end
+				end
+				if imthecaptainnow == 1 then
+					yield("/wait 1200") --wait an extra two minutes if we were the party leader in case other players have some weird path for repair + return going on.
+					IPC.Automaton.SetTweakState("AutoQueue", true)
 				end
 				yield("/ad stop")
 			end
 		end
 
 		--reenter the inn room
+		--no. we will let AD repair do wahtever it is going to do from now on.
+		--[[
 		--if (Svc.ClientState.TerritoryType ~= 177 and Svc.ClientState.TerritoryType ~= 178) and Svc.Condition[34] == false and NeedsRepair(50) == false then
 		if (Svc.ClientState.TerritoryType ~= 177 and Svc.ClientState.TerritoryType ~= 178 and Svc.ClientState.TerritoryType ~= 179) and Svc.Condition[34] == false and Player.Available then
 			yield("/send ESCAPE")
@@ -283,6 +306,7 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 			--yield("/wait 8")
 			--RestoreYesAlready()
 		end
+		--]]
 	end
 	--end safe check one
 	end
@@ -309,7 +333,7 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 			yield("/echo We died........counting to 5 (3 sec per) then we resetting to entrance..."..entitty.."/5")
 			yield("/wait 3")
 			entitty = entitty + 1
-			if entitty > 5 then
+			if entitty > 5 or Svc.Condition[26] == false then --accept the respawn immediately if we aren't in combat :~(
 --				if IsAddonReady("SelectYesno") and Svc.Condition[2] == false then --i dont know what the addon for rez box is called.
 					yield("/callback SelectYesno true 0")
 --				end
@@ -425,81 +449,6 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 			yield("/dutyfinder") --try autoqueue with cbt if we aren't queueing for a duty.
 		end
 	end
-
---[[
-	local zozne = Svc.ClientState.TerritoryType
-	--party leader was crashing SND here with some weird error. i think i caught it with this. let's try. it was only crashing if it was trying to do anything "in here" during an area transition.
-	if type(zozne) == "number" and zozne > 0 and Player.Available and Svc.ClientState ~= nil and Svc.ClientState.TerritoryType and Svc.Condition[34] then
-		--if stopcuckingme > 2 and Svc.Condition[34] == false and imthecaptainnow == 1 and (Svc.ClientState.TerritoryType == 177 or Svc.ClientState.TerritoryType == 178 or Svc.ClientState.TerritoryType == 179) and not NeedsRepair(tornclothes) then
-		if stopcuckingme > 2 and Svc.Condition[34] == false and imthecaptainnow == 1 and (Svc.ClientState.TerritoryType == 177 or Svc.ClientState.TerritoryType == 178 or Svc.ClientState.TerritoryType == 179) then
-			whoops = 0
-			boops = 0
-			did_we_clear_it = 0
-			if itworksonmymachine == 1 or duty_counter == 99 or duty_counter == 0 then --we only have to clear the DF if we are clearing the DF, we should probably do it before switching to decu or back to prae
-				yield("/finder")
-				yield("/wait 0.5")
-				while not IsAddonVisible("ContentsFinder") and whoops == 0 do
-					yield("/dutyfinder ContentsFinder")
-					yield("/wait 0.5")
-					boops = boops + 1
-					if boops > 10 then whoops = 1 end
-				end -- safety check before callback
-				if IsAddonVisible("ContentsFinder") then did_we_clear_it = 1 end
-				yield("/wait 1")
-				yield("/callback ContentsFinder true 12 1")
-				yield("/send ESCAPE")
-			end
-			if echo_level < 2 then yield("/echo attempting to trigger duty finder") end
-			--yield("/callback ContentsFinder true 12 1")
-			if did_we_clear_it == 1 or itworksonmymachine == 0 then  --we need to make sure we cleared CF before we try to queue for something.
-			whoops = 0
-			boops = 0
-				if duty_counter < 99 then
-					--OpenRegularDuty(1044) --Praetorium	
-					if echo_level < 3 then yield("/echo Trying to start Praetorium") end
-					if itworksonmymachine == 0 then
-						yield("/ad stop")
-						yield("/wait 0.5")
-						yield("/ad queue The Praetorium")
-					end
-					if itworksonmymachine == 1 then
-						while not IsAddonVisible("ContentsFinder") and whoops == 0 do
-							OpenRegularDuty(16) --Praetorium	
-							yield("/dutyfinder ContentsFinder")
-							yield("/wait 0.5")
-							boops = boops + 1
-							if boops > 10 then whoops = 1 end
-						end -- safety check before callback
-						yield("/wait 3")
-						yield("/callback ContentsFinder true 3 15")
-					end
-				end
-				if duty_counter > 98 then
-					if echo_level < 3 then yield("/echo Trying to start Porta") end
-					if itworksonmymachine == 0 then
-						yield("/ad stop")
-						yield("/wait 0.5")
-						yield("/ad queue Porta Decumana")
-					end
-					if itworksonmymachine == 1 then
-						while not IsAddonVisible("ContentsFinder") and whoops == 0 do
-							OpenRegularDuty(830) --Decumana
-							yield("/dutyfinder ContentsFinder")
-							yield("/wait 0.5")
-							boops = boops + 1
-							if boops > 10 then whoops = 1 end
-						end -- safety check before callback
-						yield("/wait 3")
-						--OpenRegularDuty(1048) --Decumana
-						yield("/callback ContentsFinder true 3 4")
-					end
-				end
-				yield("/callback ContentsFinder true 12 0")
-				stopcuckingme = 0
-			end
-		end
-	end
---]]
 --safe check ends
 end
 end
