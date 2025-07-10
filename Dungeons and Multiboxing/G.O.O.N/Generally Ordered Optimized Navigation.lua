@@ -39,6 +39,7 @@ Use whatever path you want. but i reccommend the included path file for all part
 
 OPTIONAL to reduce cpu+gpu usage significantly.:
 Custom Resolution Scaler -> Gameplay -> Pixelated -> 0.1 -> Enabled [x] -> Save and Apply
+	0.1 is like n64 / ps1 graphics. 0.05 is like snes, and 0.001 is like hilarious. its just 4 pixels. THATS IT 
 Chillframes -> 15 out of combat 30 in combat
 
 FIX:
