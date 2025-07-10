@@ -175,6 +175,11 @@ while 1 == 1 do
 if Player.Available then
 if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean" and type(Svc.Condition[4]) == "boolean" then
 --
+	if Svc.Condition[34] == true and Svc.Condition[26] == true then
+		yield("/rotation auto")
+		yield("/vnav stop")
+	end
+
 	--decide if we are going to bailout - logic stolen from Ritsuko <3
 	zoneleft = GetContentTimeLeft()
 	if type(zoneleft) == "number" and zoneleft > 100 then
@@ -299,7 +304,7 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 
 	if Svc.Condition[34] == true and Svc.Condition[26] == false and Svc.ClientState.TerritoryType == 1044 then
 		entitty = 0
-		yield("/vnav stop") --stop trying to nav mofo we are fighting
+		--yield("/vnav stop") --stop trying to nav mofo we are fighting
 		while Entity.GetEntityByName(GetCharacterName(false)).CurrentHp == 0 do
 			yield("/echo We died........counting to 5 (3 sec per) then we resetting to entrance..."..entitty.."/5")
 			yield("/wait 3")
@@ -317,7 +322,7 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 		yield("/send TAB")
 		yield("/target Gaius")
 		if Entity.Target and Entity.Target.Name then
-			if mydistto(Entity.Target.Position.X,Entity.Target.Position.Y,Entity.Target.Position.Z) < 50 then
+			if mydistto(Entity.Target.Position.X,Entity.Target.Position.Y,Entity.Target.Position.Z) < 25 then
 				yield("/vnav stop")
 			end
 		end
