@@ -34,7 +34,7 @@ CBT -> Enhanced Duty start/end
 	duty start -> /pcraft run start_gooning
 	duty end -> /ad stop
 	leave duty -> 10 seconds
-	autoqueeu -> click checkmark
+	autoqueeu -> click checkmark for party leader
 Use whatever path you want. but i reccommend the included path file for all party members. W2W Ritsuko etc.
 
 FIX:
@@ -104,7 +104,7 @@ feedmeitem = "Orange Juice"  --add the <hq> if its HQ
 --feedmeitem = "Baked Eggplant<hq>"  --remove the <hq> if its not HQ
 
 --tornclothes = 25 --pct to try to repair at
-tornclothes = 97 --pct to try to repair at
+tornclothes = 25 --pct to try to repair at
 finickyclothes = 0 --0 = dont auto equip, 1 = autoequip, useful if you have bis that isnt max level, default set to NOT equip so peopel can manage their BIS
 ducttape = 33916 --check if we even have g8dm, otherwise dont waste time, 10386 is g6dm if you wanna change it, 17837 is g7, 33916 is g8
 
