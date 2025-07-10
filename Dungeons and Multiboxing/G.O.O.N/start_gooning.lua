@@ -35,6 +35,6 @@ yield("/bmrai on")
 yield("/bmrai followtarget on")
 yield("/bmrai followoutofcombat on")
 --/bmrai setpresetname FRENRIDER
-yield("//bmrai setpresetname Autoduty Passive")
+yield("/bmrai setpresetname Autoduty Passive")
 yield("/rotation auto")
 --yield("/echo let's start gooning!")
