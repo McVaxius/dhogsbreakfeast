@@ -21,3 +21,11 @@ Don't ask for support with those scripts.  they are just there just in case some
  - [x] [T.U.G](https://github.com/McVaxius/dhogsbreakfeast/tree/main/T.U.G.%C2%A0)
  - [ ] [ERP](https://github.com/McVaxius/dhogsbreakfeast/tree/main/ERP) untested might need _functions.lua
  - [x] Some other unimportant stuff
+
+## GOON
+ - [x] Food
+ - [x] Self Repair
+ - [ ] NPC Repair
+ - [x] Start Sync
+ - [x] Recovery
+ - [x] No crashing on resetting instance
