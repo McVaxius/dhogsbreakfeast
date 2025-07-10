@@ -12,6 +12,12 @@ type this or copy paste it into there:
 /pcraft run start_gooning
 
 --]]
+
+loadfiyel = os.getenv("appdata").."\\XIVLauncher\\pluginConfigs\\SomethingNeedDoing\\_functions.lua"
+functionsToLoad = loadfile(loadfiyel)
+functionsToLoad()
+
+
 --loop wait for is char ready 
 while Player.Available == false do
 	yield("/echo waiting on player")
@@ -19,6 +25,15 @@ while Player.Available == false do
 end
 
 yield("/wait 3")
+
+yield("/mmambo") --change it to something else if you like.
+
+while GetContentTimeLeft() > 7199 and GetContentTimeLeft() > 0 do
+	--yield("/echo we are free from the confines of the intro portraits")
+	yield("/wait 0.1") -- wait a sec
+end
+
+--ok we ran run free now and star the duty
 
 yield("/ad stop")
 
@@ -32,8 +47,8 @@ yield("/ad start")
 yield("/bmrai on")
 yield("/vbmai on")
 yield("/bmrai on")
-yield("/bmrai followtarget on")
-yield("/bmrai followoutofcombat on")
+--yield("/bmrai followtarget on")
+--yield("/bmrai followoutofcombat on")
 --/bmrai setpresetname FRENRIDER
 yield("/bmrai setpresetname Autoduty Passive")
 yield("/rotation auto")
