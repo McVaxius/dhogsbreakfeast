@@ -104,7 +104,7 @@ feedmeitem = "Orange Juice"  --add the <hq> if its HQ
 --feedmeitem = "Baked Eggplant<hq>"  --remove the <hq> if its not HQ
 
 --tornclothes = 25 --pct to try to repair at
-tornclothes = -1 --pct to try to repair at
+tornclothes = 97 --pct to try to repair at
 finickyclothes = 0 --0 = dont auto equip, 1 = autoequip, useful if you have bis that isnt max level, default set to NOT equip so peopel can manage their BIS
 ducttape = 33916 --check if we even have g8dm, otherwise dont waste time, 10386 is g6dm if you wanna change it, 17837 is g7, 33916 is g8
 
@@ -248,6 +248,7 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 			--JUST OUTSIDE THE INN REPAIR
 			if NeedsRepair(tornclothes) and tornclothes > -1 and GetItemCount(1) > 4999 and Svc.Condition[34] == false and Svc.Condition[56] == false then --only do this outside of a duty yo
 				goatcounter = 0
+				yield("/wait 0.7") --since we have a 0.3 in the main while loop for repair
 				if imthecaptainnow == 0 then
 					someone_took_the_duct_tape = someone_took_the_duct_tape + 1
 				end
@@ -265,7 +266,7 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 					end
 				end
 				if imthecaptainnow == 1 then
-					yield("/wait 1200") --wait an extra two minutes if we were the party leader in case other players have some weird path for repair + return going on.
+					yield("/wait 120") --wait an extra two minutes if we were the party leader in case other players have some weird path for repair + return going on.
 					IPC.Automaton.SetTweakState("AutoQueue", true)
 				end
 				yield("/ad stop")
