@@ -15,6 +15,7 @@ Simpletweaks
 
 Configurations (NOT OPTIONAL.  THEY ARE ABSOLUTELY MANDATORY)
 game -> don't have it in controller mode or it will start chatting (!?!?!?!?!?!) Thanks @Arcorius for this
+game -> duty finder config -> unsync+levelsync
 
 Pandora -> actually have this disabled it causes problems.
 Simpletweaks -> targeting fix
@@ -33,6 +34,7 @@ CBT -> Enhanced Duty start/end
 	duty start -> /pcraft run start_gooning
 	duty end -> /ad stop
 	leave duty -> 10 seconds
+	autoqueeu -> click checkmark
 Use whatever path you want. but i reccommend the included path file for all party members. W2W Ritsuko etc.
 
 FIX:
@@ -410,8 +412,21 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 		duty_counter = 0
 		if echo_level < 4 then yield("/echo We are starting over the duty counter, we passed daily reset time!") end
 	end
+	--fuck this shit
+		--if Svc.Condition[34] == false then --fix autoqueue just shitting out
+		--yield("/send U")
+	--`
+	if Svc.Condition[34] == false and imthecaptainnow == 1 then
+		yield("/wait 5") --wait a +bit longer if we are outside.
+		if Svc.Condition[91] == false then 
+			yield("/dutyfinder") --try autoqueue with cbt if we aren't queueing for a duty.
+		end
+	end
+
+--[[
 	local zozne = Svc.ClientState.TerritoryType
-	if type(zozne) == "number" and zozne > 0 and Player.Available then --party leader was crashing SND here with some weird error. i think i caught it with this. let's try. it was only crashing if it was trying to do anything "in here" during an area transition.
+	--party leader was crashing SND here with some weird error. i think i caught it with this. let's try. it was only crashing if it was trying to do anything "in here" during an area transition.
+	if type(zozne) == "number" and zozne > 0 and Player.Available and Svc.ClientState ~= nil and Svc.ClientState.TerritoryType and Svc.Condition[34] then
 		--if stopcuckingme > 2 and Svc.Condition[34] == false and imthecaptainnow == 1 and (Svc.ClientState.TerritoryType == 177 or Svc.ClientState.TerritoryType == 178 or Svc.ClientState.TerritoryType == 179) and not NeedsRepair(tornclothes) then
 		if stopcuckingme > 2 and Svc.Condition[34] == false and imthecaptainnow == 1 and (Svc.ClientState.TerritoryType == 177 or Svc.ClientState.TerritoryType == 178 or Svc.ClientState.TerritoryType == 179) then
 			whoops = 0
@@ -431,15 +446,6 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 				yield("/callback ContentsFinder true 12 1")
 				yield("/send ESCAPE")
 			end
-			--[[
-			--first we must unselect the duty that is selected. juuust in case
-			if GetNodeText("ContentsFinder", 14) == "The Praetorium" then
-				yield("/callback ContentsFinder true 3 15")
-			end
-			if GetNodeText("ContentsFinder", 14) == "Porta Decumana" then
-				yield("/callback ContentsFinder true 3 4")
-			end
-			--]]
 			if echo_level < 2 then yield("/echo attempting to trigger duty finder") end
 			--yield("/callback ContentsFinder true 12 1")
 			if did_we_clear_it == 1 or itworksonmymachine == 0 then  --we need to make sure we cleared CF before we try to queue for something.
@@ -490,7 +496,7 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 			end
 		end
 	end
-
+--]]
 --safe check ends
 end
 end
