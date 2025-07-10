@@ -300,7 +300,7 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 	--if Svc.ClientState.TerritoryType == 1044 and not HasTarget() then
 	--	TargetClosestEnemy(30)
 	--end
-			
+
 	if Svc.Condition[34] == true and Svc.Condition[26] == false and Svc.ClientState.TerritoryType == 1044 then
 		entitty = 0
 		while Entity.GetEntityByName(GetCharacterName(false)).CurrentHp == 0 do
@@ -410,7 +410,8 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 		duty_counter = 0
 		if echo_level < 4 then yield("/echo We are starting over the duty counter, we passed daily reset time!") end
 	end
-	if Player.Available then
+	local zozne = Svc.ClientState.TerritoryType
+	if type(zozne) == "number" and zozne > 0 and Player.Available then --party leader was crashing SND here with some weird error. i think i caught it with this. let's try. it was only crashing if it was trying to do anything "in here" during an area transition.
 		if stopcuckingme > 2 and Svc.Condition[34] == false and imthecaptainnow == 1 and (Svc.ClientState.TerritoryType == 177 or Svc.ClientState.TerritoryType == 178 or Svc.ClientState.TerritoryType == 179) and not NeedsRepair(tornclothes) then
 			whoops = 0
 			boops = 0
