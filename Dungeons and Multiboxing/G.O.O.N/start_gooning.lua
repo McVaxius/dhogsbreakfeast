@@ -12,13 +12,13 @@ type this or copy paste it into there:
 /pcraft run start_gooning
 
 --]]
-yield("/wait 1")
-
 --loop wait for is char ready 
 while Player.Available == false do
 	yield("/echo waiting on player")
 	yield("/wait 1")
 end
+
+yield("/wait 3")
 
 yield("/ad stop")
 
@@ -29,7 +29,12 @@ yield("/release W")
 
 --yield("/echo ad start")
 yield("/ad start")
-yield("/vbm ai cfg on")
 yield("/bmrai on")
+yield("/vbmai on")
+yield("/bmrai on")
+yield("/bmrai followtarget on")
+yield("/bmrai followoutofcombat on")
+--/bmrai setpresetname FRENRIDER
+yield("//bmrai setpresetname Autoduty Passive")
 yield("/rotation auto")
 --yield("/echo let's start gooning!")
