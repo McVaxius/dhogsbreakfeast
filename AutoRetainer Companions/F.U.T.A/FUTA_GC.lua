@@ -392,7 +392,7 @@ function Final_GC_Cleaning()
 	if FUTA_processors[hoo_arr_weeeeee][3][3] == 1 then
 		yield("/echo movement stopped - time for GC turn ins")
 		--yield("<wait.15>")
-		--yield("/waitaddon SelectString <maxwait.120>")
+		--WaitForAddon("SelectString", 120)
 		yield("/visland stop")
 		yield("/wait 1")
 		yield("/target Personnel Officer")

@@ -16,7 +16,7 @@ Simpletweaks
 Configurations (NOT OPTIONAL.  THEY ARE ABSOLUTELY MANDATORY)
 Pandora -> actually have this disabled it causes problems.
 Simpletweaks -> targeting fix
-SND -> disable snd targeting + disable addon errors (everything under /target and /waitaddon)
+
 AD -> Turn off "Leave Duty"
 
 Yesalready configs (maybe only the first one is needed since the rest are done via callbacks w ya off) also make sure yesalready is on :p ad turns it off sometimes (???)
@@ -341,7 +341,7 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 		boops = 0
 		did_we_clear_it = 0
         while not IsAddonVisible("ContentsFinder") and whoops == 0 do
-            yield("/waitaddon ContentsFinder")
+            WaitForAddon("ContentsFinder", 6)
             yield("/wait 0.5")
 			boops = boops + 1
 			if boops > 10 then whoops = 1 end
@@ -369,7 +369,7 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 				if echo_level < 3 then yield("/echo Trying to start Praetorium") end
 				while not IsAddonVisible("ContentsFinder") and whoops == 0 do
 					OpenRegularDuty(16) --Praetorium	
-					yield("/waitaddon ContentsFinder")
+					WaitForAddon("ContentsFinder", 6)
 					yield("/wait 0.5")
 					boops = boops + 1
 					if boops > 10 then whoops = 1 end
@@ -381,7 +381,7 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 				if echo_level < 3 then yield("/echo Trying to start Porta") end
 				while not IsAddonVisible("ContentsFinder") and whoops == 0 do
 					OpenRegularDuty(830) --Decumana
-					yield("/waitaddon ContentsFinder")
+					WaitForAddon("ContentsFinder", 6)
 					yield("/wait 0.5")
 					boops = boops + 1
 					if boops > 10 then whoops = 1 end
