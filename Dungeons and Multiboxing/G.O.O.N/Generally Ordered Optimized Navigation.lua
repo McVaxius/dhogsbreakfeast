@@ -272,42 +272,6 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 				yield("/ad stop")
 			end
 		end
-
-		--reenter the inn room
-		--no. we will let AD repair do wahtever it is going to do from now on.
-		--[[
-		--if (Svc.ClientState.TerritoryType ~= 177 and Svc.ClientState.TerritoryType ~= 178) and Svc.Condition[34] == false and NeedsRepair(50) == false then
-		if (Svc.ClientState.TerritoryType ~= 177 and Svc.ClientState.TerritoryType ~= 178 and Svc.ClientState.TerritoryType ~= 179) and Svc.Condition[34] == false and Player.Available then
-			yield("/send ESCAPE")
-			yield("/ad stop") --seems to be needed or we get stuck in repair genjutsu
-			yield("/target Antoinaut") --gridania
-			yield("/target Mytesyn")   --limsa
-			yield("/target Otopa")     --uldah
-			yield("/wait 1")
-			if type(Svc.Condition[34]) == "boolean" and Svc.Condition[34] == false and Player.Available then
-				yield("/lockon on")
-				yield("/automove")
-			end
-			yield("/wait 2.5")
-			if type(Svc.Condition[34]) == "boolean" and Svc.Condition[34] == false and Player.Available then
-				if IsAddonVisible("_Notification") then yield("/callback _Notification true 0 17") end
-				if IsAddonVisible("ContentsFinderConfirm") then yield("/callback ContentsFinderConfirm true 9") end
-				yield("/interact")
-			end
-			yield("/wait 1")
-			if type(Svc.Condition[34]) == "boolean" and Svc.Condition[34] == false and Player.Available then
-				if IsAddonVisible("_Notification") then yield("/callback _Notification true 0 17") end
-				if IsAddonVisible("ContentsFinderConfirm") then yield("/callback ContentsFinderConfirm true 9") end
-				yield("/callback SelectIconString true 0")
-				if IsAddonVisible("_Notification") then yield("/callback _Notification true 0 17") end
-				if IsAddonVisible("ContentsFinderConfirm") then yield("/callback ContentsFinderConfirm true 9") end
-				yield("/callback SelectString true 0")
-				yield("/wait 1")
-			end
-			--yield("/wait 8")
-			--RestoreYesAlready()
-		end
-		--]]
 	end
 	--end safe check one
 	end
@@ -440,10 +404,6 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 		duty_counter = 0
 		if echo_level < 4 then yield("/echo We are starting over the duty counter, we passed daily reset time!") end
 	end
-	--fuck this shit
-		--if Svc.Condition[34] == false then --fix autoqueue just shitting out
-		--yield("/send U")
-	--`
 	if Svc.Condition[34] == false and imthecaptainnow == 1 then
 		yield("/wait 5") --wait a +bit longer if we are outside.
 		if Svc.Condition[91] == false then 
