@@ -37,6 +37,10 @@ CBT -> Enhanced Duty start/end
 	autoqueeu -> click checkmark for party leader
 Use whatever path you want. but i reccommend the included path file for all party members. W2W Ritsuko etc.
 
+OPTIONAL to reduce cpu+gpu usage significantly.:
+Custom Resolution Scaler -> Gameplay -> Pixelated -> 0.1 -> Enabled [x] -> Save and Apply
+Chillframes -> 15 out of combat 30 in combat
+
 FIX:
 REMOVE THIS FROM YESALREADY
 		Return to the starting point for the Praetorium?   ※You may be unable to re-enter ongoing battles.
