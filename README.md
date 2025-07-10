@@ -26,7 +26,7 @@ Don't ask for support with those scripts.  they are just there just in case some
  - [x] Configurable Food
  - [ ] Configurable Pots
  - [x] Self Repair
- - [ ] NPC Repair
+ - [x] NPC Repair
  - [x] Start Sync
  - [x] Recovery
  - [x] No crashing on resetting instance
