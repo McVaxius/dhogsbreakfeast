@@ -93,7 +93,7 @@ end
 -----------------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------------
 --------EDITABLE SETTINGS!---------------------------------------------------------------------------------------
-imthecaptainnow = 1 --set this to 1 if this char is the party leader
+imthecaptainnow = 1  --set this to 1 if this char is the party leader																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																														 --set this to 1 if this char is the party leader
 duty_counter = 0	 --set it to 0 if its the first run of the "day"
 					 --change this if you want to restart a "run" at a higher counter level becuase you were alreaday running it.
 					 --just set it to whatever the last "current duty count" was from echos
@@ -316,6 +316,7 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 				yield("/ad stop")
 				yield("/wait 10")
 				yield("/ad start")
+				yield("/rotation auto")
 			end
 		end
 		yield("/send TAB")
@@ -331,6 +332,7 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 			if echo_level < 4 then yield("/echo We havent moved very much something is up -> "..jigglecounter.."/"..maxjiggle.." cycles to return!") end
 			jigglecounter = jigglecounter + 1
 		end
+		yield("/rotation auto")
 		if jigglecounter > maxjiggle and Svc.ClientState.TerritoryType == 1044 then --we stuck for 30+ seconds somewhere in praetorium
 			if echo_level < 4 then yield("/echo attempting to restart AD and hope for the best") end
 			jigglecounter = 0
@@ -375,6 +377,7 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 			if type(GetTargetName()) ~= "string" then
 				TargetClosestEnemy()
 				yield("/vnav stop")
+				yield("/rotation auto")
 				--yield("/ad pause")
 				yield("/wait 0.5")
 			end
