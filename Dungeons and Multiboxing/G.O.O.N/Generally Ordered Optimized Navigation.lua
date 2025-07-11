@@ -48,6 +48,7 @@ REMOVE THIS FROM YESALREADY
 		Return to the starting point for the Praetorium?   ※You may be unable to re-enter ongoing battles.
 FIX FOR WEIRD PATHING ISSUES:
 also.. if you run multiple copies of dalamud from same folder eventually autoduty becomes autodoodie and will fail to do paths and you will have to kill all clients running from that path, and then just pick one and load it.
+its related to vnav
 
 recommended party:
 war dps dps sch
