@@ -49,9 +49,9 @@ for i=1,#franchise_owners do
 		if franchise_owners[i][2] == 0 then
 			yield("/tp Estate Hall")
 			yield("/wait 1")
-			--WaitForAddon("Nowloading", 15)
+			--yield("/waitaddon Nowloading <maxwait.15>")
 			yield("/wait 15")
-			WaitForAddon("NamePlate", 600)
+			yield("/waitaddon NamePlate <maxwait.600><wait.5>")
 			--normal small house shenanigans
 			yield("/hold W <wait.1.0>")
 			yield("/release W")

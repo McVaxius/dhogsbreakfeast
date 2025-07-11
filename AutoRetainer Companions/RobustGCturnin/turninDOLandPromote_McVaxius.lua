@@ -21,7 +21,7 @@ yield("Adders Rank :"..GetAddersGCRank())
 
 yield("/echo movement stopped - time for GC turn ins")
 --yield("<wait.15>")
---WaitForAddon("SelectString", 120)
+--yield("/waitaddon SelectString <maxwait.120>")
 yield("/visland stop")
 yield("/wait 1")
 yield("/target Personnel Officer")
@@ -103,7 +103,7 @@ end
 -- Teleport back to FC House
 yield("/tp Estate Hall")
 yield("/wait 10")
-WaitForAddon("_ActionBar", 600)
+yield("/waitaddon _ActionBar <maxwait.600><wait.5>")
 for i=1, 20 do
   yield("/send W")
 end

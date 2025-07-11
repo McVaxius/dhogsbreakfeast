@@ -480,9 +480,9 @@ for i=1,#franchise_owners do
 			yield("/wait 5")
 			yield("/tp Estate Hall")
 			yield("/wait 1")
-			--WaitForAddon("Nowloading", 15)
+			--yield("/waitaddon Nowloading <maxwait.15>")
 			yield("/wait 15")
-			WaitForAddon("NamePlate", 600)
+			yield("/waitaddon NamePlate <maxwait.600>")
 			yield("/wait 5")
 			--]]
 			--normal small house shenanigans

@@ -15,16 +15,16 @@ for _, char in ipairs(chars) do
 	yield("/echo "..char)
 	yield("/ays relog " ..char)
 	yield("<wait.85.0>")
-	--WaitForAddon("Nowloading", 15)
-	WaitForAddon("NamePlate", 600)
+	--yield("/waitaddon NowLoading <maxwait.15>")
+	yield("/waitaddon NamePlate <maxwait.600><wait.5>")
  end
 FirstRun = 0
- --WaitForAddon("Nowloading", 15)
- WaitForAddon("NamePlate", 600)
+ --yield("/waitaddon NowLoading <maxwait.15>")
+ yield("/waitaddon NamePlate <maxwait.600><wait.5>")
 
  yield("/tp Ul'dah - Steps of Nald")
  yield("/wait 8")
- WaitForAddon("NamePlate", 6)
+ yield("/waitaddon NamePlate <wait.1>")
  yield("/wait 10")
  yield("/target Aetheryte")
  yield("/wait 1")
@@ -60,7 +60,7 @@ FirstRun = 0
   yield("/wait 1")
  end
  yield("/echo movement stopped - time for GC purchases")
---WaitForAddon("SelectString", 120)
+--yield("/waitaddon SelectString <maxwait.120>")
  yield("/visland stop")
  
  --now we buy the buff
@@ -95,9 +95,9 @@ end
 yield("/wait 5")
 yield("/tp Estate Hall")
 yield("/wait 1")
---WaitForAddon("Nowloading", 15)
+--yield("/waitaddon Nowloading <maxwait.15>")
 yield("/wait 15")
-WaitForAddon("NamePlate", 600)
+yield("/waitaddon NamePlate <maxwait.600><wait.5>")
 
 --walk back to entrance properly
 local islanders = {

@@ -121,7 +121,7 @@ function fishing()
 		-- set the echo variable again so we can say what is next
 		--vich_one()
 
-		WaitForAddon("_ActionBar", 600)
+		yield("/waitaddon _ActionBar <maxwait.600><wait.5>")
 	end
 
 	--ok we made it to the right character. let us continue.
@@ -129,7 +129,7 @@ function fishing()
 	-- Teleport to Lisma
 	yield("/tp Limsa Lominsa Lower Decks")
 	yield("/wait 5")
-	WaitForAddon("_ActionBar", 600)
+	yield("/waitaddon _ActionBar <maxwait.600><wait.10>")
 	
 	--[[
 	yield("/target Aetheryte <wait.2>")
@@ -297,7 +297,7 @@ function fishing()
 	visland_stop_moving()
 	yield("/wait 30")
 	ungabungabunga()
-	WaitForAddon("NamePlate", 600)
+	yield("/waitaddon NamePlate <maxwait.600><wait.5>")
 	
 	--if we are tp to limsa bell
 	if which_one[feesh_c][2] == 2 then
@@ -322,12 +322,12 @@ function fishing()
 	--options 1 and 2 are fc estate entrance or fc state bell so thats only time we will tp to fc estate
 	if which_one[feesh_c][2] == 0 or which_one[feesh_c][2] == 1 then
 		--yield("/tp Estate Hall (Free Company)")
-		WaitForAddon("NamePlate", 600)
+		yield("/waitaddon NamePlate <maxwait.600><wait.5>")
 		yield("/li fc")
 		yield("/wait 1")
-		--WaitForAddon("Nowloading", 15)
+		--yield("/waitaddon Nowloading <maxwait.15>")
 		yield("/wait 15")
-		WaitForAddon("NamePlate", 600)
+		yield("/waitaddon NamePlate <maxwait.600><wait.5>")
 	end
 
 	--normal small house shenanigans
@@ -393,7 +393,7 @@ while true do
 			 --yield("/ays multi")
 			 yield("/ays multi d")
 		 	 ungabungabunga() -- we really really try hard to be safe here
-			 WaitForAddon("_ActionBar", 600)
+			 WaitForAddon("_ActionBar ", 600)
 			 fishing()
 			 --drop a log file entry on the charname + Level
 			 -- Define the folder path
