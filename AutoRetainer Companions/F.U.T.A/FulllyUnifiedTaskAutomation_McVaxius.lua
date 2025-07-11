@@ -78,7 +78,7 @@ re_organize_return_locations = 0 -- only set this one time and run the script so
 
 --yield("/wintitle Final Fantasy XIV")   --FOR HACKY FISHIN SWITCHER WITH AHK
 --yield("/wait 5")
---yield("/waitaddon _ActionBar")
+--yield("/waitaddon _ActionBar<maxwait 600>")
 
 --EXCLUSION LIST START--
 --untested exclusion list. you figure it out. ;)
@@ -386,7 +386,7 @@ if wheeequeheeheheheheheehhhee == 1 then
             functionsToLoad = loadfile(loadfiyel2)
             functionsToLoad()
 			
-            yield("/waitaddon _ActionBar")
+            yield("/waitaddon _ActionBar<maxwait 600>")
 			
 			yield("/ays multi d")
 			yield("/wait 1")

@@ -358,7 +358,7 @@ end
 function CharacterSafeWait()
      yield("/echo 15 second wait for char swap")
 	 yield("/wait 15")
-	 yield("/waitaddon NamePlate")
+	 yield("/waitaddon NamePlate<maxwait 600>")
  	 yield("/wait 5")
 	 --ZoneTransition()
 end
@@ -468,10 +468,10 @@ function return_to_fc()
 	--yield("/tp Estate Hall (Free Company)") --new way notice the brackets
 	yield("/li fc") --this also respects house regisrtations in lifestream
 	yield("/wait 1")
-	--yield("/waitaddon Nowloading")
+	--yield("/waitaddon Nowloading<maxwait 600>")
 	ZoneTransition()
 --	yield("/wait 15")
-	yield("/waitaddon NamePlate")
+	yield("/waitaddon NamePlate<maxwait 600>")
 	yield("/wait 5")
 end
 
@@ -479,10 +479,10 @@ function return_to_lair()
 	--yield("/tp Estate Hall")
 	yield("/tp Estate Hall (Private)")
 	yield("/wait 1")
-	--yield("/waitaddon Nowloading")
+	--yield("/waitaddon Nowloading<maxwait 600>")
 --	yield("/wait 15")
 	ZoneTransition()
-	yield("/waitaddon NamePlate")
+	yield("/waitaddon NamePlate<maxwait 600>")
 	yield("/wait 5")
 	return_fc_entrance() --does the same thing just enters target
 	open_house_door() --opens the door to house
@@ -2411,5 +2411,6 @@ function waitforcombat(x)
 end
 
 function WaitForAddon(x, t)
-	yield("/waitaddon "..x)"/wait "..t)
+	t = t or 180 --default 3 minutes maxwait
+	yield("/waitaddon "..x.."<maxwait "..t..">")
 end
