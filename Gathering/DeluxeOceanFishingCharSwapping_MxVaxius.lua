@@ -393,7 +393,7 @@ while true do
 			 --yield("/ays multi")
 			 yield("/ays multi d")
 		 	 ungabungabunga() -- we really really try hard to be safe here
-			 WaitForAddon("_ActionBar ", 600)
+			 yield("/waitaddon _ActionBar <maxwait.600><wait.2>")
 			 fishing()
 			 --drop a log file entry on the charname + Level
 			 -- Define the folder path
