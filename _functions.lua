@@ -2409,8 +2409,3 @@ function waitforcombat(x)
 	end
 	yield("/vnav stop")
 end
-
-function WaitForAddon(x, t)
-	yield("/waitaddon "..x)
-	--yield("/wait "..t)
-end
