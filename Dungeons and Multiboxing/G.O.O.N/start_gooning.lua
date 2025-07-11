@@ -47,6 +47,8 @@ yield("/ad start")
 yield("/bmrai on")
 yield("/vbmai on")
 yield("/bmrai on")
+yield("/bmrai followoutofcombat off")
+yield("/bmrai followtarget off")
 --yield("/bmrai followtarget on")
 --yield("/bmrai followoutofcombat on")
 --/bmrai setpresetname FRENRIDER
