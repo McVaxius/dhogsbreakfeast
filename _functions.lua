@@ -2411,5 +2411,6 @@ function waitforcombat(x)
 end
 
 function WaitForAddon(x, t)
-	yield("/waitaddon "..x.." <maxwait."..tt..">")
+	yield("/waitaddon "..x)
+	--yield("/wait "..t)
 end
