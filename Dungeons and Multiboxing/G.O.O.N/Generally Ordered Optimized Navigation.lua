@@ -323,6 +323,10 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 		yield("/send TAB")
 		yield("/target Gaius")
 		if Entity.Target and Entity.Target.Name then
+			goatfucker = Entity.Target.Name or "goatfucker"
+			if goatfucker = "Nero tol Scaeva" or goatfucker = "Gaius van Baelsar" and Svc.Condition[26] == true then
+				yield("/vnav stop")
+			end
 			--if mydistto(Entity.Target.Position.X,Entity.Target.Position.Y,Entity.Target.Position.Z) < 25 then
 			if math.abs(EntityPlayerPositionY() - Entity.Target.Position.Y) < 3 then
 				--yield("/vnav stop")
