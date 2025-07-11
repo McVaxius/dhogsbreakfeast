@@ -177,7 +177,7 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 --
 	if Svc.Condition[34] == true and Svc.Condition[26] == true then
 		yield("/rotation auto")
-		yield("/vnav stop")
+		--yield("/vnav stop")
 	end
 
 	--decide if we are going to bailout - logic stolen from Ritsuko <3
@@ -322,7 +322,8 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 		yield("/send TAB")
 		yield("/target Gaius")
 		if Entity.Target and Entity.Target.Name then
-			if mydistto(Entity.Target.Position.X,Entity.Target.Position.Y,Entity.Target.Position.Z) < 25 then
+			--if mydistto(Entity.Target.Position.X,Entity.Target.Position.Y,Entity.Target.Position.Z) < 25 then
+			if math.abs(EntityPlayerPositionY() - Entity.Target.Position.Y) < 3 then
 				yield("/vnav stop")
 			end
 		end
@@ -376,7 +377,7 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 		if Entity.Target and Entity.Target.Name then
 			if type(GetTargetName()) ~= "string" then
 				TargetClosestEnemy()
-				yield("/vnav stop")
+				--yield("/vnav stop")
 				yield("/rotation auto")
 				--yield("/ad pause")
 				yield("/wait 0.5")
