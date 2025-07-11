@@ -341,8 +341,7 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 		boops = 0
 		did_we_clear_it = 0
         while not IsAddonVisible("ContentsFinder") and whoops == 0 do
-            yield("/waitaddon ContentsFinder")
-            yield("/wait 0.5")
+            yield("/waitaddon ContentsFinder")"/wait 0.5")
 			boops = boops + 1
 			if boops > 10 then whoops = 1 end
 		end -- safety check before callback
@@ -369,8 +368,7 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 				if echo_level < 3 then yield("/echo Trying to start Praetorium") end
 				while not IsAddonVisible("ContentsFinder") and whoops == 0 do
 					OpenRegularDuty(16) --Praetorium	
-					yield("/waitaddon ContentsFinder")
-					yield("/wait 0.5")
+					yield("/waitaddon ContentsFinder")"/wait 0.5")
 					boops = boops + 1
 					if boops > 10 then whoops = 1 end
 				end -- safety check before callback
@@ -381,8 +379,7 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 				if echo_level < 3 then yield("/echo Trying to start Porta") end
 				while not IsAddonVisible("ContentsFinder") and whoops == 0 do
 					OpenRegularDuty(830) --Decumana
-					yield("/waitaddon ContentsFinder")
-					yield("/wait 0.5")
+					yield("/waitaddon ContentsFinder")"/wait 0.5")
 					boops = boops + 1
 					if boops > 10 then whoops = 1 end
 				end -- safety check before callback

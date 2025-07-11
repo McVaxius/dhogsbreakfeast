@@ -7,7 +7,7 @@
 --
 -- Teleport to Lisma
 yield("/tp Limsa Lominsa Lower Decks <wait.5>")
-yield("/waitaddon _ActionBar <maxwait.600><wait.5>")
+yield("/waitaddon _ActionBar")
 yield("/target Aetheryte")
 yield("/wait 6")
 yield("/send D")
@@ -33,7 +33,7 @@ yield("/callback TelepotTown false 11 3u") -- Arcanists' Guild
 yield("/wait 1")
 yield("/callback TelepotTown false 11 3u")
 yield("/wait 1")
-yield("/waitaddon _ActionBar <maxwait.600><wait.5>")
+yield("/waitaddon _ActionBar")
 
 -- from Arcanists' Guild to Ocean Fishing
 
@@ -70,7 +70,7 @@ yield("/wait 2")
 yield("/callback SelectString true 0")
 yield("/callback TelepotTown false 11 6u <wait.1>") -- Hawkers' Alley
 yield("/callback TelepotTown false 11 6u <wait.1>")
-yield("/waitaddon _ActionBar <maxwait.600><wait.5>")
+yield("/waitaddon _ActionBar")
 
 yield("/visland execonce Hawkers_Alley_Bell_wait")  -- a path from Hawkers alley to bell
 yield("/wait 2")

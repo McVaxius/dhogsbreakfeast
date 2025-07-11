@@ -17,7 +17,7 @@ for _, char in ipairs(chars_points) do
 	yield("/echo "..char)
 	yield("/ays relog " ..char)
 	yield("/wait 15")
-	yield("/waitaddon NamePlate <maxwait.600><wait.10>")
+	yield("/waitaddon NamePlate")
 	 yield("/echo Processing Retainer Abuser FC points"..rcuck_count.."/"..total_rcucks)
 	 rcuck_count = rcuck_count + 1
 	yield("/wait 3")

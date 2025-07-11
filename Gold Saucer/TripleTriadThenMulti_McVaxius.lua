@@ -25,8 +25,7 @@ function visland_stop_moving()
 end
 
 function open_aetheryte()
- yield("/waitaddon NamePlate")
- yield("/wait 1")
+ yield("/waitaddon NamePlate")"/wait 1")
  yield("/target Aetheryte")
  yield("/wait 1")
  yield("/lockon")
@@ -106,7 +105,7 @@ end
 --teleport home
 yield("/tp Estate Hall")
 yield("/wait 15")
-yield("/waitaddon NamePlate <maxwait.600><wait.5>")
+yield("/waitaddon NamePlate")
 --visland to entrance of own estate. make a 0.5 radius tight visland for this....
 yield("/visland execonce gigahouse")
 

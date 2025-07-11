@@ -264,7 +264,7 @@ function Final_GC_Cleaning()
 	if chars_fn[rcuck_count][3] == 1 then
 		yield("/echo movement stopped - time for GC turn ins")
 		--yield("<wait.15>")
-		--yield("/waitaddon SelectString <maxwait.120>")
+		--yield("/waitaddon SelectString")
 		yield("/visland stop")
 		yield("/wait 1")
 		yield("/target Personnel Officer")
@@ -391,7 +391,7 @@ if process_emblem == 1 or process_tags > 0 then
 		yield("/ays relog " ..chars_EMBLEM[i][1])
    	    yield("/echo 15 second wait")
 	    yield("/wait 15")
-		yield("/waitaddon NamePlate <maxwait.600><wait.10>")
+		yield("/waitaddon NamePlate")
 		--check if we are doing buy_fc_buffs or not
 		yield("/wait 2")
 		CharacterSafeWait()
@@ -474,7 +474,7 @@ if process_fc_buffs == 1 then
 		yield("/ays relog " ..chars_FCBUFF[i][1])
    	    yield("/echo 15 second wait")
 	    yield("/wait 15")
-		yield("/waitaddon NamePlate <maxwait.600><wait.10>")
+		yield("/waitaddon NamePlate")
 		--check if we are doing buy_fc_buffs or not
 		if buy_fc_buffs == 1 then
 			yield("/wait 2")

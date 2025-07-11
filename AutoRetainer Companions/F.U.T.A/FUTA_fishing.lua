@@ -20,7 +20,7 @@ function fishing()
 		yield("/ays relog " ..FUTA_processors[lowestID][1][1])
 		yield("/wait 3")
 
-		yield("/waitaddon _ActionBar <maxwait.600>")
+		yield("/waitaddon _ActionBar")
 		yield("/wait 5")
 	end
 
@@ -29,7 +29,7 @@ function fishing()
 	-- Teleport to Lisma
 	yield("/tp Limsa Lominsa Lower Decks")
 	yield("/wait 5")
-	yield("/waitaddon _ActionBar <maxwait.600>")
+	yield("/waitaddon _ActionBar")
 	yield("/wait 10")
 	
 	yield("/ac sprint")
@@ -170,7 +170,7 @@ function fishing()
 	visland_stop_moving()
 	yield("/wait 30")
 	ungabungabunga()
-	yield("/waitaddon NamePlate <maxwait.600>")
+	yield("/waitaddon NamePlate")
 	yield("/wait 5")
 	
 	--if we are tp to limsa bell
@@ -197,16 +197,16 @@ function fishing()
 	--options 1 and 2 are fc estate entrance or fc state bell so thats only time we will tp to fc estate
 	if FUTA_processors[lowestID][1][2] == 0 or FUTA_processors[lowestID][1][2] == 1 then
 		--yield("/tp Estate Hall (Free Company)")
-		yield("/waitaddon NamePlate <maxwait.600>")
+		yield("/waitaddon NamePlate")
 		yield("/wait 5")
 		yield("/li fc")
 		yield("/wait 1")
 		if IsAddonReady("SelectYesno") then yield("/callback SelectYesno true 0") end
 		yield("/wait 1")
 		if IsAddonReady("SelectYesno") then yield("/callback SelectYesno true 0") end
-		--yield("/waitaddon Nowloading <maxwait.15>")
+		--yield("/waitaddon Nowloading")
 		yield("/wait 15")
-		yield("/waitaddon NamePlate <maxwait.600>")
+		yield("/waitaddon NamePlate")
 		yield("/wait 5")
 	end
 

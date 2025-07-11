@@ -118,17 +118,17 @@ if isblu == 0 then
 
 
 	if badzoyn == 1 then
-		yield("/waitaddon NamePlate <maxwait.600><wait.5>")
+		yield("/waitaddon NamePlate")
 		yield("/ays m d") --turn ar off for now
 		yield("/ays reset") --reset ar shenanigans for now
 		yield("/wait 1")
-		yield("/waitaddon NamePlate <maxwait.600><wait.5>")
+		yield("/waitaddon NamePlate")
 
 		--teleport home
 		yield("/li fc")
 		yield("/wait 15")
 		fartknocker()
-		yield("/waitaddon NamePlate <maxwait.600><wait.5>")
+		yield("/waitaddon NamePlate")
 		yield("/wait 1")
 		yield("/hold W")
 		yield("/wait 0.5")
