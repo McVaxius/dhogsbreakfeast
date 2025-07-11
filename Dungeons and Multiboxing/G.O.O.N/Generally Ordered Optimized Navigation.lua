@@ -49,6 +49,10 @@ REMOVE THIS FROM YESALREADY
 FIX FOR WEIRD PATHING ISSUES:
 also.. if you run multiple copies of dalamud from same folder eventually autoduty becomes autodoodie and will fail to do paths and you will have to kill all clients running from that path, and then just pick one and load it.
 its related to vnav
+another way to explain it:
+1 client per dalamud folder
+using same vnav cache for multiple clients eventually causes failure in autoduty
+when in doubt just kill the client and reload.. snd vnav ad all get a little weird after a while
 
 recommended party:
 war dps dps sch
