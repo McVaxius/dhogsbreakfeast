@@ -4,7 +4,7 @@ or "Something need Gooning"
 thanks to @Akasha and @Ritsuko for some of the ideas/code
 
 purpose: help autoduty with farming duties.
-design: it will run 99 prae, and then run decumana until reset time (1 am PDT) and reset the counter and go back to farming prae.
+design: it will run 99 prae, and then run decumana until reset time (1 am PDT) and reset the counter and go back to farming prae. --actually it wont. it will just do 100 prae :(
 
 Plugins/configs (ill update as people realize i forgot instructions)
 Automaton (Now called CBT)
@@ -20,6 +20,7 @@ game -> duty finder config -> unsync+levelsync
 Pandora -> actually have this disabled it causes problems.
 Simpletweaks -> targeting fix
 AD -> Turn off "Leave Duty" and or change to leave only when duty is complete and not path complete
+AD -> choose the W2W Ritsuko or whatever path you want to use BEFORE starting anyhthing in ad. make sure to click prae then pick the route.
 
 This script placed into your SND folder -> https://raw.githubusercontent.com/McVaxius/dhogsbreakfeast/refs/heads/main/_functions.lua
 
@@ -324,7 +325,7 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 		if Entity.Target and Entity.Target.Name then
 			--if mydistto(Entity.Target.Position.X,Entity.Target.Position.Y,Entity.Target.Position.Z) < 25 then
 			if math.abs(EntityPlayerPositionY() - Entity.Target.Position.Y) < 3 then
-				yield("/vnav stop")
+				--yield("/vnav stop")
 			end
 		end
 	end
