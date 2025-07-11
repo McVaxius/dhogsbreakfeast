@@ -304,10 +304,7 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 
 	if Svc.Condition[34] == true and Svc.Condition[26] == false and Svc.ClientState.TerritoryType == 1044 then
 		entitty = 0
-<<<<<<< HEAD
-		--yield("/vnav stop") --stop trying to nav mofo we are fighting
-=======
->>>>>>> parent of 02da26b (/waitaddon -> WaitForAddon())
+
 		while Entity.GetEntityByName(GetCharacterName(false)).CurrentHp == 0 do
 			yield("/echo We died........counting to 5 (3 sec per) then we resetting to entrance..."..entitty.."/5")
 			yield("/wait 3")
