@@ -2412,7 +2412,8 @@ end
 
 function WaitForAddon(x, t)
 	tt = 0
-	while IsAddonReady(x) == false and tt < t do
+	--while IsAddonReady(x) == false and IsAddonVisible(x) == false and tt < t do
+	while IsAddonReady(x) == false and IsAddonVisible(x) == false and tt < 10 do
 		yield("/wait 1")
 		tt = tt + 1
 	end
