@@ -106,6 +106,7 @@ end
 imthecaptainnow = 0 --set this to 1 if this char is the party leader																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																														 --set this to 1 if this char is the party leader
 if Svc.Party[Svc.Party.PartyLeaderIndex].ContentId == Svc.ClientState.LocalContentId then imthecaptainnow = 1 end
 
+
 -----------------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------------
@@ -193,9 +194,24 @@ while 1 == 1 do
 if Player.Available then
 if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean" and type(Svc.Condition[4]) == "boolean" then
 --
+	--if imthecaptainnow == 1 and duty_counter > 98 then --once we ready for decu farming
+	if imthecaptainnow == 1 and duty_counter > 99 then -- just for now until we have figured out how to safely queue for decu
+		if IPC.Automaton.IsTweakEnabled("AutoQueue") == true then
+			IPC.Automaton.SetTweakState("AutoQueue", false)
+			yield("/echo Turning ->OFF<- Auto Queue -> Please wait till daily reset.")
+		end
+	end
+	if imthecaptainnow == 1 and duty_counter < 2 then
+		if IPC.Automaton.IsTweakEnabled("AutoQueue") == false then
+			IPC.Automaton.SetTweakState("AutoQueue", true)
+			yield("/echo Turning ->ON<- Auto Queue -> Daily reset has occurred.")
+		end
+	end
+	
 	if Svc.Condition[34] == true and Svc.Condition[26] == true then
 		yield("/rotation auto")
 		--yield("/vnav stop")
+			--duty selection logic
 	end
 
 	--decide if we are going to bailout - logic stolen from Ritsuko <3
@@ -416,6 +432,7 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 
 	stopcuckingme = stopcuckingme + 1
 	--autoqueue at the end because its least important thing
+	--can we queue for decu? - in any case we can start counting praes for now.
 	if type(Svc.ClientState.TerritoryType) == "number" then
 		zonecheck = Svc.ClientState.TerritoryType
 		if not (zonecheck == 1044 or zonecheck == 1048) then
@@ -427,7 +444,7 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 				duty_counter = duty_counter + 1
 			end
 			if debug_counter == 0 then
-				if echo_level < 4 then yield("/echo This is duty # -> "..duty_counter) end
+				if echo_level < 4 then yield("/echo Duty # -> "..duty_counter.."/99 Praetorium -> 0/? Decumana") end
 			end
 			if debug_counter > 0 then
 				if echo_level < 4 then yield("/echo This is duty # -> "..duty_counter.." Runs since last crash -> "..(duty_counter-debug_counter)) end
