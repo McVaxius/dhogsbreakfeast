@@ -80,9 +80,6 @@ functionsToLoad()
 yield("/echo please get ready for G.O.O.N ing time")
 
 
-if IPC.Automaton.IsTweakEnabled("AutoQueue") == false then IPC.Automaton.SetTweakState("AutoQueue", true) end
-if IPC.Automaton.IsTweakEnabled("EnhancedDutyStartEnd") == true false IPC.Automaton.SetTweakState("EnhancedDutyStartEnd", true) end
-
 --yield("/bmrai ui") --open this in case we need to set the preset. at least until we can slash command it.
 
 jigglecounter = 0
@@ -146,6 +143,11 @@ inprae = 0
 maxzone = 0
 someone_took_the_duct_tape = 0
 checking_the_duct_tape = 0
+
+--ipc, upc, we all p for c
+if IPC.Automaton.IsTweakEnabled("AutoQueue") == false and imthecaptainnow == 1 then IPC.Automaton.SetTweakState("AutoQueue", true) end
+if IPC.Automaton.IsTweakEnabled("AutoQueue") == true and imthecaptainnow == 0 then IPC.Automaton.SetTweakState("AutoQueue", false) end
+if IPC.Automaton.IsTweakEnabled("EnhancedDutyStartEnd") == true false IPC.Automaton.SetTweakState("EnhancedDutyStartEnd", true) end
 
 function force_rotation()
 	if bm_preset == "none" then
