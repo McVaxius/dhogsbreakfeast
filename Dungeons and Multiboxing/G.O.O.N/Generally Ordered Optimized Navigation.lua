@@ -202,7 +202,7 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 		end
 		--[[ --doesnt work yet
 		if Svc.Condition[34] == false and decucounter == 0 then
-			ChooseAndClickDuty(830)
+			ChooseAndClickDuty(830) --this works
 		end
 		--]]
 	end
@@ -213,7 +213,7 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 		end
 		--[[ --doesnt work yet
 		if Svc.Condition[34] == false then
-			ChooseAndClickDuty(1044)
+			ChooseAndClickDuty(1044) --this does not work on one of my clients its picking the tower of babil ?!@?!?!?!?!?!@?#!?@#?!@#
 		end
 		--]]
 	end
