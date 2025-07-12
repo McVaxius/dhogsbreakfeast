@@ -146,6 +146,7 @@ inprae = 0
 maxzone = 0
 someone_took_the_duct_tape = 0
 checking_the_duct_tape = 0
+decucounter = 0
 
 --ipc, upc, we all p for c
 if imthecaptainnow == 1 then
@@ -194,18 +195,27 @@ while 1 == 1 do
 if Player.Available then
 if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean" and type(Svc.Condition[4]) == "boolean" then
 --
-	--if imthecaptainnow == 1 and duty_counter > 98 then --once we ready for decu farming
-	if imthecaptainnow == 1 and duty_counter > 99 then -- just for now until we have figured out how to safely queue for decu
+	if imthecaptainnow == 1 and duty_counter > 98 then --we ready for decu farming
 		if IPC.Automaton.IsTweakEnabled("AutoQueue") == true then
 			IPC.Automaton.SetTweakState("AutoQueue", false)
 			yield("/echo Turning ->OFF<- Auto Queue -> Please wait till daily reset.")
 		end
+		--[[ --doesnt work yet
+		if Svc.Condition[34] == false and decucounter == 0 then
+			ChooseAndClickDuty(830)
+		end
+		--]]
 	end
-	if imthecaptainnow == 1 and duty_counter < 2 then
+	if imthecaptainnow == 1 and duty_counter < 1 then
 		if IPC.Automaton.IsTweakEnabled("AutoQueue") == false then
 			IPC.Automaton.SetTweakState("AutoQueue", true)
 			yield("/echo Turning ->ON<- Auto Queue -> Daily reset has occurred.")
 		end
+		--[[ --doesnt work yet
+		if Svc.Condition[34] == false then
+			ChooseAndClickDuty(1044)
+		end
+		--]]
 	end
 	
 	if Svc.Condition[34] == true and Svc.Condition[26] == true then
@@ -443,8 +453,11 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 			if (duty_counter < 20 and zonecheck ~= 1048) or zonecheck == 1044 or (zonecheck == 1048 and duty_counter > 98) then --don't count yesterday's last decumana in the counter!
 				duty_counter = duty_counter + 1
 			end
+			if duty_counter > 98 then
+				decucounter = decucounter + 1
+			end
 			if debug_counter == 0 then
-				if echo_level < 4 then yield("/echo Duty # -> "..duty_counter.."/99 Praetorium -> 0/? Decumana") end
+				if echo_level < 4 then yield("/echo Duty # -> "..duty_counter.."/99 Praetorium -> "..decucounter.."/? Decumana") end
 			end
 			if debug_counter > 0 then
 				if echo_level < 4 then yield("/echo This is duty # -> "..duty_counter.." Runs since last crash -> "..(duty_counter-debug_counter)) end
@@ -454,8 +467,10 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 	end
 	if os.date("!*t").hour > 6 and os.date("!*t").hour < 8 and duty_counter > 20 then --theres no way we can do 20 prae in 1 hour so this should cover rollover from the previous day
 		duty_counter = 0
+		decucounter = 0
 		if echo_level < 4 then yield("/echo We are starting over the duty counter, we passed daily reset time!") end
 	end
+
 	if Svc.Condition[34] == false and imthecaptainnow == 1 then
 		yield("/wait 5") --wait a +bit longer if we are outside.
 		if Svc.Condition[91] == false then 

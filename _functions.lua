@@ -2418,3 +2418,14 @@ function WaitForAddon(x, t)
 	t = t or 180 --default 3 minutes maxwait
 	yield("/waitaddon "..x.."<maxwait "..t..">")
 end
+
+function ChooseAndClickDuty(x)
+	--[[
+	Instances.DutyFinder:OpenRegularDuty(1044) --Praetorium
+	Instances.DutyFinder:OpenRegularDuty(830)  --Decumana
+	--]]
+	Instances.DutyFinder:OpenRegularDuty(x)
+	yield("/waitaddon ContentsFinder<maxwait 10>")
+	yield("/wait 5")
+	yield("/callback ContentsFinder true 3 4")
+end
