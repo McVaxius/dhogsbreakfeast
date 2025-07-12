@@ -2114,7 +2114,7 @@ homeworld_lookup = {
 }
 
 function GetCharacterName(im_a_cheeky_monkey)
-	if Entity.Player.Name then
+	if Entity.Player and Entity.Player.Name then
 		if im_a_cheeky_monkey == nil then im_a_cheeky_monkey = false end
 		if im_a_cheeky_monkey == false then
 			return Entity.Player.Name

@@ -78,6 +78,11 @@ functionsToLoad = loadfile(loadfiyel)
 functionsToLoad()
 
 yield("/echo please get ready for G.O.O.N ing time")
+
+
+if IPC.Automaton.IsTweakEnabled("AutoQueue") == false then IPC.Automaton.SetTweakState("AutoQueue", true) end
+if IPC.Automaton.IsTweakEnabled("EnhancedDutyStartEnd") == true false IPC.Automaton.SetTweakState("EnhancedDutyStartEnd", true) end
+
 --yield("/bmrai ui") --open this in case we need to set the preset. at least until we can slash command it.
 
 jigglecounter = 0

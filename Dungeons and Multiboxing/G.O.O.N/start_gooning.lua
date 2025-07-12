@@ -33,6 +33,9 @@ while GetContentTimeLeft() > 7199 and GetContentTimeLeft() > 0 do
 	yield("/wait 0.1") -- wait a sec
 end
 
+--if IPC.Automaton.IsTweakEnabled("AutoQueue") == false then IPC.Automaton.SetTweakState("AutoQueue", true) end
+--if IPC.Automaton.IsTweakEnabled("EnhancedDutyStartEnd") == true false IPC.Automaton.SetTweakState("EnhancedDutyStartEnd", true) end
+
 --ok we ran run free now and star the duty
 
 yield("/ad stop")
