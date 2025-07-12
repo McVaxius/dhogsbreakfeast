@@ -38,10 +38,13 @@ CBT -> Enhanced Duty start/end
 	autoqueeu -> click checkmark for party leader
 Use whatever path you want. but i reccommend the included path file for all party members. W2W Ritsuko etc.
 
-OPTIONAL to reduce cpu+gpu usage significantly.:
+OPTIONAL to reduce cpu+gpu usage significantly and cool down your sauna to just a warm afternoon:
 Custom Resolution Scaler -> Gameplay -> Pixelated -> 0.1 -> Enabled [x] -> Save and Apply
 	0.1 is like n64 / ps1 graphics. 0.05 is like snes, and 0.001 is like hilarious. its just 4 pixels. THATS IT 
+	it won't reduce cpu/ram reqs but it will reduce GPU to nothing
 Chillframes -> 15 out of combat 30 in combat
+	it will reduce CPU and GPU reqs, it wont affect ram
+
 
 FIX from old PYES setup:
 REMOVE THIS FROM YESALREADY
@@ -105,7 +108,6 @@ end
 
 imthecaptainnow = 0 --set this to 1 if this char is the party leader																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																														 --set this to 1 if this char is the party leader
 if Svc.Party[Svc.Party.PartyLeaderIndex].ContentId == Svc.ClientState.LocalContentId then imthecaptainnow = 1 end
-
 
 -----------------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------------

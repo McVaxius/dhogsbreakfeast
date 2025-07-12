@@ -7,6 +7,7 @@
  - [x] No crashing on resetting instance (whee)
  
 ## GOON-TODO
- - [ ] Running Decu after 99 Prae - still WIP . finding a way that isnt AD to queue for decu
+ - [ ] Running Decu after 99 Prae - still WIP . 830 decu works 1044 prae doesnt. still researching
+ - [ ] Logging times to a file for easier review
  - [ ] Potting for boss fights - still WIP . have to find a nice generic way to do this
  - [ ] Stopping vnav when targeting Gauis / Nero
