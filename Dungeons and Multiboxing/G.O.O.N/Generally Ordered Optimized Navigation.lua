@@ -205,7 +205,8 @@ while 1 == 1 do
 if Player.Available then
 if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean" and type(Svc.Condition[4]) == "boolean" then
 --
-	if imthecaptainnow == 1 and duty_counter > 98 then --we ready for decu farming
+--	if imthecaptainnow == 1 and duty_counter > 98 then --we ready for decu farming
+	if imthecaptainnow == 1 and duty_counter > 99 then --we are not ready for decu farming
 		if IPC.Automaton.IsTweakEnabled("AutoQueue") == true then
 			IPC.Automaton.SetTweakState("AutoQueue", false)
 			yield("/echo Turning ->OFF<- Auto Queue -> Please wait till daily reset.")
