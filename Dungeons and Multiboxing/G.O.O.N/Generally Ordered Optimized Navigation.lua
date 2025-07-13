@@ -212,7 +212,7 @@ while 1 == 1 do
 if Player.Available then
 if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean" and type(Svc.Condition[4]) == "boolean" then
 --
-	if imthecaptainnow == 1 and duty_counter > 98 and decucounter == 0 then
+	if imthecaptainnow == 1 and duty_counter > 98 and decucounter <2 then
 		if IPC.Automaton.IsTweakEnabled("AutoQueue") == true then
 			IPC.Automaton.SetTweakState("AutoQueue", false)
 			yield("/echo Turning ->OFF<- Auto Queue -> Please wait till we switch to Decumana")
@@ -226,9 +226,9 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 		end
 	end
 	
-	if imthecaptainnow == 1 and duty_counter < 1 then
-		if IPC.Automaton.IsTweakEnabled("AutoQueue") == false then
-			IPC.Automaton.SetTweakState("AutoQueue", true)
+	if imthecaptainnow == 1 and duty_counter < 2 then
+		if IPC.Automaton.IsTweakEnabled("AutoQueue") == true then
+			IPC.Automaton.SetTweakState("AutoQueue", false)
 			yield("/echo Turning ->ON<- Auto Queue -> Daily reset has occurred. we will be resuming Praetorium")
 		end
 		if Svc.Condition[34] == false then
