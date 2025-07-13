@@ -67,6 +67,8 @@ WAR SCH SMN/MCH MNK
 or 
 WAR SCH MCH MCH
 or
+GNB SGE MCH MCH
+or
 BLU BLU BLU BLU or some combination of BST/BLU
 
 (yeah right hahaha.)
@@ -384,10 +386,12 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 			--end
 		end
 	end
-	if Svc.Condition[34] == true and Svc.Condition[26] == false then
-		if math.abs(x1 - EntityPlayerPositionX()) < 3 and math.abs(y1 - EntityPlayerPositionY()) < 3 and math.abs(z1 - EntityPlayerPositionZ()) < 3 then
-			if echo_level < 4 then yield("/echo We havent moved very much something is up -> "..jigglecounter.."/"..maxjiggle.." cycles to return!") end
-			jigglecounter = jigglecounter + 1
+	if Svc.Condition[34] == true and Svc.Condition[26] == false do then
+		if GetContentTimeLeft() < 7179 and GetContentTimeLeft() > 0 then
+			if math.abs(x1 - EntityPlayerPositionX()) < 3 and math.abs(y1 - EntityPlayerPositionY()) < 3 and math.abs(z1 - EntityPlayerPositionZ()) < 3 then
+				if echo_level < 4 then yield("/echo We havent moved very much something is up -> "..jigglecounter.."/"..maxjiggle.." cycles to return!") end
+				jigglecounter = jigglecounter + 1
+			end
 		end
 		yield("/rotation auto")
 		if jigglecounter > maxjiggle and Svc.ClientState.TerritoryType == 1044 then --we stuck for 30+ seconds somewhere in praetorium
