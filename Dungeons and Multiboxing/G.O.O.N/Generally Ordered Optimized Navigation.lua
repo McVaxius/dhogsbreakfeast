@@ -213,6 +213,9 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 		end
 		if Svc.Condition[34] == false and decucounter == 0 then
 			ChooseAndClickDuty(decuID)
+			if IPC.Automaton.IsTweakEnabled("AutoQueue") == false then
+				IPC.Automaton.SetTweakState("AutoQueue", true)
+			end
 		end
 	end
 	if imthecaptainnow == 1 and duty_counter < 1 then
@@ -222,6 +225,9 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 		end
 		if Svc.Condition[34] == false then
 			ChooseAndClickDuty(praeID)
+			if IPC.Automaton.IsTweakEnabled("AutoQueue") == false then
+				IPC.Automaton.SetTweakState("AutoQueue", true)
+			end
 		end
 	end
 	
