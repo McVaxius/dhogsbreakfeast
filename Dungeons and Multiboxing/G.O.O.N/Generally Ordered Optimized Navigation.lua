@@ -166,7 +166,11 @@ checking_the_duct_tape = 0
 decucounter = 0
 
 --ipc, upc, we all p for c
+if imthecaptainnow == 0 then
+	yield("/echo I'm not the captain now")
+end
 if imthecaptainnow == 1 then
+	yield("/echo I'm the captain now")
 	if IPC.Automaton.IsTweakEnabled("AutoQueue") == false then IPC.Automaton.SetTweakState("AutoQueue", true) end
 end
 if IPC.Automaton.IsTweakEnabled("AutoQueue") == true and imthecaptainnow == 0 then IPC.Automaton.SetTweakState("AutoQueue", false) end
