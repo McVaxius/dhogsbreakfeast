@@ -355,7 +355,7 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 	--first ensure we are in the duty and not in combat
 
 	--1044 is prae we only need this there atm
-	if Player.Available then --Praetorium
+	if Player.Available then
 	--if Svc.ClientState.TerritoryType == 1044 and not HasTarget() then
 	--	TargetClosestEnemy(30)
 	--end
