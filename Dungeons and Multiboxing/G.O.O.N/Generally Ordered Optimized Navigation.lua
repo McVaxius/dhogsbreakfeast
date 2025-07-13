@@ -123,9 +123,6 @@ duty_counter = 0	 --set it to 0 if its the first run of the "day"
 					 --just set it to whatever the last "current duty count" was from echos
 					 --i.e. if you saw "This is duty # -> 17"  from the echo window , then set it to 17 before you resume your run for the day		 
 
-feedme = 4745		 --itemID for food to eat. use simple tweaks ShowID to find it (turn it on and hover over item, it will be the number on the left in the square [] brackets)
-feedmeitem = "Orange Juice"  --add the <hq> if its HQ
---feedmeitem = "Baked Eggplant<hq>"  --remove the <hq> if its not HQ
 
 --dutypresets -- test with Instances.DutyFinder:OpenRegularDuty(830)    
 praeID = 16	  -- count from the top until you reach praetorium to get the number if you dont have all of ARR dungeons unlocked. sometimes 1044 works.
@@ -139,16 +136,25 @@ ducttape = 33916 --check if we even have g8dm, otherwise dont waste time, 10386 
 --bm_preset = "AutoDuty" --if you set it to "none" it wont use bmr. this is for the preset to use.
 bm_preset = "none" --if you set it to "none" it wont use bmr and instead it will use RSR. this is for the preset to use.
 
+--Food related
+feedme = 4745		 		 --itemID for food to eat. use simple tweaks ShowID to find it (turn it on and hover over item, it will be the number on the left in the square [] brackets).  Set this to 6942069 if you want it to pull from a list and eat wahtever is in the inventory when food timer is <5 minutes
+feedmeitem = "Orange Juice"  --call it whatever you want.
+--put in order of least-to-most-wanted. so first in list will only get picked if its the onyl one left. we want a maximum of 100 items in this list (10 seconds processing time) so we will build that out later.
+
 --debug/dont-touch-settings-unless-you-know-whats-up
 itworksonmymachine = 0 --0 means use ad start (pre-select "regular" mode first in ad), 1 means use the callback and snd function method(s) for queueing into porta/prae.   it no longer works on my machine and i suspect it won't on others too haha
 hardened_sock = 1200 		 --bailout from duty in 1200 seconds (20 minutes)
-echo_level = 3 		 --3 only show important stuff, 2 show the progress messages, 1 show more, 0 show all
+echo_level = 3 		 --5 show nothing at all except critical moments 4 only show duty counters 3 only show important stuff, 2 show the progress messages, 1 show more, 0 show all
 debug_counter = 0 --if this is >0 then subtract from the total duties . useful for checking for crashes just enter in the duty_counter value+1 of the last crash, so if you crashed at duty counter 5, enter in a 6 for this value
 maxjiggle = 30 --how much default time (# of loops of the script) before we jiggle the char in prae
 -----------------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------------
+
+if feedme == 6942069 then
+	feedme, feedmeitem = Available_Food_ID()
+end
 
 --dont touch these ones
 entered_duty = 0

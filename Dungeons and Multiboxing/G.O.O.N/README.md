@@ -6,7 +6,5 @@
  - [x] Recovery (deaths don't mean failed run)
  - [x] No crashing on resetting instance (whee)
  - [x] Stopping vnav when targeting Gauis / Nero
-
-## GOON-TODO
- - [ ] Running Decu after 99 Prae - still WIP . 830 decu works 1044 prae doesnt. still researching
- - [ ] Logging times to a file for easier review
+ - [x] Pullling food from a list - **this is implemented. testing soon™**
+ - [x] Running Decu after 99 Prae - **this is implemented. testing soon™**

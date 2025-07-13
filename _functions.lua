@@ -2433,3 +2433,22 @@ function ChooseAndClickDuty(x)
 	yield("/callback ContentsFinder true 3 "..x)
 	yield("/wait 2")
 end
+
+food_list = { --list in order of least wanted to most wanted
+  {4745, "Orange Juice"},
+  {39872, "Baked Eggplant"},
+  {44178, "Moqecka"},
+  {46003, "Mate Cookie"}
+}
+
+function Available_Food_ID()
+	for i=1,#food_list do
+		if GetItemCount(food_list[i][1]) > 0 then
+			local zfeedme = food_list[i][1]
+			local zfeedmeitem = food_list[i][2]
+			return zfeedme, zfeedmeitem
+		end
+		yield("/wait 0.1")
+	end
+	return 4745,"Orange Juice"
+end
