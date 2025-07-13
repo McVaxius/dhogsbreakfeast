@@ -220,8 +220,11 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 		if Svc.Condition[34] == false and decucounter == 0 then
 			ChooseAndClickDuty(decuID)
 			if IPC.Automaton.IsTweakEnabled("AutoQueue") == false then
+				yield("/echo Turning ->ON<- Auto Queue -> Please wait till we switch to Decumana")
 				IPC.Automaton.SetTweakState("AutoQueue", true)
 			end
+			yield("/echo Firing up Decumana")
+			yield("/wait 2")
 			yield("/dutyfinder")
 		end
 	end
@@ -229,14 +232,16 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 	if imthecaptainnow == 1 and duty_counter < 2 then
 		if IPC.Automaton.IsTweakEnabled("AutoQueue") == true then
 			IPC.Automaton.SetTweakState("AutoQueue", false)
-			yield("/echo Turning ->ON<- Auto Queue -> Daily reset has occurred. we will be resuming Praetorium")
+			yield("/echo Turning ->OFF<- Auto Queue -> Daily reset has occurred. we will be resuming Praetorium")
 		end
 		if Svc.Condition[34] == false then
 			ChooseAndClickDuty(praeID)
 			if IPC.Automaton.IsTweakEnabled("AutoQueue") == false then
-				yield("/echo asdfasdfasdf")
+				yield("/echo Turning ->ON<- Auto Queue -> Daily reset has occurred. we will be resuming Praetorium")
 				IPC.Automaton.SetTweakState("AutoQueue", true)
 			end
+			yield("/echo Firing up Praetorium")
+			yield("/wait 2")
 			yield("/dutyfinder")
 		end
 	end

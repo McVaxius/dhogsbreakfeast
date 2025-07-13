@@ -2432,6 +2432,7 @@ function ChooseAndClickDuty(x)
 	if x == 829 then x = 4 end --decumana
 	yield("/callback ContentsFinder true 3 "..x)
 	yield("/wait 2")
+	yield("/dutyfinder")
 end
 
 food_list = { --list in order of least wanted to most wanted

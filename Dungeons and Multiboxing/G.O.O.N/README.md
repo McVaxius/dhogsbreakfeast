@@ -7,4 +7,4 @@
  - [x] No crashing on resetting instance (whee)
  - [x] Stopping vnav when targeting Gauis / Nero
  - [x] Pullling food from a list - **this is implemented. testing soon™**
- - [x] Running Decu after 99 Prae - **this is implemented. testing soon™**
+ - [x] Running Decu after 99 Prae
