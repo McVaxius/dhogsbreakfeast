@@ -80,6 +80,7 @@ and then let goon do its thing
 minor qol just to see the times in a nice chat window
 also sometimes things go haywire if you change jobs just /xlkill that/those client(s) and restart them
 also because the path has automove, we have to leave the horrible camera controls on :(
+also sometimes the movement type is changed from legacy to standard -> ?????????????????? its not autoduty??!??
 --]]
 loadfiyel = os.getenv("appdata").."\\XIVLauncher\\pluginConfigs\\SomethingNeedDoing\\_functions.lua"
 functionsToLoad = loadfile(loadfiyel)
