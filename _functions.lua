@@ -2426,6 +2426,10 @@ function ChooseAndClickDuty(x)
 	--]]
 	Instances.DutyFinder:OpenRegularDuty(x)
 	yield("/waitaddon ContentsFinder<maxwait 10>")
-	yield("/wait 5")
-	yield("/callback ContentsFinder true 3 4")
+	yield("/callback ContentsFinder true 12 1")
+	yield("/wait 2")
+	x = x - 1
+	if x == 829 then x = 4 end --decumana
+	yield("/callback ContentsFinder true 3 "..x)
+	yield("/wait 2")
 end

@@ -126,14 +126,14 @@ feedme = 4745		 --itemID for food to eat. use simple tweaks ShowID to find it (t
 feedmeitem = "Orange Juice"  --add the <hq> if its HQ
 --feedmeitem = "Baked Eggplant<hq>"  --remove the <hq> if its not HQ
 
+--dutypresets -- test with Instances.DutyFinder:OpenRegularDuty(830)    
+praeID = 16	  -- count from the top until you reach praetorium to get the number if you dont have all of ARR dungeons unlocked. sometimes 1044 works.
+decuID = 830  -- this seems to work on most clients
+
 --tornclothes = 25 --pct to try to repair at
 tornclothes = 25 --pct to try to repair at
 finickyclothes = 0 --0 = dont auto equip, 1 = autoequip, useful if you have bis that isnt max level, default set to NOT equip so peopel can manage their BIS
 ducttape = 33916 --check if we even have g8dm, otherwise dont waste time, 10386 is g6dm if you wanna change it, 17837 is g7, 33916 is g8
-
---dutypresets -- test with Instances.DutyFinder:OpenRegularDuty(830)    
-praeID = 1044 -- 1044 works on my f2p but not my p2w accounts.
-decuID = 830  -- this seems to work on most clients
 
 --bm_preset = "AutoDuty" --if you set it to "none" it wont use bmr. this is for the preset to use.
 bm_preset = "none" --if you set it to "none" it wont use bmr and instead it will use RSR. this is for the preset to use.
@@ -205,15 +205,15 @@ while 1 == 1 do
 if Player.Available then
 if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean" and type(Svc.Condition[4]) == "boolean" then
 --
---	if imthecaptainnow == 1 and duty_counter > 98 then --we ready for decu farming
-	if imthecaptainnow == 1 and duty_counter > 99 then --we are not ready for decu farming
+	if imthecaptainnow == 1 and duty_counter > 98 then --we ready for decu farming
+--	if imthecaptainnow == 1 and duty_counter > 99 and decucounter == 0 then --we are not ready for decu farming
 		if IPC.Automaton.IsTweakEnabled("AutoQueue") == true then
 			IPC.Automaton.SetTweakState("AutoQueue", false)
 			yield("/echo Turning ->OFF<- Auto Queue -> Please wait till daily reset.")
 		end
-		--[[ --doesnt work yet
+		--[[--waiting till i can test
 		if Svc.Condition[34] == false and decucounter == 0 then
-			ChooseAndClickDuty(decuID) --this works
+			ChooseAndClickDuty(decuID)
 		end
 		--]]
 	end
@@ -222,9 +222,9 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 			IPC.Automaton.SetTweakState("AutoQueue", true)
 			yield("/echo Turning ->ON<- Auto Queue -> Daily reset has occurred.")
 		end
-		--[[ --doesnt work yet
+		--[[--waiting till i can test
 		if Svc.Condition[34] == false then
-			ChooseAndClickDuty(praeID) --this does not work on one of my clients its picking the tower of babil ?!@?!?!?!?!?!@?#!?@#?!@#
+			ChooseAndClickDuty(praeID)
 		end
 		--]]
 	end
