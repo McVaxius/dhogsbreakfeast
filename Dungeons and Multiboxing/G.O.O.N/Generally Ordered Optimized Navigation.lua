@@ -28,6 +28,7 @@ Yesalready configs (maybe only the first one is needed since the rest are done v
 	"YesNo"
 		/Repair all displayed items for.*/
 		/Exit.*/
+		/Move immediately to sealed area.*/
 	"Lists"
 		/Retire to an inn room.*/
 
@@ -127,6 +128,10 @@ tornclothes = 25 --pct to try to repair at
 finickyclothes = 0 --0 = dont auto equip, 1 = autoequip, useful if you have bis that isnt max level, default set to NOT equip so peopel can manage their BIS
 ducttape = 33916 --check if we even have g8dm, otherwise dont waste time, 10386 is g6dm if you wanna change it, 17837 is g7, 33916 is g8
 
+--dutypresets -- test with Instances.DutyFinder:OpenRegularDuty(830)    
+praeID = 1044 -- 1044 works on my f2p but not my p2w accounts.
+decuID = 830  -- this seems to work on most clients
+
 --bm_preset = "AutoDuty" --if you set it to "none" it wont use bmr. this is for the preset to use.
 bm_preset = "none" --if you set it to "none" it wont use bmr and instead it will use RSR. this is for the preset to use.
 
@@ -204,7 +209,7 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 		end
 		--[[ --doesnt work yet
 		if Svc.Condition[34] == false and decucounter == 0 then
-			ChooseAndClickDuty(830) --this works
+			ChooseAndClickDuty(decuID) --this works
 		end
 		--]]
 	end
@@ -215,7 +220,7 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 		end
 		--[[ --doesnt work yet
 		if Svc.Condition[34] == false then
-			ChooseAndClickDuty(1044) --this does not work on one of my clients its picking the tower of babil ?!@?!?!?!?!?!@?#!?@#?!@#
+			ChooseAndClickDuty(praeID) --this does not work on one of my clients its picking the tower of babil ?!@?!?!?!?!?!@?#!?@#?!@#
 		end
 		--]]
 	end
