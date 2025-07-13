@@ -550,7 +550,8 @@ if process_players > 0 then
 		if open_coffers == 1 then
 			for i=1,#koffers do
 				if GetItemCount(koffers[i][1]) > 0 then
-					yield("/item "..koffers[i][2])
+					--yield("/item "..koffers[i][2])
+					Inventory.GetInventoryItem(tonumber(koffers[i][2])):Use()
 					yield("/wait 4")
 				end
 			end

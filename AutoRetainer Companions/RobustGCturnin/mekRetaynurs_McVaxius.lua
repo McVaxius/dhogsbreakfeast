@@ -231,7 +231,8 @@ visland_stop_moving()
 if GetBuddyTimeRemaining() < 900 and GetItemCount(4868) > 0 then
 	yield("/visland stop")
 	yield("/vnavmesh stop")
-	yield("/item Gysahl Greens")
+	--yield("/item Gysahl Greens")
+	Inventory.GetInventoryItem(4868):Use()
 	yield("/wait 3")
 end
 

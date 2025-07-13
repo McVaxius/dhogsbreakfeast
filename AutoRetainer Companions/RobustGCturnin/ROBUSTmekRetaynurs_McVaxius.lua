@@ -236,7 +236,8 @@ function trouble_my_adventure()
 	if GetBuddyTimeRemaining() < 900 and GetItemCount(4868) > 0 then
 		yield("/visland stop")
 		yield("/vnavmesh stop")
-		yield("/item Gysahl Greens")
+		--yield("/item Gysahl Greens")
+		Inventory.GetInventoryItem(tonumber(4868)):Use()
 		yield("/wait 3")
 	end
 
