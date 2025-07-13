@@ -367,7 +367,9 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 			yield("/echo We died........counting to 5 (3 sec per) then we resetting to entrance..."..entitty.."/5")
 			yield("/wait 3")
 			entitty = entitty + 1
-			if entitty > 5 or Svc.Condition[26] == false then --accept the respawn immediately if we aren't in combat :~(
+			if Svc.Condition[26] == false then entitty = entitty + 1 end --speed things up if we aren't in combat
+			--if entitty > 5 or Svc.Condition[26] == false then --accept the respawn immediately if we aren't in combat :~(
+			if entitty > 5 then --accept the respawn immediately if we aren't in combat :~(
 --				if IsAddonReady("SelectYesno") and Svc.Condition[2] == false then --i dont know what the addon for rez box is called.
 					yield("/callback SelectYesno true 0")
 --				end
