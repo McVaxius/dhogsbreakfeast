@@ -6,5 +6,5 @@
  - [x] Recovery (deaths don't mean failed run)
  - [x] No crashing on resetting instance (whee)
  - [x] Stopping vnav when targeting Gauis / Nero
- - [x] Pullling food from a list - **this is implemented. testing soon™**
+ - [x] Pullling food from a list
  - [x] Running Decu after 99 Prae
