@@ -263,7 +263,7 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 	---yield("/echo "..statoos)
 	if type(GetItemCount(feedme)) == "number" then
 		if GetItemCount(feedme) > 0 and statoos < 90 and Svc.Condition[34] == false then --refresh food if we are below 15 minutes left
-			yield("/item "..feedme)
+			Inventory.GetInventoryItem(tonumber(feedme)):Use()
 			yield("/echo Attempting to eat "..feedmeitem)
 			yield("/wait 0.5")
 		end
