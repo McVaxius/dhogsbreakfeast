@@ -2443,9 +2443,11 @@ food_list = { --list in order of least wanted to most wanted
 
 function Available_Food_ID()
 	for i=1,#food_list do
-		if GetItemCount(food_list[i][1]) > 0 then
+		zitemcount = GetItemCount(food_list[i][1])
+		if zitemcount > 0 then
 			local zfeedme = food_list[i][1]
 			local zfeedmeitem = food_list[i][2]
+			yield("/echo Found ->"..zitemcount.."x"..food_list[i][1].."->"..food_list[i][2])
 			return zfeedme, zfeedmeitem
 		end
 		yield("/wait 0.1")
