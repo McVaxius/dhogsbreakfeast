@@ -28,9 +28,11 @@ yield("/wait 3")
 
 yield("/mmambo") --change it to something else if you like.
 
-while GetContentTimeLeft() > 7199 and GetContentTimeLeft() > 0 do
-	--yield("/echo we are free from the confines of the intro portraits")
-	yield("/wait 0.1") -- wait a sec
+if Svc.ClientState.TerritoryType == 1044 then --only do this in Prae
+	while GetContentTimeLeft() > 7199 and GetContentTimeLeft() > 0 do
+		--yield("/echo we are free from the confines of the intro portraits")
+		yield("/wait 0.1") -- wait a sec
+	end
 end
 
 --if IPC.Automaton.IsTweakEnabled("AutoQueue") == false then IPC.Automaton.SetTweakState("AutoQueue", true) end

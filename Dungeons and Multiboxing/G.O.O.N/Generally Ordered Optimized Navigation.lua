@@ -79,6 +79,7 @@ you first setup unsync+level sync . since it will never unhceck level sync. then
 and then let goon do its thing
 minor qol just to see the times in a nice chat window
 also sometimes things go haywire if you change jobs just /xlkill that/those client(s) and restart them
+also because the path has automove, we have to leave the horrible camera controls on :(
 --]]
 loadfiyel = os.getenv("appdata").."\\XIVLauncher\\pluginConfigs\\SomethingNeedDoing\\_functions.lua"
 functionsToLoad = loadfile(loadfiyel)
