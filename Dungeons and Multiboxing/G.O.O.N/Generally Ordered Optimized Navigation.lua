@@ -473,10 +473,10 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 				decucounter = decucounter + 1
 			end
 			if debug_counter == 0 then
-				if echo_level < 4 then yield("/echo Duty # -> "..duty_counter.."/99 Praetorium -> "..decucounter.."/? Decumana") end
+				if echo_level < 5 then yield("/echo Duty # -> "..duty_counter.."/99 Praetorium -> "..decucounter.."/? Decumana") end
 			end
 			if debug_counter > 0 then
-				if echo_level < 4 then yield("/echo This is duty # -> "..duty_counter.." Runs since last crash -> "..(duty_counter-debug_counter)) end
+				if echo_level < 5 then yield("/echo This is duty # -> "..duty_counter.." Runs since last crash -> "..(duty_counter-debug_counter)) end
 			end
 			
 		end
