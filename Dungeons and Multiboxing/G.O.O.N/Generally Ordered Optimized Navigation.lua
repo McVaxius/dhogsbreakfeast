@@ -264,7 +264,7 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 	if type(GetItemCount(feedme)) == "number" then
 		if GetItemCount(feedme) > 0 and statoos < 90 and Svc.Condition[34] == false then --refresh food if we are below 15 minutes left
 			Inventory.GetInventoryItem(tonumber(feedme)):Use()
-			yield("/echo Attempting to eat "..feedmeitem)
+			if echo_level < 4 then yield("/echo Attempting to eat "..feedmeitem) end
 			yield("/wait 0.5")
 		end
 	end
@@ -403,7 +403,6 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 		if jigglecounter > maxjiggle and Svc.ClientState.TerritoryType == 1044 then --we stuck for 30+ seconds somewhere in praetorium
 			if echo_level < 4 then yield("/echo attempting to restart AD and hope for the best") end
 			jigglecounter = 0
-			yield("/echo attempting to restart AD and hope for the best")
 			yield("/ad stop")
 			yield("/wait 2")
 			yield("/return")
