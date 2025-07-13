@@ -205,28 +205,23 @@ while 1 == 1 do
 if Player.Available then
 if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean" and type(Svc.Condition[4]) == "boolean" then
 --
-	if imthecaptainnow == 1 and duty_counter > 98 then --we ready for decu farming
---	if imthecaptainnow == 1 and duty_counter > 99 and decucounter == 0 then --we are not ready for decu farming
+	if imthecaptainnow == 1 and duty_counter > 98 and decucounter == 0 then
 		if IPC.Automaton.IsTweakEnabled("AutoQueue") == true then
 			IPC.Automaton.SetTweakState("AutoQueue", false)
-			yield("/echo Turning ->OFF<- Auto Queue -> Please wait till daily reset.")
+			yield("/echo Turning ->OFF<- Auto Queue -> Please wait till we switch to Decumana")
 		end
-		--[[--waiting till i can test
 		if Svc.Condition[34] == false and decucounter == 0 then
 			ChooseAndClickDuty(decuID)
 		end
-		--]]
 	end
 	if imthecaptainnow == 1 and duty_counter < 1 then
 		if IPC.Automaton.IsTweakEnabled("AutoQueue") == false then
 			IPC.Automaton.SetTweakState("AutoQueue", true)
-			yield("/echo Turning ->ON<- Auto Queue -> Daily reset has occurred.")
+			yield("/echo Turning ->ON<- Auto Queue -> Daily reset has occurred. we will be resuming Praetorium")
 		end
-		--[[--waiting till i can test
 		if Svc.Condition[34] == false then
 			ChooseAndClickDuty(praeID)
 		end
-		--]]
 	end
 	
 	if Svc.Condition[34] == true and Svc.Condition[26] == true then
