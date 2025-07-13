@@ -390,7 +390,7 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 			if Svc.Condition[26] == false then entitty = entitty + 1 end --speed things up if we aren't in combat
 			--if entitty > 5 or Svc.Condition[26] == false then --accept the respawn immediately if we aren't in combat :~(
 			if entitty > 5 then --accept the respawn immediately if we aren't in combat :~(
---				if IsAddonReady("SelectYesno") and Svc.Condition[2] == false then --i dont know what the addon for rez box is called.
+--				if IsAddonReady("SelectYesno") and Svc.Condition[2] == false then --i dont know what the addon for res box is called.
 					yield("/callback SelectYesno true 0")
 --				end
 				yield("/ad stop")
