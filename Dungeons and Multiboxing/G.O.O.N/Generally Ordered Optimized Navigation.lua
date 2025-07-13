@@ -138,8 +138,8 @@ ducttape = 33916 --check if we even have g8dm, otherwise dont waste time, 10386 
 bm_preset = "none" --if you set it to "none" it wont use bmr and instead it will use RSR. this is for the preset to use.
 
 --Food related
-feedme = 4745		 		 --itemID for food to eat. use simple tweaks ShowID to find it (turn it on and hover over item, it will be the number on the left in the square [] brackets).  Set this to 6942069 if you want it to pull from a list and eat wahtever is in the inventory when food timer is <5 minutes
-feedmeitem = "Orange Juice"  --call it whatever you want.
+feedme = 6942069	--itemID for food to eat. use simple tweaks ShowID to find it (turn it on and hover over item, it will be the number on the left in the square [] brackets).  Set this to 6942069 if you want it to pull from a list and eat wahtever is in the inventory when food timer is <5 minutes
+feedmeitem = "Something I found"  --call it whatever you want.
 --put in order of least-to-most-wanted. so first in list will only get picked if its the onyl one left. we want a maximum of 100 items in this list (10 seconds processing time) so we will build that out later.
 
 --debug/dont-touch-settings-unless-you-know-whats-up
