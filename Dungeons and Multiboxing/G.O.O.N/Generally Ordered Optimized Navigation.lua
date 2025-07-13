@@ -222,8 +222,10 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 			if IPC.Automaton.IsTweakEnabled("AutoQueue") == false then
 				IPC.Automaton.SetTweakState("AutoQueue", true)
 			end
+			yield("/dutyfinder")
 		end
 	end
+	
 	if imthecaptainnow == 1 and duty_counter < 1 then
 		if IPC.Automaton.IsTweakEnabled("AutoQueue") == false then
 			IPC.Automaton.SetTweakState("AutoQueue", true)
@@ -232,8 +234,10 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 		if Svc.Condition[34] == false then
 			ChooseAndClickDuty(praeID)
 			if IPC.Automaton.IsTweakEnabled("AutoQueue") == false then
+				yield("/echo asdfasdfasdf")
 				IPC.Automaton.SetTweakState("AutoQueue", true)
 			end
+			yield("/dutyfinder")
 		end
 	end
 	
@@ -472,10 +476,10 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 		end
 		if (zonecheck == 1044 or zonecheck == 1048) and entered_duty == 0 then
 			entered_duty = 1
-			if (duty_counter < 20 and zonecheck ~= 1048) or zonecheck == 1044 or (zonecheck == 1048 and duty_counter > 98) then --don't count yesterday's last decumana in the counter!
+			if (duty_counter < 20 and zonecheck ~= 1048) or zonecheck == 1044 or (zonecheck == 1048 and duty_counter > 98) and IPC.Automaton.IsTweakEnabled("AutoQueue") == true then --don't count yesterday's last decumana in the counter!
 				duty_counter = duty_counter + 1
 			end
-			if duty_counter > 98 then
+			if duty_counter > 98 and IPC.Automaton.IsTweakEnabled("AutoQueue") == true and zonecheck == 1048 then
 				decucounter = decucounter + 1
 			end
 			if debug_counter == 0 then
