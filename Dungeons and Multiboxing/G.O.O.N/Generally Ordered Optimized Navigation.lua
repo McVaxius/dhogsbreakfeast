@@ -86,7 +86,7 @@ loadfiyel = os.getenv("appdata").."\\XIVLauncher\\pluginConfigs\\SomethingNeedDo
 functionsToLoad = loadfile(loadfiyel)
 functionsToLoad()
 
-yield("/echo please get ready for G.O.O.N ing time")
+yield("/echo You have started G.O.O.N ing")
 
 
 --yield("/bmrai ui") --open this in case we need to set the preset. at least until we can slash command it.
@@ -130,7 +130,7 @@ praeID = 16	  -- count from the top until you reach praetorium to get the number
 decuID = 830  -- this seems to work on most clients
 
 --tornclothes = 25 --pct to try to repair at
-tornclothes = 25 --pct to try to repair at
+tornclothes = 25 --pct to try to repair at --this is for npc repair. party leader will repair at this % but rest of party will go try to repair no matter what if they are outside of duty for >20 seconds
 finickyclothes = 0 --0 = dont auto equip, 1 = autoequip, useful if you have bis that isnt max level, default set to NOT equip so peopel can manage their BIS
 ducttape = 33916 --check if we even have g8dm, otherwise dont waste time, 10386 is g6dm if you wanna change it, 17837 is g7, 33916 is g8
 
