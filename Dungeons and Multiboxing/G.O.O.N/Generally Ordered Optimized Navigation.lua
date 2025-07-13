@@ -78,6 +78,7 @@ I figured out how to get ad to do unsync+level sync
 you first setup unsync+level sync . since it will never unhceck level sync. then tick unsync for regular duty prae
 and then let goon do its thing
 minor qol just to see the times in a nice chat window
+also sometimes things go haywire if you change jobs just /xlkill that/those client(s) and restart them
 --]]
 loadfiyel = os.getenv("appdata").."\\XIVLauncher\\pluginConfigs\\SomethingNeedDoing\\_functions.lua"
 functionsToLoad = loadfile(loadfiyel)
@@ -386,8 +387,8 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 			--end
 		end
 	end
-	if Svc.Condition[34] == true and Svc.Condition[26] == false do then
-		if GetContentTimeLeft() < 7179 and GetContentTimeLeft() > 0 then
+	if Svc.Condition[34] == true and Svc.Condition[26] == false then
+		if GetContentTimeLeft() < 7179 and GetContentTimeLeft() > 0 then --this way it doesn't count towards reset while we are at entrance
 			if math.abs(x1 - EntityPlayerPositionX()) < 3 and math.abs(y1 - EntityPlayerPositionY()) < 3 and math.abs(z1 - EntityPlayerPositionZ()) < 3 then
 				if echo_level < 4 then yield("/echo We havent moved very much something is up -> "..jigglecounter.."/"..maxjiggle.." cycles to return!") end
 				jigglecounter = jigglecounter + 1
