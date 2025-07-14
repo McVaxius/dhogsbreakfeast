@@ -33,11 +33,9 @@ Yesalready configs (maybe only the first one is needed since the rest are done v
 		/Retire to an inn room.*/
 
 CBT -> Enhanced Duty start/end
-	duty start -> /pcraft run start_gooning
+	duty start -> /snd run start_gooning
 	duty end -> /ad stop
 	leave duty -> 10 seconds
-	autoqueeu -> click checkmark for party leader
-Use whatever path you want. but i reccommend the included path file for all party members. W2W Ritsuko etc.
 
 OPTIONAL to reduce cpu+gpu usage significantly and cool down your sauna to just a warm afternoon:
 Custom Resolution Scaler -> Gameplay -> Pixelated -> 0.1 -> Enabled [x] -> Save and Apply
@@ -146,7 +144,7 @@ maxjiggle = 30 --how much default time (# of loops of the script) before we jigg
 praeID = 16	  -- count from the top until you reach praetorium to get the number if you dont have all of ARR dungeons unlocked. sometimes 1044 works. count from top to prae and then add 1 for the index to use here.
 decuID = 830  -- this seems to work on most clients
 
-if imthecaptainnow == 1 then
+if imthecaptainnow == 1 and Svc.Condition[34] == false then
 	Instances.DutyFinder:OpenRegularDuty(1)
 	yield("/waitaddon ContentsFinder<maxwait 10>")
 	yield("/echo scanning for Praetorium")
