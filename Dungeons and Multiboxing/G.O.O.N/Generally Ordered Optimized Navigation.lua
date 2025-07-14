@@ -404,8 +404,11 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 				yield("/rotation auto")
 			end
 		end
-		yield("/send TAB")
-		yield("/target Gaius")
+		
+		--Do we need these? let's find out
+		--yield("/send TAB")
+		--yield("/target Gaius")
+		
 		if Entity.Target and Entity.Target.Name then
 			goatfucker = Entity.Target.Name or "goatfucker"
 			if (goatfucker == "Nero tol Scaeva" or goatfucker == "Gaius van Baelsar") and Svc.Condition[26] == true then
