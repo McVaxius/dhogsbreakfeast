@@ -154,16 +154,14 @@ if imthecaptainnow == 1 then
 	for i=6,15 do
 	Instances.DutyFinder:OpenRegularDuty(i)
 	dName = Addons.GetAddon("ContentsFinder"):GetNode(1,52,61000+i,5)
-	yield("/echo Duty Name "..i.." ->"..tostring(dName.Text).."<--")
+	yield("/echo Duty Name "..i+2.." ->"..tostring(dName.Text).."<--")
 	if dName.Text == "The Praetorium" then
-		yield("/echo we found it!")
-		praeID = i + 1
+		yield("/echo we found it at index -> "..i+2)
+		praeID = i + 2
 	end
 	yield("/wait 0.1")
 	end
 end
-
-if echo_level < 4 then yield("/echo PRAE ID is "..praeID.." IF THIS CORRESPONDS TO THE CARDINALITY OF PRAETORIUM IN YOUR DUTY FINDER THEN YOU ARE ALL SET.  HOWEVER IF YOU HAVE NOT UNLOCKED ALL DUTIES IN ARR THEN YOU WILL HAVE TO REVIEW THIS VALUE AND CHANGE IT AND YOU ARE CURRENTLY QUEUEING INTO SOME WEIRD DUTY AT THE MOMENT.  IF SOMEOEN CAN MAKE ME A BETTER WAY OF PICKING PRAE DYNAMICALLY PLEASE TELL ME") end
 
 if feedme == 6942069 then
 	feedme, feedmeitem = Available_Food_ID()
