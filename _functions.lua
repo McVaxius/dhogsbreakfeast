@@ -2420,10 +2420,6 @@ function WaitForAddon(x, t)
 end
 
 function ChooseAndClickDuty(x)
-	--[[
-	Instances.DutyFinder:OpenRegularDuty(1044) --Praetorium
-	Instances.DutyFinder:OpenRegularDuty(830)  --Decumana
-	--]]
 	Instances.DutyFinder:OpenRegularDuty(x)
 	yield("/waitaddon ContentsFinder<maxwait 10>")
 	yield("/callback ContentsFinder true 12 1")
