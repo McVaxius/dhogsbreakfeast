@@ -2438,7 +2438,13 @@ function ChooseAndClickDuty(x)
 end
 
 food_list = { --list in order of least wanted to most wanted
+  --hehe
   {4745, "Orange Juice"},
+  --f2p from kugane
+  {12855, "Grilled Sweetfish"},
+  {19816, "Popoto Soba"},
+  {19822, "Grilled Turban"},
+  --recent raid foods
   {39872, "Baked Eggplant"},
   {44178, "Moqecka"},
   {46003, "Mate Cookie"}

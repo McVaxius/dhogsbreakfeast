@@ -210,23 +210,24 @@ https://github.com/Aspher0/PuppetMaster_Fork
 pluginmaster
 https://raw.githubusercontent.com/Aspher0/PuppetMaster_Fork/main/PuppetMaster.json
 
-you can go to "Default settings"
+add text command like
+lime power
 
-Default Trigger (use regex)  (in this case "weeehehe")
-(?i)\b(?:weeehehe)\s+(?:\((.*?)\)|(\w+))
-Replacement
-/li $1$2
+tick allow all text command and groundsit
+pick the channel you want to listen to
 
---]]
---binstance = ini_check("binstance", "let us travel to instance")
-				--[[ group instance change prefix, it will take " x" where x is the instance number as an argument, so you can setup qolbar keys with lines like this presumable
-after changing instances, followers will /cl their chat windows
-exmample qolbar for telling group to go instance 2
-/mount
-/p let us travel to isntance 2
-/li 2
+examples: some are made up but you get the idea.
+now someone can send a command in specific channel like
+lime power (li 2)
+this will execute /li 2 and send you to instance 2
+
+lime power (li fish)
+this will execute /li fish  and send you to teh fisherman guild if your in limsa already
+
+lime power (snd run world_of_gooncraft)
+this will execute /snd run world_of_gooncraft  and bootup the ingame lua based mmo known as world of gooncraft and you will begin your quest in goontopia
+
 ]]
--- mker = "cross" -- In case you want the other shapes. Valid shapes are triangle square circle attack1-8 bind1-3 ignore1-2
 
 ---------------------------------------
 ---------------------------------------
