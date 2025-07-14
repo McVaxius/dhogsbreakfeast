@@ -2134,7 +2134,13 @@ function DeliverooIsTurnInRunning()
 end
 
 function HasPlugin(name)
-	return IPC.IsInstalled(name)
+  for plugin in luanet.each(Svc.PluginInterface.InstalledPlugins) do
+    if plugin.InternalName == name then
+      return true
+    end
+  end
+  return false
+--	return IPC.IsInstalled(name)
 end
 
 function GetInventoryFreeSlotCount()
@@ -2450,4 +2456,59 @@ function Available_Food_ID()
 		yield("/wait 0.1")
 	end
 	return 4745,"Orange Juice"
+end
+
+
+function GetInternalNames() --get all plugin internalnames for use with isinstalled etc.
+	for plugin in luanet.each(Svc.PluginInterface.InstalledPlugins) do
+		if plugin.IsLoaded then
+			yield("/echo " .. plugin.Name)
+		end
+	end
+end
+
+function GetInternalNamesIPC() --get all plugin internalnames for use with isinstalled etc. IPC ones
+	local rawPlugins = IPC.GetAvailablePlugins()
+	local plugins = {}
+
+	-- Convert .NET array to Lua table
+	for i = 0, rawPlugins.Length - 1 do
+		table.insert(plugins, rawPlugins:GetValue(i))
+	end
+
+	-- Now safe to iterate
+	for i = 1, #plugins do
+		yield("/echo " .. plugins[i])
+	end
+end
+
+function GetInternalCommands() --get all subcommands for all plugins
+	for name, plugin in pairs(IPC) do
+		if type(plugin) == "table" then
+			yield("/echo === " .. name .. " ===")
+			for k, v in pairs(plugin) do
+				yield("/echo    " .. k)
+			end
+		end
+	end
+end
+
+function GetIPCRegisteredTables()
+	-- Iterate all registered IPC plugin tables
+	for name, plugin in pairs(IPC) do
+		-- Make sure it's a table (i.e., an actual plugin container)
+		if type(plugin) == "table" then
+			yield("/echo === IPC Plugin: " .. name .. " ===")
+
+			-- Optional: List functions inside each plugin
+			for funcName, func in pairs(plugin) do
+				if type(func) == "function" then
+					yield("/echo    function: " .. funcName)
+				else
+					-- Also show non-function fields if any
+					yield("/echo    field: " .. funcName .. " (" .. type(func) .. ")")
+				end
+			end
+		end
+	end
 end
