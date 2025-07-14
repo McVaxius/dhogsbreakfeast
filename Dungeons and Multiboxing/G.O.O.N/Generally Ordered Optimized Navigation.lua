@@ -213,7 +213,7 @@ while 1 == 1 do
 	yield("/wait 2") --the big wait. run the entire fucking script every 2 seconds
 	checking_the_duct_tape = checking_the_duct_tape + 1
 	
-if IPC.Automaton.IsTweakEnabled("AutoQueue") == false and (duty_counter > 1 or decucounter > 1) then
+if IPC.Automaton.IsTweakEnabled("AutoQueue") == false and (duty_counter > 0 or decucounter > 0) then
 	yield("/echo Turning ->ON<- Auto Queue -> It was off for some reason")
 	IPC.Automaton.SetTweakState("AutoQueue", true)
 end
