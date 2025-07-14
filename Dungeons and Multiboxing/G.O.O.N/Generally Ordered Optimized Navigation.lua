@@ -12,6 +12,7 @@ Some form of bossmod
 Rotation Solver Reborn
 Vnavmesh
 Simpletweaks
+Cutscene Skip -> https://raw.githubusercontent.com/KangasZ/DalamudPluginRepository/main/plugin_repository.json
 
 Configurations (NOT OPTIONAL.  THEY ARE ABSOLUTELY MANDATORY)
 game -> don't have it in controller mode or it will start chatting (!?!?!?!?!?!) Thanks @Arcorius for this
