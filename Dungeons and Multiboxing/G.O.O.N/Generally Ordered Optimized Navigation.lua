@@ -4,7 +4,7 @@ or "Something need Gooning"
 thanks to @Akasha and @Ritsuko for some of the ideas/code
 
 purpose: help autoduty with farming duties.
-design: it will run 99 prae, and then run decumana until reset time (1 am PDT) and reset the counter and go back to farming prae. --actually it wont. it will just do 100 prae :(
+design: it will run 99 prae, and then run decumana until reset time (1 am PDT) and reset the counter and go back to farming prae.
 
 Plugins/configs (ill update as people realize i forgot instructions)
 Automaton (Now called CBT)
@@ -18,7 +18,7 @@ game -> don't have it in controller mode or it will start chatting (!?!?!?!?!?!)
 game -> duty finder config -> unsync+levelsync
 
 Pandora -> actually have this disabled it causes problems.
-Simpletweaks -> targeting fix
+Simpletweaks -> targeting fix aka "Fix '/target' Command
 AD -> Turn off "Leave Duty" and or change to leave only when duty is complete and not path complete
 AD -> choose the W2W Ritsuko or whatever path you want to use BEFORE starting anyhthing in ad. make sure to click prae then pick the route.
 
@@ -81,6 +81,15 @@ minor qol just to see the times in a nice chat window
 also sometimes things go haywire if you change jobs just /xlkill that/those client(s) and restart them
 also because the path has automove, we have to leave the horrible camera controls on :(
 also sometimes the movement type is changed from legacy to standard -> ?????????????????? its not autoduty??!??
+
+i'm searching for prae
+1,52,61001*,5 through to 61015  .Text
+for i=5,15 do
+	Instances.DutyFinder:OpenRegularDuty(i)
+dName = Addons.GetAddon("ContentsFinder"):GetNode(1,52,61000+i,5)
+yield("/echo Duty Name "..i.." -> "..tostring(dName.Text))
+yield("/wait 1")
+end
 --]]
 loadfiyel = os.getenv("appdata").."\\XIVLauncher\\pluginConfigs\\SomethingNeedDoing\\_functions.lua"
 functionsToLoad = loadfile(loadfiyel)
@@ -97,21 +106,6 @@ y1 = EntityPlayerPositionY()
 z1 = EntityPlayerPositionZ()
 
 stopcuckingme = 0    --counter for checking whento pop duty
-
---[[ this no longer works and i dont feel like fixing it
---if its a cross world party everyone will make a queue attempt
-function isLeader()
-    return (GetCharacterName() == GetPartyMemberName(GetPartyLeadIndex()))
-end
-
-imthecaptainnow = 0  --set this to 1 if this char is the party leader
-
-if isLeader() then 
-	imthecaptainnow = 1 
-	yield("/echo I am the party leader i guess")
-end
---]]
-
 imthecaptainnow = 0 --set this to 1 if this char is the party leader																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																														 --set this to 1 if this char is the party leader
 if Svc.Party[Svc.Party.PartyLeaderIndex].ContentId == Svc.ClientState.LocalContentId then imthecaptainnow = 1 end
 
@@ -123,11 +117,6 @@ duty_counter = 0	 --set it to 0 if its the first run of the "day"
 					 --change this if you want to restart a "run" at a higher counter level becuase you were alreaday running it.
 					 --just set it to whatever the last "current duty count" was from echos
 					 --i.e. if you saw "This is duty # -> 17"  from the echo window , then set it to 17 before you resume your run for the day		 
-
-
---dutypresets -- test with Instances.DutyFinder:OpenRegularDuty(830)    
-praeID = 16	  -- count from the top until you reach praetorium to get the number if you dont have all of ARR dungeons unlocked. sometimes 1044 works.
-decuID = 830  -- this seems to work on most clients
 
 --tornclothes = 25 --pct to try to repair at
 tornclothes = 25 --pct to try to repair at --this is for npc repair. party leader will repair at this % but rest of party will go try to repair no matter what if they are outside of duty for >20 seconds
@@ -152,6 +141,29 @@ maxjiggle = 30 --how much default time (# of loops of the script) before we jigg
 -----------------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------------
+
+--dutypresets -- test with Instances.DutyFinder:OpenRegularDuty(830)    
+praeID = 16	  -- count from the top until you reach praetorium to get the number if you dont have all of ARR dungeons unlocked. sometimes 1044 works. count from top to prae and then add 1 for the index to use here.
+decuID = 830  -- this seems to work on most clients
+
+if imthecaptainnow == 1 then
+	Instances.DutyFinder:OpenRegularDuty(1)
+	yield("/waitaddon ContentsFinder<maxwait 10>")
+	yield("/echo scanning for Praetorium")
+	yield("/wait 5")
+	for i=6,15 do
+	Instances.DutyFinder:OpenRegularDuty(i)
+	dName = Addons.GetAddon("ContentsFinder"):GetNode(1,52,61000+i,5)
+	yield("/echo Duty Name "..i.." ->"..tostring(dName.Text).."<--")
+	if dName.Text == "The Praetorium" then
+		yield("/echo we found it!")
+		praeID = i + 1
+	end
+	yield("/wait 0.1")
+	end
+end
+
+if echo_level < 4 then yield("/echo PRAE ID is "..praeID.." IF THIS CORRESPONDS TO THE CARDINALITY OF PRAETORIUM IN YOUR DUTY FINDER THEN YOU ARE ALL SET.  HOWEVER IF YOU HAVE NOT UNLOCKED ALL DUTIES IN ARR THEN YOU WILL HAVE TO REVIEW THIS VALUE AND CHANGE IT AND YOU ARE CURRENTLY QUEUEING INTO SOME WEIRD DUTY AT THE MOMENT.  IF SOMEOEN CAN MAKE ME A BETTER WAY OF PICKING PRAE DYNAMICALLY PLEASE TELL ME") end
 
 if feedme == 6942069 then
 	feedme, feedmeitem = Available_Food_ID()
