@@ -154,9 +154,9 @@ if imthecaptainnow == 1 then
 	for i=6,15 do
 	Instances.DutyFinder:OpenRegularDuty(i)
 	dName = Addons.GetAddon("ContentsFinder"):GetNode(1,52,61000+i,5)
-	yield("/echo Duty Name "..i+2.." ->"..tostring(dName.Text).."<--")
+	yield("/echo Duty Name "..(i+2).." ->"..tostring(dName.Text).."<--")
 	if dName.Text == "The Praetorium" then
-		yield("/echo we found it at index -> "..i+2)
+		yield("/echo we found it at index -> "..(i+2))
 		praeID = i + 2
 	end
 	yield("/wait 0.1")
