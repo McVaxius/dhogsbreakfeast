@@ -457,6 +457,7 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 		--TargetClosestEnemy()
 		--yield("/ac \"Fester\"") --i dont think we need this.
 	end
+	--[[--this isn't needed i think autoduty does this effectively on its own now
 	if Svc.Condition[4] == true then --target stuff while on magitek if we don't thave a target. trying to fix this bullashit
 		--if type(GetTargetName()) ~= "string" then
 			TargetClosestEnemy()
@@ -464,12 +465,13 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 			yield("/wait 0.5")
 		---end
 	end
+	--]]
 
 	if Svc.Condition[4] == false and Svc.Condition[26] == true then
 		jigglecounter = 0
 		if Entity.Target and Entity.Target.Name then
 			if type(GetTargetName()) ~= "string" then
-				TargetClosestEnemy()
+				--TargetClosestEnemy() --we shouldn't need this seeing as we already have a target in this context
 				--yield("/vnav stop")
 				yield("/rotation auto")
 				--yield("/ad pause")

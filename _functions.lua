@@ -2512,3 +2512,46 @@ function GetIPCRegisteredTables()
 		end
 	end
 end
+
+
+function PartialPluginNameSearchExample()
+	local guesses = {
+	  "BossModReborn",
+	  "BossMod",
+	  "bossmodreborn",
+	  "rebornbossmod",
+	  "ACTOverlay",
+	  "cactbot",
+	  "SomeOtherRebornPlugin",
+	  "raidemulator",
+	  "triggevent",
+	  "triggernometry",
+	  "reboot",
+	  "reborn",
+	  "rebornplugin",
+	  "rebornpluginframework",
+	  "overlayplugin",
+	  "bosmodreborn",
+	}
+
+	for _, guess in ipairs(guesses) do
+	  local success, result = pcall(function()
+		return Svc.PluginInterface.InstalledPlugins
+	  end)
+
+	  local found = false
+
+	  if success then
+		for plugin in luanet.each(result) do
+		  if plugin.InternalName and plugin.InternalName:lower():find(guess:lower(), 1, true) then
+			yield("/echo Found match: " .. plugin.InternalName .. " (Display: " .. plugin.Name .. ")")
+			found = true
+		  end
+		end
+	  end
+
+	  if not found then
+		yield("/echo Guess not matched: " .. guess)
+	  end
+	end
+end
