@@ -123,8 +123,9 @@ ducttape = 33916 --check if we even have g8dm, otherwise dont waste time, 10386 
 bm_preset = "none" --if you set it to "none" it wont use bmr and instead it will use RSR. this is for the preset to use.
 
 --Food related
-feedme = 6942069	--itemID for food to eat. use simple tweaks ShowID to find it (turn it on and hover over item, it will be the number on the left in the square [] brackets).  Set this to 6942069 if you want it to pull from a list and eat wahtever is in the inventory when food timer is <5 minutes
-feedmeitem = "Something I found"  --call it whatever you want.
+feedme = 46003	--itemID for food to eat. use simple tweaks ShowID to find it (turn it on and hover over item, it will be the number on the left in the square [] brackets).  Set this to 6942069 if you want it to pull from a list and eat wahtever is in the inventory when food timer is <5 minutes
+feedmeitem = "Mate Cookie"  --call it whatever you want.
+feedmesearch = true --do you want it to search for other foods if the selected one runs out?
 --put in order of least-to-most-wanted. so first in list will only get picked if its the onyl one left. we want a maximum of 100 items in this list (10 seconds processing time) so we will build that out later.
 
 --debug/dont-touch-settings-unless-you-know-whats-up
@@ -158,10 +159,6 @@ if imthecaptainnow == 1 and Svc.Condition[34] == false then
 	yield("/wait 0.1")
 	end
 	ChooseAndClickDuty(praeID)
-end
-
-if feedme == 6942069 then
-	feedme, feedmeitem = Available_Food_ID()
 end
 
 --dont touch these ones
@@ -290,8 +287,7 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 	maxzone = 0--reset the timer for inside prae
 
 	--Food check!
-	if feedme == 6942069 then foodsearch = true end
-	feedme, feedmeitem  = food_deleter(feedme,feedmeitem,echo_level,foodsearch)
+	feedme, feedmeitem  = food_deleter(feedme,feedmeitem,echo_level,feedmesearch)
 	
 	--do we need to need npc repairs? check INSIDE duty
 	if NeedsRepair(tornclothes) and tornclothes > -1 and GetItemCount(1) > 4999 and Svc.Condition[34] == true and IPC.Automaton.IsTweakEnabled("AutoQueue") == true then
