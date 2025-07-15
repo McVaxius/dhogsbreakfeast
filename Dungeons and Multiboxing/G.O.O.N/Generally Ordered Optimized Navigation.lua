@@ -160,6 +160,7 @@ if imthecaptainnow == 1 and Svc.Condition[34] == false then
 	end
 	yield("/wait 0.1")
 	end
+	ChooseAndClickDuty(praeID)
 end
 
 if feedme == 6942069 then
