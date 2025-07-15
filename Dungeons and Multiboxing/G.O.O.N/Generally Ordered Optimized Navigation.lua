@@ -96,9 +96,6 @@ functionsToLoad()
 
 yield("/echo You have started G.O.O.N ing")
 
-
---yield("/bmrai ui") --open this in case we need to set the preset. at least until we can slash command it.
-
 jigglecounter = 0
 x1 = EntityPlayerPositionX()
 y1 = EntityPlayerPositionY()
@@ -175,6 +172,7 @@ maxzone = 0
 someone_took_the_duct_tape = 0
 checking_the_duct_tape = 0
 decucounter = 0
+foodsearch = false
 
 --ipc, upc, we all p for c
 if imthecaptainnow == 0 then
@@ -268,8 +266,6 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 	
 	if Svc.Condition[34] == true and Svc.Condition[26] == true then
 		yield("/rotation auto")
-		--yield("/vnav stop")
-			--duty selection logic
 	end
 
 	--decide if we are going to bailout - logic stolen from Ritsuko <3
@@ -294,15 +290,8 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 	maxzone = 0--reset the timer for inside prae
 
 	--Food check!
-	statoos = GetStatusTimeRemaining(48)
-	---yield("/echo "..statoos)
-	if type(GetItemCount(feedme)) == "number" then
-		if GetItemCount(feedme) > 0 and statoos < 90 and (Svc.Condition[34] == false or Svc.Condition[26] == false) then --refresh food if we are below 15 minutes left
-			Inventory.GetInventoryItem(tonumber(feedme)):Use()
-			if echo_level < 4 then yield("/echo Attempting to eat "..feedmeitem) end
-			yield("/wait 0.5")
-		end
-	end
+	if feedme == 6942069 then foodsearch = true end
+	feedme, feedmeitem  = food_deleter(feedme,feedmeitem,echo_level,foodsearch)
 	
 	--do we need to need npc repairs? check INSIDE duty
 	if NeedsRepair(tornclothes) and tornclothes > -1 and GetItemCount(1) > 4999 and Svc.Condition[34] == true and IPC.Automaton.IsTweakEnabled("AutoQueue") == true then
@@ -354,12 +343,6 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 				if imthecaptainnow == 0 then
 					someone_took_the_duct_tape = someone_took_the_duct_tape + 1
 				end
-				--[[while NeedsRepair(tornclothes) and goatcounter < 3600 do
-					yield("/wait 0.05")
-					if IsAddonVisible("_Notification") then yield("/callback _Notification true 0 17") end
-					if IsAddonVisible("ContentsFinderConfirm") then yield("/callback ContentsFinderConfirm true 9") end
-					goatcounter = goatcounter + 1
-				end-]]
 				if (imthecaptainnow == 0 and someone_took_the_duct_tape > 10) or (imthecaptainnow == 1 and IPC.Automaton.IsTweakEnabled("AutoQueue") == false) then --we've been outside of prae for 20+ seconds or we are the party leader and autoqueue is disabled
 					yield("/ad repair")
 					tornclothes = 99 --force party member repairs. we may not get another chance!
@@ -382,159 +365,127 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 	--
 	--safe check ifs part 2
 	if Player.Available then
-	if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean" and type(Svc.Condition[4]) == "boolean" then
-	--
+		if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean" and type(Svc.Condition[4]) == "boolean" then
+		--
 
-	--yield("/echo x diff"..math.abs(x1 - EntityPlayerPositionX()))
-	--check if we are stuck somewhere.
-	--first ensure we are in the duty and not in combat
+		--check if we are stuck somewhere.
+		--first ensure we are in the duty and not in combat
 
-	--1044 is prae we only need this there atm
-	if Player.Available then
-	--if Svc.ClientState.TerritoryType == 1044 and not HasTarget() then
-	--	TargetClosestEnemy(30)
-	--end
+		--1044 is prae we only need this there atm
+			if Player.Available then
 
-	if Svc.Condition[34] == true and Svc.Condition[26] == false and Svc.ClientState.TerritoryType == 1044 then
-		entitty = 0
+			if Svc.Condition[34] == true and Svc.Condition[26] == false and Svc.ClientState.TerritoryType == 1044 then
+				entitty = 0
 
-		while Entity.GetEntityByName(GetCharacterName(false)).CurrentHp == 0 do
-			yield("/echo We died........counting to 5 (3 sec per) then we resetting to entrance..."..entitty.."/5")
-			yield("/wait 3")
-			entitty = entitty + 1
-			if Svc.Condition[26] == false then entitty = entitty + 1 end --speed things up if we aren't in combat
-			--if entitty > 5 or Svc.Condition[26] == false then --accept the respawn immediately if we aren't in combat :~(
-			if entitty > 5 then --accept the respawn immediately if we aren't in combat :~(
---				if IsAddonReady("SelectYesno") and Svc.Condition[2] == false then --i dont know what the addon for res box is called.
+				while Entity.GetEntityByName(GetCharacterName(false)).CurrentHp == 0 do
+					yield("/echo We died........counting to 5 (3 sec per) then we resetting to entrance..."..entitty.."/5")
+					yield("/wait 3")
+					entitty = entitty + 1
+					if Svc.Condition[26] == false then entitty = entitty + 1 end --speed things up if we aren't in combat
+					if entitty > 5 then --accept the respawn immediately if we aren't in combat :~(
+						yield("/callback SelectYesno true 0")
+						yield("/ad stop")
+						yield("/wait 10")
+						yield("/ad start")
+						yield("/rotation auto")
+					end
+				end
+				
+				if Entity.Target and Entity.Target.Name then
+					goatfucker = Entity.Target.Name or "goatfucker"
+					if (goatfucker == "Nero tol Scaeva" or goatfucker == "Gaius van Baelsar") and Svc.Condition[26] == true then
+						yield("/vnav stop")
+					end
+				end
+			end
+			if Svc.Condition[34] == true and Svc.Condition[26] == false then
+				if GetContentTimeLeft() < 7179 and GetContentTimeLeft() > 0 then --this way it doesn't count towards reset while we are at entrance
+					if math.abs(x1 - EntityPlayerPositionX()) < 3 and math.abs(y1 - EntityPlayerPositionY()) < 3 and math.abs(z1 - EntityPlayerPositionZ()) < 3 then
+						if echo_level < 4 then yield("/echo We havent moved very much something is up -> "..jigglecounter.."/"..maxjiggle.." cycles to return!") end
+						jigglecounter = jigglecounter + 1
+					end
+				end
+				yield("/rotation auto")
+				if jigglecounter > maxjiggle and Svc.ClientState.TerritoryType == 1044 then --we stuck for 30+ seconds somewhere in praetorium
+					if echo_level < 4 then yield("/echo attempting to restart AD and hope for the best") end
+					jigglecounter = 0
+					yield("/ad stop")
+					yield("/wait 2")
+					yield("/return")
+					yield("/wait 1")
 					yield("/callback SelectYesno true 0")
---				end
-				yield("/ad stop")
-				yield("/wait 10")
-				yield("/ad start")
-				yield("/rotation auto")
+					yield("/wait 12")
+					yield("/ad start")
+					yield("/wait 2")
+				end
 			end
-		end
-		
-		--Do we need these? let's find out
-		--yield("/send TAB")
-		--yield("/target Gaius")
-		
-		if Entity.Target and Entity.Target.Name then
-			goatfucker = Entity.Target.Name or "goatfucker"
-			if (goatfucker == "Nero tol Scaeva" or goatfucker == "Gaius van Baelsar") and Svc.Condition[26] == true then
-				yield("/vnav stop")
-			end
-			--if mydistto(Entity.Target.Position.X,Entity.Target.Position.Y,Entity.Target.Position.Z) < 25 then
-			--if math.abs(EntityPlayerPositionY() - Entity.Target.Position.Y) < 3 then
-				--yield("/vnav stop")
-			--end
-		end
-	end
-	if Svc.Condition[34] == true and Svc.Condition[26] == false then
-		if GetContentTimeLeft() < 7179 and GetContentTimeLeft() > 0 then --this way it doesn't count towards reset while we are at entrance
-			if math.abs(x1 - EntityPlayerPositionX()) < 3 and math.abs(y1 - EntityPlayerPositionY()) < 3 and math.abs(z1 - EntityPlayerPositionZ()) < 3 then
-				if echo_level < 4 then yield("/echo We havent moved very much something is up -> "..jigglecounter.."/"..maxjiggle.." cycles to return!") end
-				jigglecounter = jigglecounter + 1
-			end
-		end
-		yield("/rotation auto")
-		if jigglecounter > maxjiggle and Svc.ClientState.TerritoryType == 1044 then --we stuck for 30+ seconds somewhere in praetorium
-			if echo_level < 4 then yield("/echo attempting to restart AD and hope for the best") end
-			jigglecounter = 0
-			yield("/ad stop")
-			yield("/wait 2")
-			yield("/return")
-			yield("/wait 1")
-			yield("/callback SelectYesno true 0")
-			yield("/wait 12")
-			yield("/ad start")
-			yield("/wait 2")
-		end
-	end
 
-	end
-	--if Svc.Condition[34] == false then --fix autoqueue just shitting out
-		--yield("/send U")
-	--`
-	
-	if Svc.Condition[34] == true and Svc.Condition[26] == false then
-		equip_counter = equip_counter + 1
-		if equip_counter > 50 and finickyclothes == 1 then 
-			yield("/equiprecommended")
-			yield("/wait 0.5")
-			equip_counter = 0
-		end
-		--TargetClosestEnemy()
-		--yield("/ac \"Fester\"") --i dont think we need this.
-	end
-	--[[--this isn't needed i think autoduty does this effectively on its own now
-	if Svc.Condition[4] == true then --target stuff while on magitek if we don't thave a target. trying to fix this bullashit
-		--if type(GetTargetName()) ~= "string" then
-			TargetClosestEnemy()
-			yield("/send KEY_2")
-			yield("/wait 0.5")
-		---end
-	end
-	--]]
-
-	if Svc.Condition[4] == false and Svc.Condition[26] == true then
-		jigglecounter = 0
-		if Entity.Target and Entity.Target.Name then
-			if type(GetTargetName()) ~= "string" then
-				--TargetClosestEnemy() --we shouldn't need this seeing as we already have a target in this context
-				--yield("/vnav stop")
-				yield("/rotation auto")
-				--yield("/ad pause")
-				yield("/wait 0.5")
-			end
-		end
-	end
-	
-	if Svc.Condition[34] == true then
-		x1 = EntityPlayerPositionX()
-		y1 = EntityPlayerPositionY()
-		z1 = EntityPlayerPositionZ()
-	end
-
-	stopcuckingme = stopcuckingme + 1
-	--autoqueue at the end because its least important thing
-	--can we queue for decu? - in any case we can start counting praes for now.
-	if type(Svc.ClientState.TerritoryType) == "number" then
-		zonecheck = Svc.ClientState.TerritoryType
-		if not (zonecheck == 1044 or zonecheck == 1048) then
-			entered_duty = 0
-		end
-		if (zonecheck == 1044 or zonecheck == 1048) and entered_duty == 0 then
-			entered_duty = 1
-			if (duty_counter < 20 and zonecheck ~= 1048) or zonecheck == 1044 or (zonecheck == 1048 and duty_counter > 98) and IPC.Automaton.IsTweakEnabled("AutoQueue") == true then --don't count yesterday's last decumana in the counter!
-				duty_counter = duty_counter + 1
-			end
-			if duty_counter > 98 and IPC.Automaton.IsTweakEnabled("AutoQueue") == true and zonecheck == 1048 then
-				decucounter = decucounter + 1
-			end
-			if debug_counter == 0 then
-				if echo_level < 5 then yield("/echo Duty # -> "..duty_counter.."/99 Praetorium -> "..decucounter.."/? Decumana") end
-			end
-			if debug_counter > 0 then
-				if echo_level < 5 then yield("/echo This is duty # -> "..duty_counter.." Runs since last crash -> "..(duty_counter-debug_counter)) end
 			end
 			
-		end
-	end
-	if os.date("!*t").hour > 6 and os.date("!*t").hour < 8 and duty_counter > 20 then --theres no way we can do 20 prae in 1 hour so this should cover rollover from the previous day
-		duty_counter = 0
-		decucounter = 0
-		if echo_level < 4 then yield("/echo We are starting over the duty counter, we passed daily reset time!") end
-	end
+			if Svc.Condition[34] == true and Svc.Condition[26] == false then
+				equip_counter = equip_counter + 1
+				if equip_counter > 50 and finickyclothes == 1 then 
+					yield("/equiprecommended")
+					yield("/wait 0.5")
+					equip_counter = 0
+				end
+			end
 
-	if Svc.Condition[34] == false and imthecaptainnow == 1 then
-		yield("/wait 5") --wait a +bit longer if we are outside.
-		if Svc.Condition[91] == false then 
-			yield("/dutyfinder") --try autoqueue with cbt if we aren't queueing for a duty.
+			if Svc.Condition[4] == false and Svc.Condition[26] == true then
+				jigglecounter = 0
+				if Entity.Target and Entity.Target.Name then
+					if type(GetTargetName()) ~= "string" then
+						yield("/rotation auto")
+						yield("/wait 0.5")
+					end
+				end
+			end
+			
+			if Svc.Condition[34] == true then
+				x1 = EntityPlayerPositionX()
+				y1 = EntityPlayerPositionY()
+				z1 = EntityPlayerPositionZ()
+			end
+
+			stopcuckingme = stopcuckingme + 1
+			--autoqueue at the end because its least important thing
+			--can we queue for decu? - in any case we can start counting praes for now.
+			if type(Svc.ClientState.TerritoryType) == "number" then
+				zonecheck = Svc.ClientState.TerritoryType
+				if not (zonecheck == 1044 or zonecheck == 1048) then
+					entered_duty = 0
+				end
+				if (zonecheck == 1044 or zonecheck == 1048) and entered_duty == 0 then
+					entered_duty = 1
+					if (duty_counter < 20 and zonecheck ~= 1048) or zonecheck == 1044 or (zonecheck == 1048 and duty_counter > 98) and IPC.Automaton.IsTweakEnabled("AutoQueue") == true then --don't count yesterday's last decumana in the counter!
+						duty_counter = duty_counter + 1
+					end
+					if duty_counter > 98 and IPC.Automaton.IsTweakEnabled("AutoQueue") == true and zonecheck == 1048 then
+						decucounter = decucounter + 1
+					end
+					if debug_counter == 0 then
+						if echo_level < 5 then yield("/echo Duty # -> "..duty_counter.."/99 Praetorium -> "..decucounter.."/? Decumana") end
+					end
+					if debug_counter > 0 then
+						if echo_level < 5 then yield("/echo This is duty # -> "..duty_counter.." Runs since last crash -> "..(duty_counter-debug_counter)) end
+					end
+					
+				end
+			end
+			if os.date("!*t").hour > 6 and os.date("!*t").hour < 8 and duty_counter > 20 then --theres no way we can do 20 prae in 1 hour so this should cover rollover from the previous day
+				duty_counter = 0
+				decucounter = 0
+				if echo_level < 4 then yield("/echo We are starting over the duty counter, we passed daily reset time!") end
+			end
+
+			if Svc.Condition[34] == false and imthecaptainnow == 1 then
+				yield("/wait 5") --wait a +bit longer if we are outside.
+				if Svc.Condition[91] == false then 
+					yield("/dutyfinder") --try autoqueue with cbt if we aren't queueing for a duty.
+				end
+			end
+		--safe check ends
 		end
 	end
---safe check ends
-end
-end
 ---
 end

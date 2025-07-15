@@ -2561,3 +2561,21 @@ function PartialPluginNameSearchExample()
 	  end
 	end
 end
+
+function food_deleter(feedme, feedmeitem, echo_level, foodsearch)
+	echo_level = echo_level or 3 --catch non calls to this if calling script doesn't check it
+	statoos = GetStatusTimeRemaining(48)
+	
+	if type(GetItemCount(feedme)) == "number" then
+		foidme = GetItemCount(feedme)
+		if foidme > 0 and statoos < 90 and (Svc.Condition[34] == false or Svc.Condition[26] == false) then --refresh food if we are below 15 minutes left
+			Inventory.GetInventoryItem(tonumber(feedme)):Use()
+			if echo_level < 4 then yield("/echo Attempting to eat "..feedmeitem) end
+			yield("/wait 0.5")
+		end
+		if foidme == 0 and feedme ~= 4745 and foodsearch == true then --if we ran out but still have more food that isn't "orange juice"
+			feedme, feedmeitem = Available_Food_ID()
+		end
+	end
+	
+end

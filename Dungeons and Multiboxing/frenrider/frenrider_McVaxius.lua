@@ -183,7 +183,8 @@ xpitem = ini_check("xpitem", 0)								-- xp item - attemp to equip whenever pos
 repair = ini_check("repair", 0)								-- 0 = no, 1 = self repair always, 2 = repair if we are in an inn using the inn npc, dont use option 2 unless you are leaving your char in the inn perpetually
 tornclothes = ini_check("tornclothes", 0)					-- if we are repairing what pct to repair at
 feedme = ini_check("feedme", 4650)							-- eatfood, in this case itemID 4650 which is "Boiled Egg", use simpletweaks to show item IDs it won't try to eat if you have 0 of said food item
-feedmeitem = ini_check("feedmeitem", "Boiled Egg")			-- eatfood, in this case the item name. for now this is how we'll do it. it isn't pretty but it will work.. for now..
+feedmeitem = ini_check("feedmeitem", "Boiled Egg")		-- eatfood, in this case the item name. for now this is how we'll do it. it isn't pretty but it will work.. for now..
+feedmesearch = ini_check("feedmesearch", true)				-- do you want the script to search for food if you run out of the initially selected food?
 ----------------------------
 ---MISC---------------------
 ----------------------------
@@ -1096,18 +1097,7 @@ while weirdvar == 1 do
 			end
 			
 			--Food check!
-			statoos = GetStatusTimeRemaining(48)
-			---gawk_gawk_3000(""..statoos)
-			if Svc.Condition[26] == false then -- dont eat while fighting it will upset your stomach
-				if type(GetItemCount(feedme)) == "number" then
-					if GetItemCount(feedme) > 0 and statoos < 300 then --refresh food if we are below 5 minutes left
-						--yield("/item "..feedmeitem)
-						yield("/wait 0.5")
-						Inventory.GetInventoryItem(tonumber(feedme)):Use()
-						gawk_gawk_3000("Attempting to eat "..feedmeitem)
-					end
-				end
-			end
+			feedme, feedmeitem  = food_deleter(feedme,feedmeitem,spam_printer+3,feedmesearch)
 
 			if Svc.Condition[34] == true then --in duty we might do some special things. mostly just follow the leader and let the ai do its thing.
 				--bmr follow on
