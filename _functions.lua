@@ -2570,8 +2570,14 @@ function PartialPluginNameSearchExample()
 end
 
 function food_deleter(feedme, feedmeitem, echo_level, foodsearch)
+	--[[
+	--Food check!
+	feedme, feedmeitem  = food_deleter(feedme,feedmeitem,echo_level,feedmesearch)
+	--]]
 	echo_level = echo_level or 3 --catch non calls to this if calling script doesn't check it
 	statoos = GetStatusTimeRemaining(48)
+	zfeedme = feedme
+	zfeedmeitem = zfeedmeitem
 	
 	if type(GetItemCount(feedme)) == "number" then
 		foidme = GetItemCount(feedme)
@@ -2581,8 +2587,9 @@ function food_deleter(feedme, feedmeitem, echo_level, foodsearch)
 			yield("/wait 0.5")
 		end
 		if foidme == 0 and feedme ~= 4745 and foodsearch == true then --if we ran out but still have more food that isn't "orange juice"
-			feedme, feedmeitem = Available_Food_ID()
+			zfeedme, zfeedmeitem = Available_Food_ID()
 		end
 	end
 	
+	return zfeedme, zfeedmeitem
 end
