@@ -248,7 +248,7 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 		end
 	end
 	
-	if imthecaptainnow == 1 and duty_counter < 1 then
+	if imthecaptainnow == 1 and duty_counter < 2 then
 		if IPC.Automaton.IsTweakEnabled("AutoQueue") == true then
 			IPC.Automaton.SetTweakState("AutoQueue", false)
 			yield("/echo Turning ->OFF<- Auto Queue -> Daily reset has occurred. we will be resuming Praetorium")
