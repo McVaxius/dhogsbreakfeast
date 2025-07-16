@@ -26,7 +26,8 @@ Don't ask for support with those scripts.  they are just there just in case some
 
 ## Step one - Create
 Click new - choose LUA<br>
-<img width="280" height="79" alt="image" src="https://github.com/user-attachments/assets/a5ac27d6-e178-46db-a382-e55570918d16" />
+<img width="280" height="79" alt="image" src="https://github.com/user-attachments/assets/a5ac27d6-e178-46db-a382-e55570918d16" /><br>
+<img width="266" height="73" alt="image" src="https://github.com/user-attachments/assets/14175204-f622-436c-aa59-64fa1087b179" /><br>
 
 ## Step two - Link
 Enter in ```https://github.com/McVaxius/dhogsbreakfeast/blob/main/dfunc.lua``` into the gitup url, then click create<br>
