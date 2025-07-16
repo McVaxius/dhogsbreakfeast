@@ -18,3 +18,7 @@ Settings -><br>
 
 Something Need Doing should have at least these 3 scripts setup and linked the way you linked dfunc -><br>
 <img width="232" height="99" alt="image" src="https://github.com/user-attachments/assets/ddd55d4d-3ac4-4224-9cf8-bb6f14c6a33d" />
+<br>
+
+Obviously goon is the main script with the giant name, you run this and leave it alone unless you are comfortable configuring it.<br>
+<img width="235" height="101" alt="image" src="https://github.com/user-attachments/assets/394f09b2-a008-450e-b7e3-0478856a6ccd" />
