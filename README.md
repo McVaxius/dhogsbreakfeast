@@ -33,7 +33,7 @@ Enter in ```https://github.com/McVaxius/dhogsbreakfeast/blob/main/dfunc.lua``` i
 <img width="468" height="288" alt="image" src="https://github.com/user-attachments/assets/4a3cae07-3632-41fe-9b6b-d21608596138" />
 
 ## Tip One - Update
-If there is an update you can click over on the bell on tohe right to get it<br>
+If there is an update you can click over on the **bell** on the **right** to get it<br>
 <img width="571" height="142" alt="image" src="https://github.com/user-attachments/assets/1c4372bc-8bb1-438f-89dd-7cc5a784e2ef" />
 
 ## Tip Two - Verify
