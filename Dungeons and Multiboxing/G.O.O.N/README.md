@@ -10,10 +10,11 @@
  - [x] Running Decu after 99 Prae
 
 ## Some visual double-checking you can do
-CBT -> 
+CBT -> <br>
 <img width="331" height="35" alt="image" src="https://github.com/user-attachments/assets/eefd0b31-02b7-418c-98e7-cbbd46e91115" />
-Settings ->
+
+Settings -><br>
 <img width="642" height="495" alt="image" src="https://github.com/user-attachments/assets/066105f6-b014-4af9-9464-e365a88220cc" />
 
-Something Need Doing should have at least these 3 scripts setup and linked the way you linked dfunc ->
+Something Need Doing should have at least these 3 scripts setup and linked the way you linked dfunc -><br>
 <img width="232" height="99" alt="image" src="https://github.com/user-attachments/assets/ddd55d4d-3ac4-4224-9cf8-bb6f14c6a33d" />
