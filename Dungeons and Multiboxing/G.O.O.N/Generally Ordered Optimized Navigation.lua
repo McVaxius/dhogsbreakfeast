@@ -90,9 +90,8 @@ yield("/echo Duty Name "..i.." -> "..tostring(dName.Text))
 yield("/wait 1")
 end
 --]]
-loadfiyel = os.getenv("appdata").."\\XIVLauncher\\pluginConfigs\\SomethingNeedDoing\\_functions.lua"
-functionsToLoad = loadfile(loadfiyel)
-functionsToLoad()
+
+require("dfunc")
 
 yield("/echo You have started G.O.O.N ing")
 
