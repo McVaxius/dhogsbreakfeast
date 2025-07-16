@@ -4,7 +4,5 @@
 
 --thanks to eden from the disc for the idea!
 --for robust turnin script
-loadfiyelZZ = os.getenv("appdata").."\\XIVLauncher\\pluginConfigs\\SomethingNeedDoing\\RobustGCTurnIn_McVaxius.lua"
-functionsToLoad = loadfile(loadfiyelZZ)
-functionsToLoad()
+require("RobustGCTurnIn")
 DidWeLoadcorrectly()

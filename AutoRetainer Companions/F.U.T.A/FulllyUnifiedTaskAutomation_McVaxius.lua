@@ -381,9 +381,11 @@ if wheeequeheeheheheheheehhhee == 1 then
             ungabungabunga() -- We really try hard to be safe here
             yield("/echo Debug: Preparing for fishing")
             
-            loadfiyel2 = os.getenv("appdata").."\\XIVLauncher\\pluginConfigs\\SomethingNeedDoing\\FUTA_fishing.lua"
+			require("FUTA_FISHING")
+--[[            loadfiyel2 = os.getenv("appdata").."\\XIVLauncher\\pluginConfigs\\SomethingNeedDoing\\FUTA_fishing.lua"
             functionsToLoad = loadfile(loadfiyel2)
             functionsToLoad()
+--]]
 			
             yield("/waitaddon _ActionBar<maxwait 600>")
 			
@@ -478,9 +480,11 @@ if wheeequeheeheheheheheehhhee == 0 then
 				FUTA_processors[hoo_arr_weeeeee][3][2] = 100 --queue up a "clean" after next set of QV - but only if we are even allowing it on this one
 			end
 			yield("/echo Yes we need to clean inventory and turnin GC stuff!")
-			loadfiyel2 = os.getenv("appdata").."\\XIVLauncher\\pluginConfigs\\SomethingNeedDoing\\FUTA_GC.lua"
+			require("FUTA_GC")
+			--[[loadfiyel2 = os.getenv("appdata").."\\XIVLauncher\\pluginConfigs\\SomethingNeedDoing\\FUTA_GC.lua"
 			functionsToLoad = loadfile(loadfiyel2)
 			functionsToLoad()
+			--]]
 			FUTA_robust_gc()
 			if FUTA_processors[hoo_arr_weeeeee][3][2] > 0 then --to keep it from double running after it turns itself on in case there was some weird overflow with submarine items, but only if its not disabled already
 				FUTA_processors[hoo_arr_weeeeee][3][2] = FUTA_processors[hoo_arr_weeeeee][3][2] + 1000 
