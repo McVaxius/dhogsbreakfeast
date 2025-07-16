@@ -2582,8 +2582,11 @@ function food_deleter(feedme, feedmeitem, echo_level, foodsearch)
 	if type(GetItemCount(zfeedme)) == "number" then
 		foidme = GetItemCount(zfeedme)
 		if foidme > 0 and statoos < 90 and (Svc.Condition[34] == false or Svc.Condition[26] == false) then --refresh food if we are below 15 minutes left
-			Inventory.GetInventoryItem(tonumber(zfeedme)):Use()
-			if echo_level < 4 then yield("/echo Attempting to eat "..zfeedmeitem) end
+			if Entity.GetEntityByName(GetCharacterName(false)).CurrentHp > 10 then
+				Inventory.GetInventoryItem(tonumber(zfeedme)):Use()
+				if echo_level < 4 then yield("/echo Attempting to eat "..zfeedmeitem) end
+			end
+			if Entity.GetEntityByName(GetCharacterName(false)).CurrentHp == 0 then yield("/echo We are dead or unavailable -- waiting.....") end
 			yield("/wait 0.5")
 		end
 		if foidme == 0 and zfeedme ~= 4745 and foodsearch == true then --if we ran out but still have more food that isn't "orange juice"
