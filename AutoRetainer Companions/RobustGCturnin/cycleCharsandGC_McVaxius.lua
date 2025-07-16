@@ -14,9 +14,7 @@ local franchise_owners = {
 {"Firstname Lastname@Server", 0}
 }
 
-loadfiyel = os.getenv("appdata").."\\XIVLauncher\\pluginConfigs\\SomethingNeedDoing\\_functions.lua"
-functionsToLoad = loadfile(loadfiyel)
-functionsToLoad()
+require("dfunc")
 DidWeLoadcorrectly()
 
 for i=1,#franchise_owners do

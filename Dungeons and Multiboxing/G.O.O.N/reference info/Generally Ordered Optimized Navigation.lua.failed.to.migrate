@@ -20,7 +20,7 @@ Pandora -> actually have this disabled it causes problems.
 Simpletweaks -> targeting fix
 AD -> Turn off "Leave Duty" and or change to leave only when duty is complete and not path complete
 
-This script placed into your SND folder -> https://raw.githubusercontent.com/McVaxius/dhogsbreakfeast/refs/heads/main/_functions.lua
+This script placed into your SND folder -> https://raw.githubusercontent.com/McVaxius/dhogsbreakfeast/refs/heads/main/defunc.lua
 
 Yesalready configs (maybe only the first one is needed since the rest are done via callbacks w ya off) also make sure yesalready is on :p ad turns it off sometimes (???)
 	"YesNo"
@@ -55,9 +55,7 @@ you first setup unsync+level sync . since it will never unhceck level sync. then
 and then let goon do its thing
 minor qol just to see the times in a nice chat window
 --]]
-loadfiyel = os.getenv("appdata").."\\XIVLauncher\\pluginConfigs\\SomethingNeedDoing\\_functions.lua"
-functionsToLoad = loadfile(loadfiyel)
-functionsToLoad()
+require("dfunc")
 
 yield("/echo please get ready for G.O.O.N ing time")
 --yield("/bmrai ui") --open this in case we need to set the preset. at least until we can slash command it.

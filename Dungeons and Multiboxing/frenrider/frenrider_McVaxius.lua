@@ -56,8 +56,8 @@ croizats SND - disable SND targeting in config
 simpletweaks with targeting fix enabled
 vnavmesh
 visland
-_functions.lua into your SND folder in %AppData%\XIVLauncher\\pluginConfigs\\SomethingNeedDoing\\
-you can find it here https://raw.githubusercontent.com/McVaxius/dhogsbreakfeast/refs/heads/main/_functions.lua
+dfunc -> read the git hub root for instructions
+you can find it here https://raw.githubusercontent.com/McVaxius/dhogsbreakfeast/refs/heads/main/dfunc.lua
 
 *optional:
 bring some gysahl greens
@@ -94,9 +94,7 @@ I will do it a bit later once i uhh. make a lookup table for this trash here:
 -- Purpose: to have default .ini values and version control on configs
 -- Personal ini file
 -- if you want to use my ini file serializer just copy form start of inizer to end of inizer and look at how i implemented settings and go nuts :~D
-loadfiyel = os.getenv("appdata").."\\XIVLauncher\\pluginConfigs\\SomethingNeedDoing\\_functions.lua"
-functionsToLoad = loadfile(loadfiyel)
-functionsToLoad()
+require("dfunc")
 
 tempchar = GetCharacterName()
 tempchar = tempchar:gsub("%s", "")  -- Remove all spaces

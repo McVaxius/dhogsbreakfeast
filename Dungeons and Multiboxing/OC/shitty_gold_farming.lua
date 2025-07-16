@@ -24,9 +24,7 @@ RSR is better than BM for healer rotations
 Wrath and RSR both seem to have more phantom stuff than BM will test today
 --]]
 
-loadfiyel = os.getenv("appdata").."\\XIVLauncher\\pluginConfigs\\SomethingNeedDoing\\_functions.lua"
-functionsToLoad = loadfile(loadfiyel)
-functionsToLoad()
+require("dfunc")
 
 im_a_lazy_fuck = true
 goatfuck = "Lesser Cry of Havoc"

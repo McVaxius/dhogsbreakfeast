@@ -38,9 +38,7 @@ GetStatusTimeRemaining(895) == 0 --- this is invuln
 --]]
 
 --required now in order to make basic stuff work.
-loadfiyel = os.getenv("appdata").."\\XIVLauncher\\pluginConfigs\\SomethingNeedDoing\\_functions.lua"
-functionsToLoad = loadfile(loadfiyel)
-functionsToLoad()
+require("dfunc")
 
 
 fuckpvp = 1

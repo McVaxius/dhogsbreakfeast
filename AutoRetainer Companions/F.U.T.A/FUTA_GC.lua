@@ -4,7 +4,7 @@ The last var is whether this char will attempt GC supply turnins and attempt ran
 this will take up to 15-20 seconds so dont enable it for every character unless you really need it (supply missions for leveling jobs basically)
 process_gc_rank  = 0	--0=no,1=yes. do we try to rank up the GC and maybe do a supply delivery turnin?
 expert_hack      = 0	--0=no,1=yes. it will try in 15 second cycles. to do deliveries then turn them off and let it try to buy venture coins . up to 12 times. or when there is no increase in venture coins
-clean_inventory	 = 0    --0=no, >0 check inventory slots free and try to clean out inventory . leave it at 0 if you dont know how to use it. and don't ask me for help on punish or i will block you.  the answer is in _functions.lua
+clean_inventory	 = 0    --0=no, >0 check inventory slots free and try to clean out inventory . leave it at 0 if you dont know how to use it. and don't ask me for help on punish or i will block you.  the answer is in dfunc
 ]]
 ---------------------------------
 --FUTA_GC SCRIPT CONFIGURATION --
@@ -70,8 +70,7 @@ Something Need Doing (Croizat version)
 -----------------
 -SUPER IMPORTANT-
 -----------------
-Make sure _functions.lua exist in the snd folder. which should look something like this path %AppData%\\XIVLauncher\\pluginConfigs\\SomethingNeedDoing\\
-get _functions.lua from same place as this script came from
+Make sure dfunc is updated
 
 -------------------------
 --PLUGIN CONFIGURATIONS--
@@ -142,7 +141,6 @@ function Final_GC_Cleaning()
 			yield("/echo FC Seal Sweetener II Search Algorithm")
 			--yield("/callback FreeCompanyAction false 1 0u <wait.1>")
 			castattempt = 0
-			--credit to https://github.com/WigglyMuffin/SNDScripts/blob/main/vac_functions.lua  for finding the nodetext for this one :~D
 			yield("/freecompanycmd")
 			yield("/wait 1")
 			

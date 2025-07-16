@@ -2,10 +2,8 @@
 --this is meant to be used from where ever you are after you acquire the daily DOL item
 
 --borrowed some code and ideas from the wonderful:  (make sure the _functions is in the snd folder)
---https://github.com/elijabesu/ffxiv-scripts/blob/main/snd/_functions.lua
-loadfiyel = os.getenv("appdata").."\\XIVLauncher\\pluginConfigs\\SomethingNeedDoing\\_functions.lua"
-functionsToLoad = loadfile(loadfiyel)
-functionsToLoad()
+--https://github.com/elijabesu/ffxiv-scripts/blob/main/snd/dfunc.lua
+require("dfunc")
 DidWeLoadcorrectly()
 
 yield("/wait 0.5")

@@ -13,10 +13,7 @@ type this or copy paste it into there:
 
 --]]
 
-loadfiyel = os.getenv("appdata").."\\XIVLauncher\\pluginConfigs\\SomethingNeedDoing\\_functions.lua"
-functionsToLoad = loadfile(loadfiyel)
-functionsToLoad()
-
+require("dfunc")
 
 --loop wait for is char ready 
 while Player.Available == false do

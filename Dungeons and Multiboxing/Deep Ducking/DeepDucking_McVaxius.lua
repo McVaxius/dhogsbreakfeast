@@ -52,8 +52,7 @@ end
 	yield("/vbm ar set DD")
 	yield("/rotation off") -- RSR please will cause AI movement problems
 --]]
-loadfiyel = os.getenv("appdata").."\\XIVLauncher\\pluginConfigs\\SomethingNeedDoing\\_functions.lua"
-functionsToLoad = loadfile(loadfiyel)
+require("dfunc")
 functionsToLoad()
 
 --important variables

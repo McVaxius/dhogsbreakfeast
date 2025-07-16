@@ -53,9 +53,7 @@ Todo:
 movement back to entrance -> update method to get to entrance, and add an option to skip pathing and just tp to entrance.
 
 ]]
-loadfiyel = os.getenv("appdata").."\\XIVLauncher\\pluginConfigs\\SomethingNeedDoing\\_functions.lua"
-functionsToLoad = loadfile(loadfiyel)
-functionsToLoad()
+require("dfunc")
 
 --Start because nobody read the instructions at the top <3
 PandoraSetFeatureState("Auto-Fill Numeric Dialogs", false) 

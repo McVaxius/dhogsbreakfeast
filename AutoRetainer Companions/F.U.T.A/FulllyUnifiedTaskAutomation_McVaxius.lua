@@ -11,7 +11,7 @@ It could be ocean fishing, triple triad, inventory cleaning, going for a jog aro
 Requirements : SND, vnavmesh, dropbox, visland, pandora, simpletweaks
 and maybe more - let's see where we go with it
 everything from the folder you found this
-and https://raw.githubusercontent.com/McVaxius/dhogsbreakfeast/refs/heads/main/_functions.lua
+and https://raw.githubusercontent.com/McVaxius/dhogsbreakfeast/refs/heads/main/dfunc.lua
 
 throw everything into %AppData%\XIVLauncher\pluginConfigs\SomethingNeedDoing\
 
@@ -41,7 +41,7 @@ Known issues and resolution
 	changing the table structure right now i can't do dynamically and safely (please help me!) so i am versioning things if i change the table structure so you
 	can at least keep your old configs / counters if you need them.    there is probably a nice way to do this without deleting your configs but this is where we are :(
 	also - if you dont have a fully busy roster of retainers, ocean fishing via this method isnt reccommended, you should just use the persistent ocean fishing script thats also on this repo somewhere. i won't be updating that one though.
-	Automarket is donezo. it was nice while it lasted.  maybe a replacement will appear. i am looking at some script alternative but i don't like it.	for now i set the default value for illegal cleaning to 0 until a solution appears. you can leave existing configurations alone as if it comes back it will just start working again if you update _functions.lua
+	Automarket is donezo. it was nice while it lasted.  maybe a replacement will appear. i am looking at some script alternative but i don't like it.	for now i set the default value for illegal cleaning to 0 until a solution appears. you can leave existing configurations alone as if it comes back it will just start working again if you update dfunc
 
 --]]
 ------------------------------------------------------------
@@ -55,9 +55,8 @@ FUTA_config_file = "FUTAconfig_McVaxius_"..table_version..".lua"
 force_fishing = 0 -- Set to 1 if you want the default indexed char (read the default settings for FISH) to fish whenever possible
 venture_cleaning = 20 -- How many venture coins do we need to have left we do a cleaning - useful for leveling new retainer abusers 21072 is item id
 folderPath = os.getenv("appdata").."\\XIVLauncher\\pluginConfigs\\SomethingNeedDoing\\"
-loadfiyel = os.getenv("appdata").."\\XIVLauncher\\pluginConfigs\\SomethingNeedDoing\\_functions.lua"
 fullPath = os.getenv("appdata") .. "\\XIVLauncher\\pluginConfigs\\SomethingNeedDoing\\" .. FUTA_config_file
-functionsToLoad = loadfile(loadfiyel)
+require("dfunc")
 functionsToLoad()
 dont_report_good_stuff = 0 --by default reporting everything, if you turn this on, it will not report on "good" stuff (we made x MRK!) aside from personal home entries
 logfile_differentiator = " - Account 1"  --example of extra text to throw into log file say if your pointing a few clients to same log file for convenience
@@ -471,7 +470,7 @@ if wheeequeheeheheheheheehhhee == 0 then
 		if (GetInventoryFreeSlotCount() < FUTA_processors[hoo_arr_weeeeee][3][5] and FUTA_processors[hoo_arr_weeeeee][3][5] > 0 or GetItemCount(21072) < venture_cleaning) and FUTA_processors[hoo_arr_weeeeee][3][5] > 0 then
 			yield("/echo Attempting to clean inventory @ an npc and or retainerbell and or desynthing (not yet)")
 			delete_my_items_please(do_we_discard)
-			--*if there is a bell nearby we should probably go to it. also this should be moved to _functions.lua
+			--*if there is a bell nearby we should probably go to it. also this should be moved to dfunc.lua
 			yield("/ays itemsell") --npc AND retainer selling
 		end
 		if (GetInventoryFreeSlotCount() < FUTA_processors[hoo_arr_weeeeee][3][5] and FUTA_processors[hoo_arr_weeeeee][3][5] > 0 or GetItemCount(21072) < venture_cleaning) and FUTA_processors[hoo_arr_weeeeee][3][5] > 0 then

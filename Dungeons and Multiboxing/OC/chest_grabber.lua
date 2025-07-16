@@ -1,8 +1,6 @@
 --passing by a chest? grab it.
 
-loadfiyel = os.getenv("appdata").."\\XIVLauncher\\pluginConfigs\\SomethingNeedDoing\\_functions.lua"
-functionsToLoad = loadfile(loadfiyel)
-functionsToLoad()
+require("dfunc")
 
 grabbyhands = 1
 sidechest = 0

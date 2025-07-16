@@ -52,7 +52,7 @@ Yesalready configs
 	[x] Contents Finder Confirm  (auto confirm queueing)
 
 Required script:
-https://raw.githubusercontent.com/McVaxius/dhogsbreakfeast/refs/heads/main/_functions.lua
+https://raw.githubusercontent.com/McVaxius/dhogsbreakfeast/refs/heads/main/dfunc.lua
 
 place into %AppData%\XIVLauncher\pluginConfigs\SomethingNeedDoing\
 ---------
@@ -78,9 +78,7 @@ pre fishing condition 1
 33 34 while looking at leave menu, 35 is off _> this is what we use
 ]]--
 
-loadfiyel = os.getenv("appdata").."\\XIVLauncher\\pluginConfigs\\SomethingNeedDoing\\_functions.lua"
-functionsToLoad = loadfile(loadfiyel)
-functionsToLoad()
+require("dfunc")
 DidWeLoadcorrectly()
 
 -- random number function

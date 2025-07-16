@@ -45,9 +45,7 @@ local franchise_owners = {
 {"Firstname Lastname@Server", 1, 0}  --return to fc entrance
 }
 
-loadfiyel = os.getenv("appdata").."\\XIVLauncher\\pluginConfigs\\SomethingNeedDoing\\_functions.lua"
-functionsToLoad = loadfile(loadfiyel)
-functionsToLoad()
+require("dfunc")
 DidWeLoadcorrectly()
 
 --the boss wants that monthly gil payment, have your bagman ready with the gil. 

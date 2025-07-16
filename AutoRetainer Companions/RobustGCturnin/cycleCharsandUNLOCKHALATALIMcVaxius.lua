@@ -16,9 +16,7 @@ local franchise_owners = {
 
 numpty = "Level'100 Frendo"   --name of your frendo. no @server required
 
-loadfiyel = os.getenv("appdata").."\\XIVLauncher\\pluginConfigs\\SomethingNeedDoing\\_functions.lua"
-functionsToLoad = loadfile(loadfiyel)
-functionsToLoad()
+require("dfunc")
 DidWeLoadcorrectly()
 
 for i=1,#franchise_owners do

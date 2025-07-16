@@ -1,6 +1,4 @@
-loadfiyel = os.getenv("appdata").."\\XIVLauncher\\pluginConfigs\\SomethingNeedDoing\\_functions.lua"
-functionsToLoad = loadfile(loadfiyel)
-functionsToLoad()
+require("dfunc")
 
 if type(GetItemCount(16784)) == "number" then
 	while GetItemCount(16784) > 0 and (Svc.Condition[34] == false or Svc.Condition[26] == false) do

@@ -35,7 +35,7 @@ name, returntype, rankupGC, Expert Hack
 returntype		= 0 return home to fc entrance, 1 return home to a bell, 2 don't return home, 3 is gridania inn, 4 limsa bell near aetheryte, 5 personal estate entrance, 6 bell near personal home
 process_gc_rank  = 0	--0=no,1=yes. do we try to rank up the GC and maybe do a supply delivery turnin?
 expert_hack      = 0	--0=no,1=yes. it will try in 15 second cycles. to do deliveries then turn them off and let it try to buy venture coins . up to 12 times. or when there is no increase in venture coins
-clean_inventory	 = 0    --0=no, >0 check inventory slots free and try to clean out inventory . leave it at 0 if you dont know how to use it. and don't ask me for help on punish or i will block you.  the answer is in _functions.lua
+clean_inventory	 = 0    --0=no, >0 check inventory slots free and try to clean out inventory . leave it at 0 if you dont know how to use it. and don't ask me for help on punish or i will block you.  the answer is in dfunc.lua
 ]]
 local chars_fn = {
  {"First Last@Server", 0, 0, 0, 0},
@@ -107,8 +107,7 @@ Something Need Doing (Croizat version)
 -----------------
 -SUPER IMPORTANT-
 -----------------
-Make sure _functions.lua exist in the snd folder. which should look something like this path %AppData%\\XIVLauncher\\pluginConfigs\\SomethingNeedDoing\\
-get _functions.lua from same place as this script came from
+Make sure dfunct is updated
 
 -------------------------
 --PLUGIN CONFIGURATIONS--
@@ -143,9 +142,7 @@ YesAlready -> YesNo -> /Purchase the action .*/
 
 yield("/ays multi d")
 
-loadfiyel = os.getenv("appdata").."\\XIVLauncher\\pluginConfigs\\SomethingNeedDoing\\_functions.lua"
-functionsToLoad = loadfile(loadfiyel)
-functionsToLoad()
+require("dfunc")
 DidWeLoadcorrectly()
 
 --debug new stuff

@@ -1,7 +1,5 @@
 --yield("/echo "..GetPlayerRawXPos().." "..GetPlayerRawZPos().."")
-loadfiyel = os.getenv("appdata").."\\XIVLauncher\\pluginConfigs\\SomethingNeedDoing\\_functions.lua"
-functionsToLoad = loadfile(loadfiyel)
-functionsToLoad()
+require("dfunc")
 
 function distance(x1, y1, z1, x2, y2, z2)
 if type(x1) ~= "number" then x1 = 0 end
