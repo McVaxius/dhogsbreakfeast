@@ -30,7 +30,9 @@ Click new - choose LUA<br>
 <img width="266" height="73" alt="image" src="https://github.com/user-attachments/assets/14175204-f622-436c-aa59-64fa1087b179" /><br>
 
 ## Step two - Link
-Enter in ```https://github.com/McVaxius/dhogsbreakfeast/blob/main/dfunc.lua``` into the gitup url, then click create<br>
+Enter in <br>
+```https://github.com/McVaxius/dhogsbreakfeast/blob/main/dfunc.lua``` <br>
+into the GitHub url, then click create<br>
 <img width="468" height="288" alt="image" src="https://github.com/user-attachments/assets/4a3cae07-3632-41fe-9b6b-d21608596138" />
 
 ## Tip One - Update
