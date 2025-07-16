@@ -24,14 +24,14 @@ Don't ask for support with those scripts.  they are just there just in case some
 
 ## How do I use these scripts? How do i install dfunc? which is needed for all scripts?
 
-Step one click new - choose LUA
+## Step one - click new - choose LUA
 <img width="280" height="79" alt="image" src="https://github.com/user-attachments/assets/a5ac27d6-e178-46db-a382-e55570918d16" />
 
-enter in ```https://github.com/McVaxius/dhogsbreakfeast/blob/main/dfunc.lua``` into the gitup url, then click create
+## Stpe two - enter in ```https://github.com/McVaxius/dhogsbreakfeast/blob/main/dfunc.lua``` into the gitup url, then click create
 <img width="468" height="288" alt="image" src="https://github.com/user-attachments/assets/4a3cae07-3632-41fe-9b6b-d21608596138" />
 
-If there is an update you can click over on the bell on tohe right to get it
+## Tip One - If there is an update you can click over on the bell on tohe right to get it
 <img width="571" height="142" alt="image" src="https://github.com/user-attachments/assets/1c4372bc-8bb1-438f-89dd-7cc5a784e2ef" />
 
-to verify you got it observe the hash code at the bottom for a change
+## Tip Two - to verify you got it observe the hash code at the bottom for a change
 <img width="241" height="76" alt="image" src="https://github.com/user-attachments/assets/37dfb0e9-21c6-428a-952c-664372cbe301" />
