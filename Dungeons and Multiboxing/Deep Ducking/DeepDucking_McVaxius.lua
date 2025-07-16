@@ -53,7 +53,6 @@ end
 	yield("/rotation off") -- RSR please will cause AI movement problems
 --]]
 require("dfunc")
-functionsToLoad()
 
 --important variables
 fatfuck = 1
