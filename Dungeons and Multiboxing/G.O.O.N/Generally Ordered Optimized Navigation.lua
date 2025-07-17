@@ -296,7 +296,7 @@ if Player.Available then
 if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean" and type(Svc.Condition[4]) == "boolean" then
 --
 	if imthecaptainnow == 1 and duty_counter > 98 and decucounter < 1 then
-		if  itworksonmymachine == 1
+		if  itworksonmymachine == 1 then
 			if IPC.Automaton.IsTweakEnabled("AutoQueue") == true then
 				IPC.Automaton.SetTweakState("AutoQueue", false)
 				yield("/echo Turning ->OFF<- Auto Queue -> Please wait till we switch to Decumana")
@@ -312,7 +312,7 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 				yield("/dutyfinder")
 			end
 		end
-		if  itworksonmymachine == 0
+		if  itworksonmymachine == 0 then
 			yield("/echo Firing up Decumana")
 			yield("/ad stop")
 			yield("/wait 0.5")
@@ -321,7 +321,7 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 	end
 	
 	if imthecaptainnow == 1 and duty_counter < 2 then
-		if  itworksonmymachine == 1
+		if  itworksonmymachine == 1 then
 			if IPC.Automaton.IsTweakEnabled("AutoQueue") == true then
 				IPC.Automaton.SetTweakState("AutoQueue", false)
 				yield("/echo Turning ->OFF<- Auto Queue -> Daily reset has occurred. we will be resuming Praetorium")
@@ -337,7 +337,7 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 				yield("/dutyfinder")
 			end
 		end
-		if  itworksonmymachine == 0
+		if  itworksonmymachine == 0 then
 			yield("/echo Firing up Praetorium")
 			yield("/ad stop")
 			yield("/wait 0.5")
