@@ -332,7 +332,7 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 			end
 		end
 	end
-	if  itworksonmymachine == 0 and duty_counter > 98 and Svc.Condition[34] == false then
+	if  itworksonmymachine == 0 and duty_counter > 98 and Svc.Condition[34] == false and imthecaptainnow == 1 then
 		if echo_level < 3 then yield("/echo Firing up Decumana") end
 		yield("/ad stop")
 		yield("/wait 0.5")
@@ -357,7 +357,7 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 			end
 		end
 	end
-	if  itworksonmymachine == 0 and duty_counter < 99 and Svc.Condition[34] == false then
+	if itworksonmymachine == 0 and duty_counter < 99 and Svc.Condition[34] == false and imthecaptainnow == 1 then
 		if echo_level < 3 then yield("/echo Firing up Praetorium") end
 		yield("/ad stop")
 		yield("/wait 0.5")
