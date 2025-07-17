@@ -170,6 +170,13 @@ configs:
     min: 1
     max: 5
     required: true
+  zitworksonmymachine:
+    default: 1
+    description: 0 means use ad start (pre-select "regular" mode first in ad), 1 means use the callback and snd function method(s) for queueing into porta/prae.   it no longer works on my machine and i suspect it won't on others too haha
+    type: int
+    min: 0
+    max: 1
+    required: true
 
 [[End Metadata]]
 --]=====]
@@ -184,9 +191,9 @@ feedme = Config.Get("zfeedme")
 feedmeitem = Config.Get("zfeedmeitem")
 zfeedmesearch = Config.Get("zfeedmesearch")
 echo_level = Config.Get("zecho_level")
+itworksonmymachine = Config.Get("zitworksonmymachine")
 
 --you can edit these if you are brave debug/dont-touch-settings-unless-you-know-whats-up
-itworksonmymachine = 0 --0 means use ad start (pre-select "regular" mode first in ad), 1 means use the callback and snd function method(s) for queueing into porta/prae.   it no longer works on my machine and i suspect it won't on others too haha
 hardened_sock = 1200 		 --bailout from duty in 1200 seconds (20 minutes)
 debug_counter = 0 --if this is >0 then subtract from the total duties . useful for checking for crashes just enter in the duty_counter value+1 of the last crash, so if you crashed at duty counter 5, enter in a 6 for this value
 maxjiggle = 30 --how much default time (# of loops of the script) before we jiggle the char in prae
@@ -199,10 +206,10 @@ maxjiggle = 30 --how much default time (# of loops of the script) before we jigg
 praeID = 16	  -- count from the top until you reach praetorium to get the number if you dont have all of ARR dungeons unlocked. sometimes 1044 works. count from top to prae and then add 1 for the index to use here.
 decuID = 830  -- this seems to work on most clients
 if IPC.Automaton.IsTweakEnabled("AutoQueue") == true then IPC.Automaton.SetTweakState("AutoQueue", false) end
-if imthecaptainnow == 1 and Svc.Condition[34] == false then
+if imthecaptainnow == 1 and Svc.Condition[34] == false and itworksonmymachine == 1 then
 	Instances.DutyFinder:OpenRegularDuty(1)
 	yield("/waitaddon ContentsFinder<maxwait 10>")
-	yield("/echo scanning for Praetorium")
+	yield("/echo scanning for Praetorium (itworksonmymachine == 1)")
 	yield("/wait 5")
 	for i=6,50 do
 	Instances.DutyFinder:OpenRegularDuty(i)
@@ -228,15 +235,20 @@ decucounter = 0
 foodsearch = false
 
 --ipc, upc, we all p for c
-if imthecaptainnow == 0 then
+if imthecaptainnow == 0 and itworksonmymachine == 1 then
 	yield("/echo I'm not the captain now")
 	if IPC.Automaton.IsTweakEnabled("AutoQueue") == true then IPC.Automaton.SetTweakState("AutoQueue", false) end
 end
-if imthecaptainnow == 1 then
+if imthecaptainnow == 1 and itworksonmymachine == 1 then
 	yield("/echo I'm the captain now")
 	if IPC.Automaton.IsTweakEnabled("AutoQueue") == false then IPC.Automaton.SetTweakState("AutoQueue", true) end
 end
-if IPC.Automaton.IsTweakEnabled("EnhancedDutyStartEnd") == false then IPC.Automaton.SetTweakState("EnhancedDutyStartEnd", true) end
+if IPC.Automaton.IsTweakEnabled("EnhancedDutyStartEnd") == false and itworksonmymachine == 1  then IPC.Automaton.SetTweakState("EnhancedDutyStartEnd", true) end
+
+if itworksonmymachine == 0 then
+	if IPC.Automaton.IsTweakEnabled("AutoQueue") == true then IPC.Automaton.SetTweakState("AutoQueue", false) end
+	yield("/echo it does not in fact work on my machine - we gonna use AD to queue i guess")
+end
 
 function force_rotation()
 	if bm_preset == "none" then
@@ -284,36 +296,52 @@ if Player.Available then
 if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean" and type(Svc.Condition[4]) == "boolean" then
 --
 	if imthecaptainnow == 1 and duty_counter > 98 and decucounter < 1 then
-		if IPC.Automaton.IsTweakEnabled("AutoQueue") == true then
-			IPC.Automaton.SetTweakState("AutoQueue", false)
-			yield("/echo Turning ->OFF<- Auto Queue -> Please wait till we switch to Decumana")
-		end
-		if Svc.Condition[34] == false and decucounter == 0 then
-			ChooseAndClickDuty(decuID)
-			if IPC.Automaton.IsTweakEnabled("AutoQueue") == false then
-				yield("/echo Turning ->ON<- Auto Queue -> Please wait till we switch to Decumana")
-				IPC.Automaton.SetTweakState("AutoQueue", true)
+		if  itworksonmymachine == 1
+			if IPC.Automaton.IsTweakEnabled("AutoQueue") == true then
+				IPC.Automaton.SetTweakState("AutoQueue", false)
+				yield("/echo Turning ->OFF<- Auto Queue -> Please wait till we switch to Decumana")
 			end
+			if Svc.Condition[34] == false and decucounter == 0 then
+				ChooseAndClickDuty(decuID)
+				if IPC.Automaton.IsTweakEnabled("AutoQueue") == false then
+					yield("/echo Turning ->ON<- Auto Queue -> Please wait till we switch to Decumana")
+					IPC.Automaton.SetTweakState("AutoQueue", true)
+				end
+				yield("/echo Firing up Decumana")
+				yield("/wait 2")
+				yield("/dutyfinder")
+			end
+		end
+		if  itworksonmymachine == 0
 			yield("/echo Firing up Decumana")
-			yield("/wait 2")
-			yield("/dutyfinder")
+			yield("/ad stop")
+			yield("/wait 0.5")
+			yield("/ad queue Porta Decumana")
 		end
 	end
 	
 	if imthecaptainnow == 1 and duty_counter < 2 then
-		if IPC.Automaton.IsTweakEnabled("AutoQueue") == true then
-			IPC.Automaton.SetTweakState("AutoQueue", false)
-			yield("/echo Turning ->OFF<- Auto Queue -> Daily reset has occurred. we will be resuming Praetorium")
-		end
-		if Svc.Condition[34] == false then
-			ChooseAndClickDuty(praeID)
-			if IPC.Automaton.IsTweakEnabled("AutoQueue") == false then
-				yield("/echo Turning ->ON<- Auto Queue -> Daily reset has occurred. we will be resuming Praetorium")
-				IPC.Automaton.SetTweakState("AutoQueue", true)
+		if  itworksonmymachine == 1
+			if IPC.Automaton.IsTweakEnabled("AutoQueue") == true then
+				IPC.Automaton.SetTweakState("AutoQueue", false)
+				yield("/echo Turning ->OFF<- Auto Queue -> Daily reset has occurred. we will be resuming Praetorium")
 			end
+			if Svc.Condition[34] == false then
+				ChooseAndClickDuty(praeID)
+				if IPC.Automaton.IsTweakEnabled("AutoQueue") == false then
+					yield("/echo Turning ->ON<- Auto Queue -> Daily reset has occurred. we will be resuming Praetorium")
+					IPC.Automaton.SetTweakState("AutoQueue", true)
+				end
+				yield("/echo Firing up Praetorium")
+				yield("/wait 2")
+				yield("/dutyfinder")
+			end
+		end
+		if  itworksonmymachine == 0
 			yield("/echo Firing up Praetorium")
-			yield("/wait 2")
-			yield("/dutyfinder")
+			yield("/ad stop")
+			yield("/wait 0.5")
+			yield("/ad queue The Praetorium")
 		end
 	end
 	
