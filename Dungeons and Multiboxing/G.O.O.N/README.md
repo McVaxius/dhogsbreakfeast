@@ -15,7 +15,7 @@ Just click this<br>
 <img width="378" height="122" alt="image" src="https://github.com/user-attachments/assets/6bd8d807-0881-497a-abfe-fc14f16be5c3" />
 <br>
 -><br>
-<img width="1453" height="1234" alt="image" src="https://github.com/user-attachments/assets/2cee4a57-bf99-49f7-ad0b-751b73123e35" />
+<img width="1536" height="1354" alt="image" src="https://github.com/user-attachments/assets/76ce9b14-ef07-4b32-9ac1-cb17e62b6f07" />
 
 
 ## Some visual double-checking you can do
