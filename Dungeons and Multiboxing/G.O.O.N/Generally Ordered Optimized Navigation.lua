@@ -102,7 +102,11 @@ z1 = EntityPlayerPositionZ()
 
 stopcuckingme = 0    --counter for checking whento pop duty
 imthecaptainnow = 0 --set this to 1 if this char is the party leader																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																														 --set this to 1 if this char is the party leader
-if Svc.Party[Svc.Party.PartyLeaderIndex].ContentId == Svc.ClientState.LocalContentId then imthecaptainnow = 1 end
+if Svc.Party[Svc.Party.PartyLeaderIndex].ContentId == Svc.ClientState.LocalContentId then
+	imthecaptainnow = 1
+	yield("/echo I am in fact the captain now.")
+	end
+if 	imthecaptainnow == 0 then yield("I am NOT the captain.") end
 
 -----------------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------------
