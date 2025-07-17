@@ -259,15 +259,15 @@ yield("/bmrai maxdistancetarget "..maxAIdistance)
 
 --xBM Handling
 if rotationplogon == "VBM" then
-	if HasPlugin("BossModReborn") then
+--	if HasPlugin("BossModReborn") then
 		yield("/xldisableplugin BossModReborn")
-		repeat
-			yield("/wait 1")
-		until not HasPlugin("BossModReborn")
+--		repeat
+--			yield("/wait 1")
+--		until not HasPlugin("BossModReborn")
 		yield("/xlenableplugin BossMod")
-		repeat	
-			yield("/wait 1")
-		until HasPlugin("BossMod")
+--		repeat	
+--			yield("/wait 1")
+--		until HasPlugin("BossMod")
 		yield("/vbmai "..bossmodAI)
 		yield("/vbm ar set "..autorotationtype)
 		yield("/echo WE SWITCHED TO VBM FROM BMR - please review DTR bar etc.")
@@ -275,22 +275,21 @@ if rotationplogon == "VBM" then
 end
 
 if rotationplogon == "BMR" then
-	if HasPlugin("BossMod") then
+--	if HasPlugin("BossMod") then
 		yield("/xldisableplugin BossMod")
-		repeat
-			yield("/wait 1")
-		until not HasPlugin("BossMod")
+--		repeat
+--			yield("/wait 1")
+--		until not HasPlugin("BossMod")
 		yield("/xlenableplugin BossModReborn")
-		repeat
-			yield("/wait 1")
-		until HasPlugin("BossModReborn")
+--		repeat
+--			yield("/wait 1")
+--		until HasPlugin("BossModReborn")
 		yield("/bmrai "..bossmodAI)
 		yield("/bmr ar set "..autorotationtype)
 		yield("/echo WE SWITCHED TO BMR FROM VBM - please review DTR bar etc.")
 	end
 end
 
---rotation handling
 --rotation handling
 function rhandling()
 	if fake_outdoors_foray == 1 then
