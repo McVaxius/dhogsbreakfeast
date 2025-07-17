@@ -125,7 +125,7 @@ configs:
     default: 0
     description: "This is the Prae duty counter. \nSet it to 0 if its the first run of the day \n Daily reset time is 3 am EST or 12am PST"
     type: int
-    min: 1
+    min: 0
     max: 99
     required: true
   ztornclothes:
@@ -149,7 +149,7 @@ configs:
     required: true
   zbm_preset:
     default: "none"
-    description: "if you set it to none it wont use bmr and instead it will use RSR. this is for the ai preset to use."
+    description: "if you set it to none it wont use (v)bm(r) and instead it will use RSR. this is for the ai preset to use."
     type: string
     required: true
   zfeedme:
@@ -206,7 +206,12 @@ maxjiggle = 30 --how much default time (# of loops of the script) before we jigg
 -----------------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------------
 
---dutypresets -- test with Instances.DutyFinder:OpenRegularDuty(830)    
+whichbm = "vbm"
+
+--which bossmod is intalled?
+if HasPlugin("BossModReborn") then whichbm = "bmr" end
+
+
 praeID = 16	  -- count from the top until you reach praetorium to get the number if you dont have all of ARR dungeons unlocked. sometimes 1044 works. count from top to prae and then add 1 for the index to use here.
 decuID = 830  -- this seems to work on most clients
 if IPC.Automaton.IsTweakEnabled("AutoQueue") == true then IPC.Automaton.SetTweakState("AutoQueue", false) end
@@ -256,18 +261,18 @@ end
 
 function force_rotation()
 	if bm_preset == "none" then
-		yield("/bmrai setpresetname Deactivate") --turn off bm rotation
+		yield("/"..whichbm.."ai setpresetname Deactivate") --turn off bm rotation
 		yield("/rotation Auto")
 	end
 
 	if bm_preset ~= "none" then
-		yield("/bmrai setpresetname "..bm_preset)
-		yield("/bmrai followtarget on")
-		yield("/bmrai follow Slot1")
+		yield("/"..whichbm.."ai setpresetname "..bm_preset)
+		yield("/"..whichbm.."ai followtarget on")
+		yield("/"..whichbm.."ai follow Slot1")
 		yield("/rotation Cancel") --turn off RSR in case it is on
 	end
 	
-	yield("/bmrai on")
+	yield("/"..whichbm.."ai on")
 end
 
 force_rotation()
