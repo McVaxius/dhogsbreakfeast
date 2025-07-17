@@ -210,8 +210,11 @@ whichbm = "vbm"
 
 --which bossmod is intalled?
 if HasPlugin("BossModReborn") then whichbm = "bmr" end
-if IPC.AutoDuty.GetConfig("UsingAlternativeRotationPlugin") == "false" and bm_preset ~= "none" then IPC.AutoDuty.SetConfig("UsingAlternativeRotationPlugin", "true") end
-if IPC.AutoDuty.GetConfig("UsingAlternativeRotationPlugin") == "true" and bm_preset == "none" then IPC.AutoDuty.SetConfig("UsingAlternativeRotationPlugin", "false") end
+--these don't actually work reliably
+--if IPC.AutoDuty.GetConfig("UsingAlternativeRotationPlugin") == "false" and bm_preset ~= "none" then IPC.AutoDuty.SetConfig("UsingAlternativeRotationPlugin", "true") end
+--if IPC.AutoDuty.GetConfig("UsingAlternativeRotationPlugin") == "true" and bm_preset == "none" then IPC.AutoDuty.SetConfig("UsingAlternativeRotationPlugin", "false") end
+if bm_preset ~= "none" then IPC.AutoDuty.SetConfig("UsingAlternativeRotationPlugin", "true") end
+if bm_preset == "none" then IPC.AutoDuty.SetConfig("UsingAlternativeRotationPlugin", "false") end
 
 praeID = 16	  -- count from the top until you reach praetorium to get the number if you dont have all of ARR dungeons unlocked. sometimes 1044 works. count from top to prae and then add 1 for the index to use here.
 decuID = 830  -- this seems to work on most clients
