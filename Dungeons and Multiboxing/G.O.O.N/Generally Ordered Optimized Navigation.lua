@@ -172,7 +172,7 @@ configs:
     required: true
   zitworksonmymachine:
     default: 1
-    description: 0 means use ad start (pre-select "regular" mode first in ad), 1 means use the callback and snd function method(s) for queueing into porta/prae.   it no longer works on my machine and i suspect it won't on others too haha
+    description: 0 means use ad start (pre-select "regular" mode+correct path first in ad), 1 means use the callback and snd function method(s) for queueing into porta/prae.   it no longer works on my machine and i suspect it won't on others too haha
     type: int
     min: 0
     max: 1
