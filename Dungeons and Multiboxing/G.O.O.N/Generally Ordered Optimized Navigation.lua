@@ -119,60 +119,60 @@ plugin_dependencies:
 configs:
   zduty_counter:
     default: 0
-    description: This is the Prae duty counter. set it to 0 if its the first run of the day, reset time is 3 am EST or 12am PST
+    description: "This is the Prae duty counter. \nSet it to 0 if its the first run of the day \n Daily reset time is 3 am EST or 12am PST"
     type: int
     min: 1
     max: 99
     required: true
   ztornclothes:
     default: 25
-    description: pct to try to repair at. this is for npc repair. party leader will repair at this % but rest of party will go try to repair no matter what if they are outside of duty for >20 seconds
+    description: "pct to try to repair at\n this is for npc repair.\nParty leader will repair at this pct\nRest of party will go try to repair no matter what (99 pct) if they are outside of duty for >20 seconds"
     type: int
     min: 1
     max: 99
     required: true
   zfinickyclothes:
     default: 0
-    description: 0 = dont auto equip, 1 = autoequip, useful if you have bis that isnt max level, default set to NOT equip so people can manage their BIS
+    description: "0 = dont auto equip\n1 = autoequip, useful if you have bis that isnt max level\ndefault set to NOT equip so people can manage their BIS"
     type: int
     min: 0
     max: 1
     required: true
   zducttape:
     default: 33916
-    description: 0 = itemID of repair material to check for self repair.  check if we even have g8dm, otherwise dont waste time, 10386 is g6dm if you wanna change it, 17837 is g7, 33916 is g8
+    description: "0 = itemID of repair material to check for self repair.\ncheck if we even have g8dm, otherwise dont waste time,\n10386 is g6dm if you wanna change it, 17837 is g7, 33916 is g8"
     type: number
     required: true
   zbm_preset:
     default: "none"
-    description: if you set it to "none" it wont use bmr and instead it will use RSR. this is for the preset to use.
+    description: "if you set it to none it wont use bmr and instead it will use RSR. this is for the ai preset to use."
     type: string
     required: true
   zfeedme:
     default: 46003
-    description: itemID for food to eat. use simple tweaks ShowID to find it (turn it on and hover over item, it will be the number on the left in the square [] brackets).  Set this to 6942069 if you want it to pull from a list and eat wahtever is in the inventory when food timer is <5 minutes
+    description: "itemID for food to eat\nuse simple tweaks ShowID to find it (turn it on and hover over item, it will be the number on the left in the square [] brackets)\nSet this to 6942069 if you want it to pull from a list and eat whatever is in the inventory when food timer is < 5 minutes"
     type: number
     required: true
   zfeedmeitem:
-    default: "none"
-    description: call it whatever you want. doesn't affect anything
+    default: "Canned Beesechussy"
+    description: "call it whatever you want. doesn't affect anything"
     type: string
     required: true
   zfeedmesearch:
     default: true
-    description: do you want it to search for other foods if the selected one runs out?
+    description: "do you want it to search for other foods if the selected one runs out?"
     type: boolean
     required: true
   zecho_level:
     default: 3
-    description: 5 show nothing at all except critical moments 4 only show duty counters 3 only show important stuff, 2 show the progress messages, 1 show more, 0 show all
+    description: "5 show nothing at all except critical moments\n4 only show duty counters\n3 only show important stuff\n2 show the progress messages\n1 show more\n0 show all"
     type: int
-    min: 1
+    min: 0
     max: 5
     required: true
   zitworksonmymachine:
     default: 0
-    description: 0 means use ad start (pre-select "regular" mode+correct path first in ad), 1 means use the callback and snd function method(s) for queueing into porta/prae.   it no longer works on my machine and i suspect it won't on others too haha
+    description: "0 means use ad start (pre-select regular mode+correct path first in ad)\n1 means use the callback and snd function method(s) for queueing into porta/prae\ntoggle this setting if queueing is weird or broken"
     type: int
     min: 0
     max: 1
