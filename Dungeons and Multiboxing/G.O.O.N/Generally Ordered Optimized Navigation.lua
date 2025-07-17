@@ -209,7 +209,7 @@ maxjiggle = 30 --how much default time (# of loops of the script) before we jigg
 --dutypresets -- test with Instances.DutyFinder:OpenRegularDuty(830)    
 praeID = 16	  -- count from the top until you reach praetorium to get the number if you dont have all of ARR dungeons unlocked. sometimes 1044 works. count from top to prae and then add 1 for the index to use here.
 decuID = 830  -- this seems to work on most clients
-if IPC.Automaton.IsTweakEnabled("AutoQueue") == true then IPC.Automaton.SetTweakState("AutoQueue", false) end
+if imthecaptainnow == 1 and IPC.Automaton.IsTweakEnabled("AutoQueue") == true then IPC.Automaton.SetTweakState("AutoQueue", false) end
 if imthecaptainnow == 1 and Svc.Condition[34] == false and itworksonmymachine == 1 then
 	Instances.DutyFinder:OpenRegularDuty(1)
 	yield("/waitaddon ContentsFinder<maxwait 10>")
