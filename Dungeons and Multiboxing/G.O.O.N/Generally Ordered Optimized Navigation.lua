@@ -388,7 +388,7 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 				
 				if Entity.Target and Entity.Target.Name then
 					goatfucker = Entity.Target.Name or "goatfucker"
-					if (goatfucker == "Nero tol Scaeva" or goatfucker == "Gaius van Baelsar") and Svc.Condition[26] == true then
+					if (goatfucker == "Nero tol Scaeva" or goatfucker == "Gaius van Baelsar" or goatfucker == "Phantom Gaius" or goatfucker == "Mark II magitek colossus") and Svc.Condition[26] == true then
 						yield("/vnav stop")
 					end
 				end
