@@ -17,4 +17,4 @@ if type(GetItemCount(16784)) == "number" then
 	end
 end
 
-yield("/echo Current MGP -> "..GetItemCount(29))
+yield("/echo Final MGP total -> "..GetItemCount(29))
