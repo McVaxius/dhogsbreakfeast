@@ -265,8 +265,8 @@ end
 
 function force_rotation()
 	if bm_preset == "none" then
-		yield("/"..whichbm.."ai setpresetname Deactivate") --turn off bm rotation
-		if bm_preset == "none" then yield("/rotation Auto") end
+		yield("/"..whichbm.."ai setpresetname AutoDuty Passive") --turn off bm rotation
+		yield("/rotation Auto")
 	end
 
 	if bm_preset ~= "none" then
@@ -367,7 +367,7 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 	if type(zoneleft) == "number" and zoneleft > 100 then
 		if zoneleft > maxzone then
 			maxzone = zoneleft
-			--force_rotation() --refresh the rotationtype when we do this
+			force_rotation() --refresh the rotationtype when we do this
 		end
 		inprae = maxzone - zoneleft
 		if inprae > hardened_sock and Svc.Condition[26] == false then
