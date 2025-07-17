@@ -366,6 +366,13 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 	
 	if Svc.Condition[34] == true and Svc.Condition[26] == true then
 		if bm_preset == "none" then yield("/rotation Auto") end
+		if Entity.Target and Entity.Target.Name then
+			goatfucker = Entity.Target.Name or "goatfucker"
+			if (goatfucker == "Nero tol Scaeva" or goatfucker == "Gaius van Baelsar" or goatfucker == "Phantom Gaius" or goatfucker == "Mark II magitek colossus") and Svc.Condition[26] == true then
+				yield("/vnav stop")
+				if echo_level < 2 then yield("/echo Target in combat condition 26 -> "..goatfucker) end
+			end
+		end
 	end
 
 	--decide if we are going to bailout - logic stolen from Ritsuko <3
@@ -490,13 +497,6 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 					end
 				end
 				
-				if Entity.Target and Entity.Target.Name then
-					goatfucker = Entity.Target.Name or "goatfucker"
-					if (goatfucker == "Nero tol Scaeva" or goatfucker == "Gaius van Baelsar" or goatfucker == "Phantom Gaius" or goatfucker == "Mark II magitek colossus") and Svc.Condition[26] == true then
-						yield("/vnav stop")
-						if echo_level < 2 then yield("/echo Target in combat condition 26 -> "..goatfucker) end
-					end
-				end
 			end
 			if Svc.Condition[34] == true and Svc.Condition[26] == false then
 				if GetContentTimeLeft() < 7179 and GetContentTimeLeft() > 0 then --this way it doesn't count towards reset while we are at entrance
