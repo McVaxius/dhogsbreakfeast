@@ -297,7 +297,7 @@ while 1 == 1 do
 	checking_the_duct_tape = checking_the_duct_tape + 1
 	
 if IPC.Automaton.IsTweakEnabled("AutoQueue") == false and Svc.Condition[34] == false and (duty_counter > 0 or decucounter > 0) and imthecaptainnow == 1 and itworksonmymachine == 1 then
-	yield("/echo Turning ->ON<- Auto Queue -> It was off for some reason")
+	if echo_level < 4 then yield("/echo Turning ->ON<- Auto Queue -> It was off for some reason") end
 	IPC.Automaton.SetTweakState("AutoQueue", true)
 end
 
@@ -317,13 +317,13 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 					yield("/echo Turning ->ON<- Auto Queue -> Please wait till we switch to Decumana")
 					IPC.Automaton.SetTweakState("AutoQueue", true)
 				end
-				yield("/echo Firing up Decumana")
+				if echo_level < 3 then yield("/echo Firing up Decumana") end
 				yield("/wait 2")
 				yield("/dutyfinder")
 			end
 		end
 		if  itworksonmymachine == 0 and Svc.Condition[34] == false then
-			yield("/echo Firing up Decumana")
+			if echo_level < 3 then yield("/echo Firing up Decumana") end
 			yield("/ad stop")
 			yield("/wait 0.5")
 			yield("/ad queue Porta Decumana")
@@ -342,13 +342,13 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 					yield("/echo Turning ->ON<- Auto Queue -> Daily reset has occurred. we will be resuming Praetorium")
 					IPC.Automaton.SetTweakState("AutoQueue", true)
 				end
-				yield("/echo Firing up Praetorium")
+				if echo_level < 3 then yield("/echo Firing up Praetorium") end
 				yield("/wait 2")
 				yield("/dutyfinder")
 			end
 		end
 		if  itworksonmymachine == 0 and Svc.Condition[34] == false then
-			yield("/echo Firing up Praetorium")
+			if echo_level < 3 then yield("/echo Firing up Praetorium") end
 			yield("/ad stop")
 			yield("/wait 0.5")
 			yield("/ad queue The Praetorium")
@@ -368,7 +368,7 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 		end
 		inprae = maxzone - zoneleft
 		if inprae > hardened_sock and Svc.Condition[26] == false then
-			yield("/echo We bailed from duty -> "..duty_counter)
+			if echo_level < 4 then yield("/echo We bailed from duty -> "..duty_counter) end
 			NavRebuild()
 			while not NavIsReady() do
 				yield("/wait 1")
@@ -468,7 +468,7 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 				entitty = 0
 
 				while Entity.GetEntityByName(GetCharacterName(false)).CurrentHp == 0 do
-					yield("/echo We died........counting to 5 (3 sec per) then we resetting to entrance..."..entitty.."/5")
+					if echo_level < 4 then yield("/echo We died........counting to 5 (3 sec per) then we resetting to entrance..."..entitty.."/5") end
 					yield("/wait 3")
 					entitty = entitty + 1
 					if Svc.Condition[26] == false then entitty = entitty + 1 end --speed things up if we aren't in combat
