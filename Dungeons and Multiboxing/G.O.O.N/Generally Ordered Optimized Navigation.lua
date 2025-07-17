@@ -127,7 +127,9 @@ configs:
   ztornclothes:
     default: 25
     description: pct to try to repair at. this is for npc repair. party leader will repair at this % but rest of party will go try to repair no matter what if they are outside of duty for >20 seconds
-    type: number
+    type: int
+    min: 1
+    max: 99
     required: true
   zfinickyclothes:
     default: 0
