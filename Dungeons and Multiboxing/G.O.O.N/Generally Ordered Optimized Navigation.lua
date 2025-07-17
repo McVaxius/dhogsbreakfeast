@@ -262,7 +262,7 @@ end
 function force_rotation()
 	if bm_preset == "none" then
 		yield("/"..whichbm.."ai setpresetname Deactivate") --turn off bm rotation
-		yield("/rotation Auto")
+		if bm_preset == "none" then yield("/rotation Auto") end
 	end
 
 	if bm_preset ~= "none" then
@@ -355,7 +355,7 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 	end
 	
 	if Svc.Condition[34] == true and Svc.Condition[26] == true then
-		yield("/rotation auto")
+		if bm_preset == "none" then yield("/rotation Auto") end
 	end
 
 	--decide if we are going to bailout - logic stolen from Ritsuko <3
@@ -476,7 +476,7 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 						yield("/ad stop")
 						yield("/wait 10")
 						yield("/ad start")
-						yield("/rotation auto")
+						if bm_preset == "none" then yield("/rotation Auto") end
 					end
 				end
 				
@@ -495,7 +495,7 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 						jigglecounter = jigglecounter + 1
 					end
 				end
-				yield("/rotation auto")
+				if bm_preset == "none" then yield("/rotation Auto") end
 				if jigglecounter > maxjiggle and Svc.ClientState.TerritoryType == 1044 then --we stuck for 30+ seconds somewhere in praetorium
 					if echo_level < 4 then yield("/echo attempting to restart AD and hope for the best") end
 					jigglecounter = 0
@@ -525,7 +525,7 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 				jigglecounter = 0
 				if Entity.Target and Entity.Target.Name then
 					if type(GetTargetName()) ~= "string" then
-						yield("/rotation auto")
+						if bm_preset == "none" then yield("/rotation Auto") end
 						yield("/wait 0.5")
 					end
 				end
