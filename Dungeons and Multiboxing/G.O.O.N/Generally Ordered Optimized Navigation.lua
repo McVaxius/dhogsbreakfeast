@@ -119,8 +119,10 @@ plugin_dependencies:
 configs:
   zduty_counter:
     default: 0
-    description: This is the duty counter. set it to 0 if its the first run of the day, reset time is 3 am EST or 12am PST
-    type: number
+    description: This is the Prae duty counter. set it to 0 if its the first run of the day, reset time is 3 am EST or 12am PST
+    type: int
+    min: 1
+    max: 99
     required: true
   ztornclothes:
     default: 25
@@ -129,7 +131,7 @@ configs:
     required: true
   zfinickyclothes:
     default: 0
-    description: 0 = dont auto equip, 1 = autoequip, useful if you have bis that isnt max level, default set to NOT equip so peopel can manage their BIS
+    description: 0 = dont auto equip, 1 = autoequip, useful if you have bis that isnt max level, default set to NOT equip so people can manage their BIS
     type: number
     required: true
   zducttape:
@@ -161,7 +163,7 @@ configs:
     default: 3
     description: 5 show nothing at all except critical moments 4 only show duty counters 3 only show important stuff, 2 show the progress messages, 1 show more, 0 show all
     type: int
-	min: 1
+    min: 1
     max: 5
     required: true
 
