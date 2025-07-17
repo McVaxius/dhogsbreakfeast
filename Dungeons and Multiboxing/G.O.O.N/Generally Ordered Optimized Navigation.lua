@@ -134,7 +134,9 @@ configs:
   zfinickyclothes:
     default: 0
     description: 0 = dont auto equip, 1 = autoequip, useful if you have bis that isnt max level, default set to NOT equip so people can manage their BIS
-    type: number
+    type: int
+    min: 0
+    max: 1
     required: true
   zducttape:
     default: 33916
