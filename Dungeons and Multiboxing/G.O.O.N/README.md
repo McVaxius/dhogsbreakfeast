@@ -8,6 +8,15 @@
  - [x] Stopping vnav when targeting Gauis / Nero
  - [x] Pullling food from a list
  - [x] Running Decu after 99 Prae
+ - [x] Persistent Configs
+
+## Example of persisent config
+Just click this<br>
+<img width="378" height="122" alt="image" src="https://github.com/user-attachments/assets/6bd8d807-0881-497a-abfe-fc14f16be5c3" />
+<br>
+-><br>
+<img width="1453" height="1234" alt="image" src="https://github.com/user-attachments/assets/2cee4a57-bf99-49f7-ad0b-751b73123e35" />
+
 
 ## Some visual double-checking you can do
 CBT -> <br>
