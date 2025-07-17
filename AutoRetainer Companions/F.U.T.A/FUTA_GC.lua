@@ -113,6 +113,19 @@ YesAlready -> YesNo -> /Purchase the action .*/
 	tempchar = tempchar:match("%s*(.-)%s*") --remove spaces at start and end only
 	tempchar = tempchar:gsub("%s", "")  --remove all spaces
 	tempchar = tempchar:gsub("'", "")   --remove all apostrophes
+
+
+--some stuff credit to @unon:
+--https://discord.com/channels/1001823907193552978/1196163718216679514/1395220513625870439
+function AutoRetainerDelivery()
+    IPC.AutoRetainer.EnqueueInitiation() -- Start the Expert Delivery process
+    Dalamud.LogVerbose("AutoRetainer is starting Expert Delivery")
+    while IPC.AutoRetainer.IsBusy() do
+        yield("/wait 0.1") -- Loop until AutoRetainer is no longer busy
+    end
+    Dalamud.LogVerbose("AutoRetainer is done with Expert Delivery")
+end
+
 ]]
 
 function Final_GC_Cleaning()
