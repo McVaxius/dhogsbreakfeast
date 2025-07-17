@@ -210,7 +210,7 @@ whichbm = "vbm"
 
 --which bossmod is intalled?
 if HasPlugin("BossModReborn") then whichbm = "bmr" end
---these don't actually work reliably
+--these don't actually work reliably the return values not always returning ?!?!
 --if IPC.AutoDuty.GetConfig("UsingAlternativeRotationPlugin") == "false" and bm_preset ~= "none" then IPC.AutoDuty.SetConfig("UsingAlternativeRotationPlugin", "true") end
 --if IPC.AutoDuty.GetConfig("UsingAlternativeRotationPlugin") == "true" and bm_preset == "none" then IPC.AutoDuty.SetConfig("UsingAlternativeRotationPlugin", "false") end
 if bm_preset ~= "none" then IPC.AutoDuty.SetConfig("UsingAlternativeRotationPlugin", "true") end
