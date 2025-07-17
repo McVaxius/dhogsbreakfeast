@@ -247,7 +247,7 @@ if imthecaptainnow == 1 and itworksonmymachine == 1 then
 	yield("/echo I'm the captain now")
 	if IPC.Automaton.IsTweakEnabled("AutoQueue") == false then IPC.Automaton.SetTweakState("AutoQueue", true) end
 end
-if IPC.Automaton.IsTweakEnabled("EnhancedDutyStartEnd") == false and itworksonmymachine == 1  then IPC.Automaton.SetTweakState("EnhancedDutyStartEnd", true) end
+if IPC.Automaton.IsTweakEnabled("EnhancedDutyStartEnd") == false then IPC.Automaton.SetTweakState("EnhancedDutyStartEnd", true) end
 
 if itworksonmymachine == 0 then
 	if IPC.Automaton.IsTweakEnabled("AutoQueue") == true then IPC.Automaton.SetTweakState("AutoQueue", false) end
