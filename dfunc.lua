@@ -2580,9 +2580,7 @@ function food_deleter(feedme, feedmeitem, echo_level, foodsearch)
 	zfeedmeitem = feedmeitem
 	entittyname = GetCharacterName(false) or "Nobody in Particular"
 	EGHP = 0
-	if Player.Ready then
-		if entittyname ~= "Nobody in Particular" then EGHP = Entity.GetEntityByName(entittyname).CurrentHp or 0 end
-	end
+	if entittyname ~= "Nobody in Particular" then EGHP = Player.Entity.CurrentHp or 0 end
 	
 	if type(GetItemCount(zfeedme)) == "number" then
 		foidme = GetItemCount(zfeedme)
@@ -2591,7 +2589,7 @@ function food_deleter(feedme, feedmeitem, echo_level, foodsearch)
 				Inventory.GetInventoryItem(tonumber(zfeedme)):Use()
 				if echo_level < 4 then yield("/echo Attempting to eat "..zfeedmeitem) end
 			end
-			if EGHP == 0 then yield("/echo We are dead or unavailable -- waiting.....") end
+			if EGHP == 0 and echo_level < 3 then yield("/echo We are dead or unavailable -- waiting.....") end
 			yield("/wait 0.5")
 		end
 		if foidme == 0 and zfeedme ~= 4745 and foodsearch == true then --if we ran out but still have more food that isn't "orange juice"
