@@ -2578,8 +2578,9 @@ function food_deleter(feedme, feedmeitem, echo_level, foodsearch)
 	statoos = GetStatusTimeRemaining(48)
 	zfeedme = feedme
 	zfeedmeitem = feedmeitem
-	entittyname = GetCharacterName(false) or "Nobodyin Particular"
-	EGHP = Entity.GetEntityByName(entittyname).CurrentHp or 0
+	entittyname = GetCharacterName(false) or "Nobody in Particular"
+	EGHP = 0
+	if entittyname ~= "Nobody in Particular" then EGHP = Entity.GetEntityByName(entittyname).CurrentHp or 0 end
 	
 	if type(GetItemCount(zfeedme)) == "number" then
 		foidme = GetItemCount(zfeedme)
