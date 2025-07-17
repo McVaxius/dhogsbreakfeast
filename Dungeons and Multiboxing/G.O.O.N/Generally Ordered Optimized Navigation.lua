@@ -107,30 +107,81 @@ if Svc.Party[Svc.Party.PartyLeaderIndex].ContentId == Svc.ClientState.LocalConte
 -----------------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------------
---------EDITABLE SETTINGS!---------------------------------------------------------------------------------------
-duty_counter = 0	 --set it to 0 if its the first run of the "day"
-					 --change this if you want to restart a "run" at a higher counter level becuase you were alreaday running it.
-					 --just set it to whatever the last "current duty count" was from echos
-					 --i.e. if you saw "This is duty # -> 17"  from the echo window , then set it to 17 before you resume your run for the day		 
+--------EDIT THESE IN THE SND SETTINGS!---------------------------------------------------------------------------------------
+--[=====[
+[[SND Metadata]]
+author: dhogGPT
+version: 420.69.420.0
+description: Farm mogtomes with your cousins.
+plugin_dependencies:
+- vnavmesh
+- SimpleTweaksPlugin
+configs:
+  zduty_counter:
+    default: 0
+    description: This is the duty counter. set it to 0 if its the first run of the day, reset time is 3 am EST or 12am PST
+    type: number
+    required: true
+  ztornclothes:
+    default: 25
+    description: pct to try to repair at. this is for npc repair. party leader will repair at this % but rest of party will go try to repair no matter what if they are outside of duty for >20 seconds
+    type: number
+    required: true
+  zfinickyclothes:
+    default: 0
+    description: 0 = dont auto equip, 1 = autoequip, useful if you have bis that isnt max level, default set to NOT equip so peopel can manage their BIS
+    type: number
+    required: true
+  zducttape:
+    default: 33916
+    description: 0 = itemID of repair material to check for self repair.  check if we even have g8dm, otherwise dont waste time, 10386 is g6dm if you wanna change it, 17837 is g7, 33916 is g8
+    type: number
+    required: true
+  zbm_preset:
+    default: "none"
+    description: if you set it to "none" it wont use bmr and instead it will use RSR. this is for the preset to use.
+    type: string
+    required: true
+  zfeedme:
+    default: 46003
+    description: itemID for food to eat. use simple tweaks ShowID to find it (turn it on and hover over item, it will be the number on the left in the square [] brackets).  Set this to 6942069 if you want it to pull from a list and eat wahtever is in the inventory when food timer is <5 minutes
+    type: number
+    required: true
+  zfeedmeitem:
+    default: "none"
+    description: call it whatever you want. doesn't affect anything
+    type: string
+    required: true
+  zfeedmesearch:
+    default: true
+    description: do you want it to search for other foods if the selected one runs out?
+    type: boolean
+    required: true
+  zecho_level:
+    default: 3
+    description: 5 show nothing at all except critical moments 4 only show duty counters 3 only show important stuff, 2 show the progress messages, 1 show more, 0 show all
+    type: int
+	min: 1
+    max: 5
+    required: true
 
---tornclothes = 25 --pct to try to repair at
-tornclothes = 25 --pct to try to repair at --this is for npc repair. party leader will repair at this % but rest of party will go try to repair no matter what if they are outside of duty for >20 seconds
-finickyclothes = 0 --0 = dont auto equip, 1 = autoequip, useful if you have bis that isnt max level, default set to NOT equip so peopel can manage their BIS
-ducttape = 33916 --check if we even have g8dm, otherwise dont waste time, 10386 is g6dm if you wanna change it, 17837 is g7, 33916 is g8
+[[End Metadata]]
+--]=====]
 
---bm_preset = "AutoDuty" --if you set it to "none" it wont use bmr. this is for the preset to use.
-bm_preset = "none" --if you set it to "none" it wont use bmr and instead it will use RSR. this is for the preset to use.
+--Don't edit these
+duty_counter = Config.Get("zduty_counter")
+tornclothes = Config.Get("ztornclothes")
+finickyclothes = Config.Get("zfinickyclothes")
+ducttape = Config.Get("zducttape")
+bm_preset = Config.Get("zbm_preset")
+feedme = Config.Get("zfeedme")
+feedmeitem = Config.Get("zfeedmeitem")
+zfeedmesearch = Config.Get("zfeedmesearch")
+echo_level = Config.Get("zecho_level")
 
---Food related
-feedme = 46003	--itemID for food to eat. use simple tweaks ShowID to find it (turn it on and hover over item, it will be the number on the left in the square [] brackets).  Set this to 6942069 if you want it to pull from a list and eat wahtever is in the inventory when food timer is <5 minutes
-feedmeitem = "Mate Cookie"  --call it whatever you want.
-feedmesearch = true --do you want it to search for other foods if the selected one runs out?
---put in order of least-to-most-wanted. so first in list will only get picked if its the onyl one left. we want a maximum of 100 items in this list (10 seconds processing time) so we will build that out later.
-
---debug/dont-touch-settings-unless-you-know-whats-up
+--you can edit these if you are brave debug/dont-touch-settings-unless-you-know-whats-up
 itworksonmymachine = 0 --0 means use ad start (pre-select "regular" mode first in ad), 1 means use the callback and snd function method(s) for queueing into porta/prae.   it no longer works on my machine and i suspect it won't on others too haha
 hardened_sock = 1200 		 --bailout from duty in 1200 seconds (20 minutes)
-echo_level = 3 		 --5 show nothing at all except critical moments 4 only show duty counters 3 only show important stuff, 2 show the progress messages, 1 show more, 0 show all
 debug_counter = 0 --if this is >0 then subtract from the total duties . useful for checking for crashes just enter in the duty_counter value+1 of the last crash, so if you crashed at duty counter 5, enter in a 6 for this value
 maxjiggle = 30 --how much default time (# of loops of the script) before we jiggle the char in prae
 -----------------------------------------------------------------------------------------------------------------
@@ -147,7 +198,7 @@ if imthecaptainnow == 1 and Svc.Condition[34] == false then
 	yield("/waitaddon ContentsFinder<maxwait 10>")
 	yield("/echo scanning for Praetorium")
 	yield("/wait 5")
-	for i=6,15 do
+	for i=6,50 do
 	Instances.DutyFinder:OpenRegularDuty(i)
 	dName = Addons.GetAddon("ContentsFinder"):GetNode(1,52,61000+i,5)
 	yield("/echo Duty Name "..(i+2).." ->"..tostring(dName.Text).."<--")
