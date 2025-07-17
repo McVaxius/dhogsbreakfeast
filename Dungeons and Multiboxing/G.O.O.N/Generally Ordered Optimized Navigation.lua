@@ -106,7 +106,7 @@ if Svc.Party[Svc.Party.PartyLeaderIndex].ContentId == Svc.ClientState.LocalConte
 	imthecaptainnow = 1
 	yield("/echo I am in fact the captain now.")
 	end
-if 	imthecaptainnow == 0 then yield("I am NOT the captain.") end
+if 	imthecaptainnow == 0 then yield("/echo I am NOT the captain.") end
 
 -----------------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------------
