@@ -2580,7 +2580,9 @@ function food_deleter(feedme, feedmeitem, echo_level, foodsearch)
 	zfeedmeitem = feedmeitem
 	entittyname = GetCharacterName(false) or "Nobody in Particular"
 	EGHP = 0
-	if entittyname ~= "Nobody in Particular" then EGHP = Entity.GetEntityByName(entittyname).CurrentHp or 0 end
+	if Player.Ready then
+		if entittyname ~= "Nobody in Particular" then EGHP = Entity.GetEntityByName(entittyname).CurrentHp or 0 end
+	end
 	
 	if type(GetItemCount(zfeedme)) == "number" then
 		foidme = GetItemCount(zfeedme)
