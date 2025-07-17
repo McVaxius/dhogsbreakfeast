@@ -210,7 +210,8 @@ whichbm = "vbm"
 
 --which bossmod is intalled?
 if HasPlugin("BossModReborn") then whichbm = "bmr" end
-
+if IPC.AutoDuty.GetConfig("UsingAlternativeRotationPlugin") == "false" and bm_preset ~= "none" then IPC.AutoDuty.SetConfig("UsingAlternativeRotationPlugin", "true") end
+if IPC.AutoDuty.GetConfig("UsingAlternativeRotationPlugin") == "true" and bm_preset == "none" then IPC.AutoDuty.SetConfig("UsingAlternativeRotationPlugin", "false") end
 
 praeID = 16	  -- count from the top until you reach praetorium to get the number if you dont have all of ARR dungeons unlocked. sometimes 1044 works. count from top to prae and then add 1 for the index to use here.
 decuID = 830  -- this seems to work on most clients
@@ -570,7 +571,7 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 
 			if Svc.Condition[34] == false and imthecaptainnow == 1 then
 				yield("/wait 5") --wait a +bit longer if we are outside.
-				if Svc.Condition[91] == false then 
+				if Svc.Condition[91] == false and itworksonmymachine == 1 then 
 					yield("/dutyfinder") --try autoqueue with cbt if we aren't queueing for a duty.
 				end
 			end
