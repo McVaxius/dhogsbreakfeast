@@ -209,7 +209,7 @@ maxjiggle = 30 --how much default time (# of loops of the script) before we jigg
 --dutypresets -- test with Instances.DutyFinder:OpenRegularDuty(830)    
 praeID = 16	  -- count from the top until you reach praetorium to get the number if you dont have all of ARR dungeons unlocked. sometimes 1044 works. count from top to prae and then add 1 for the index to use here.
 decuID = 830  -- this seems to work on most clients
-if imthecaptainnow == 1 and IPC.Automaton.IsTweakEnabled("AutoQueue") == true then IPC.Automaton.SetTweakState("AutoQueue", false) end
+if IPC.Automaton.IsTweakEnabled("AutoQueue") == true then IPC.Automaton.SetTweakState("AutoQueue", false) end
 if imthecaptainnow == 1 and Svc.Condition[34] == false and itworksonmymachine == 1 then
 	Instances.DutyFinder:OpenRegularDuty(1)
 	yield("/waitaddon ContentsFinder<maxwait 10>")
@@ -290,7 +290,7 @@ while 1 == 1 do
 	yield("/wait 2") --the big wait. run the entire fucking script every 2 seconds
 	checking_the_duct_tape = checking_the_duct_tape + 1
 	
-if IPC.Automaton.IsTweakEnabled("AutoQueue") == false and Svc.Condition[34] == false and (duty_counter > 0 or decucounter > 0) and imthecaptainnow == 1 then
+if IPC.Automaton.IsTweakEnabled("AutoQueue") == false and Svc.Condition[34] == false and (duty_counter > 0 or decucounter > 0) and imthecaptainnow == 1 and itworksonmymachine == 1 then
 	yield("/echo Turning ->ON<- Auto Queue -> It was off for some reason")
 	IPC.Automaton.SetTweakState("AutoQueue", true)
 end
