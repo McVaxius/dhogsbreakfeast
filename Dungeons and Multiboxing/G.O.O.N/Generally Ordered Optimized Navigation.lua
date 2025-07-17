@@ -322,7 +322,7 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 				yield("/dutyfinder")
 			end
 		end
-		if  itworksonmymachine == 0 then
+		if  itworksonmymachine == 0 and Svc.Condition[34] == false then
 			yield("/echo Firing up Decumana")
 			yield("/ad stop")
 			yield("/wait 0.5")
@@ -347,7 +347,7 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 				yield("/dutyfinder")
 			end
 		end
-		if  itworksonmymachine == 0 then
+		if  itworksonmymachine == 0 and Svc.Condition[34] == false then
 			yield("/echo Firing up Praetorium")
 			yield("/ad stop")
 			yield("/wait 0.5")
