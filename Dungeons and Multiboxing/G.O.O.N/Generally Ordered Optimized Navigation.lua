@@ -111,7 +111,9 @@ imthecaptainnow = 0 --set this to 1 if this char is the party leader												
 if Svc.Party[Svc.Party.PartyLeaderIndex].ContentId == Svc.ClientState.LocalContentId then
 	imthecaptainnow = 1
 	yield("/echo I am in fact the captain now.")
-	end
+	Instances.DutyFinder.IsUnrestrictedParty = true
+	Instances.DutyFinder.IsLevelSync = true
+end
 if 	imthecaptainnow == 0 then yield("/echo I am NOT the captain.") end
 
 -----------------------------------------------------------------------------------------------------------------
