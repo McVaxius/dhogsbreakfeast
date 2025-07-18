@@ -475,7 +475,8 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 				end
 				if (imthecaptainnow == 0 and someone_took_the_duct_tape > 10) or (imthecaptainnow == 1 and IPC.Automaton.IsTweakEnabled("AutoQueue") == false) then --we've been outside of prae for 20+ seconds or we are the party leader and autoqueue is disabled
 					yield("/ad repair")
-					tornclothes = 99 --force party member repairs. we may not get another chance!
+					--tornclothes = 99 --force party member repairs. we may not get another chance!
+					someone_took_the_duct_tape = 0
 					while NeedsRepair(tornclothes) and goatcounter < 3600 do
 						yield("/wait 0.1")
 						goatcounter = goatcounter + 1
