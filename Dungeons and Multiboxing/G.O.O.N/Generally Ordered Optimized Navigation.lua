@@ -187,6 +187,16 @@ configs:
     min: 0
     max: 1
     required: true
+  zpottymouth:
+    default: 0
+    description: "itemID of a buff pot you want to use\nleave as 0 if you dont want to pot.\npots will be used on the first boss and on gauis\nCURRENTLY THIS FEATURE IS UNTESTED"
+    type: int
+    required: true
+  zpottyword:
+    default: "Stale Hot Dog Water"
+    description: "The name of the tonic/draught/etc i.e. Gemdraught of Strength III.  call it as you will doesn't affect anything"
+    type: string
+    required: true
 
 [[End Metadata]]
 --]=====]
@@ -202,6 +212,8 @@ feedmeitem = Config.Get("zfeedmeitem")
 zfeedmesearch = Config.Get("zfeedmesearch")
 echo_level = Config.Get("zecho_level")
 itworksonmymachine = Config.Get("zitworksonmymachine")
+pottymouth = Config.Get("zpottymouth")
+pottywords = Config.Get("zpottywords")
 
 --you can edit these if you are brave debug/dont-touch-settings-unless-you-know-whats-up
 hardened_sock = 1200 		 --bailout from duty in 1200 seconds (20 minutes)
@@ -211,9 +223,13 @@ maxjiggle = 30 --how much default time (# of loops of the script) before we jigg
 -----------------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------------
+if GetItemCount(pottymouth) == 0 then
+	pottymouth = 0
+	yield("/echo We are all out of "..pottywords)
+end
+-----------------------------------------------------------------------------------------------------------------
 
 whichbm = "vbm"
-
 --which bossmod is intalled?
 if HasPlugin("BossModReborn") then whichbm = "bmr" end
 --these don't actually work reliably the return values not always returning ?!?!
@@ -368,6 +384,11 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 		if bm_preset == "none" then yield("/rotation Auto") end
 		if Entity.Target and Entity.Target.Name then
 			goatfucker = Entity.Target.Name or "goatfucker"
+			if (goatfucker == "Gaius van Baelsar" or goatfucker == "Mark II magitek colossus") and Svc.Condition[26] == true then
+				if pottymouth > 0 and Entity.Target.HealthPercent > 80 and Entity.Target.HealthPercent < 100 then
+					pottymouth = pop_pot(pottymouth, pottywords, echo_level) --return the same itemID if we still have pots left
+				end
+			end
 			if (goatfucker == "Nero tol Scaeva" or goatfucker == "Gaius van Baelsar" or goatfucker == "Phantom Gaius" or goatfucker == "Mark II magitek colossus") and Svc.Condition[26] == true then
 				yield("/vnav stop")
 				if echo_level < 2 then yield("/echo Target in combat condition 26 -> "..goatfucker) end

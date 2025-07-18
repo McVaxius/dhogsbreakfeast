@@ -2581,7 +2581,7 @@ function food_deleter(feedme, feedmeitem, echo_level, foodsearch)
 	entittyname = GetCharacterName(false) or "Nobody in Particular"
 	EGHP = 0
 	if entittyname ~= "Nobody in Particular" then EGHP = Player.Entity.CurrentHp or 0 end
-	
+
 	if type(GetItemCount(zfeedme)) == "number" then
 		foidme = GetItemCount(zfeedme)
 		if foidme > 0 and statoos < 90 and (Svc.Condition[34] == false or Svc.Condition[26] == false) then --refresh food if we are below 15 minutes left
@@ -2596,6 +2596,28 @@ function food_deleter(feedme, feedmeitem, echo_level, foodsearch)
 			zfeedme, zfeedmeitem = Available_Food_ID()
 		end
 	end
-	
 	return zfeedme, zfeedmeitem
+end
+
+function pop_pot(zfeedme, feedmeitem, echo_level)
+	echo_level = echo_level or 3 --catch non calls to this if calling script doesn't check it
+	entittyname = GetCharacterName(false) or "Nobody in Particular"
+	beforeZ = GetItemCount(zfeedme)
+	EGHP = 0
+	if entittyname ~= "Nobody in Particular" then EGHP = Player.Entity.CurrentHp or 0 end
+	if type(GetItemCount(zfeedme)) == "number" then
+		foidme = GetItemCount(zfeedme)
+		if foidme > 0 and Svc.Condition[26] == true then --sanity check if we aren't in combat for some reason and calling this
+			if EGHP > 10 then
+				Inventory.GetInventoryItem(tonumber(zfeedme)):Use()
+				if echo_level < 4 then yield("/echo Attempting to pop a "..zfeedmeitem) end
+			end
+			if EGHP == 0 and echo_level < 3 then yield("/echo We are dead or unavailable -- waiting.....") end
+			yield("/wait 0.5")
+		end
+	end
+	afterZ = GetItemCount(zfeedme)
+	if beforeZ < afterZ then yield("/wait 10") end --chill for 10 seconds if we actually managed to pot and let the boss go down some hp
+	if afterZ == 0 then return 0 end
+	return zfeedme
 end
