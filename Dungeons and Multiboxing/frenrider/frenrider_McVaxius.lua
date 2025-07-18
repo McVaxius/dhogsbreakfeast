@@ -287,7 +287,7 @@ if rotationplogon == "BMR" then
 		yield("/bmrai "..bossmodAI)
 		yield("/bmr ar set "..autorotationtype)
 		yield("/echo WE SWITCHED TO BMR FROM VBM - please review DTR bar etc.")
-	end
+--	end
 end
 
 --rotation handling

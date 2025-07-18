@@ -2452,8 +2452,10 @@ food_list = { --list in order of least wanted to most wanted
   --7.0
   {44182, "Pineapple Orange Jelly"},
 
-  --7.2
+  --7.05
   {44178, "Moqecka"},
+  
+  --7.2
   {46003, "Mate Cookie"}
 }
 
