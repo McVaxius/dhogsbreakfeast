@@ -385,8 +385,7 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 		if Entity.Target and Entity.Target.Name then
 			goatfucker = Entity.Target.Name or "goatfucker"
 			if (goatfucker == "Gaius van Baelsar" or goatfucker == "Mark II magitek colossus") and Svc.Condition[26] == true then
-				if pottymouth > 0 and Entity.Target.HealthPercent > 7
-				0 and Entity.Target.HealthPercent < 100 then
+				if pottymouth > 0 and Entity.Target.HealthPercent > 70 and Entity.Target.HealthPercent < 100 then
 					pottymouth = pop_pot(pottymouth, pottywords, echo_level) --return the same itemID if we still have pots left
 				end
 			end

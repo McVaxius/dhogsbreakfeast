@@ -2621,3 +2621,7 @@ function pop_pot(zfeedme, feedmeitem, echo_level)
 	if afterZ == 0 then return 0 end
 	return zfeedme
 end
+
+function mydisttoName(x)
+	return mydistto(GetObjectRawXPos(x),GetObjectRawYPos(x),GetObjectRawZPos(x))
+end
