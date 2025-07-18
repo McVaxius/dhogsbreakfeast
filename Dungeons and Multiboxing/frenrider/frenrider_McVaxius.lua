@@ -271,7 +271,7 @@ if rotationplogon == "VBM" then
 		yield("/vbmai "..bossmodAI)
 		yield("/vbm ar set "..autorotationtype)
 		yield("/echo WE SWITCHED TO VBM FROM BMR - please review DTR bar etc.")
-	end
+--	end
 end
 
 if rotationplogon == "BMR" then
