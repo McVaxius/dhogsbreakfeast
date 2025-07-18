@@ -10,4 +10,7 @@ while imlazy do
 	if Svc.Condition[26] == false then
 		yield("/vnav moveflag <flag>")
 	end
+	if Svc.Condition[34] == false then
+		imlazy = false
+	end
 end
