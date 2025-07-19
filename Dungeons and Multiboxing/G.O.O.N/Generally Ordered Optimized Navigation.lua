@@ -386,9 +386,9 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 		if bm_preset == "none" then yield("/rotation Auto") end
 		if Entity.Target and Entity.Target.Name then
 			goatfucker = Entity.Target.Name or "goatfucker"
-			if (goatfucker == "Gaius van Baelsar" or goatfucker == "Mark II magitek colossus") and Svc.Condition[26] == true then
+			if (goatfucker == "Gaius van Baelsar" or goatfucker == "Mark II Magitek Colossus") and Svc.Condition[26] == true then
 				--medicated is status 49
-				if pottymouth > 0 and Entity.Target.HealthPercent > 70 and Entity.Target.HealthPercent < 100 then
+				if pottymouth > 0 and Entity.Target.HealthPercent > 20 and Entity.Target.HealthPercent < 100 then
 					pottymouth = pop_pot(pottymouth, pottywords, echo_level) --return the same itemID if we still have pots left
 				end
 			end
@@ -507,6 +507,9 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 
 			if Svc.Condition[34] == true and Svc.Condition[26] == false and Svc.ClientState.TerritoryType == 1044 then
 				entitty = 0
+				if Svc.Condition[10] == false then
+					yield("/ac sprint")
+				end
 
 				while Entity.GetEntityByName(GetCharacterName(false)).CurrentHp == 0 do
 					if echo_level < 4 then yield("/echo We died........counting to 5 (3 sec per) then we resetting to entrance..."..entitty.."/5") end
