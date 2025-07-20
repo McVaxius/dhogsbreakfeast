@@ -125,7 +125,7 @@ if 	imthecaptainnow == 0 then yield("/echo I am NOT the captain.") end
 --[=====[
 [[SND Metadata]]
 author: dhogGPT
-version: 420.69.420.0
+version: 420.69.420.1
 description: Farm mogtomes with your cousins.
 plugin_dependencies:
 - vnavmesh
