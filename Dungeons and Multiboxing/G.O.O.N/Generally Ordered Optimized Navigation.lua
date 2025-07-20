@@ -115,7 +115,7 @@ z1 = EntityPlayerPositionZ()
 --[=====[
 [[SND Metadata]]
 author: dhogGPT
-version: 420.69.420.2
+version: 420.69.420.3
 description: Farm mogtomes with your cousins.
 plugin_dependencies:
 - vnavmesh
@@ -242,7 +242,7 @@ if imthecaptainnow ~= 1 and Svc.Party[Svc.Party.PartyLeaderIndex] == nil and Svc
 	imthecaptainnow = 2
 end
 
-if (imthecaptainnow ~= 2 and Svc.Party[Svc.Party.PartyLeaderIndex].ContentId == Svc.ClientState.LocalContentId) or imthecaptainnow == 1 then --if we could we the if wheeeeeeeeeeeeeeeeeeeeeeeee
+if imthecaptainnow ~= 2 or Svc.Party[Svc.Party.PartyLeaderIndex].ContentId == Svc.ClientState.LocalContentId or imthecaptainnow == 1 then --if we could we the if wheeeeeeeeeeeeeeeeeeeeeeeee
 	imthecaptainnow = 1
 	yield("/echo I am in fact the captain now.")
 	Instances.DutyFinder.IsUnrestrictedParty = true
