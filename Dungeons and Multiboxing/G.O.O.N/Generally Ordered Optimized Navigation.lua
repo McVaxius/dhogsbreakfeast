@@ -196,7 +196,7 @@ configs:
     description: "itemID of a buff pot you want to use\nleave as 0 if you dont want to pot.\npots will be used on the first boss and on gauis"
     type: int
     required: true
-  zpottyword:
+  zpottywords:
     default: "Stale Hot Dog Water"
     description: "The name of the tonic/draught/etc i.e. Gemdraught of Strength III.  call it as you will doesn't affect anything"
     type: string
