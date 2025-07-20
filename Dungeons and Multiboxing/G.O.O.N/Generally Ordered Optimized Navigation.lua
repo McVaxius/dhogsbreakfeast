@@ -115,7 +115,7 @@ z1 = EntityPlayerPositionZ()
 --[=====[
 [[SND Metadata]]
 author: dhogGPT
-version: 420.69.420.4
+version: 420.69.420.5
 description: Farm mogtomes with your cousins.
 plugin_dependencies:
 - vnavmesh
@@ -139,7 +139,7 @@ configs:
     default: 25
     description: "pct to try to repair at\n this is for npc repair.\nParty leader will repair at this pct\nRest of party will go try to repair no matter what (99 pct) if they are outside of duty for >20 seconds"
     type: int
-    min: 1
+    min: -1
     max: 99
     required: true
   zfinickyclothes:
@@ -227,7 +227,7 @@ maxjiggle = 30 --how much default time (# of loops of the script) before we jigg
 stopcuckingme = 0    --counter for checking whento pop duty
 imthecaptainnow = Config.Get("zcross_world") --set this to 1 if this char is the party leader																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																														 --set this to 1 if this char is the party leader
 
-if imthecaptainnow ~= 1 and Svc.Party[Svc.Party.PartyLeaderIndex] == nil and Svc.Condition[34] == false then
+if Svc.Party[Svc.Party.PartyLeaderIndex] == nil and Svc.Condition[34] == false then
 	yield("/echo You seem to be in a cross world party -> IF YOU ARE THE PARTY LEADER -> please set zcross_world to 1 in config and run G.O.O.N again")
 	yield("/echo You seem to be in a cross world party -> IF YOU ARE THE PARTY LEADER -> please set zcross_world to 1 in config and run G.O.O.N again")
 	yield("/echo You seem to be in a cross world party -> IF YOU ARE THE PARTY LEADER -> please set zcross_world to 1 in config and run G.O.O.N again")
@@ -239,14 +239,24 @@ if imthecaptainnow ~= 1 and Svc.Party[Svc.Party.PartyLeaderIndex] == nil and Svc
 	yield("/echo You seem to be in a cross world party -> IF YOU ARE THE PARTY LEADER -> please set zcross_world to 1 in config and run G.O.O.N again")
 	yield("/echo You seem to be in a cross world party -> IF YOU ARE THE PARTY LEADER -> please set zcross_world to 1 in config and run G.O.O.N again")
 	yield("/echo You seem to be in a cross world party -> IF YOU ARE THE PARTY LEADER -> please set zcross_world to 1 in config and run G.O.O.N again")
-	imthecaptainnow = 2
+	imthecaptainnow = 2 + imthecaptainnow
 end
 
-if imthecaptainnow ~= 2 and(Svc.Party[Svc.Party.PartyLeaderIndex].ContentId == Svc.ClientState.LocalContentId or imthecaptainnow == 1) then --if we could we the if wheeeeeeeeeeeeeeeeeeeeeeeee
-	imthecaptainnow = 1
-	yield("/echo I am in fact the captain now.")
-	Instances.DutyFinder.IsUnrestrictedParty = true
-	Instances.DutyFinder.IsLevelSync = true
+if imthecaptainnow ~= 2 then
+   if imthecaptainnow == 0 then
+	   if Svc.Party[Svc.Party.PartyLeaderIndex].ContentId == Svc.ClientState.LocalContentId then --if we could we the if wheeeeeeeeeeeeeeeeeeeeeeeee
+			imthecaptainnow = 1
+			yield("/echo I am in fact the captain now.")
+			Instances.DutyFinder.IsUnrestrictedParty = true
+			Instances.DutyFinder.IsLevelSync = true
+		end
+	end
+	if imthecaptainnow == 3 then
+		imthecaptainnow = 1
+		yield("/echo I am in fact the captain now.")
+		Instances.DutyFinder.IsUnrestrictedParty = true
+		Instances.DutyFinder.IsLevelSync = true
+	end
 end
 if imthecaptainnow == 2 then imthecaptainnow = 0 end
 if 	imthecaptainnow == 0 then yield("/echo I am NOT the captain.") end
@@ -277,6 +287,7 @@ if imthecaptainnow == 0 then IPC.AutoDuty.SetConfig("AutoExitDuty", "false") end
 if imthecaptainnow == 1 then IPC.AutoDuty.SetConfig("AutoExitDuty", "true") end
 IPC.AutoDuty.SetConfig("OnlyExitWhenDutyDone", "true")
 IPC.AutoDuty.SetConfig("EnableTerminationActions", "false")
+IPC.AutoDuty.SetConfig("Unsynced", "true")
 
 praeID = 16	  -- count from the top until you reach praetorium to get the number if you dont have all of ARR dungeons unlocked. sometimes 1044 works. count from top to prae and then add 1 for the index to use here.
 decuID = 830  -- this seems to work on most clients
@@ -505,6 +516,21 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 				end
 			end
 			--JUST OUTSIDE THE INN REPAIR
+			if NeedsRepair(tornclothes) == false and Svc.Condition[34] == false then
+				xxx = {
+				"Otopa Pottopa",
+				"Mytesyn",
+				"Antoinaut"
+				}
+				for i=1, #xxx do
+					if mydisttoName(xxx[i]) < 50 and mydisttoName(xxx[i]) > 0 then
+						PathtoName(xxx[i])
+						yield("/target \""..xxx[i].."\"")
+						yield("/interact")
+						yield("/wait 2")
+					end
+				end
+			end
 			if NeedsRepair(tornclothes) and tornclothes > -1 and GetItemCount(1) > 4999 and Svc.Condition[34] == false and Svc.Condition[56] == false then --only do this outside of a duty yo
 				goatcounter = 0
 				yield("/wait 0.7") --since we have a 0.3 in the main while loop for repair

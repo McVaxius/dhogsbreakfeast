@@ -23,6 +23,7 @@ end
 
 yield("/wait 3")
 
+yield("/vnav stop") --stop failed pathing that triggered just now outside (?)
 yield("/mmambo") --change it to something else if you like.
 
 if Svc.ClientState.TerritoryType == 1044 then --only do this in Prae
