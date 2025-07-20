@@ -228,19 +228,19 @@ stopcuckingme = 0    --counter for checking whento pop duty
 imthecaptainnow = Config.Get("zcross_world") --set this to 1 if this char is the party leader																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																														 --set this to 1 if this char is the party leader
 
 if Svc.Party[Svc.Party.PartyLeaderIndex] == nil and Svc.Condition[34] == false then
-	yield("/echo You seem to be in a cross world party -> IF YOU ARE THE PARTY LEADER -> please set zcross_world to 1 in config and run G.O.O.N again. its not reliable better to not be cross world")
-	yield("/echo You seem to be in a cross world party -> IF YOU ARE THE PARTY LEADER -> please set zcross_world to 1 in config and run G.O.O.N again. its not reliable better to not be cross world")
-	yield("/echo You seem to be in a cross world party -> IF YOU ARE THE PARTY LEADER -> please set zcross_world to 1 in config and run G.O.O.N again. its not reliable better to not be cross world")
-	yield("/echo You seem to be in a cross world party -> IF YOU ARE THE PARTY LEADER -> please set zcross_world to 1 in config and run G.O.O.N again. its not reliable better to not be cross world")
-	yield("/echo You seem to be in a cross world party -> IF YOU ARE THE PARTY LEADER -> please set zcross_world to 1 in config and run G.O.O.N again. its not reliable better to not be cross world")
-	yield("/echo You seem to be in a cross world party -> IF YOU ARE THE PARTY LEADER -> please set zcross_world to 1 in config and run G.O.O.N again. its not reliable better to not be cross world")
-	yield("/echo You seem to be in a cross world party -> IF YOU ARE THE PARTY LEADER -> please set zcross_world to 1 in config and run G.O.O.N again. its not reliable better to not be cross world")
-	yield("/echo You seem to be in a cross world party -> IF YOU ARE THE PARTY LEADER -> please set zcross_world to 1 in config and run G.O.O.N again. its not reliable better to not be cross world")
-	yield("/echo You seem to be in a cross world party -> IF YOU ARE THE PARTY LEADER -> please set zcross_world to 1 in config and run G.O.O.N again. its not reliable better to not be cross world")
-	yield("/echo You seem to be in a cross world party -> IF YOU ARE THE PARTY LEADER -> please set zcross_world to 1 in config and run G.O.O.N again. its not reliable better to not be cross world")
-	yield("/echo You seem to be in a cross world party -> IF YOU ARE THE PARTY LEADER -> please set zcross_world to 1 in config and run G.O.O.N again. its not reliable better to not be cross world")
-	yield("/echo You seem to be in a cross world party -> IF YOU ARE THE PARTY LEADER -> please set zcross_world to 1 in config and run G.O.O.N again. its not reliable better to not be cross world")
-	yield("/echo You seem to be in a cross world party -> IF YOU ARE THE PARTY LEADER -> please set zcross_world to 1 in config and run G.O.O.N again. its not reliable better to not be cross world")
+	yield("/echo You seem to be in a cross world party -> IF YOU ARE THE PARTY LEADER -> please set zcross_world to 1 in config and run G.O.O.N again.")
+	yield("/echo You seem to be in a cross world party -> IF YOU ARE THE PARTY LEADER -> please set zcross_world to 1 in config and run G.O.O.N again.")
+	yield("/echo You seem to be in a cross world party -> IF YOU ARE THE PARTY LEADER -> please set zcross_world to 1 in config and run G.O.O.N again.")
+	yield("/echo You seem to be in a cross world party -> IF YOU ARE THE PARTY LEADER -> please set zcross_world to 1 in config and run G.O.O.N again.")
+	yield("/echo You seem to be in a cross world party -> IF YOU ARE THE PARTY LEADER -> please set zcross_world to 1 in config and run G.O.O.N again.")
+	yield("/echo You seem to be in a cross world party -> IF YOU ARE THE PARTY LEADER -> please set zcross_world to 1 in config and run G.O.O.N again.")
+	yield("/echo You seem to be in a cross world party -> IF YOU ARE THE PARTY LEADER -> please set zcross_world to 1 in config and run G.O.O.N again.")
+	yield("/echo You seem to be in a cross world party -> IF YOU ARE THE PARTY LEADER -> please set zcross_world to 1 in config and run G.O.O.N again.")
+	yield("/echo You seem to be in a cross world party -> IF YOU ARE THE PARTY LEADER -> please set zcross_world to 1 in config and run G.O.O.N again.")
+	yield("/echo You seem to be in a cross world party -> IF YOU ARE THE PARTY LEADER -> please set zcross_world to 1 in config and run G.O.O.N again.")
+	yield("/echo You seem to be in a cross world party -> IF YOU ARE THE PARTY LEADER -> please set zcross_world to 1 in config and run G.O.O.N again.")
+	yield("/echo You seem to be in a cross world party -> IF YOU ARE THE PARTY LEADER -> please set zcross_world to 1 in config and run G.O.O.N again.")
+	yield("/echo You seem to be in a cross world party -> IF YOU ARE THE PARTY LEADER -> please set zcross_world to 1 in config and run G.O.O.N again.")
 	imthecaptainnow = 2 + imthecaptainnow
 end
 
