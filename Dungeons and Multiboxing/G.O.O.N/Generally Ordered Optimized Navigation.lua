@@ -32,6 +32,8 @@ Yesalready configs (maybe only the first one is needed since the rest are done v
 		/Move immediately to sealed area.*/
 	"Lists"
 		/Retire to an inn room.*/
+	"Bothers"
+		Duties -> ContentFinderConfirm [x]
 
 CBT -> Enhanced Duty start/end
 	duty start -> /snd run start_gooning
