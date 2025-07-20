@@ -108,16 +108,6 @@ x1 = EntityPlayerPositionX()
 y1 = EntityPlayerPositionY()
 z1 = EntityPlayerPositionZ()
 
-stopcuckingme = 0    --counter for checking whento pop duty
-imthecaptainnow = 0 --set this to 1 if this char is the party leader																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																														 --set this to 1 if this char is the party leader
-if Svc.Party[Svc.Party.PartyLeaderIndex].ContentId == Svc.ClientState.LocalContentId then
-	imthecaptainnow = 1
-	yield("/echo I am in fact the captain now.")
-	Instances.DutyFinder.IsUnrestrictedParty = true
-	Instances.DutyFinder.IsLevelSync = true
-end
-if 	imthecaptainnow == 0 then yield("/echo I am NOT the captain.") end
-
 -----------------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------------
@@ -125,12 +115,19 @@ if 	imthecaptainnow == 0 then yield("/echo I am NOT the captain.") end
 --[=====[
 [[SND Metadata]]
 author: dhogGPT
-version: 420.69.420.1
+version: 420.69.420.2
 description: Farm mogtomes with your cousins.
 plugin_dependencies:
 - vnavmesh
 - SimpleTweaksPlugin
 configs:
+  zcross_world:
+    default: 0
+    description: "Set this to 1 if you are the party leader in a Cross World Party"
+    type: int
+    min: 0
+    max: 99
+    required: true
   zduty_counter:
     default: 0
     description: "This is the Prae duty counter. \nSet it to 0 if its the first run of the day \n Daily reset time is 3 am EST or 12am PST"
@@ -227,6 +224,23 @@ maxjiggle = 30 --how much default time (# of loops of the script) before we jigg
 -----------------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------------
+stopcuckingme = 0    --counter for checking whento pop duty
+imthecaptainnow = Config.Get("zcross_world") --set this to 1 if this char is the party leader																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																														 --set this to 1 if this char is the party leader
+
+if imthecaptainnow ~= 1 and Svc.Party[Svc.Party.PartyLeaderIndex] == nil and Svc.Condition[34] == false then
+	yield("/echo You seem to be in a cross world party, if you are the party leader, please set zcross_world to 1 in config and run G.O.O.N again")
+	imthecaptainnow = 2
+end
+
+if (imthecaptainnow ~= 2 and Svc.Party[Svc.Party.PartyLeaderIndex].ContentId == Svc.ClientState.LocalContentId) or imthecaptainnow == 1 then --if we could we the if wheeeeeeeeeeeeeeeeeeeeeeeee
+	imthecaptainnow = 1
+	yield("/echo I am in fact the captain now.")
+	Instances.DutyFinder.IsUnrestrictedParty = true
+	Instances.DutyFinder.IsLevelSync = true
+end
+if imthecaptainnow == 2 then imthecaptainnow = 0 end
+if 	imthecaptainnow == 0 then yield("/echo I am NOT the captain.") end
+
 if GetItemCount(pottymouth) == 0 then
 	pottymouth = 0
 	yield("/echo We are all out of "..pottywords)
