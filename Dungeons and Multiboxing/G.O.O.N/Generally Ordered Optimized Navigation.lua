@@ -252,6 +252,7 @@ IPC.AutoDuty.SetConfig("positionalRoleBased", "true")
 if imthecaptainnow == 0 then IPC.AutoDuty.SetConfig("AutoExitDuty", "false") end
 if imthecaptainnow == 1 then IPC.AutoDuty.SetConfig("AutoExitDuty", "true") end
 IPC.AutoDuty.SetConfig("OnlyExitWhenDutyDone", "true")
+IPC.AutoDuty.SetConfig("EnableTerminationActions", "false")
 
 praeID = 16	  -- count from the top until you reach praetorium to get the number if you dont have all of ARR dungeons unlocked. sometimes 1044 works. count from top to prae and then add 1 for the index to use here.
 decuID = 830  -- this seems to work on most clients
