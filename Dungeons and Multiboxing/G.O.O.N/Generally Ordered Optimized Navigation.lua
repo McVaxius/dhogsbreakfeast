@@ -243,6 +243,8 @@ if bm_preset ~= "none" then IPC.AutoDuty.SetConfig("UsingAlternativeRotationPlug
 if bm_preset == "none" then IPC.AutoDuty.SetConfig("UsingAlternativeRotationPlugin", "false") end
 
 --fix bossmod settings so that roles will be properly organized and spread will work more effectively.
+IPC.AutoDuty.SetConfig("AutoManageRotationPluginState", "true")
+IPC.AutoDuty.SetConfig("AutoManageBossModAISettings", "true")
 IPC.AutoDuty.SetConfig("BM_UpdatePresetsAutomatically", "true")
 IPC.AutoDuty.SetConfig("maxDistanceToTargetRoleBased", "true")
 IPC.AutoDuty.SetConfig("positionalRoleBased", "true")
