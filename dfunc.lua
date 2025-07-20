@@ -2359,6 +2359,7 @@ function closest_thing(name)
     end
     return EntityWrapper(closest)
 end
+
 function load_type(type_path)
     local assembly = mysplit(type_path)
 --    log_debug("Loading assembly", assembly)
@@ -2601,7 +2602,7 @@ function food_deleter(feedme, feedmeitem, echo_level, foodsearch)
 	return zfeedme, zfeedmeitem
 end
 
-function pop_pot(zfeedme, feedmeitem, echo_level)
+function pop_pot(zfeedme, zfeedmeitem, echo_level)
 	echo_level = echo_level or 3 --catch non calls to this if calling script doesn't check it
 	entittyname = GetCharacterName(false) or "Nobody in Particular"
 	beforeZ = GetItemCount(zfeedme)
