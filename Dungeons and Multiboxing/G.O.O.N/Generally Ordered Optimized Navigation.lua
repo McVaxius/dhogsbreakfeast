@@ -115,7 +115,7 @@ z1 = EntityPlayerPositionZ()
 --[=====[
 [[SND Metadata]]
 author: dhogGPT
-version: 420.69.420.3
+version: 420.69.420.4
 description: Farm mogtomes with your cousins.
 plugin_dependencies:
 - vnavmesh
@@ -126,7 +126,7 @@ configs:
     description: "Set this to 1 if you are the party leader in a Cross World Party"
     type: int
     min: 0
-    max: 99
+    max: 1
     required: true
   zduty_counter:
     default: 0
