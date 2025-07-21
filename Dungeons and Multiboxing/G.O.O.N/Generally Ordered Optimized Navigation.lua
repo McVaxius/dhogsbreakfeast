@@ -202,14 +202,14 @@ configs:
     default: 66666666666
     description: "How many runs before quitting"
     type: int
-	min:0
+    min: 0
+    max: 66666666666
     required: true
   zquitmeexec:
     default: "/ays m e"
-    description: "Command to execute after quitting."
+    description: "Command to execute after quitting"
     type: string
     required: true
-
 [[End Metadata]]
 --]=====]
 
