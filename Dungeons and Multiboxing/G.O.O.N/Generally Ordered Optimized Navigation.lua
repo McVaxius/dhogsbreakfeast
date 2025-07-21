@@ -449,6 +449,11 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 					pottymouth = pop_pot(pottymouth, pottywords, echo_level) --return the same itemID if we still have pots left
 				end
 			end
+			if goatfucker == "Phantom Gaius" and Svc.Condition[26] == true then
+				if Player.GetJob(GetClassJobId()).IsMeleeDPS or Player.GetJob(GetClassJobId()).IsMeleeDPS then
+					yield("/ac \"limit break\"")
+				end
+			end
 			if goatfucker == "The Ultima Weapon" and Svc.Condition[26] == true then
 				--medicated is status 49
 				if pottymouth > 0 and Entity.Target.HealthPercent > 80 and Entity.Target.HealthPercent < 100 then
