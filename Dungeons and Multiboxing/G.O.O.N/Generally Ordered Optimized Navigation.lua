@@ -450,7 +450,7 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 				end
 			end
 			if goatfucker == "Phantom Gaius" and Svc.Condition[26] == true then
-				if Player.GetJob(GetClassJobId()).IsMeleeDPS or Player.GetJob(GetClassJobId()).IsMeleeDPS then
+				if Player.GetJob(GetClassJobId()).IsMeleeDPS or Player.GetJob(GetClassJobId()).IsRangedDPS then
 					yield("/ac \"limit break\"")
 				end
 			end
@@ -463,7 +463,7 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 					yield("/send KEY_1")
 				end	
 				if Entity.Target.HealthPercent < 30 then
-					if Player.GetJob(GetClassJobId()).IsMeleeDPS or Player.GetJob(GetClassJobId()).IsMeleeDPS then
+					if Player.GetJob(GetClassJobId()).IsMeleeDPS or Player.GetJob(GetClassJobId()).IsRangedDPS then
 						yield("/ac \"limit break\"")
 					end
 				end
