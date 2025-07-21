@@ -199,11 +199,11 @@ configs:
     type: string
     required: true
   zquitme:
-    default: 66666666666
+    default: 9999
     description: "How many runs before quitting"
     type: int
     min: 0
-    max: 66666666666
+    max: 9999
     required: true
   zquitmeexec:
     default: "/ays m e"
