@@ -379,7 +379,17 @@ function force_rotation()
 		yield("/rotation Cancel") --turn off RSR in case it is on
 	end
 	
-	yield("/"..whichbm.."ai on")
+	if echo_level < 3 then yield("/"..whichbm.."ai on") end
+end
+
+function force_rsr()
+	if bm_preset == "none" then
+		if timedilation == 2 or timedilation > 2 then yield("/rotation auto") end
+		if timedilation < 2 then
+			choppedgaming = getRandomNumber(0, 20)
+			if timedilation * 10 > choppedgaming then yield("/rotation auto") end
+		end
+	end
 end
 
 force_rotation()
@@ -471,7 +481,7 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 		end
 	end
 	if Svc.Condition[34] == true and Svc.Condition[26] == true then
-		if bm_preset == "none" then yield("/rotation Auto") end
+		force_rsr()
 		if Entity.Target and Entity.Target.Name then
 			goatfucker = Entity.Target.Name or "goatfucker"
 			if (goatfucker == "Gaius van Baelsar" or goatfucker == "Mark II Magitek Colossus") and Svc.Condition[26] == true then
@@ -646,7 +656,7 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 						yield("/ad stop")
 						yield("/wait 10")
 						yield("/ad start")
-						if bm_preset == "none" then yield("/rotation Auto") end
+						force_rsr()
 					end
 				end
 				
@@ -658,7 +668,7 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 						jigglecounter = jigglecounter + 1
 					end
 				end
-				if bm_preset == "none" then yield("/rotation Auto") end
+				force_rsr()
 				if jigglecounter > maxjiggle and Svc.ClientState.TerritoryType == 1044 then --we stuck for 30+ seconds somewhere in praetorium
 					if echo_level < 4 then yield("/echo attempting to restart AD and hope for the best") end
 					jigglecounter = 0
@@ -688,7 +698,7 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 				jigglecounter = 0
 				if Entity.Target and Entity.Target.Name then
 					if type(GetTargetName()) ~= "string" then
-						if bm_preset == "none" then yield("/rotation Auto") end
+						force_rsr()
 						yield("/wait 0.5")
 					end
 				end
