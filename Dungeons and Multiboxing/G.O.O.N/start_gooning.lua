@@ -55,3 +55,15 @@ yield("/bmrai followtarget off")
 yield("/bmrai setpresetname Autoduty Passive")
 yield("/rotation auto")
 --yield("/echo let's start gooning!")
+
+if Svc.ClientState.TerritoryType == 1048 then
+	yield("/target \"The Ultima Weapon\""
+	yield("wait 1")
+	yield("/send KEY_1")
+	yield("wait 1")
+	yield("/send KEY_1")
+	yield("wait 1")
+	yield("/send KEY_1")
+	yield("wait 1")
+	yield("/send KEY_1")
+end
