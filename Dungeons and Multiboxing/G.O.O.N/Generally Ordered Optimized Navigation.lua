@@ -1,112 +1,112 @@
---[[
-Generally Ordered Optimized Navigation.lua  (thanks for the idea fifi)
-or "Something need Gooning"
-thanks to @Akasha and @Ritsuko for some of the ideas/code
+	--[[
+	Generally Ordered Optimized Navigation.lua  (thanks for the idea fifi)
+	or "Something need Gooning"
+	thanks to @Akasha and @Ritsuko for some of the ideas/code
 
-purpose: help autoduty with farming duties.
-design: it will run 99 prae, and then run decumana until reset time (1 am PDT) and reset the counter and go back to farming prae.
+	purpose: help autoduty with farming duties.
+	design: it will run 99 prae, and then run decumana until reset time (1 am PDT) and reset the counter and go back to farming prae.
 
-Plugins/configs (ill update as people realize i forgot instructions)
-Automaton (Now called CBT)
-Some form of bossmod
-Rotation Solver Reborn
-Vnavmesh
-Simpletweaks
-Cutscene Skip -> https://raw.githubusercontent.com/KangasZ/DalamudPluginRepository/main/plugin_repository.json
+	Plugins/configs (ill update as people realize i forgot instructions)
+	Automaton (Now called CBT)
+	Some form of bossmod
+	Rotation Solver Reborn
+	Vnavmesh
+	Simpletweaks
+	Cutscene Skip -> https://raw.githubusercontent.com/KangasZ/DalamudPluginRepository/main/plugin_repository.json
 
-Configurations (NOT OPTIONAL.  THEY ARE ABSOLUTELY MANDATORY)
-game -> don't have it in controller mode or it will start chatting (!?!?!?!?!?!) Thanks @Arcorius for this
-game -> duty finder config -> unsync+levelsync
+	Configurations (NOT OPTIONAL.  THEY ARE ABSOLUTELY MANDATORY)
+	game -> don't have it in controller mode or it will start chatting (!?!?!?!?!?!) Thanks @Arcorius for this
+	game -> duty finder config -> unsync+levelsync
 
-Pandora -> actually have this disabled it causes problems.
-Simpletweaks -> targeting fix aka "Fix '/target' Command
-AD -> Turn off "Leave Duty" and or change to leave only when duty is complete and not path complete
-AD -> choose the W2W Ritsuko or whatever path you want to use BEFORE starting anyhthing in ad. make sure to click prae then pick the route.
+	Pandora -> actually have this disabled it causes problems.
+	Simpletweaks -> targeting fix aka "Fix '/target' Command
+	AD -> Turn off "Leave Duty" and or change to leave only when duty is complete and not path complete
+	AD -> choose the W2W Ritsuko or whatever path you want to use BEFORE starting anyhthing in ad. make sure to click prae then pick the route.
 
-dfunc.lua exists per the root of the repo instructions. (go read it)
+	dfunc.lua exists per the root of the repo instructions. (go read it)
 
-Yesalready configs (maybe only the first one is needed since the rest are done via callbacks w ya off) also make sure yesalready is on :p ad turns it off sometimes (???)
-	"YesNo"
-		/Repair all displayed items for.*/
-		/Exit.*/
-		/Move immediately to sealed area.*/
-	"Lists"
-		/Retire to an inn room.*/
-	"Bothers"
-		Duties -> ContentFinderConfirm [x]
+	Yesalready configs (maybe only the first one is needed since the rest are done via callbacks w ya off) also make sure yesalready is on :p ad turns it off sometimes (???)
+		"YesNo"
+			/Repair all displayed items for.*/
+			/Exit.*/
+			/Move immediately to sealed area.*/
+		"Lists"
+			/Retire to an inn room.*/
+		"Bothers"
+			Duties -> ContentFinderConfirm [x]
 
-CBT -> Enhanced Duty start/end
-	duty start -> /snd run start_gooning
-	duty end -> /ad stop
-	leave duty -> 10 seconds
+	CBT -> Enhanced Duty start/end
+		duty start -> /snd run start_gooning
+		duty end -> /ad stop
+		leave duty -> 10 seconds
 
-OPTIONAL to reduce cpu+gpu usage significantly and cool down your sauna to just a warm afternoon:
-Custom Resolution Scaler -> Gameplay -> Pixelated -> 0.1 -> Enabled [x] -> Save and Apply
-	0.1 is like n64 / ps1 graphics. 0.05 is like snes, and 0.001 is like hilarious. its just 4 pixels. THATS IT 
-	it won't reduce cpu/ram reqs but it will reduce GPU to nothing
-Chillframes -> 15 out of combat 30 in combat
-	it will reduce CPU and GPU reqs, it wont affect ram
+	OPTIONAL to reduce cpu+gpu usage significantly and cool down your sauna to just a warm afternoon:
+	Custom Resolution Scaler -> Gameplay -> Pixelated -> 0.1 -> Enabled [x] -> Save and Apply
+		0.1 is like n64 / ps1 graphics. 0.05 is like snes, and 0.001 is like hilarious. its just 4 pixels. THATS IT 
+		it won't reduce cpu/ram reqs but it will reduce GPU to nothing
+	Chillframes -> 15 out of combat 30 in combat
+		it will reduce CPU and GPU reqs, it wont affect ram
 
 
-FIX from old PYES setup:
-REMOVE THIS FROM YESALREADY
-		Return to the starting point for the Praetorium?   ※You may be unable to re-enter ongoing battles.
-FIX FOR WEIRD PATHING ISSUES:
-also.. if you run multiple copies of dalamud from same folder eventually autoduty becomes autodoodie and will fail to do paths and you will have to kill all clients running from that path, and then just pick one and load it.
-its related to vnav
-another way to explain it:
-1 client per dalamud folder
-using same vnav cache for multiple clients eventually causes failure in autoduty
-when in doubt just kill the client and reload.. snd vnav ad all get a little weird after a while
+	FIX from old PYES setup:
+	REMOVE THIS FROM YESALREADY
+			Return to the starting point for the Praetorium?   ※You may be unable to re-enter ongoing battles.
+	FIX FOR WEIRD PATHING ISSUES:
+	also.. if you run multiple copies of dalamud from same folder eventually autoduty becomes autodoodie and will fail to do paths and you will have to kill all clients running from that path, and then just pick one and load it.
+	its related to vnav
+	another way to explain it:
+	1 client per dalamud folder
+	using same vnav cache for multiple clients eventually causes failure in autoduty
+	when in doubt just kill the client and reload.. snd vnav ad all get a little weird after a while
 
-recommended party:
-war dps dps sch
-for sch in RSR turn off 
-GCD-attack
-Ruin, Ruin II
-GCD-friendly
-adloquim, succor and physick
+	recommended party:
+	war dps dps sch
+	for sch in RSR turn off 
+	GCD-attack
+	Ruin, Ruin II
+	GCD-friendly
+	adloquim, succor and physick
 
-for SGE you just turn off the 
+	for SGE you just turn off the 
 
-reccommend setup:
-WAR SCH SMN/MCH MNK
-or 
-WAR SCH MCH MCH
-or
-GNB SGE MCH MCH
-or
-BLU BLU BLU BLU or some combination of BST/BLU
+	reccommend setup:
+	WAR SCH SMN/MCH MNK
+	or 
+	WAR SCH MCH MCH
+	or
+	GNB SGE MCH MCH
+	or
+	BLU BLU BLU BLU or some combination of BST/BLU
 
-(yeah right hahaha.)
+	(yeah right hahaha.)
 
-random thoughts
-I figured out how to get ad to do unsync+level sync
-you first setup unsync+level sync . since it will never unhceck level sync. then tick unsync for regular duty prae
-and then let goon do its thing
-minor qol just to see the times in a nice chat window
-also sometimes things go haywire if you change jobs just /xlkill that/those client(s) and restart them
-also because the path has automove, we have to leave the horrible camera controls on :(
-also sometimes the movement type is changed from legacy to standard -> ?????????????????? its not autoduty??!??
+	random thoughts
+	I figured out how to get ad to do unsync+level sync
+	you first setup unsync+level sync . since it will never unhceck level sync. then tick unsync for regular duty prae
+	and then let goon do its thing
+	minor qol just to see the times in a nice chat window
+	also sometimes things go haywire if you change jobs just /xlkill that/those client(s) and restart them
+	also because the path has automove, we have to leave the horrible camera controls on :(
+	also sometimes the movement type is changed from legacy to standard -> ?????????????????? its not autoduty??!??
 
-i'm searching for prae
-1,52,61001*,5 through to 61015  .Text
-for i=5,15 do
-	Instances.DutyFinder:OpenRegularDuty(i)
-dName = Addons.GetAddon("ContentsFinder"):GetNode(1,52,61000+i,5)
-yield("/echo Duty Name "..i.." -> "..tostring(dName.Text))
-yield("/wait 1")
-end
---]]
+	i'm searching for prae
+	1,52,61001*,5 through to 61015  .Text
+	for i=5,15 do
+		Instances.DutyFinder:OpenRegularDuty(i)
+	dName = Addons.GetAddon("ContentsFinder"):GetNode(1,52,61000+i,5)
+	yield("/echo Duty Name "..i.." -> "..tostring(dName.Text))
+	yield("/wait 1")
+	end
+	--]]
 
-require("dfunc")
+	require("dfunc")
 
-yield("/echo You have started G.O.O.N ing")
+	yield("/echo You have started G.O.O.N ing")
 
-jigglecounter = 0
-x1 = EntityPlayerPositionX()
-y1 = EntityPlayerPositionY()
-z1 = EntityPlayerPositionZ()
+	jigglecounter = 0
+	x1 = EntityPlayerPositionX()
+	y1 = EntityPlayerPositionY()
+	z1 = EntityPlayerPositionZ()
 
 -----------------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------------
@@ -405,7 +405,7 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 		if echo_level < 3 then yield("/echo Firing up Decumana") end
 		yield("/ad stop")
 		yield("/wait 0.5")
-		yield("/ad queue Porta Decumana")
+		yield("/ad queue The Porta Decumana")
 	end
 	
 	if imthecaptainnow == 1 and duty_counter < 2 then
