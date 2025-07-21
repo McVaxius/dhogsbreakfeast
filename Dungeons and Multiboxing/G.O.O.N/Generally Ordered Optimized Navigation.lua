@@ -456,6 +456,11 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 				end
 				if Entity.Target.HealthPercent > 98 then
 					yield("/send KEY_1")
+				end	
+				if Entity.Target.HealthPercent < 30 then
+					if Player.GetJob(GetClassJobId()).IsMeleeDPS or Player.GetJob(GetClassJobId()).IsMeleeDPS then
+						yield("/ac \"limit break\"")
+					end
 				end
 			end
 			if (goatfucker == "Nero tol Scaeva" or goatfucker == "Gaius van Baelsar" or goatfucker == "Phantom Gaius" or goatfucker == "Mark II Magitek Colossus") and Svc.Condition[26] == true then
