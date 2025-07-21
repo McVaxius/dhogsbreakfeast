@@ -187,7 +187,7 @@ function ungabungabunga()
 			yield("/send ESCAPE")
 			yield("/wait 1")
 			yield("/wait 3")
-			if Player and Player.Available == true then
+			if IsPlayerAvailable() then
 				tobungaorunga = 1
 			end
 		end
@@ -381,17 +381,17 @@ function force_equip()
 end
 
 function EntityPlayerPositionX()
-	if Player and Entity.Player.Position then return Entity.Player.Position.X end
+	if IsPlayerAvailable() then return Entity.Player.Position.X end
 	return 0
 end
 
 function EntityPlayerPositionY()
-	if Player and Entity.Player.Position then return Entity.Player.Position.Y end
+	if IsPlayerAvailable() then return Entity.Player.Position.Y end
 	return 0
 end
 
 function EntityPlayerPositionZ()
-	if Player and Entity.Player.Position then return Entity.Player.Position.Z end
+	if IsPlayerAvailable() then return Entity.Player.Position.Z end
 	return 0
 end
 
@@ -1222,6 +1222,7 @@ function IsAddonVisible(name)
 end
 
 function IsPlayerAvailable()
+	if Player.Available == nil then return false end
     return Player.Available
 end
 

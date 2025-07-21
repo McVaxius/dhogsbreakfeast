@@ -115,7 +115,7 @@ z1 = EntityPlayerPositionZ()
 --[=====[
 [[SND Metadata]]
 author: dhogGPT
-version: 420.69.420.5
+version: 384
 description: Farm mogtomes with your cousins.
 plugin_dependencies:
 - vnavmesh
@@ -380,7 +380,7 @@ if IPC.Automaton.IsTweakEnabled("AutoQueue") == false and Svc.Condition[34] == f
 end
 
 --safe check ifs
-if Player and Player.Available then
+if IsPlayerAvailable() then
 if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean" and type(Svc.Condition[4]) == "boolean" then
 --
 	if imthecaptainnow == 1 and duty_counter > 98 and decucounter < 1 then
@@ -561,7 +561,7 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 	end
 	--
 	--safe check ifs part 2
-	if Player and Player.Available then
+	if IsPlayerAvailable() then
 		if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean" and type(Svc.Condition[4]) == "boolean" then
 		--
 
@@ -569,7 +569,7 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 		--first ensure we are in the duty and not in combat
 
 		--1044 is prae we only need this there atm
-			if Player and Player.Available then
+			if IsPlayerAvailable() then
 
 			if Svc.Condition[34] == true and Svc.Condition[26] == false and Svc.ClientState.TerritoryType == 1044 then
 				entitty = 0
