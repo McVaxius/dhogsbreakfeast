@@ -198,6 +198,17 @@ configs:
     description: "The name of the tonic/draught/etc i.e. Gemdraught of Strength III.  call it as you will doesn't affect anything"
     type: string
     required: true
+  zquitme:
+    default: 66666666666
+    description: "How many runs before quitting"
+    type: int
+	min:0
+    required: true
+  zquitmeexec:
+    default: "/ays m e"
+    description: "Command to execute after quitting."
+    type: string
+    required: true
 
 [[End Metadata]]
 --]=====]
@@ -215,6 +226,8 @@ echo_level = Config.Get("zecho_level")
 itworksonmymachine = Config.Get("zitworksonmymachine")
 pottymouth = Config.Get("zpottymouth")
 pottywords = Config.Get("zpottywords")
+quitme = Config.Get("zquitme")
+quitmeexec = Config.Get("zquitmeexec")
 
 --you can edit these if you are brave debug/dont-touch-settings-unless-you-know-whats-up
 hardened_sock = 1200 		 --bailout from duty in 1200 seconds (20 minutes)
@@ -370,7 +383,9 @@ function leaveDuty()
     return
 end
 
-while 1 == 1 do
+hehaheohaoehaoehaeohehehehehehehe = 1
+
+while hehaheohaoehaoehaeohehehehehehehe == 1 do
 	yield("/wait 2") --the big wait. run the entire fucking script every 2 seconds
 	checking_the_duct_tape = checking_the_duct_tape + 1
 	
@@ -698,13 +713,15 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 					end
 					
 				end
+				if hehaheohaoehaoehaeohehehehehehehe > quitme then
+					hehaheohaoehaoehaeohehehehehehehe = 69
+				end
 			end
 			if os.date("!*t").hour > 6 and os.date("!*t").hour < 8 and duty_counter > 20 then --theres no way we can do 20 prae in 1 hour so this should cover rollover from the previous day
 				duty_counter = 0
 				decucounter = 0
 				if echo_level < 4 then yield("/echo We are starting over the duty counter, we passed daily reset time!") end
 			end
-
 			if Svc.Condition[34] == false and imthecaptainnow == 1 then
 				yield("/wait 5") --wait a +bit longer if we are outside.
 				if Svc.Condition[91] == false and itworksonmymachine == 1 then 
@@ -716,3 +733,10 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 	end
 ---
 end
+
+while Svc.Condition[34] do
+	yield("/echo waiting for duty to end....")
+	yield("/wait 1"))
+end
+yield("/wait 5")
+yield(quitmeexec)
