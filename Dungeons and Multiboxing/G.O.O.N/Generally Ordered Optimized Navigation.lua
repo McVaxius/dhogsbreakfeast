@@ -410,6 +410,7 @@ if IPC.Automaton.IsTweakEnabled("AutoQueue") == false and Svc.Condition[34] == f
 end
 
 --safe check ifs
+--DEBUG 	if IsPlayerAvailable() == false then yield("/echo we arent available") end
 if IsPlayerAvailable() then
 if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean" and type(Svc.Condition[4]) == "boolean" then
 --
@@ -546,6 +547,7 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 			--SELF REPAIR
 			local minicounter = 0
 			if GetItemCount(ducttape) > 0 then
+				if NeedsRepair(99) == false then goat = 666 end
 				if NeedsRepair(99) then
 					yield("/wait 10")
 					while not IsAddonVisible("Repair") do
