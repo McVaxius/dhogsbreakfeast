@@ -210,6 +210,13 @@ configs:
     description: "Command to execute after quitting"
     type: string
     required: true
+  ztimedilation:
+    default: 2
+    description: "how many seconds between loops - this can speed up or slow down alot of operations.. be careful.\nIt's best to have this on small value on party leader, unless they managing npc repair numpties"
+    type: float
+    min: 0
+    max: 10
+    required: true
 [[End Metadata]]
 --]=====]
 
@@ -228,11 +235,19 @@ pottymouth = Config.Get("zpottymouth")
 pottywords = Config.Get("zpottywords")
 quitme = Config.Get("zquitme")
 quitmeexec = Config.Get("zquitmeexec")
+timedilation = Config.Get("ztimedilation")
 
 --you can edit these if you are brave debug/dont-touch-settings-unless-you-know-whats-up
 hardened_sock = 1200 		 --bailout from duty in 1200 seconds (20 minutes)
 debug_counter = 0 --if this is >0 then subtract from the total duties . useful for checking for crashes just enter in the duty_counter value+1 of the last crash, so if you crashed at duty counter 5, enter in a 6 for this value
-maxjiggle = 30 --how much default time (# of loops of the script) before we jiggle the char in prae
+maxjiggle = 2/timedilation * 30 --how much default time (# of loops of the script) before we jiggle the char in prae.  this is how based on the 2 second standard and modified by time dilation.
+maxres = 2/timedilation * 15
+maxjiggle = math.floor(maxjiggle)
+maxres = math.floor(maxres)
+if maxjiggle ~= 30 then
+	yield("/echo Since you have modified the time dilation value -> the maximum time to clean up a wipe is still 30 seconds but the number of ticks are -> "..maxjiggle)
+	yield("/echo Since you have modified the time dilation value -> the maximum time to clean up a wipe is still 15 seconds but the number of ticks are -> "..maxres)
+end
 -----------------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------------
@@ -386,7 +401,7 @@ end
 hehaheohaoehaoehaeohehehehehehehe = 1
 
 while hehaheohaoehaoehaeohehehehehehehe == 1 do
-	yield("/wait 2") --the big wait. run the entire fucking script every 2 seconds
+	yield("/wait "..timedilation) --the big wait. run the entire fucking script every x seconds
 	checking_the_duct_tape = checking_the_duct_tape + 1
 	
 if IPC.Automaton.IsTweakEnabled("AutoQueue") == false and Svc.Condition[34] == false and (duty_counter > 0 or decucounter > 0) and imthecaptainnow == 1 and itworksonmymachine == 1 then
@@ -484,8 +499,10 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 				end
 			end
 			if (goatfucker == "Nero tol Scaeva" or goatfucker == "Gaius van Baelsar" or goatfucker == "Phantom Gaius" or goatfucker == "Mark II Magitek Colossus") and Svc.Condition[26] == true then
-				yield("/vnav stop")
-				if echo_level < 2 then yield("/echo Target in combat condition 26 -> "..goatfucker) end
+				if IPC.vnavmesh.IsRunning() then
+					yield("/vnav stop")
+					if echo_level < 2 then yield("/echo Target in combat condition 26 and we were pathfinding -> "..goatfucker) end
+				end
 			end
 		end
 	end
@@ -558,7 +575,7 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 				end
 			end
 			--JUST OUTSIDE THE INN REPAIR
-			if NeedsRepair(tornclothes) == false and Svc.Condition[34] == false then
+			if NeedsRepair(tornclothes) == false and Svc.Condition[34] == false and GetItemCount(ducttape) > 0 then
 				xxx = {
 				"Otopa Pottopa",
 				"Mytesyn",
@@ -618,11 +635,11 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 				end
 
 				while Entity.GetEntityByName(GetCharacterName(false)).CurrentHp == 0 do
-					if echo_level < 4 then yield("/echo We died........counting to 5 (3 sec per) then we resetting to entrance..."..entitty.."/5") end
+					if echo_level < 4 then yield("/echo We died........counting to "..maxres.." then we resetting to entrance..."..entitty.."/"..maxres) end
 					yield("/wait 3")
 					entitty = entitty + 1
 					if Svc.Condition[26] == false then entitty = entitty + 1 end --speed things up if we aren't in combat
-					if entitty > 5 then --accept the respawn immediately if we aren't in combat :~(
+					if entitty > maxres then --accept the respawn immediately if we aren't in combat :~(
 						yield("/callback SelectYesno true 0")
 						yield("/ad stop")
 						yield("/wait 10")
