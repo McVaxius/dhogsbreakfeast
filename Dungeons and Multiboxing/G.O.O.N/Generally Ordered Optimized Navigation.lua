@@ -133,7 +133,7 @@ configs:
     description: "This is the Prae duty counter. \nSet it to 0 if its the first run of the day \n Daily reset time is 3 am EST or 12am PST"
     type: int
     min: 0
-    max: 99
+    max: 666
     required: true
   ztornclothes:
     default: 25
@@ -227,6 +227,16 @@ maxjiggle = 30 --how much default time (# of loops of the script) before we jigg
 stopcuckingme = 0    --counter for checking whento pop duty
 imthecaptainnow = Config.Get("zcross_world") --set this to 1 if this char is the party leader																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																														 --set this to 1 if this char is the party leader
 
+--dont touch these ones
+entered_duty = 0
+equip_counter = 0
+inprae = 0
+maxzone = 0
+someone_took_the_duct_tape = 0
+checking_the_duct_tape = 0
+decucounter = 0
+foodsearch = false
+
 if Svc.Party[Svc.Party.PartyLeaderIndex] == nil and Svc.Condition[34] == false then
 	yield("/echo You seem to be in a cross world party -> IF YOU ARE THE PARTY LEADER -> please set zcross_world to 1 in config and run G.O.O.N again.")
 	yield("/echo You seem to be in a cross world party -> IF YOU ARE THE PARTY LEADER -> please set zcross_world to 1 in config and run G.O.O.N again.")
@@ -311,16 +321,6 @@ if imthecaptainnow == 1 and Svc.Condition[34] == false and itworksonmymachine ==
 	end
 	ChooseAndClickDuty(praeID)
 end
-
---dont touch these ones
-entered_duty = 0
-equip_counter = 0
-inprae = 0
-maxzone = 0
-someone_took_the_duct_tape = 0
-checking_the_duct_tape = 0
-decucounter = 0
-foodsearch = false
 
 --ipc, upc, we all p for c
 if imthecaptainnow == 0 and itworksonmymachine == 1 then
@@ -433,6 +433,12 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 		yield("/ad queue The Praetorium")
 	end
 	
+	if Svc.Condition[34] == true and Svc.Condition[26] == false then
+		if Svc.ClientState.TerritoryType == 1048 then
+			yield("/target \"The Ultima Weapon\"")
+			yield("/send KEY_1")
+		end
+	end
 	if Svc.Condition[34] == true and Svc.Condition[26] == true then
 		if bm_preset == "none" then yield("/rotation Auto") end
 		if Entity.Target and Entity.Target.Name then
@@ -443,10 +449,13 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 					pottymouth = pop_pot(pottymouth, pottywords, echo_level) --return the same itemID if we still have pots left
 				end
 			end
-			if goatfucker = "The Ultima Weapon" and Svc.Condition[26] == true then
+			if goatfucker == "The Ultima Weapon" and Svc.Condition[26] == true then
 				--medicated is status 49
 				if pottymouth > 0 and Entity.Target.HealthPercent > 80 and Entity.Target.HealthPercent < 100 then
 					pottymouth = pop_pot(pottymouth, pottywords, echo_level) --return the same itemID if we still have pots left
+				end
+				if Entity.Target.HealthPercent > 98 then
+					yield("/send KEY_1")
 				end
 			end
 			if (goatfucker == "Nero tol Scaeva" or goatfucker == "Gaius van Baelsar" or goatfucker == "Phantom Gaius" or goatfucker == "Mark II Magitek Colossus") and Svc.Condition[26] == true then
@@ -657,14 +666,22 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 				end
 				if (zonecheck == 1044 or zonecheck == 1048) and entered_duty == 0 then
 					entered_duty = 1
-					if (duty_counter < 20 and zonecheck ~= 1048) or zonecheck == 1044 or (zonecheck == 1048 and duty_counter > 98) and IPC.Automaton.IsTweakEnabled("AutoQueue") == true then --don't count yesterday's last decumana in the counter!
+					if (duty_counter < 20 and zonecheck ~= 1048) or zonecheck == 1044 or (zonecheck == 1048 and duty_counter > 98) then --don't count yesterday's last decumana in the counter!
 						duty_counter = duty_counter + 1
 					end
-					if duty_counter > 98 and IPC.Automaton.IsTweakEnabled("AutoQueue") == true and zonecheck == 1048 then
+					if duty_counter > 98 and zonecheck == 1048 then
 						decucounter = decucounter + 1
 					end
 					if debug_counter == 0 then
-						if echo_level < 5 then yield("/echo Duty # -> "..duty_counter.."/99 Praetorium -> "..decucounter.."/? Decumana") end
+						if echo_level < 5 then
+							if duty_counter > 99 then
+								praewake = duty_counter - 99
+								yield("/echo Duty # -> 99/99 Praetorium -> "..praewake.." Decumana")
+							end
+							if duty_counter < 100 then
+								yield("/echo Duty # -> "..duty_counter.."/99 Praetorium -> 0 Decumana")
+							end
+						end
 					end
 					if debug_counter > 0 then
 						if echo_level < 5 then yield("/echo This is duty # -> "..duty_counter.." Runs since last crash -> "..(duty_counter-debug_counter)) end
