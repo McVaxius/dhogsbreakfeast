@@ -736,7 +736,7 @@ end
 
 while Svc.Condition[34] do
 	yield("/echo waiting for duty to end....")
-	yield("/wait 1"))
+	yield("/wait 1")
 end
 yield("/wait 5")
 yield(quitmeexec)
