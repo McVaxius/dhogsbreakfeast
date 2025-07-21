@@ -431,6 +431,7 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 				yield("/echo Turning ->OFF<- Auto Queue -> Please wait till we switch to Decumana")
 			end
 			if Svc.Condition[34] == false and decucounter == 0 then
+				entered_duty = 0
 				ChooseAndClickDuty(decuID)
 				if IPC.Automaton.IsTweakEnabled("AutoQueue") == false then
 					yield("/echo Turning ->ON<- Auto Queue -> Please wait till we switch to Decumana")
@@ -444,6 +445,7 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 	end
 	if  itworksonmymachine == 0 and duty_counter > 98 and Svc.Condition[34] == false and imthecaptainnow == 1 then
 		if echo_level < 3 then yield("/echo Firing up Decumana") end
+		entered_duty = 0
 		yield("/ad stop")
 		yield("/wait 0.5")
 		yield("/ad queue The Porta Decumana")
@@ -456,6 +458,7 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 				yield("/echo Turning ->OFF<- Auto Queue -> Daily reset has occurred. we will be resuming Praetorium")
 			end
 			if Svc.Condition[34] == false then
+				entered_duty = 0
 				ChooseAndClickDuty(praeID)
 				if IPC.Automaton.IsTweakEnabled("AutoQueue") == false then
 					yield("/echo Turning ->ON<- Auto Queue -> Daily reset has occurred. we will be resuming Praetorium")
@@ -469,6 +472,7 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 	end
 	if itworksonmymachine == 0 and duty_counter < 99 and Svc.Condition[34] == false and imthecaptainnow == 1 then
 		if echo_level < 3 then yield("/echo Firing up Praetorium") end
+		entered_duty = 0
 		yield("/ad stop")
 		yield("/wait 0.5")
 		yield("/ad queue The Praetorium")
