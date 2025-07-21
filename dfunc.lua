@@ -187,7 +187,7 @@ function ungabungabunga()
 			yield("/send ESCAPE")
 			yield("/wait 1")
 			yield("/wait 3")
-			if Svc.ClientState.LocalPlayer and Svc.ClientState.LocalPlayer.Available then
+			if Player and Player.Available == true then
 				tobungaorunga = 1
 			end
 		end
@@ -381,23 +381,17 @@ function force_equip()
 end
 
 function EntityPlayerPositionX()
-	if Svc.ClientState.LocalPlayer and Svc.ClientState.LocalPlayer.Available then
-		if Entity.Player.Position then return Entity.Player.Position.X end
-	end
+	if Player and Entity.Player.Position then return Entity.Player.Position.X end
 	return 0
 end
 
 function EntityPlayerPositionY()
-	if Svc.ClientState.LocalPlayer and Svc.ClientState.LocalPlayer.Available then
-		if Player and Entity.Player.Position then return Entity.Player.Position.Y end
-	end
+	if Player and Entity.Player.Position then return Entity.Player.Position.Y end
 	return 0
 end
 
 function EntityPlayerPositionZ()
-	if Svc.ClientState.LocalPlayer and Svc.ClientState.LocalPlayer.Available then
-		if Player and Entity.Player.Position then return Entity.Player.Position.Z end
-	end
+	if Player and Entity.Player.Position then return Entity.Player.Position.Z end
 	return 0
 end
 
