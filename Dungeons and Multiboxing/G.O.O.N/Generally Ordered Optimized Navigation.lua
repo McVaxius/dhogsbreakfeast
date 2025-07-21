@@ -190,7 +190,7 @@ configs:
     required: true
   zpottymouth:
     default: 0
-    description: "itemID of a buff pot you want to use\nleave as 0 if you dont want to pot.\npots will be used on\n Praetorium -> First Boss and Gauis\nDecumana -> Start of Both Phases"
+    description: "itemID of a buff pot you want to use\nleave as 0 if you dont want to pot.\npots will be used on\nPraetorium -> First Boss and Gauis\nDecumana -> Start of Both Phases"
     type: int
     required: true
   zpottywords:
