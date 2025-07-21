@@ -742,7 +742,7 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 					end
 					
 				end
-				if hehaheohaoehaoehaeohehehehehehehe > quitme then
+				if duty_counter > quitme then
 					hehaheohaoehaoehaeohehehehehehehe = 69
 				end
 			end
