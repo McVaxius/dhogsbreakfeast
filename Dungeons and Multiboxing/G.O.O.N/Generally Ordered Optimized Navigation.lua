@@ -7,7 +7,6 @@
 	design: it will run 99 prae, and then run decumana until reset time (1 am PDT) and reset the counter and go back to farming prae.
 
 	Plugins/configs (ill update as people realize i forgot instructions)
-	Automaton (Now called CBT)
 	Some form of bossmod
 	Rotation Solver Reborn
 	Vnavmesh
@@ -34,11 +33,6 @@
 			/Retire to an inn room.*/
 		"Bothers"
 			Duties -> ContentFinderConfirm [x]
-
-	CBT -> Enhanced Duty start/end
-		duty start -> /snd run start_gooning
-		duty end -> /ad stop
-		leave duty -> 10 seconds
 
 	OPTIONAL to reduce cpu+gpu usage significantly and cool down your sauna to just a warm afternoon:
 	Custom Resolution Scaler -> Gameplay -> Pixelated -> 0.1 -> Enabled [x] -> Save and Apply
@@ -253,7 +247,7 @@ end
 -----------------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------------
 stopcuckingme = 0    --counter for checking whento pop duty
-imthecaptainnow = Config.Get("zcross_world") --set this to 1 if this char is the party leader																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																														 --set this to 1 if this char is the party leader
+imthecaptainnow = Config.Get("zcross_world") --set this to 1 if this char is the party leader
 
 --dont touch these ones
 entered_duty = 0
@@ -359,7 +353,9 @@ if imthecaptainnow == 1 and itworksonmymachine == 1 then
 	yield("/echo I'm the captain now")
 	if IPC.Automaton.IsTweakEnabled("AutoQueue") == false then IPC.Automaton.SetTweakState("AutoQueue", true) end
 end
-if IPC.Automaton.IsTweakEnabled("EnhancedDutyStartEnd") == false then IPC.Automaton.SetTweakState("EnhancedDutyStartEnd", true) end
+
+if IPC.Automaton.IsTweakEnabled("EnhancedDutyStartEnd") == true then IPC.Automaton.SetTweakState("EnhancedDutyStartEnd", false) end  --we dont need this if we are handling everything with one script.
+--if IPC.Automaton.IsTweakEnabled("EnhancedDutyStartEnd") == false then IPC.Automaton.SetTweakState("EnhancedDutyStartEnd", true) end
 
 if itworksonmymachine == 0 then
 	if IPC.Automaton.IsTweakEnabled("AutoQueue") == true then IPC.Automaton.SetTweakState("AutoQueue", false) end
@@ -408,9 +404,120 @@ function leaveDuty()
     return
 end
 
+OnDutyStartedMessage_0 = 0
+OnDutyStartedMessage_1 = 1
+OnDutyStartedMessage_2 = 0
+OnDutyStartedMessage_3 = 0
+start_gooning = 0
+stop_gooning = 0
+
+function kjhsdkjh4lka3j2cklh234ljk234cx231lkjaS231JK4H()  --message handler
+	if OnDutyStartedMessage_0 == 1 then
+		praewake = duty_counter - 99
+		yield("/echo Duty # -> 99/99 Praetorium -> "..praewake.." Decumana")
+		OnDutyStartedMessage_0 = 0
+	end
+	if OnDutyStartedMessage_1 == 1 then
+		yield("/echo Duty # -> "..duty_counter.."/99 Praetorium -> "..decucounter.." Decumana")
+		OnDutyStartedMessage_1 = 0
+	end
+	if OnDutyStartedMessage_2 == 1 then
+		yield("/echo This is duty # -> "..duty_counter.." Runs since last crash -> "..(duty_counter-debug_counter))
+		OnDutyStartedMessage_2 = 0
+	end
+	if OnDutyStartedMessage_3 == 1 then
+		yield("/echo We are starting over the duty counter, we passed daily reset time!")
+		OnDutyStartedMessage_3 = 0
+	end
+	if start_gooning == 1 then
+		start_gooning = 0
+		while Player.Available == false do
+			yield("/echo waiting on player")
+			yield("/wait 1")
+		end
+		yield("/wait 3")
+		yield("/vnav stop") --stop failed pathing that triggered just now outside (?)
+		yield("/mmambo") --change it to something else if you like.
+		if Svc.ClientState.TerritoryType == 1044 then --only do this in Prae
+			while GetContentTimeLeft() > 7199 and GetContentTimeLeft() > 0 do
+				yield("/wait 0.1") -- wait a sec
+			end
+		end
+		yield("/ad stop")
+		yield("/wait 1")
+		yield("/hold W")
+		yield("/wait 1")
+		yield("/release W")
+		yield("/ad start")
+		yield("/bmrai on")
+		yield("/vbmai on")
+		yield("/bmrai on")
+		yield("/bmrai followoutofcombat off")
+		yield("/bmrai followtarget off")
+		yield("/bmrai setpresetname Autoduty Passive")
+		yield("/rotation auto")
+		--yield("/echo let's start gooning!")
+		if Svc.ClientState.TerritoryType == 1048 then
+			yield("/target \"The Ultima Weapon\"")
+			yield("wait 1")
+			yield("/send KEY_1")
+			yield("wait 1")
+			yield("/send KEY_1")
+			yield("wait 1")
+			yield("/send KEY_1")
+			yield("wait 1")
+			yield("/send KEY_1")
+		end
+	end
+	if stop_gooning == 1 then
+		stop_gooning = 0
+		while Svc.Condition[34] == true do
+			InstancedContent.LeaveCurrentContent()
+			yield("/wait 2")
+			yield("/vnav stop")
+		end
+	end
+end
+
+--thanks SudoStitch from discord for helping me figure out the trigger events in already running scripts
+function OnDutyCompleted()
+	stop_gooning = 1
+end
+
+--thanks SudoStitch from discord for helping me figure out the trigger events in already running scripts
+function OnDutyStarted()
+	--autoqueue at the end because its least important thing
+	--can we queue for decu? - in any case we can start counting praes for now.
+	--if type(Svc.ClientState.TerritoryType) == "number" then
+	duty_counter = duty_counter + 1
+	if duty_counter > 98 then
+		decucounter = decucounter + 1
+	end
+	if debug_counter == 0 then
+		if echo_level < 5 then
+			if duty_counter > 99 then OnDutyStartedMessage_0 = 1 end
+			if duty_counter < 100 then OnDutyStartedMessage_1 = 1 end
+		end
+	end
+	if debug_counter > 0 then
+		if echo_level < 5 then OnDutyStartedMessage_1 = 1 end
+	end
+	
+	if duty_counter > quitme then
+		hehaheohaoehaoehaeohehehehehehehe = 69
+	end
+	if os.date("!*t").hour > 6 and os.date("!*t").hour < 8 and duty_counter > 20 then --theres no way we can do 20 prae in 1 hour so this should cover rollover from the previous day
+		duty_counter = 0
+		decucounter = 0
+		if echo_level < 4 then OnDutyStartedMessage_3 = 1 end
+	end
+	start_gooning = 1
+end
+
 hehaheohaoehaoehaeohehehehehehehe = 1
 
 while hehaheohaoehaoehaeohehehehehehehe == 1 do
+	kjhsdkjh4lka3j2cklh234ljk234cx231lkjaS231JK4H()  --message handler
 	yield("/wait "..timedilation) --the big wait. run the entire fucking script every x seconds
 	checking_the_duct_tape = checking_the_duct_tape + 1
 	
@@ -448,7 +555,7 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 		--entered_duty = 0
 		yield("/ad stop")
 		yield("/wait 0.5")
-		yield("/ad queue The Porta Decumana")
+		yield("/ad queu	e The Porta Decumana")
 	end
 	
 	if imthecaptainnow == 1 and duty_counter < 2 then
@@ -592,7 +699,7 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 				end
 			end
 			--JUST OUTSIDE THE INN REPAIR
-			if NeedsRepair(tornclothes) == false and Svc.Condition[34] == false and GetItemCount(ducttape) > 0 then
+			if NeedsRepair(tornclothes) == false and Svc.Condition[34] == false and GetItemCount(ducttape) == 0 then
 				xxx = {
 				"Otopa Pottopa",
 				"Mytesyn",
@@ -716,45 +823,7 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 			end
 
 			stopcuckingme = stopcuckingme + 1
-			--autoqueue at the end because its least important thing
-			--can we queue for decu? - in any case we can start counting praes for now.
-			--if type(Svc.ClientState.TerritoryType) == "number" then
-			if type(Svc.Condition[34]) == "boolean" then
-				zonecheck = Svc.Condition[34]
-				if zonecheck ~= true then
-					entered_duty = 0
-				end
-				if zonecheck == true and entered_duty == 0 then
-					entered_duty = 1
-					duty_counter = duty_counter + 1
-					if duty_counter > 98 and zonecheck == true then
-						decucounter = decucounter + 1
-					end
-					if debug_counter == 0 then
-						if echo_level < 5 then
-							if duty_counter > 99 then
-								praewake = duty_counter - 99
-								yield("/echo Duty # -> 99/99 Praetorium -> "..praewake.." Decumana")
-							end
-							if duty_counter < 100 then
-								yield("/echo Duty # -> "..duty_counter.."/99 Praetorium -> 0 Decumana")
-							end
-						end
-					end
-					if debug_counter > 0 then
-						if echo_level < 5 then yield("/echo This is duty # -> "..duty_counter.." Runs since last crash -> "..(duty_counter-debug_counter)) end
-					end
-					
-				end
-				if duty_counter > quitme then
-					hehaheohaoehaoehaeohehehehehehehe = 69
-				end
-			end
-			if os.date("!*t").hour > 6 and os.date("!*t").hour < 8 and duty_counter > 20 then --theres no way we can do 20 prae in 1 hour so this should cover rollover from the previous day
-				duty_counter = 0
-				decucounter = 0
-				if echo_level < 4 then yield("/echo We are starting over the duty counter, we passed daily reset time!") end
-			end
+
 			if Svc.Condition[34] == false and imthecaptainnow == 1 then
 				yield("/wait 5") --wait a +bit longer if we are outside.
 				if Svc.Condition[91] == false and itworksonmymachine == 1 then 
