@@ -720,7 +720,7 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 			if type(Svc.ClientState.TerritoryType) == "number" then
 				zonecheck = Svc.ClientState.TerritoryType
 				if not (zonecheck == 1044 or zonecheck == 1048) then
-					entered_duty = 0
+				--	entered_duty = 0
 				end
 				if (zonecheck == 1044 or zonecheck == 1048) and entered_duty == 0 then
 					entered_duty = 1
