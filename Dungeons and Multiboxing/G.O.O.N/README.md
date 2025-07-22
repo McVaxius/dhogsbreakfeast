@@ -19,18 +19,3 @@ Just click this<br>
 <br>
 -><br>
 <img width="1536" height="1354" alt="image" src="https://github.com/user-attachments/assets/76ce9b14-ef07-4b32-9ac1-cb17e62b6f07" />
-
-
-## Some visual double-checking you can do
-CBT -> <br>
-<img width="331" height="35" alt="image" src="https://github.com/user-attachments/assets/eefd0b31-02b7-418c-98e7-cbbd46e91115" />
-
-Settings -><br>
-<img width="642" height="495" alt="image" src="https://github.com/user-attachments/assets/066105f6-b014-4af9-9464-e365a88220cc" />
-
-Something Need Doing should have at least these 3 scripts setup and linked the way you linked dfunc -><br>
-<img width="232" height="99" alt="image" src="https://github.com/user-attachments/assets/ddd55d4d-3ac4-4224-9cf8-bb6f14c6a33d" />
-<br>
-
-Obviously goon is the main script with the giant name, you run this and leave it alone unless you are comfortable configuring it.<br>
-<img width="235" height="101" alt="image" src="https://github.com/user-attachments/assets/394f09b2-a008-450e-b7e3-0478856a6ccd" />
