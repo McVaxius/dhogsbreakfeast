@@ -488,7 +488,8 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 		force_rsr()
 		if Entity.Target and Entity.Target.Name then
 			goatfucker = Entity.Target.Name or "goatfucker"
-			if (goatfucker == "Gaius van Baelsar" or goatfucker == "Mark II Magitek Colossus") and Svc.Condition[26] == true then
+			--if (goatfucker == "Gaius van Baelsar" or goatfucker == "Mark II Magitek Colossus") and Svc.Condition[26] == true then
+			if (goatfucker == "Phantom Gaius" or goatfucker == "Mark II Magitek Colossus") and Svc.Condition[26] == true then --i hypothesize that we can get faster clears with potting on the phantoms. 9:55-10:20 with potting on gauis
 				--medicated is status 49
 				if pottymouth > 0 and Entity.Target.HealthPercent > 20 and Entity.Target.HealthPercent < 100 then
 					pottymouth = pop_pot(pottymouth, pottywords, echo_level) --return the same itemID if we still have pots left
