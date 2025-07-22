@@ -490,6 +490,7 @@ end
 
 --thanks SudoStitch from discord for helping me figure out the trigger events in already running scripts
 function OnDutyStarted()
+	IPC.vnavmesh.Stop()
 	--autoqueue at the end because its least important thing
 	--can we queue for decu? - in any case we can start counting praes for now.
 	--if type(Svc.ClientState.TerritoryType) == "number" then
