@@ -557,7 +557,10 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 		if echo_level < 3 then yield("/echo Firing up Decumana") end
 		--entered_duty = 0
 		yield("/ad stop")
-		yield("/wait 0.5")
+		while IsPlayerAvailable() == false do
+			yield("/wait 1")
+		end
+		yield("/wait 5")
 		yield("/ad queu	e The Porta Decumana")
 	end
 	
@@ -584,7 +587,10 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 		if echo_level < 3 then yield("/echo Firing up Praetorium") end
 		--entered_duty = 0
 		yield("/ad stop")
-		yield("/wait 0.5")
+		while IsPlayerAvailable() == false do
+			yield("/wait 1")
+		end
+		yield("/wait 5")
 		yield("/ad queue The Praetorium")
 	end
 	
