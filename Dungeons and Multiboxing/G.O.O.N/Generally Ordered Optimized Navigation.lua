@@ -41,7 +41,6 @@
 	Chillframes -> 15 out of combat 30 in combat
 		it will reduce CPU and GPU reqs, it wont affect ram
 
-
 	FIX from old PYES setup:
 	REMOVE THIS FROM YESALREADY
 			Return to the starting point for the Praetorium?   ※You may be unable to re-enter ongoing battles.
@@ -476,6 +475,10 @@ function kjhsdkjh4lka3j2cklh234ljk234cx231lkjaS231JK4H()  --message handler
 			yield("/wait 2")
 			yield("/vnav stop")
 		end
+		while IsPlayerAvailable() == false do
+			yield("/wait 1")
+		end
+		yield("/wait 5")
 	end
 end
 
