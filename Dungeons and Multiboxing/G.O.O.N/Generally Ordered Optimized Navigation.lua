@@ -485,6 +485,7 @@ end
 --thanks SudoStitch from discord for helping me figure out the trigger events in already running scripts
 function OnDutyCompleted()
 	stop_gooning = 1
+	IPC.vnavmesh.Stop()
 end
 
 --thanks SudoStitch from discord for helping me figure out the trigger events in already running scripts
