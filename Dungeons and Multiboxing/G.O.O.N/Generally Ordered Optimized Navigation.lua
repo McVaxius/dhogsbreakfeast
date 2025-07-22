@@ -719,8 +719,8 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 			--can we queue for decu? - in any case we can start counting praes for now.
 			if type(Svc.ClientState.TerritoryType) == "number" then
 				zonecheck = Svc.ClientState.TerritoryType
-				if not (zonecheck == 1044 or zonecheck == 1048) then
-				--	entered_duty = 0
+				if not (zonecheck == 1044 or zonecheck == 1048) and imthecaptainnow == 0 then
+					entered_duty = 0
 				end
 				if (zonecheck == 1044 or zonecheck == 1048) and entered_duty == 0 then
 					entered_duty = 1
