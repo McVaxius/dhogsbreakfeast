@@ -471,7 +471,7 @@ function kjhsdkjh4lka3j2cklh234ljk234cx231lkjaS231JK4H()  --message handler
 	if stop_gooning == 1 then
 		stop_gooning = 0
 		while Svc.Condition[34] == true do
-			yield("/ad stop")
+			yield("/ad stop") --without this. your chars will just quit the duty randomly and do WEIRD FUCKING SHIT on duty start
 			yield("/wait 1")
 			InstancedContent.LeaveCurrentContent()
 			yield("/wait 2")
