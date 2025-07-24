@@ -225,7 +225,7 @@ local function shake_hands()
 	
 	--DEBUG
 	--yield("/echo our return mode will be "..franchise_owners[1][2])
-	
+
 	--callback way to transfer gil only. we can't callback other methods
 	while get_to_the_choppa == 0 do
 		if (GetGil() < (bagmans_take + 1)) and (tony_type == 0 or tony_type == 2) then
