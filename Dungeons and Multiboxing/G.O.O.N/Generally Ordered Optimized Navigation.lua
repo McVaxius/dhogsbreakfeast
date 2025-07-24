@@ -445,17 +445,19 @@ function kjhsdkjh4lka3j2cklh234ljk234cx231lkjaS231JK4H()  --message handler
 		yield("/wait 3")
 		yield("/vnav stop") --stop failed pathing that triggered just now outside (?)
 		yield("/mmambo") --change it to something else if you like.
+
 		if Svc.ClientState.TerritoryType == 1044 then --only do this in Prae
 			while GetContentTimeLeft() > 7199 and GetContentTimeLeft() > 0 do
 				yield("/wait 0.1") -- wait a sec
 			end
-		yield("/ad stop")
-		yield("/wait 1")
-		yield("/hold W")
-		yield("/wait 1")
-		yield("/release W")
-		yield("/ad start")
+			yield("/ad stop")
+			yield("/wait 1")
+			yield("/hold W")
+			yield("/wait 1")
+			yield("/release W")
+			yield("/ad start")
 		end
+
 		yield("/"..whichbm.."ai on")
 		yield("/"..whichbm.."ai followoutofcombat off")
 		yield("/"..whichbm.."ai followtarget off")
