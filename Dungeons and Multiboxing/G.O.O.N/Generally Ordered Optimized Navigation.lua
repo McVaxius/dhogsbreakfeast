@@ -210,6 +210,13 @@ configs:
     min: 0
     max: 10
     required: true
+  zwhopot:
+    default: 0
+    description: "0 = pop pot on gauis , 1 pop pot on phantom gauis"
+    type: int
+    min: 0
+    max: 1
+    required: true
 [[End Metadata]]
 --]=====]
 
@@ -229,6 +236,7 @@ pottywords = Config.Get("zpottywords")
 quitme = Config.Get("zquitme")
 quitmeexec = Config.Get("zquitmeexec")
 timedilation = Config.Get("ztimedilation")
+whopot = Config.Get("zwhopot")
 
 --you can edit these if you are brave debug/dont-touch-settings-unless-you-know-whats-up
 hardened_sock = 1200 		 --bailout from duty in 1200 seconds (20 minutes)
@@ -594,7 +602,7 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 		yield("/wait 5")
 		yield("/ad queue The Praetorium")
 	end
-	
+
 	if Svc.Condition[34] == true and Svc.Condition[26] == false then
 		if Svc.ClientState.TerritoryType == 1048 then
 			yield("/target \"The Ultima Weapon\"")
@@ -605,8 +613,9 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 		force_rsr()
 		if Entity.Target and Entity.Target.Name then
 			goatfucker = Entity.Target.Name or "goatfucker"
-			--if (goatfucker == "Gaius van Baelsar" or goatfucker == "Mark II Magitek Colossus") and Svc.Condition[26] == true then
-			if (goatfucker == "Phantom Gaius" or goatfucker == "Mark II Magitek Colossus") and Svc.Condition[26] == true then --i hypothesize that we can get faster clears with potting on the phantoms. 9:55-10:20 with potting on gauis
+			whopotty = "Gaius van Baelsar"
+			if whopot == 1 then whopotty = "Phantom Gaius" end
+			if (goatfucker == whopotty or goatfucker == "Mark II Magitek Colossus") and Svc.Condition[26] == true then --i hypothesize that we can get faster clears with potting on the phantoms. 9:55-10:20 with potting on gauis
 				--medicated is status 49
 				if pottymouth > 0 and Entity.Target.HealthPercent > 20 and Entity.Target.HealthPercent < 100 then
 					pottymouth = pop_pot(pottymouth, pottywords, echo_level) --return the same itemID if we still have pots left
