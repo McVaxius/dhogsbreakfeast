@@ -449,30 +449,19 @@ function kjhsdkjh4lka3j2cklh234ljk234cx231lkjaS231JK4H()  --message handler
 			while GetContentTimeLeft() > 7199 and GetContentTimeLeft() > 0 do
 				yield("/wait 0.1") -- wait a sec
 			end
-		end
 		yield("/ad stop")
 		yield("/wait 1")
 		yield("/hold W")
 		yield("/wait 1")
 		yield("/release W")
 		yield("/ad start")
+		end
 		yield("/"..whichbm.."ai on")
 		yield("/"..whichbm.."ai followoutofcombat off")
 		yield("/"..whichbm.."ai followtarget off")
 		yield("/"..whichbm.."ai setpresetname Autoduty Passive")
 		yield("/rotation auto")
 		--yield("/echo let's start gooning!")
-		if Svc.ClientState.TerritoryType == 1048 then
-			yield("/target \"The Ultima Weapon\"")
-			yield("wait 1")
-			yield("/send KEY_1")
-			yield("wait 1")
-			yield("/send KEY_1")
-			yield("wait 1")
-			yield("/send KEY_1")
-			yield("wait 1")
-			yield("/send KEY_1")
-		end
 	end
 	if stop_gooning == 1 then
 		stop_gooning = 0
