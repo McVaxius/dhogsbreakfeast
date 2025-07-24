@@ -412,8 +412,8 @@ for i=1,#franchise_owners do
 	
 	--allright time for a road trip. let get that bag to Tony
 	road_trip = 0
-	yield("GetGil() -> "..GetGil())
-	yield("bagmans_take -> "..bagmans_take)
+	yield("/echo GetGil() -> "..GetGil())
+	yield("/echo bagmans_take -> "..bagmans_take)
 	--if GetGil() > bagmans_take then
 		road_trip = 1 --we took a road trip
 		--now we must head to fat_tony 

@@ -1099,6 +1099,7 @@ end
 function GetGil()
 	return Inventory.GetItemCount(1)
 end
+
 function GetObjectRawXPos(name)
 	--yield("/echo debug getorxpos")
 	if Entity.GetEntityByName(name) == nil then return 0 end
@@ -1223,7 +1224,7 @@ end
 
 function IsPlayerAvailable()
 	if Player.Available == nil then return false end
-    return Player.Available
+	return Player.Available
 end
 
 function RestoreYesAlready()
