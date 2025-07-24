@@ -239,7 +239,9 @@ local function shake_hands()
 			yield("/wait 0.5")
 			yield("/callback Trade true 2")
 			--verification of target before doing the following. otherwise hit escape!
-			tradename = GetNodeText("Trade", 20)
+			--tradename = GetNodeText("Trade", 1, 16, 17)
+			tradename = Addons.GetAddon("Trade"):GetNode(1, 16, 17)
+			yield("/echo We are trading with -> "..tostring(tradename.Text))
 			if tradename ~= fat_tony then
 				--we got someone with their hand in the till. we'll send them a fish wrapped in newspaper later
 				ungabunga()
