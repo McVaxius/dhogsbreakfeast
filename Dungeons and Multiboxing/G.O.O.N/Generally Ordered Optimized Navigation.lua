@@ -493,6 +493,7 @@ function OnDutyStarted()
 	--can we queue for decu? - in any case we can start counting praes for now.
 	--if type(Svc.ClientState.TerritoryType) == "number" then
 	duty_counter = duty_counter + 1
+	Config.Set("zduty_counter", duty_counter)
 	if duty_counter > 98 then
 		decucounter = decucounter + 1
 	end
@@ -841,6 +842,7 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 ---
 	if os.date("!*t").hour > 6 and os.date("!*t").hour < 8 and duty_counter > 20 then --theres no way we can do 20 prae in 1 hour so this should cover rollover from the previous day
 		duty_counter = 0
+		Config.Set("zduty_counter", duty_counter)
 		decucounter = 0
 		if echo_level < 4 then OnDutyStartedMessage_3 = 1 end
 	end
