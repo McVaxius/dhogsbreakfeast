@@ -601,6 +601,9 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 		if Entity.Target and Entity.Target.Name then
 			goatfucker = Entity.Target.Name or "goatfucker"
 			whopotty = "Gaius van Baelsar"
+			if goatfucker == whopotty and Svc.Condition[26] == true then
+				if Player.GetJob(GetClassJobId()).IsTank and Entity.Target.HealthPercent > 5 and Entity.Target.HealthPercent < 95 then yield("/ac rampart") end --tank use rampart
+			end
 			if whopot == 1 then whopotty = "Phantom Gaius" end
 			if (goatfucker == whopotty or goatfucker == "Mark II Magitek Colossus") and Svc.Condition[26] == true then --i hypothesize that we can get faster clears with potting on the phantoms. 9:55-10:20 with potting on gauis
 				--medicated is status 49
