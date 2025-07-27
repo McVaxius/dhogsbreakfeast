@@ -309,7 +309,7 @@ end
 -----------------------------------------------------------------------------------------------------------------
 
 whichbm = "vbm"
---which bossmod is intalled?
+--which bossmod is installed?
 if HasPlugin("BossModReborn") then whichbm = "bmr" end
 --these don't actually work reliably the return values not always returning ?!?!
 --if IPC.AutoDuty.GetConfig("UsingAlternativeRotationPlugin") == "false" and bm_preset ~= "none" then IPC.AutoDuty.SetConfig("UsingAlternativeRotationPlugin", "true") end
@@ -417,6 +417,7 @@ OnDutyStartedMessage_2 = 0
 OnDutyStartedMessage_3 = 0
 start_gooning = 0
 stop_gooning = 0
+TAS = 0 --Tool Assisted Speed(run) time in seconds
 
 function kjhsdkjh4lka3j2cklh234ljk234cx231lkjaS231JK4H()  --message handler
 	if OnDutyStartedMessage_0 == 1 then
@@ -467,6 +468,13 @@ function kjhsdkjh4lka3j2cklh234ljk234cx231lkjaS231JK4H()  --message handler
 	end
 	if stop_gooning == 1 then
 		stop_gooning = 0
+		TAS_mm_ss = secondsToMinutesString(TAS)
+		if Svc.ClientState.TerritoryType == 1044 then
+			yield("/echo Praetorium Completion Time -> "..TAS_mm_ss)
+		end
+		if Svc.ClientState.TerritoryType == 1048 then
+			yield("/echo Decumana Completion Time -> "..TAS_mm_ss)
+		end
 		while Svc.Condition[34] == true do
 			yield("/ad stop") --without this. your chars will just quit the duty randomly and do WEIRD FUCKING SHIT on duty start
 			yield("/wait 1")
@@ -483,6 +491,13 @@ end
 --thanks SudoStitch from discord for helping me figure out the trigger events in already running scripts
 function OnDutyCompleted()
 	stop_gooning = 1
+	--math is hard as a rock
+	if Svc.ClientState.TerritoryType == 1044 then
+		TAS = (120 * 60) - math.floor(InstancedContent.ContentTimeLeft)
+	end
+	if Svc.ClientState.TerritoryType == 1048 then
+		TAS = (60 * 60) - math.floor(InstancedContent.ContentTimeLeft)
+	end
 	IPC.vnavmesh.Stop()
 end
 
