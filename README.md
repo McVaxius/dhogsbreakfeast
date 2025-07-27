@@ -1,7 +1,7 @@
 ## dfunc.lua
 its here in the root so you can find it easily.
 please enjoy.
-Also please note when it was last updated in case you using it to light your dumpsters on fire.
+Also please note when it was last updated in case you are using it to light dumpsters (of code) on fire.
 
 ## SND ?
 https://github.com/Jaksuhn/SomethingNeedDoing

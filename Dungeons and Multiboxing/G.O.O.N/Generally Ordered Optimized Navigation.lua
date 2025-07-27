@@ -601,22 +601,22 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 		if Entity.Target and Entity.Target.Name then
 			goatfucker = Entity.Target.Name or "goatfucker"
 			whopotty = "Gaius van Baelsar"
-			if goatfucker == whopotty and Svc.Condition[26] == true then
+			if Entity.Target and Entity.Target.Name and goatfucker == whopotty and Svc.Condition[26] == true then
 				if Player.GetJob(GetClassJobId()).IsTank and Entity.Target.HealthPercent > 5 and Entity.Target.HealthPercent < 95 then yield("/ac rampart") end --tank use rampart
 			end
 			if whopot == 1 then whopotty = "Phantom Gaius" end
-			if (goatfucker == whopotty or goatfucker == "Mark II Magitek Colossus") and Svc.Condition[26] == true then --i hypothesize that we can get faster clears with potting on the phantoms. 9:55-10:20 with potting on gauis
+			if Entity.Target and Entity.Target.Name and (goatfucker == whopotty or goatfucker == "Mark II Magitek Colossus") and Svc.Condition[26] == true then --i hypothesize that we can get faster clears with potting on the phantoms. 9:55-10:20 with potting on gauis
 				--medicated is status 49
 				if pottymouth > 0 and Entity.Target.HealthPercent > 20 and Entity.Target.HealthPercent < 100 then
 					pottymouth = pop_pot(pottymouth, pottywords, echo_level) --return the same itemID if we still have pots left
 				end
 			end
-			if goatfucker == "Phantom Gaius" and Svc.Condition[26] == true then
+			if Entity.Target and Entity.Target.Name and goatfucker == "Phantom Gaius" and Svc.Condition[26] == true then
 				if Player.GetJob(GetClassJobId()).IsMeleeDPS or Player.GetJob(GetClassJobId()).IsRangedDPS then
 					yield("/ac \"limit break\"")
 				end
 			end
-			if goatfucker == "The Ultima Weapon" and Svc.Condition[26] == true then
+			if Entity.Target and Entity.Target.Name and goatfucker == "The Ultima Weapon" and Svc.Condition[26] == true then
 				--medicated is status 49
 				if pottymouth > 0 and Entity.Target.HealthPercent > 80 and Entity.Target.HealthPercent < 100 then
 					pottymouth = pop_pot(pottymouth, pottywords, echo_level) --return the same itemID if we still have pots left
@@ -630,7 +630,7 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 					end
 				end
 			end
-			if (goatfucker == "Nero tol Scaeva" or goatfucker == "Gaius van Baelsar" or goatfucker == "Phantom Gaius" or goatfucker == "Mark II Magitek Colossus") and Svc.Condition[26] == true then
+			if Entity.Target and Entity.Target.Name and (goatfucker == "Nero tol Scaeva" or goatfucker == "Gaius van Baelsar" or goatfucker == "Phantom Gaius" or goatfucker == "Mark II Magitek Colossus") and Svc.Condition[26] == true then
 				if IPC.vnavmesh.IsRunning() then
 					yield("/vnav stop")
 					if echo_level < 2 then yield("/echo Target in combat condition 26 and we were pathfinding -> "..goatfucker) end
