@@ -83,14 +83,11 @@
 	SCH SAM MCH PCT also good but once again need some mit planning or one of the dps will die each time due to the healer just being dutyfinder tier
 
 	random thoughts
-	I figured out how to get ad to do unsync+level sync
-	you first setup unsync+level sync . since it will never unhceck level sync. then tick unsync for regular duty prae
-	and then let goon do its thing
-	minor qol just to see the times in a nice chat window
 	also sometimes things go haywire if you change jobs just /xlkill that/those client(s) and restart them
-	also because the path has automove, we have to leave the horrible camera controls on :(
-	also sometimes the movement type is changed from legacy to standard -> ?????????????????? its not autoduty??!??
+	also sometimes the movement type is changed from legacy to standard -> ?????????????????? its not autoduty??!?? just change it back
 
+
+misc nodetext research:
 	i'm searching for prae
 	1,52,61001*,5 through to 61015  .Text
 	for i=5,15 do
