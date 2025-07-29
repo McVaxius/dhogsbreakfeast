@@ -639,7 +639,14 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 			goatfucker = Entity.Target.Name or "goatfucker"
 			whopotty = "Gaius van Baelsar"
 			if Entity.Target and Entity.Target.Name and goatfucker == whopotty and Svc.Condition[26] == true then
-				if Player.GetJob(GetClassJobId()).IsTank and Entity.Target.HealthPercent > 5 and Entity.Target.HealthPercent < 95 then yield("/ac rampart") end --tank use rampart
+				if Player.GetJob(GetClassJobId()).IsTank then
+					if Entity.Target.HealthPercent > 5 and Entity.Target.HealthPercent < 95 then
+						yield("/ac rampart")
+					end
+					if Entity.Target.HealthPercent > 5 and Entity.Target.HealthPercent < 50 then
+						yield("/ac camouflage")
+					end
+				end
 			end
 			if whopot == 1 then whopotty = "Phantom Gaius" end
 			if Entity.Target and Entity.Target.Name and (goatfucker == whopotty or goatfucker == "Mark II Magitek Colossus") and Svc.Condition[26] == true then --i hypothesize that we can get faster clears with potting on the phantoms. 9:55-10:20 with potting on gauis
@@ -648,8 +655,11 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 					pottymouth = pop_pot(pottymouth, pottywords, echo_level) --return the same itemID if we still have pots left
 				end
 			end
-			if Entity.Target and Entity.Target.Name and goatfucker == "Phantom Gaius" and Svc.Condition[26] == true then
-				if Player.GetJob(GetClassJobId()).IsMeleeDPS or Player.GetJob(GetClassJobId()).IsRangedDPS then
+			if Player.GetJob(GetClassJobId()).IsMeleeDPS or Player.GetJob(GetClassJobId()).IsRangedDPS then
+				if Player.Entity.HealthPercent < 50 then
+					yield("/ac \"second wind\"")
+				end
+				if Entity.Target and Entity.Target.Name and goatfucker == "Phantom Gaius" and Svc.Condition[26] == true then
 					yield("/ac \"limit break\"")
 				end
 			end
