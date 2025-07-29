@@ -73,6 +73,15 @@
 
 	(yeah right hahaha.)
 
+	weird setups
+	some thoughts. SGE > SCH for dps and DRK>WAR>GNB>PLD for dps
+	MCH x 3 is the best DPS setup i've found unless some mixture of other buffers with proper mit plans and 2 minute burst windows lined up would work
+	weird groups
+	GNB MCH MCH MCH -> with rsr  and some configuring to loosen up the gnb mits i got 9:50 a few times and consistently around 10:00 with alot of 9:51 to 9:59. GNB is only tank that current rotation plogons can keep alive.
+	WAR MCH MCH MCH theoretically possible and maybe can hit 9:4x but would need a mit plan for gauis specifically to optimize how the mits are used so the war can actually survive. all that is needed is to read phantom gauis. WAR is more dps than gnb at 50, DRK is more too but can't stay alive. and forget about PLD
+	SGE SAM MCH PCT theoretically possible too if we had mit plans and / or could adapt the kardia target based on who has most aggro most often and force pick that person each time.
+	SCH SAM MCH PCT also good but once again need some mit planning or one of the dps will die each time due to the healer just being dutyfinder tier
+
 	random thoughts
 	I figured out how to get ad to do unsync+level sync
 	you first setup unsync+level sync . since it will never unhceck level sync. then tick unsync for regular duty prae
