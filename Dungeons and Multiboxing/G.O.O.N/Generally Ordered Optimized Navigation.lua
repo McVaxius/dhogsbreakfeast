@@ -656,7 +656,7 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 				end
 			end
 			if Player.GetJob(GetClassJobId()).IsMeleeDPS or Player.GetJob(GetClassJobId()).IsRangedDPS then
-				if Player.Entity.HealthPercent < 50 then
+				if Player.Entity.HealthPercent < 50 and bm_preset ~= "none" then --bm doesnt like actually using second wind itself.
 					yield("/ac \"second wind\"")
 				end
 				if Entity.Target and Entity.Target.Name and goatfucker == "Phantom Gaius" and Svc.Condition[26] == true then
