@@ -379,7 +379,7 @@ function force_rotation()
 		yield("/"..whichbm.."ai setpresetname "..bm_preset)
 		yield("/"..whichbm.."ai followtarget on")
 		yield("/"..whichbm.."ai follow Slot1")
-		yield("/rotation Cancel") --turn off RSR in case it is on
+		if HasPlugin("RotationSolver") then yield("/rotation Cancel") end --turn off RSR in case it is on
 	end
 	
 	if echo_level < 3 then yield("/"..whichbm.."ai on") end
