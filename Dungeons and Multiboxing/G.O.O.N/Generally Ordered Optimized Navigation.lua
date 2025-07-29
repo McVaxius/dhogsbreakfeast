@@ -86,6 +86,22 @@
 	also sometimes things go haywire if you change jobs just /xlkill that/those client(s) and restart them
 	also sometimes the movement type is changed from legacy to standard -> ?????????????????? its not autoduty??!?? just change it back
 
+	As far as rotation plugins here are my thoughts
+	Bossmod -> Theme: Raiding.			DPS: Decent for levle 50 content	Performance: No slowdowns even with many clients.					Configuration: Easy. Just use the included AD presets.
+	RSR 	-> Theme: Easy to Use.		DPS: Best in slot @ level 50 		Performance: No isses except when experimental features added.		Configuration: Super Easy. None required.
+	WRATH 	-> Theme: LARPing as gamer.	DPS: Unknown for level 50 content	Performance: Noticable fps drop with 2+ clients using autorotation	Configuration: Medium. Asssumes you nkow how the job works and can setup the skills acordingly.
+	UCOMBO 	-> Theme: Unknown			DPS: Unknown						Performance: Unknown												Configuration: Unknown
+
+Bossmod comes from Punish, as does Wrath -> 
+https://love.puni.sh/ment.json
+RSR and Bossmod variant coem from combatreborn -> 
+https://raw.githubusercontent.com/FFXIV-CombatReborn/CombatRebornRepo/main/pluginmaster.json
+UCOMBO comes from -> 
+https://github.com/StackBLU/UltimateCombo
+
+if you wanna test wrath or stack just set the BM preset to "Autoduty Passive"
+and then manually configure those plugins and see how they perform and let me know and i will include htem as configuration options in a later version of goon.
+if anyone knows of other rotation automation plugins, please let me know and ill include in the list 
 
 misc nodetext research:
 	i'm searching for prae
