@@ -97,7 +97,7 @@ https://love.puni.sh/ment.json
 RSR and Bossmod variant coem from combatreborn -> 
 https://raw.githubusercontent.com/FFXIV-CombatReborn/CombatRebornRepo/main/pluginmaster.json
 UCOMBO comes from -> 
-https://github.com/StackBLU/UltimateCombo
+https://raw.githubusercontent.com/StackBLU/UltimateCombo/main/pluginmaster.json
 
 if you wanna test wrath or stack just set the BM preset to "Autoduty Passive"
 and then manually configure those plugins and see how they perform and let me know and i will include htem as configuration options in a later version of goon.
