@@ -89,7 +89,7 @@
 	As far as rotation plugins here are my thoughts
 	Bossmod -> Theme: Raiding.			DPS: Decent for levle 50 content	Performance: No slowdowns even with many clients.					Configuration: Easy. Just use the included AD presets.
 	RSR 	-> Theme: Easy to Use.		DPS: Best in slot @ level 50 		Performance: No isses except when experimental features added.		Configuration: Super Easy. None required.
-	WRATH 	-> Theme: LARPing as gamer.	DPS: Unknown for level 50 content	Performance: Noticable fps drop with 2+ clients using autorotation	Configuration: Medium. Asssumes you nkow how the job works and can setup the skills acordingly.
+	WRATH 	-> Theme: LARPing as gamer.	DPS: Unknown for level 50 content	Performance: Noticable fps drop with 2+ clients using autorotation	Configuration: Medium. Asssumes you know how the job works and can setup the skills acordingly.
 	UCOMBO 	-> Theme: Unknown			DPS: Unknown						Performance: Unknown												Configuration: Unknown
 
 Bossmod comes from Punish, as does Wrath -> 
@@ -99,7 +99,7 @@ https://raw.githubusercontent.com/FFXIV-CombatReborn/CombatRebornRepo/main/plugi
 UCOMBO comes from -> 
 https://raw.githubusercontent.com/StackBLU/UltimateCombo/main/pluginmaster.json
 
-if you wanna test wrath or stack just set the BM preset to "Autoduty Passive"
+if you wanna test wrath or ucombo just set the BM preset to "Autoduty Passive"
 and then manually configure those plugins and see how they perform and let me know and i will include htem as configuration options in a later version of goon.
 if anyone knows of other rotation automation plugins, please let me know and ill include in the list 
 
