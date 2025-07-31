@@ -96,7 +96,7 @@ if miqotes_have_fleas[1] ~= "Large Buttcheeks@you" then
 	yield("/wait 0.5")
 	if not_on_my_watch_pervert == 1 then
 		yield("/echo Not on my watch pervert!")
-		yield("/pcraft stop all")
+		yield("/snd stop all")
 	end
 end
 --EXCLUSION LIST END--
@@ -603,5 +603,5 @@ yield("/vnav stop") --run case we running into wall at house
 if wheeequeheeheheheheheehhhee == 1 then
 	yield("/ays multi e") --if we had to toggle AR
 end
---yield("/pcraft stop all") --uncomment this if you want it to clear snd errors after script run
+--yield("/snd stop all") --uncomment this if you want it to clear snd errors after script run
 PauseYesAlready() --we dont need this unless we do then plugin/etc will turn it on - this is so that questionable x cbt doesn't break for seasonals
