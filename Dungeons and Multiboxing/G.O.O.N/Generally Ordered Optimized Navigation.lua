@@ -90,7 +90,7 @@
 	Bossmod -> Theme: Raiding.			DPS: Decent for levle 50 content	Performance: No slowdowns even with many clients.					Configuration: Easy. Just use the included AD presets.
 	RSR 	-> Theme: Easy to Use.		DPS: Best in slot @ level 50 		Performance: No isses except when experimental features added.		Configuration: Super Easy. None required.
 	WRATH 	-> Theme: LARPing as gamer.	DPS: Unknown for level 50 content	Performance: Noticable fps drop with 2+ clients using autorotation	Configuration: Medium. Asssumes you know how the job works and can setup the skills acordingly.
-	UCOMBO 	-> Theme: Unknown			DPS: Unknown						Performance: Unknown												Configuration: Unknown
+	UCOMBO 	-> Theme: LARPing as gamer.	DPS: Higher than RSR				Performance: Requires script to automate.							Configuration: Click every checkbox [x]. use/write a script to actually "auto" it
 
 Bossmod comes from Punish, as does Wrath -> 
 https://love.puni.sh/ment.json
@@ -102,6 +102,7 @@ https://raw.githubusercontent.com/StackBLU/UltimateCombo/main/pluginmaster.json
 if you wanna test wrath or ucombo just set the BM preset to "Autoduty Passive"
 and then manually configure those plugins and see how they perform and let me know and i will include htem as configuration options in a later version of goon.
 if anyone knows of other rotation automation plugins, please let me know and ill include in the list 
+UCOMBO is not ready yet for prae farming as it doesn't have autorotation or ST/AOE rotation selection automation.  however, it is faster than RSR by around 
 
 misc nodetext research:
 	i'm searching for prae
