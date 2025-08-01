@@ -487,17 +487,20 @@ for i=1,#franchise_owners do
 			--]]
 			--normal small house shenanigans
 			if franchise_owners[i][3] == 0 then
+    			yield("/wait 5")
 				return_to_fc()			
 				CharacterSafeWait()
 				yield("/wait 5")
 				return_fc_entrance()
 			end
 			if franchise_owners[i][3] == 3 then --return to fc without returning to entrance
-				return_to_fc()			
+    			yield("/wait 5")
+				return_to_fc()		
 				CharacterSafeWait()
 			end
 			--retainer bell nearby shenanigans
 			if franchise_owners[i][3] == 1 then
+    			yield("/wait 5")
 				return_to_fc()			
 				CharacterSafeWait()
 				yield("/target \"Summoning Bell\"")
@@ -507,6 +510,7 @@ for i=1,#franchise_owners do
 			end
 			--limsa bell
 			if franchise_owners[i][3] == 2 then
+    			yield("/wait 5")
 				return_to_limsa_bell()
 			end
 		end
