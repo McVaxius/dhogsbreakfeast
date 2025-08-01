@@ -130,6 +130,7 @@ for i=1,#franchise_owners do
 	--first we have to find his neighbourhood, this uber driver better not complain
 	--are we on the right server already?
 	yield("/li "..tonys_turf)
+	WaitForLifestream()
 	yield("/wait 2")
 	yield("/callback SelectYesno true 0")
 	yield("/wait 2")
@@ -184,6 +185,7 @@ for i=1,#franchise_owners do
 		end
 		if franchise_owners[i][2] == 1 then
 			yield("/li")
+			WaitForLifestream()
 			yield("/echo See ya "..fat_tony..", a pleasure.")
 			yield("/wait 5")
 			CharacterSafeWait()

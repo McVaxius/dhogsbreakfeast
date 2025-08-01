@@ -357,10 +357,12 @@ local function shake_hands()
 		if tonyception == 1 then
 			if bagman_type == 1 then
 				for i=1, #filled_bags do
-					yield("/echo cleaning this list out to 0 so we dont send multiple packages to same tony")
-					DropboxSetItemQuantity(filled_bags[i][1],false,0)
-					DropboxSetItemQuantity(filled_bags[i][1],true,0)
-					yield("/wait 0.5")
+					if GetItemCount(filled_bags[i][1]) > 0 then
+						yield("/echo cleaning this list out to 0 so we dont send multiple packages to same tony")
+						DropboxSetItemQuantity(filled_bags[i][1],false,0)
+						DropboxSetItemQuantity(filled_bags[i][1],true,0)
+						yield("/wait 0.5")
+					end
 				end
 			end
 			if bagman_type == 4 then
@@ -422,7 +424,8 @@ for i=1,#franchise_owners do
 		--first we have to find his neighbourhood, this uber driver better not complain
 		--are we on the right server already?
 		yield("/li "..tonys_turf)
-		yield("/wait 15")
+		WaitForLifestream()
+		yield("/wait 5")
 		CharacterSafeWait()
 		yield("/echo Processing Bagman "..i.."/"..#franchise_owners)
 		
@@ -472,6 +475,7 @@ for i=1,#franchise_owners do
 		end
 		if franchise_owners[i][2] == 1 then
 			yield("/li")
+			WaitForLifestream()
 			yield("/echo See ya "..fat_tony..", a pleasure.")
 			yield("/wait 5")
 			CharacterSafeWait()
