@@ -425,7 +425,13 @@ for i=1,#franchise_owners do
 		--are we on the right server already?
 		yield("/li "..tonys_turf)
 		WaitForLifestream()
-		yield("/wait 5")
+		yield("/wait 1")
+		yield("/li "..tonys_turf)
+		WaitForLifestream()
+		yield("/wait 1")
+		yield("/li "..tonys_turf)
+		WaitForLifestream()
+		yield("/wait 1")
 		CharacterSafeWait()
 		yield("/echo Processing Bagman "..i.."/"..#franchise_owners)
 		
