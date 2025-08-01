@@ -87,10 +87,10 @@
 	also sometimes the movement type is changed from legacy to standard -> ?????????????????? its not autoduty??!?? just change it back
 
 	As far as rotation plugins here are my thoughts
-	Bossmod -> Theme: Raiding.			DPS: Decent for levle 50 content	Performance: No slowdowns even with many clients.					Configuration: Easy. Just use the included AD presets.
+	Bossmod -> Theme: Raiding.			DPS: Decent for level 50 content	Performance: No slowdowns even with many clients.					Configuration: Easy. Just use the included AD presets.
 	RSR 	-> Theme: Easy to Use.		DPS: Best in slot @ level 50 		Performance: No isses except when experimental features added.		Configuration: Super Easy. None required.
 	WRATH 	-> Theme: LARPing as gamer.	DPS: Unknown for level 50 content	Performance: Noticable fps drop with 2+ clients using autorotation	Configuration: Medium. Asssumes you know how the job works and can setup the skills acordingly.
-	UCOMBO 	-> Theme: LARPing as gamer.	DPS: Higher than RSR				Performance: Requires script to automate.							Configuration: Click every checkbox [x]. use/write a script to actually "auto" it
+	UCOMBO 	-> Theme: LARPing as gamer.	DPS: Higher than RSR				Performance: Unknown - requires script to automate					Configuration: Medium. Click every checkbox [x]. use/write a script to actually "auto" it
 
 Bossmod comes from Punish, as does Wrath -> 
 https://love.puni.sh/ment.json
