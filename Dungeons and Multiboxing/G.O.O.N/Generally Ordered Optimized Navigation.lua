@@ -102,7 +102,7 @@ https://raw.githubusercontent.com/StackBLU/UltimateCombo/main/pluginmaster.json
 if you wanna test wrath or ucombo just set the BM preset to "Autoduty Passive"
 and then manually configure those plugins and see how they perform and let me know and i will include htem as configuration options in a later version of goon.
 if anyone knows of other rotation automation plugins, please let me know and ill include in the list 
-UCOMBO is not ready yet for prae farming as it doesn't have autorotation or ST/AOE rotation selection automation.  however, it is faster than RSR by around 
+UCOMBO is not ready yet for prae farming as it doesn't have autorotation or ST/AOE rotation selection automation.  however, it is more dps than RSR by a few %
 
 misc nodetext research:
 	i'm searching for prae
@@ -289,20 +289,26 @@ checking_the_duct_tape = 0
 decucounter = 0
 foodsearch = false
 
+if duty_counter > 0 and echo_level < 4 then
+	yield("/echo ------------------------------------------------------------------------------------------------------------")
+	yield("/echo -WARNING--WARNING--WARNING--WARNING--WARNING--WARNING--WARNING--WARNING--WARNING--WARNING--WARNING--WARNING-")
+	yield("/echo ------------------------------------------------------------------------------------------------------------")
+	yield("/echo You have zduty_counter > 0 ")
+	yield("/echo If you stopped your runs yesterday, stop the script and start it again at zduty_counter = 0 in config")
+	yield("/echo If you ran your script overnight and are just restarting for some reason right now don't worry about it")
+	yield("/echo ------------------------------------------------------------------------------------------------------------")
+	yield("/echo -WARNING--WARNING--WARNING--WARNING--WARNING--WARNING--WARNING--WARNING--WARNING--WARNING--WARNING--WARNING-")
+	yield("/echo ------------------------------------------------------------------------------------------------------------")
+end
+
 if Svc.Party[Svc.Party.PartyLeaderIndex] == nil and Svc.Condition[34] == false then
+	yield("/echo ------------------------------------------------------------------------------------------------------------")
+	yield("/echo -WARNING--WARNING--WARNING--WARNING--WARNING--WARNING--WARNING--WARNING--WARNING--WARNING--WARNING--WARNING-")
+	yield("/echo ------------------------------------------------------------------------------------------------------------")
 	yield("/echo You seem to be in a cross world party -> IF YOU ARE THE PARTY LEADER -> please set zcross_world to 1 in config and run G.O.O.N again.")
-	yield("/echo You seem to be in a cross world party -> IF YOU ARE THE PARTY LEADER -> please set zcross_world to 1 in config and run G.O.O.N again.")
-	yield("/echo You seem to be in a cross world party -> IF YOU ARE THE PARTY LEADER -> please set zcross_world to 1 in config and run G.O.O.N again.")
-	yield("/echo You seem to be in a cross world party -> IF YOU ARE THE PARTY LEADER -> please set zcross_world to 1 in config and run G.O.O.N again.")
-	yield("/echo You seem to be in a cross world party -> IF YOU ARE THE PARTY LEADER -> please set zcross_world to 1 in config and run G.O.O.N again.")
-	yield("/echo You seem to be in a cross world party -> IF YOU ARE THE PARTY LEADER -> please set zcross_world to 1 in config and run G.O.O.N again.")
-	yield("/echo You seem to be in a cross world party -> IF YOU ARE THE PARTY LEADER -> please set zcross_world to 1 in config and run G.O.O.N again.")
-	yield("/echo You seem to be in a cross world party -> IF YOU ARE THE PARTY LEADER -> please set zcross_world to 1 in config and run G.O.O.N again.")
-	yield("/echo You seem to be in a cross world party -> IF YOU ARE THE PARTY LEADER -> please set zcross_world to 1 in config and run G.O.O.N again.")
-	yield("/echo You seem to be in a cross world party -> IF YOU ARE THE PARTY LEADER -> please set zcross_world to 1 in config and run G.O.O.N again.")
-	yield("/echo You seem to be in a cross world party -> IF YOU ARE THE PARTY LEADER -> please set zcross_world to 1 in config and run G.O.O.N again.")
-	yield("/echo You seem to be in a cross world party -> IF YOU ARE THE PARTY LEADER -> please set zcross_world to 1 in config and run G.O.O.N again.")
-	yield("/echo You seem to be in a cross world party -> IF YOU ARE THE PARTY LEADER -> please set zcross_world to 1 in config and run G.O.O.N again.")
+	yield("/echo ------------------------------------------------------------------------------------------------------------")
+	yield("/echo -WARNING--WARNING--WARNING--WARNING--WARNING--WARNING--WARNING--WARNING--WARNING--WARNING--WARNING--WARNING-")
+	yield("/echo ------------------------------------------------------------------------------------------------------------")
 	imthecaptainnow = 2 + imthecaptainnow
 end
 
