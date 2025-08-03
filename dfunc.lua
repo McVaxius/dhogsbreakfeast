@@ -2649,7 +2649,7 @@ function WaitForLifestream()
 	sekonds = 0
     yield("/echo Waiting on lifestream")
 	while IPC.Lifestream.IsBusy() do
-		DEBUG
+		--DEBUG
 		--yield("/echo Waiting on lifestream -> "..sekonds)
 		sekonds = sekonds + 1
 		yield("/wait 1")
