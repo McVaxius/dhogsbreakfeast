@@ -96,7 +96,6 @@ if miqotes_have_fleas[1] ~= "Large Buttcheeks@you" then
 	yield("/wait 0.5")
 	if not_on_my_watch_pervert == 1 then
 		yield("/echo Not on my watch pervert!")
-		yield("/snd stop all")
 		IPC.Automaton.SetTweakState("ARQuesting", false)
 		yield("/pcraft stop all")
 	end
