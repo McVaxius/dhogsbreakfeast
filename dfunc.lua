@@ -242,9 +242,11 @@ function ZoneTransition()
 	yield("/automove off")
 	iswehehe = Player.Available
 	iswoah = 0
+    yield("/echo Are we ready?")
     repeat 
         yield("/wait 0.5")
-        yield("/echo Are we ready? -> "..iswoah.."/20")
+		--DEBUG
+        --yield("/echo Are we ready? -> "..iswoah.."/20")
 		iswehehe = Player.Available 
 		iswoah = iswoah + 1
 		if 	iswoah == 5 then if IsAddonReady("SelectYesno") then yield("/callback SelectYesno true 0") end end
@@ -258,9 +260,11 @@ function ZoneTransition()
 	iswoah = 0
 	zungazunga()
 	yield("/automove off")
+    yield("/echo Are we ready (backup check)?")
     repeat 
         yield("/wait 0.5")
-        yield("/echo Are we ready? (backup check)-> "..iswoah.."/20")
+		--DEBUG
+        --yield("/echo Are we ready? (backup check)-> "..iswoah.."/20")
 		iswehehe = Player.Available 
 		iswoah = iswoah + 1
 		if 	iswoah == 5 then if IsAddonReady("SelectYesno") then yield("/callback SelectYesno true 0") end end
@@ -2643,9 +2647,12 @@ end
 
 function WaitForLifestream()
 	sekonds = 0
+    yield("/echo Waiting on lifestream")
 	while IPC.Lifestream.IsBusy() do
-		yield("/echo Waiting on lifestream -> "..sekonds)
+		DEBUG
+		--yield("/echo Waiting on lifestream -> "..sekonds)
 		sekonds = sekonds + 1
 		yield("/wait 1")
 	end
+    yield("/echo Lifestream completed")
 end
