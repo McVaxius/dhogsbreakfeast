@@ -158,7 +158,7 @@ FUTA_defaults = {
 		{"FCB", "nothing", "nothing"},				--N--{}[i][8][1..3]--refresh FC buffs if they have 1 or less hours remaining on them. (remove and re-assign)
 		{"PHV", 0, 100},							--Y--{}[i][9][1..3]--0 = no personal house 1 = has a personal house, personal house visit counter, once it reaches {}[][][2] it will reset to 1 after a visit, each ar completion will +1 it
 		{"DUTY", "Teaspoon Dropping Cupboard", -5, 0},--N-{}[i][10][1..4]--name of duty, number of times to run (negative values for one time run - set to 0 after), normal 0 unsynced 1    				https://www.youtube.com/watch?v=TsFGJqXnqBE
-		{"MINI", 0, 0, 0},							--N-{}[i][11][1..4]--Daily mini cactpot, [2] year [3] month [4] day, if we are in the next day after reset time. then we go run it again and set the time. again.
+		{"DATA", 0, 0, 0},							--N-{}[i][11][1..4]--Store various data for easy access, gil, fcpoints, mgp
 		{"VERM", 0, 0, 0}							--N-{}[i][12][1..4]--Verminion, [2] year [3] month [4] day, if we are in the next week after reset time. then we go run it again and set the time. again.
     }
 }
@@ -585,10 +585,21 @@ if FUTA_processors[hoo_arr_weeeeee][4][2] > -1 and GetItemCount(10373) > 0 then
 end
 -]]
 
+--udpate DATA line
+FUTA_processors[hoo_arr_weeeeee][11][2] = GetItemCount(1) --gil
+zungazunga()
+yield("/freecompanycmd") -- for atools and for "DATA"
+yield("/wait 1")
+	fcpoynts = Addons.GetAddon("FreeCompany"):GetNode(1, 4, 16, 17)
+	yield("/echo Fc points -> "..tostring(fcpoynts.Text))
+	clean_fcpoynts = fcpoynts.Text:gsub(",", "")
+	numeric_fcpoynts = tonumber(clean_fcpoynts)
+FUTA_processors[hoo_arr_weeeeee][11][3] = numeric_fcpoynts
+FUTA_processors[hoo_arr_weeeeee][11][4] = GetItemCount(29) --MGP
+
 -- Stop beginning to do stuff
 yield("/echo Debug: Finished all processing")
 tablebunga(FUTA_config_file, "FUTA_processors", folderPath)
-zungazunga()
 yield("/echo onto the next one ..... ")
 
 if equip_from_table == 1 then
