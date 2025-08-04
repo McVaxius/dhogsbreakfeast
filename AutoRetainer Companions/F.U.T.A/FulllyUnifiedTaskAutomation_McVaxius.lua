@@ -158,7 +158,7 @@ FUTA_defaults = {
 		{"FCB", "nothing", "nothing"},				--N--{}[i][8][1..3]--refresh FC buffs if they have 1 or less hours remaining on them. (remove and re-assign)
 		{"PHV", 0, 100},							--Y--{}[i][9][1..3]--0 = no personal house 1 = has a personal house, personal house visit counter, once it reaches {}[][][2] it will reset to 1 after a visit, each ar completion will +1 it
 		{"DUTY", "Teaspoon Dropping Cupboard", -5, 0},--N-{}[i][10][1..4]--name of duty, number of times to run (negative values for one time run - set to 0 after), normal 0 unsynced 1    				https://www.youtube.com/watch?v=TsFGJqXnqBE
-		{"DATA", 0, 0, 0},							--N-{}[i][11][1..4]--Store various data for easy access, gil, fcpoints, mgp
+		{"DATA", 0, 0, 0},							--Y-{}[i][11][1..4]--Store various data for easy access, gil, fcpoints, mgp
 		{"VERM", 0, 0, 0}							--N-{}[i][12][1..4]--Verminion, [2] year [3] month [4] day, if we are in the next week after reset time. then we go run it again and set the time. again.
     }
 }
