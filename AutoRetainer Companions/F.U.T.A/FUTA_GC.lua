@@ -115,6 +115,8 @@ YesAlready -> YesNo -> /Purchase the action .*/
 	tempchar = tempchar:gsub("'", "")   --remove all apostrophes
 
 
+]]
+
 --some stuff credit to @unon:
 --https://discord.com/channels/1001823907193552978/1196163718216679514/1395220513625870439
 function AutoRetainerDelivery()
@@ -126,7 +128,7 @@ function AutoRetainerDelivery()
     Dalamud.LogVerbose("AutoRetainer is done with Expert Delivery")
 end
 
-]]
+
 
 function Final_GC_Cleaning()
 	--turn around in case we aren't facing the correct way
@@ -279,6 +281,9 @@ function Final_GC_Cleaning()
 		dellycounter = 10
 	end
 
+	AutoRetainerDelivery()
+--deprecated deliveroo section start
+--[[
 	--deliveroo i choose you
 	yield("/deliveroo enable")
 	yield("/wait 3")
@@ -325,6 +330,8 @@ function Final_GC_Cleaning()
 			end
 		end
 --	end
+--]]
+--deprecated deliveroo section end
 	yield("/wait 1")
 	if IsAddonReady("SelectYesno") then yield("/callback SelectYesno true 0") end
 	yield("/wait 1")
