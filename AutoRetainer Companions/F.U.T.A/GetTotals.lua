@@ -32,15 +32,18 @@ end
 gil = 0
 fc = 0
 mgp = 0
+vc = 0
 
 for i = 1, #FUTA_processors do
     gil = gil + FUTA_processors[i][11][2]
     fc = fc + FUTA_processors[i][11][3]
     mgp = mgp + FUTA_processors[i][11][4]
+    vc = vc + FUTA_processors[i][12][2]
 end
 
 yield("/echo gil -> "..gil)
 yield("/echo fc -> "..fc)
 yield("/echo mgp -> "..mgp)
+yield("/echo vc -> "..vc)
 yield("/echo ----- formatted for copy paste ----")
-yield("/echo "..gil.."\t"..fc.."\t"..mgp)
+yield("/echo "..gil.."\t"..fc.."\t"..mgp.."\t"..vc)
