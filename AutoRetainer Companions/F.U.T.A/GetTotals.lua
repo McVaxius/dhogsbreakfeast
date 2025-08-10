@@ -1,14 +1,34 @@
 --get the FC, MGP and GIL totals
 
-FUTA_config_file = "FUTAconfig_McVaxius_"..table_version..".lua"
---FUTA_config_file = "FUTAconfig_acc1.lua"
---FUTA_config_file = "FUTAconfig_acc2.lua"
---FUTA_config_file = "FUTAconfig_acc3.lua"
---FUTA_config_file = "FUTAconfig_acc4.lua"
---FUTA_config_file = "FUTAconfig_accN.lua"
+--------EDIT THESE IN THE SND SETTINGS!---------------------------------------------------------------------------------------
+--[=====[
+[[SND Metadata]]
+author: dhogGPT
+version: 384
+description: Farm mogtomes with your cousins.
+plugin_dependencies:
+configs:
+  zfilenem:
+    default: "FUTAconfig_acc1.lua"
+    description: "Filename containing the configs"
+    type: string
+    required: true
+  zfilepath:
+    default: "default"
+    description: "pathroot for the configs. please know about LUA escapes"
+    type: string
+    required: true
+[[End Metadata]]
+--]=====]
 
-folderPath = os.getenv("appdata").."\\XIVLauncher\\pluginConfigs\\SomethingNeedDoing\\"
-fullPath = os.getenv("appdata") .. "\\XIVLauncher\\pluginConfigs\\SomethingNeedDoing\\" .. FUTA_config_file
+--Don't edit these
+filepath = Config.Get("zfilepath")
+if filepath == "default" then filepath = os.getenv("appdata").."\\XIVLauncher\\pluginConfigs\\SomethingNeedDoing\\" end
+
+filenem  = Config.Get("zfilenem"):gsub('"', '')
+filepath = filepath:gsub('"', '')
+fullPath = filepath .. filenem
+
 require("dfunc")
 
 FUTA_processors = {} -- Initialize variable
