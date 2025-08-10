@@ -22,6 +22,7 @@ The Volcanic Heart
 Cloud Nine
 The Clockwork Castletown
 The Red Sands
+Bayside Battleground
 
 PVPMKSPartyList3
 1,5,6,6,18,21
