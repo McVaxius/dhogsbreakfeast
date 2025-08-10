@@ -158,8 +158,8 @@ FUTA_defaults = {
 		{"FCB", "nothing", "nothing"},				--N--{}[i][8][1..3]--refresh FC buffs if they have 1 or less hours remaining on them. (remove and re-assign)
 		{"PHV", 0, 100},							--Y--{}[i][9][1..3]--0 = no personal house 1 = has a personal house, personal house visit counter, once it reaches {}[][][2] it will reset to 1 after a visit, each ar completion will +1 it
 		{"DUTY", "Teaspoon Dropping Cupboard", -5, 0},--N-{}[i][10][1..4]--name of duty, number of times to run (negative values for one time run - set to 0 after), normal 0 unsynced 1    				https://www.youtube.com/watch?v=TsFGJqXnqBE
-		{"DATA", 0, 0, 0},							--Y-{}[i][11][1..4]--Store various data for easy access, gil, fcpoints, mgp
-		{"DATA2", 0, 0, 0}							--N-{}[i][12][1..4]--Store various data for easy access
+		{"DATA", 0, 0, 0, 0},						--Y-{}[i][11][1..4]--Store various data for easy access, gil, fcpoints, mgp, venture coffers
+		{"VERM", 0, 0, 0}							--N-{}[i][12][1..4]--Verminion I guess idk
     }
 }
 
@@ -595,8 +595,8 @@ yield("/wait 1")
 	clean_fcpoynts = fcpoynts.Text:gsub(",", "")
 	numeric_fcpoynts = tonumber(clean_fcpoynts)
 FUTA_processors[hoo_arr_weeeeee][11][3] = numeric_fcpoynts
-FUTA_processors[hoo_arr_weeeeee][11][4] = GetItemCount(29) --MGP
-FUTA_processors[hoo_arr_weeeeee][12][10386] = GetItemCount(29) --Venture Coffers
+FUTA_processors[hoo_arr_weeeeee][11][29] = GetItemCount(29) --MGP
+FUTA_processors[hoo_arr_weeeeee][11][10386] = GetItemCount(10386) --Venture Coffers
 
 -- Stop beginning to do stuff
 yield("/echo Debug: Finished all processing")

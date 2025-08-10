@@ -35,10 +35,10 @@ mgp = 0
 vc = 0
 
 for i = 1, #FUTA_processors do
-    gil = gil + FUTA_processors[i][11][2]
-    fc = fc + FUTA_processors[i][11][3]
-    mgp = mgp + FUTA_processors[i][11][4]
-    vc = vc + FUTA_processors[i][12][2]
+    if FUTA_processors[i][11][2] ~= nil then gil = gil + FUTA_processors[i][11][2] end
+    if FUTA_processors[i][11][3] ~= nil then fc = fc + FUTA_processors[i][11][3] end
+    if FUTA_processors[i][11][29] ~= nil then mgp = mgp + FUTA_processors[i][11][29] end
+    if FUTA_processors[i][11][10386] ~= nil then vc = vc + FUTA_processors[i][11][10386] end
 end
 
 yield("/echo gil -> "..gil)

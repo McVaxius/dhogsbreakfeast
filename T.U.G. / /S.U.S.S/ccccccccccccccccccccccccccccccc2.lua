@@ -161,7 +161,7 @@ while fuckpvp == 1 do
 		
 		shouldwechase = 0
 		
-		if (mydisttoName(enemy1) < 10 or mydisttoName(enemy2) < 10 or mydisttoName(enemy3) < 10 or mydisttoName(enemy4) < 10 or mydisttoName(enemy5) < 10) and mydisttoName(nemm) < 10 then
+		if (mydisttoName(enemy1.Text) < 10 or mydisttoName(enemy2.Text) < 10 or mydisttoName(enemy3.Text) < 10 or mydisttoName(enemy4.Text) < 10 or mydisttoName(enemy5.Text) < 10) and mydisttoName(nemm) < 10 then
 			shouldwechase = 1
 		end
 		
