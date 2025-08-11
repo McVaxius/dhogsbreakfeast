@@ -111,13 +111,14 @@ reach_out_and_LIMITBREAKSOMEONE = {
 	{"Southern Cross", 35},
 	{"Seraphism", 28}
 }
+--[[
 function OnDutyCompleted()
 		safetyMove = 0
 		fuckyou = 0
 		doop = 0
 		moop = 0
 		case_choice = -1
-end
+end--]]
 
 while fuckpvp == 1 do
 	if Svc.Condition[34] == false and safetyMove == 1 then
@@ -140,6 +141,8 @@ while fuckpvp == 1 do
 			doop = 1
 		end
 		if moop == 0 and GetContentTimeLeft() < 29 and GetContentTimeLeft() > 1 then
+			yield("/vnav stop")
+			yield("/wait 1")
 			yield("/echo we are free from the confines of the intro portraits")
 			yield("/mmambo") --change it to something else if you like.
 			moop = 1
