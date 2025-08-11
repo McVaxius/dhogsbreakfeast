@@ -5,7 +5,7 @@
 [[SND Metadata]]
 author: dhogGPT
 version: 384
-description: Farm mogtomes with your cousins.
+description: Checking your Empire stats
 plugin_dependencies:
 configs:
   zfilenem:
@@ -62,7 +62,7 @@ for i = 1, #FUTA_processors do
 		end
 	end
     if FUTA_processors[i][11][29] ~= nil then mgp = mgp + FUTA_processors[i][11][29] end
-    if FUTA_processors[i][11][10386] ~= nil then vc = vc + FUTA_processors[i][11][10386] end
+    if FUTA_processors[i][11][32161] ~= nil then vc = vc + FUTA_processors[i][11][32161] end
 end
 
 yield("/echo gil -> "..gil)

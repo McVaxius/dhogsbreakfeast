@@ -607,7 +607,7 @@ if FUTA_processors[hoo_arr_weeeeee][11][3] > -1 then -- this is so we can disabl
 	FUTA_processors[hoo_arr_weeeeee][11][3] = numeric_fcpoynts
 end
 FUTA_processors[hoo_arr_weeeeee][11][29] = GetItemCount(29) --MGP
-FUTA_processors[hoo_arr_weeeeee][11][10386] = GetItemCount(10386) --Venture Coffers
+FUTA_processors[hoo_arr_weeeeee][11][32161] = GetItemCount(32161) --Venture Coffers
 
 -- Stop beginning to do stuff
 yield("/echo Debug: Finished all processing")
