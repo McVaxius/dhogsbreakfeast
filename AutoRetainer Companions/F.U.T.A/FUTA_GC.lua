@@ -105,7 +105,9 @@ YesAlready -> YesNo -> /Purchase the action .*/
 --debug new stuff
 --yield("FC Tag hehehe -> "..generateFiveDigitText(process_tags))
 --yield("/pcraft stop all")
-
+--Entity.Target:SetAsTarget
+--Entity.GetEntityByName(name).Name::SetAsTarget
+--Entity.GetEntityByName(name):SetAsTarget()
 -- Specify the path to your text file
 --[[
 	--some vestigial junk i may remove if not needed once i update script properly
@@ -205,7 +207,8 @@ function Final_GC_Cleaning()
 						--yesalready off
 						PauseYesAlready()
 						 --now we buy the buff
-						yield("/target \"OIC Administrator\"")
+						--yield("/target \"OIC Administrator\"")
+						darget("OIC Administrator")
 						yield("/wait 0.5")
 						yield("/lockon")
 						yield("/wait 0.5")
@@ -220,7 +223,8 @@ function Final_GC_Cleaning()
 						if IsAddonReady("SelectYesno") then yield("/callback SelectYesno true 0") end
 						zungazunga()
 						yield("/wait 2")
-						yield("/target \"OIC Quartermaster\"")
+						--yield("/target \"OIC Quartermaster\"")
+						darget("OIC Quartermaster")
 						yield("/wait 0.5")
 						yield("/lockon")
 						yield("/wait 0.5")
@@ -250,7 +254,8 @@ function Final_GC_Cleaning()
 						ungabunga()	--quick escape in case we got stuck in menu
 			end
 		end
-		yield("/target \"Personnel Officer\"")
+--		yield("/target \"Personnel Officer\"")
+		darget("Personnel Officer")
 		yield("/wait 0.5")
 		yield("/lockon")
 		yield("/wait 0.5")
@@ -419,7 +424,8 @@ function Final_GC_Cleaning()
 		--yield("/waitaddon SelectString<maxwait 600>")
 		yield("/visland stop")
 		yield("/wait 1")
-		yield("/target Personnel Officer")
+--		yield("/target Personnel Officer")
+		darget("Personnel Officer")
 		yield("/wait 1")
 		yield("/send NUMPAD0")
 		yield("/callback SelectString true 0")
@@ -444,7 +450,8 @@ function Final_GC_Cleaning()
 		while floop < 3 do --we can go up to 4 safely if we are below it. if you put in the effort to finish GC log 1, go pop rank 5 :~D
 			--try to promote
 			yield("/wait 1")
-			yield("/target Personnel Officer")
+--			yield("/target Personnel Officer")
+			darget("Personnel Officer")
 			yield("/wait 1")
 			yield("/interact")
 			yield("/wait 2")
