@@ -283,6 +283,16 @@ if re_organize_return_locations == 1 then
 	end
 end
 
+--temporary work around until AR plays nice
+if FUTA_processors[hoo_arr_weeeeee][11][6942069] ~= nil then
+	if FUTA_processors[hoo_arr_weeeeee][11][6942069] == 1 then
+		FUTA_processors[hoo_arr_weeeeee][11][6942069] = 0 --new var im inventing for checking if we just did an AR run so we don't get stuck in an infinite loop
+		tablebunga(FUTA_config_file, "FUTA_processors", folderPath)
+		yield("/echo tablebunga() completed successfully AND We are avoiding getting caught in a loop")
+		yield("/snd stop all")
+	end
+end
+
 -- After tablebunga() call
 tablebunga(FUTA_config_file, "FUTA_processors", folderPath)
 yield("/echo tablebunga() completed successfully")

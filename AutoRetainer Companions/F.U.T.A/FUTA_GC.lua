@@ -280,7 +280,13 @@ function Final_GC_Cleaning()
 		yield("/cbt enable MaxGCRank")
 		dellycounter = 10
 	end
-
+	
+	--temporary work around until AR plays nice
+	yield("/ays m d")
+	yield("/ays reset")
+	yield("/wait 2")
+	FUTA_processors[hoo_arr_weeeeee][11][6942069] = 1 --new var im inventing for checking if we just did an AR run so we don't get stuck in an infinite loop
+	
 	AutoRetainerDelivery()
 --deprecated deliveroo section start
 --[[
@@ -572,6 +578,8 @@ function FUTA_robust_gc()
 		ungabunga()
 		clean_inventory() --default behaviour. it will just work if we are near a bell
 	end
+	--temporary work around until AR plays nice
+	yield("/ays m e")
 end
 --last one out turn off the lights
 --yield("/ays multi e")
