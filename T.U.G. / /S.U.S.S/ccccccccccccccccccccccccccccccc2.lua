@@ -119,6 +119,14 @@ reach_out_and_LIMITBREAKSOMEONE = {
 	{"Seraphism", 28}
 }
 
+function OnDutyCompleted()
+		safetyMove = 0
+		fuckyou = 0
+		doop = 0
+		moop = 0
+		case_choice = -1
+end
+
 while fuckpvp == 1 do
 	if Svc.Condition[34] == false and safetyMove == 1 then
 		safetyMove = 0
