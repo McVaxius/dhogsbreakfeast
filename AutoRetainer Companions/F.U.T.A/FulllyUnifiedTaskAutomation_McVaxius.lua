@@ -596,7 +596,7 @@ end
 -]]
 
 --update DATA line
-if hoo_arr_weeeeee][11][2] > = -1 then FUTA_processors[hoo_arr_weeeeee][11][2] = GetItemCount(1) end --gil
+if FUTA_processors[hoo_arr_weeeeee][11][3] > -1 then -- this is so we can disable the check with -1 for chars that are not FC leaders
 zungazunga()
 if hoo_arr_weeeeee][11][3] > = -1 then -- this is so we can disable the check with -1 for chars that are not FC leaders
 	yield("/freecompanycmd") -- for atools and for "DATA"

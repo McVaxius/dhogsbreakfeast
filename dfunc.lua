@@ -2658,7 +2658,7 @@ function WaitForLifestream()
 end
 
 function darget(targetnem)--target the targetname
-		if Entity.GetEntityByName(targetnem) ~= nil then
-			Entity.GetEntityByName(targetnem):SetAsTarget()
-		end
+	if Entity.GetEntityByName(targetnem) ~= nil then
+		Entity.GetEntityByName(targetnem):SetAsTarget()
+	end
 end
