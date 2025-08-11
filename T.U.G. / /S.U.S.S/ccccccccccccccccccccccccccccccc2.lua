@@ -152,6 +152,10 @@ while fuckpvp == 1 do
 			yield("/mmambo") --change it to something else if you like.
 			moop = 1
 		end
+		while GetContentTimeLeft() < 29 and GetContentTimeLeft() > 1 do
+			yield("/vnav stop")
+			yield("/wait 1")
+		end
 		if GetContentTimeLeft() < 5 or GetContentTimeLeft() > 100 then  --this way it will catch case of waiting too long
 			fuckyou = 1
 			yield("/echo the gate is open .. let's gooooooooooo!")
