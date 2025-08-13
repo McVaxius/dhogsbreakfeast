@@ -597,6 +597,9 @@ end
 
 --update DATA line
 zungazunga()
+if FUTA_processors[hoo_arr_weeeeee][11][2] > -1 then -- this is so we can disable the check with -1
+	FUTA_processors[hoo_arr_weeeeee][11][2] = GetItemCount(1) --GIL
+end
 if FUTA_processors[hoo_arr_weeeeee][11][3] > -1 then -- this is so we can disable the check with -1 for chars that are not FC leaders
 	yield("/freecompanycmd") -- for atools and for "DATA"
 	yield("/wait 1")

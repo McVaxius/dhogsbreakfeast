@@ -111,14 +111,13 @@ reach_out_and_LIMITBREAKSOMEONE = {
 	{"Southern Cross", 35},
 	{"Seraphism", 28}
 }
---[[
+
 function OnDutyCompleted()
-		safetyMove = 0
-		fuckyou = 0
-		doop = 0
-		moop = 0
-		case_choice = -1
-end--]]
+	fuckyou = 0
+end
+function OnDutyStarted()
+	fuckyou = 0
+end
 
 while fuckpvp == 1 do
 	if Svc.Condition[34] == false and safetyMove == 1 then
@@ -147,9 +146,10 @@ while fuckpvp == 1 do
 			yield("/mmambo") --change it to something else if you like.
 			moop = 1
 		end
-		while GetContentTimeLeft() < 29 and GetContentTimeLeft() > 1 do
+		while GetContentTimeLeft() < 29 and GetContentTimeLeft() > 1 and fuckyou == 0 do
 			yield("/vnav stop")
 			yield("/wait 1")
+			fuckyou = 0
 		end
 		if GetContentTimeLeft() < 5 or GetContentTimeLeft() > 100 then  --this way it will catch case of waiting too long
 			fuckyou = 1
@@ -169,7 +169,7 @@ while fuckpvp == 1 do
 		zoob = 0
 		case_choice = -1
 		yield("/release W")
-		while GetStatusTimeRemaining(895) == 1 and Svc.Condition[34] and case_choice == -1 do --spawn/respawn invuln
+		while GetStatusTimeRemaining(895) == 1 and Svc.Condition[34] and case_choice == -1 and fuckyou == 1 do --spawn/respawn invuln
 			yield("/pvpac sprint")
 			--test both cases
 			disturbed_table = {1,2,3,4}
