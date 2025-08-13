@@ -405,6 +405,7 @@ if wheeequeheeheheheheheehhhee == 1 then
 			yield("/ays reset")
 			yield("/wait 5")
 			
+			hoo_arr_weeeeee = lowestID --so that data collection isnt borked
             fishing()
             yield("/echo Debug: Fishing completed")
 
