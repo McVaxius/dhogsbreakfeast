@@ -598,6 +598,23 @@ function are_we_dol()
 	return is_it_dol
 end
 
+function highest_jb()
+	jowb = 1
+	highest_j = 0
+	highest_j_level = 0
+	yield("/echo Time to figure out which job ID to switch to !")
+	for i=0,70 do
+		if tonumber(GetLevel(i)) ~= nil then
+			if tonumber(GetLevel(i)) > highest_j_level then
+				highest_j_level = GetLevel(i)
+				highest_j = i
+				yield("/echo Job->"..i.." lv->"..tostring(highest_j_level).." is the highest one?")
+			end
+		end
+	end
+	return highest_j_level
+end
+
 function which_cj()
 	highest_cj = 0
 	highest_cj_level = 0
@@ -1016,6 +1033,14 @@ end
 
 function GetMaelstromGCRank()
 	return Player.GCRankMaelstrom
+end
+
+function GetGCRank()
+	ggcr = 0
+	if GetAddersGCRank() > ggcr then ggcr = GetAddersGCRank() end
+	if GetFlamesGCRank() > ggcr then ggcr = GetFlamesGCRank() end
+	if GetMaelstromGCRank() > ggcr then ggcr = GetMaelstromGCRank() end
+	return ggcr
 end
 
 function SetFlamesGCRank(hehe)

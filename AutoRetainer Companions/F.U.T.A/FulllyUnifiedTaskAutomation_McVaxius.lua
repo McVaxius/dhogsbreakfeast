@@ -66,6 +66,7 @@ automarketfix = "AutoBot" -- try to xldisable profile automarket. however if you
 equip_from_table = 0 --0 is no, 1 is yes
 illegalcleaningresetvalue = 3 --this is the pct chance it will try to do a "selling/repricing" after completing AR tasks. it is also the value it sets after a cleaning is done/triggered. 3% might actually be kind of high if you have lots of chars . i might lower it to 1 for myself.
 dontforceillegalcleaning = 1 --this is so it doesnt force a 100% chance to illegally clean after a gc cleaning. this is probably best if you have giant empire you want to delay cleanings as much as possible
+maxlevel = 100
 ------------------------------------------
 --Config and change back after done!------
 ------------------------------------------
@@ -609,9 +610,15 @@ if FUTA_processors[hoo_arr_weeeeee][11][3] > -1 then -- this is so we can disabl
 		clean_fcpoynts = fcpoynts.Text:gsub(",", "")
 		numeric_fcpoynts = tonumber(clean_fcpoynts)
 	FUTA_processors[hoo_arr_weeeeee][11][3] = numeric_fcpoynts
+	FUTA_processors[hoo_arr_weeeeee][11][999422999] = Player.FreeCompany.Rank
 end
-FUTA_processors[hoo_arr_weeeeee][11][29] = GetItemCount(29) --MGP
+FUTA_processors[hoo_arr_weeeeee][11][29] = GetItemCount(29)       --MGP
 FUTA_processors[hoo_arr_weeeeee][11][32161] = GetItemCount(32161) --Venture Coffers
+FUTA_processors[hoo_arr_weeeeee][11][10155] = GetItemCount(10155) --10155 = Ceruleum Fuel
+FUTA_processors[hoo_arr_weeeeee][11][10373] = GetItemCount(10373) --10373 = Magitek Repair Mats
+FUTA_processors[hoo_arr_weeeeee][11][999420999] = highest_jb() --get highest job level
+FUTA_processors[hoo_arr_weeeeee][11][999423999] = GetGCRank() --get GC Rank
+--FUTA_processors[hoo_arr_weeeeee][11][999421999] = "xMGPx" --get FC Shortname --idk how yet
 
 -- Stop beginning to do stuff
 yield("/echo Debug: Finished all processing")
