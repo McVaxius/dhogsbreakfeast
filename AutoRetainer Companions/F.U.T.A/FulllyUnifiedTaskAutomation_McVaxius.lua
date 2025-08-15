@@ -612,7 +612,7 @@ if FUTA_processors[hoo_arr_weeeeee][11][3] > -1 then -- this is so we can disabl
 	FUTA_processors[hoo_arr_weeeeee][11][3] = numeric_fcpoynts
 	FUTA_processors[hoo_arr_weeeeee][11][999422999] = Player.FreeCompany.Rank
 end
-FUTA_processors[hoo_arr_weeeeee][11][29] = GetItemCount(29)       --MGP
+FUTA_processors[hoo_arr_weeeeee][11][29] = GetItemCount(29) + GetItemCount(16784) * 50000       --MGP + MGP Platinum Cards (50,000 MGP each)
 FUTA_processors[hoo_arr_weeeeee][11][32161] = GetItemCount(32161) --Venture Coffers
 FUTA_processors[hoo_arr_weeeeee][11][10155] = GetItemCount(10155) --10155 = Ceruleum Fuel
 FUTA_processors[hoo_arr_weeeeee][11][10373] = GetItemCount(10373) --10373 = Magitek Repair Mats
