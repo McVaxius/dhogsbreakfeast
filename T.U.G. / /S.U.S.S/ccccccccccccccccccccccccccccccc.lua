@@ -139,14 +139,14 @@ while fuckpvp == 1 do
 			yield("/vnav stop")
 			doop = 1
 		end
-		if moop == 0 and GetContentTimeLeft() < 29 and GetContentTimeLeft() > 1 then
+		if moop == 0 and GetContentTimeLeft() < 32 and GetContentTimeLeft() > 1 then
 			yield("/vnav stop")
 			yield("/wait 1")
 			yield("/echo we are free from the confines of the intro portraits")
 			yield("/mmambo") --change it to something else if you like.
 			moop = 1
 		end
-		while GetContentTimeLeft() < 29 and GetContentTimeLeft() > 1 and fuckyou == 0 do
+		while GetContentTimeLeft() < 32 and GetContentTimeLeft() > 1 and fuckyou == 0 do
 			yield("/vnav stop")
 			yield("/wait 1")
 			fuckyou = 0
