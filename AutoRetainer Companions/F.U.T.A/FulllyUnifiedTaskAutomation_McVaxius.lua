@@ -611,6 +611,13 @@ if FUTA_processors[hoo_arr_weeeeee][11][3] > -1 then -- this is so we can disabl
 		numeric_fcpoynts = tonumber(clean_fcpoynts)
 	FUTA_processors[hoo_arr_weeeeee][11][3] = numeric_fcpoynts
 	FUTA_processors[hoo_arr_weeeeee][11][999422999] = Player.FreeCompany.Rank
+	fcshort = Addons.GetAddon("FreeCompany"):GetNode(1, 4, 9)
+	fcshortname = fcshort.Text
+	--fcshortname = fcshortname.Text:gsub("«", "")
+	--fcshortname = fcshortname.Text:gsub("»", "")
+	--yield("/echo fc shortname -> "..fcshortname)
+	FUTA_processors[hoo_arr_weeeeee][11][999424999] = fcshortname
+	FUTA_processors[hoo_arr_weeeeee][11][999425999] = tostring(Player.FreeCompany.Name)
 end
 FUTA_processors[hoo_arr_weeeeee][11][29] = GetItemCount(29) + GetItemCount(16784) * 50000       --MGP + MGP Platinum Cards (50,000 MGP each)
 FUTA_processors[hoo_arr_weeeeee][11][32161] = GetItemCount(32161) --Venture Coffers
@@ -618,7 +625,6 @@ FUTA_processors[hoo_arr_weeeeee][11][10155] = GetItemCount(10155) --10155 = Ceru
 FUTA_processors[hoo_arr_weeeeee][11][10373] = GetItemCount(10373) --10373 = Magitek Repair Mats
 FUTA_processors[hoo_arr_weeeeee][11][999420999] = highest_jb() --get highest job level
 FUTA_processors[hoo_arr_weeeeee][11][999423999] = GetGCRank() --get GC Rank
---FUTA_processors[hoo_arr_weeeeee][11][999421999] = "xMGPx" --get FC Shortname --idk how yet
 
 -- Stop beginning to do stuff
 yield("/echo Debug: Finished all processing")

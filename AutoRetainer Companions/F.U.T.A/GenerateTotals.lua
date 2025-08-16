@@ -65,7 +65,7 @@ gcr = 0
 fcr = 0
 
 local file = io.open(filepath .. "FUTA_Daily_"..version..".txt", "w")
-file:write("nem\tgil\tfc\tmgp\tvc\tcf\tmrk\thjl\tgcr\tfcr\r")
+file:write("nem\tgil\tfc\tmgp\tvc\tcf\tmrk\thjl\tgcr\tfcr\tfcs\tfcl\r")
 
 for i = 1, #FUTA_processors do
 	gil = 0
@@ -77,6 +77,8 @@ for i = 1, #FUTA_processors do
 	hjl = 0
 	gcr = 0
 	fcr = 0
+	fcs = ""
+	fcl = ""
 
     if FUTA_processors[i][11][2] ~= nil then gil = FUTA_processors[i][11][2] end
     if FUTA_processors[i][11][3] ~= nil then
@@ -91,20 +93,18 @@ for i = 1, #FUTA_processors do
     if FUTA_processors[i][11][999420999] ~= nil then hjl = FUTA_processors[i][11][999420999] end
     if FUTA_processors[i][11][999423999] ~= nil then gcr = FUTA_processors[i][11][999423999] end
     if FUTA_processors[i][11][999422999] ~= nil then fcr = FUTA_processors[i][11][999422999] end
+    if FUTA_processors[i][11][999424999] ~= nil then fcs = FUTA_processors[i][11][999424999] end
+    if FUTA_processors[i][11][999425999] ~= nil then fcl = FUTA_processors[i][11][999425999] end
 
 	if file then
 		nem = tostring(FUTA_processors[i][1][1])
-		file:write(nem.."\t"..gil.."\t"..fc.."\t"..mgp.."\t"..vc.."\t"..cf.."\t"..mrk.."\t"..hjl.."\t"..gcr.."\t"..fcr.."\r")
+		file:write(nem.."\t"..gil.."\t"..fc.."\t"..mgp.."\t"..vc.."\t"..cf.."\t"..mrk.."\t"..hjl.."\t"..gcr.."\t"..fcr.."\t"..fcs.."\t"..fcl.."\r")
 	else
 		yield("/echo Error: Unable to open file for writing")
 	end
 end
 	file:close()
 
-yield("/echo gil -> "..gil)
-yield("/echo fc -> "..fc)
-yield("/echo mgp -> "..mgp)
-yield("/echo vc -> "..vc)
 yield("/echo ----- formatted for copy paste ----")
-yield("/echo "..gil.."\t"..fc.."\t"..mgp.."\t"..vc.."\t"..cf.."\t"..mrk.."\t"..hjl.."\t"..gcr.."\t"..fcr)
+yield("/echo "..gil.."\t"..fc.."\t"..mgp.."\t"..vc.."\t"..cf.."\t"..mrk.."\t"..hjl.."\t"..gcr.."\t"..fcr.."\t"..fcs.."\r"..fcl)
 
