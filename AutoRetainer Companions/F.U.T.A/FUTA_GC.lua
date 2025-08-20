@@ -232,6 +232,7 @@ function Final_GC_Cleaning()
 						end
 						didwetp = 1
 						darget("OIC Quartermaster")
+						--[[
 						yield("/wait 0.5")
 						yield("/lockon")
 						yield("/wait 0.5")
@@ -244,7 +245,7 @@ function Final_GC_Cleaning()
 						yield("/callback SelectString true 0")
 						yield("/wait 1")
 						yield("/automove off")
-
+						--]]
 						buycount = 0
 						while (buycount < buymax) do
 							if purchase_attempts < 2 then
@@ -295,6 +296,7 @@ function Final_GC_Cleaning()
 		yield("/li gc")
 		yield("/echo We need to get to the GC")
 		WaitForLifestream()
+		--[[
 		darget("Personnel Officer")
 		yield("/wait 0.5")
 		yield("/lockon")
@@ -302,6 +304,7 @@ function Final_GC_Cleaning()
 		yield("/automove")
 		yield("/wait 2")
 		yield("/automove off")
+		--]]
 	end
 
 	--temporary work around until AR plays nice

@@ -188,6 +188,7 @@ function fishing()
 	
 	--if we are tp to inn. we will go to gridania yo
 	if FUTA_processors[lowestID][1][2] == 3 then
+		--[[
 		yield("/tp New Gridania")
 		ZoneTransition()
 		yield("/wait 2")
@@ -200,6 +201,9 @@ function fishing()
 		yield("/wait 0.5")
 		yield("/interact")
 		yield("/wait 5")
+		-]]
+		yield("/li inn")
+		WaitForLifestream()
 	end
 	
 	--options 1 and 2 are fc estate entrance or fc state bell so thats only time we will tp to fc estate
