@@ -642,6 +642,31 @@ if equip_from_table == 1 then
 	end
 end
 yield("/vnav stop") --run case we running into wall at house
+
+--DAILY DUMP START--
+--untested daily dump list. you figure it out. ;)
+miqotes_have_dumptrucks = 
+{
+"Large Buttcheeks@you",
+"Black'friday deals@friday",
+"Nut'every Day'november@truth"
+}
+if miqotes_have_dumptrucks[1] ~= "Large Buttcheeks@you" then
+	potential_futa_lover = GetCharacterName(true)
+	on_my_watch_pervert = 0
+	yield("/wait 0.5")
+	for i=1,#miqotes_have_dumptrucks do
+		if potential_futa_lover == miqotes_have_dumptrucks[i] then on_my_watch_pervert = 1 end
+	end
+	yield("/wait 0.5")
+	if on_my_watch_pervert == 1 then
+		yield("/echo Generating Daily Data")
+		yield("/snd run DAILY") --assumes you have a script named daily
+		return
+	end
+end
+--DAILY DUMP LIST END--
+
 if wheeequeheeheheheheheehhhee == 1 then
 	yield("/ays multi e") --if we had to toggle AR
 end
