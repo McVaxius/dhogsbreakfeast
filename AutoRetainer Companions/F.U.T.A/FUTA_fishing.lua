@@ -26,11 +26,15 @@ function fishing()
 
 	--ok we made it to the right character. let us continue.
 	
-	-- Teleport to Lisma
+	-- Teleport to Lisma until we teleport to limsa
+	yield("/li limsa,arcanist")
+	WaitForLifestream()
+	--[[
 	yield("/tp Limsa Lominsa Lower Decks")
 	yield("/wait 5")
 	yield("/waitaddon _ActionBar<maxwait 600>")
 	yield("/wait 10")
+	--]]
 	
 	yield("/ac sprint")
 	become_feesher()
