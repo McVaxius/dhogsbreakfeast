@@ -136,6 +136,17 @@ function Final_GC_Cleaning()
 	--turn around in case we aren't facing the correct way
 	--this attempts to target serpent or flame personnel or even storm.  assuming you have a separate line in a hotkey for each type.
 	--the purpose of this section is to get your char to face the npcs and orient the camera properly. otherwise the rest of the script might die
+	gcnames = {
+		"Maelstrom: 1",
+		"TwinAdder: 2",
+		"ImmortalFlames: 3"
+	}
+	mygc = tostring(Player.FreeCompany.GrandCompany)
+	gcchoice = 1
+	for i=1,#gcnames do --get the grand company for the fc
+		if gcnames[i] == mygc then gcchoice = i end
+	end
+	didwetp = 0
 
 	visland_stop_moving() --just in case we want to auto equip rq before dumping gear
 	if process_fc_buffs == 1 then
@@ -200,30 +211,26 @@ function Final_GC_Cleaning()
 				yield("/callback SelectYesno true 0")
 				yield("/wait 1")
 			end
-			
+
 			--if seal buff fails to work then trigger buy seal buff from npc routine, but only do this if we can failsafe ourselves with 16k gil and 7k fc points
 			if GetStatusTimeRemaining(414) == 0 then
 						purchase_attempts = purchase_attempts + 1
 						--yesalready off
 						PauseYesAlready()
 						 --now we buy the buff
-						--yield("/target \"OIC Administrator\"")
-						darget("OIC Administrator")
-						yield("/wait 0.5")
-						yield("/lockon")
-						yield("/wait 0.5")
-						yield("/automove")
-						yield("/wait 2")
-						yield("/automove off")
-						yield("/interact")
-						yield("/wait 2")
-						yield("/callback SelectString true 1")
-						yield("/wait 1")
-						yield("/wait 2")
-						if IsAddonReady("SelectYesno") then yield("/callback SelectYesno true 0") end
-						zungazunga()
-						yield("/wait 2")
-						--yield("/target \"OIC Quartermaster\"")
+
+						--check if it is different than my own grand company.
+						if gcchoice ~= GetPlayerGC() then
+							yield("/li gc "..gcchoice)
+							yield("/echo We need to get to the right GC")
+							WaitForLifestream()
+						end
+						if gcchoice == GetPlayerGC() then
+							yield("/li gc")
+							yield("/echo We need to get to our GC")
+							WaitForLifestream()
+						end
+						didwetp = 1
 						darget("OIC Quartermaster")
 						yield("/wait 0.5")
 						yield("/lockon")
@@ -255,13 +262,6 @@ function Final_GC_Cleaning()
 			end
 		end
 --		yield("/target \"Personnel Officer\"")
-		darget("Personnel Officer")
-		yield("/wait 0.5")
-		yield("/lockon")
-		yield("/wait 0.5")
-		yield("/automove")
-		yield("/wait 2")
-		yield("/automove off")
 		RestoreYesAlready()
 		ClearTarget()
 	end
@@ -286,6 +286,24 @@ function Final_GC_Cleaning()
 		dellycounter = 10
 	end
 	
+	if gcchoice ~= GetPlayerGC() and didwetp == 1 then
+		yield("/li gc")
+		yield("/echo We were at wrong GC going to the right one")
+		WaitForLifestream()
+	end
+	if didwetp == 0 then
+		yield("/li gc")
+		yield("/echo We need to get to the GC")
+		WaitForLifestream()
+		darget("Personnel Officer")
+		yield("/wait 0.5")
+		yield("/lockon")
+		yield("/wait 0.5")
+		yield("/automove")
+		yield("/wait 2")
+		yield("/automove off")
+	end
+
 	--temporary work around until AR plays nice
 	yield("/ays m d")
 	yield("/ays reset")
@@ -559,6 +577,7 @@ function FUTA_robust_gc()
 	if process_players == 1  then
 		--TeleportToGCTown()
 		--ZoneTransition()
+		--[[
 		yield("/echo Walk to GC attempt 1")
 		yield("/wait 2")
 		WalkToGC()
@@ -569,6 +588,7 @@ function FUTA_robust_gc()
 		yield("/wait 2")
 		WalkToGC()
 		yield("/wait 2")
+		--]]
 		Final_GC_Cleaning()
 	end
 	workshop_entered = 0
