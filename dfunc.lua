@@ -1044,7 +1044,7 @@ function GetGCRank()
 end
 
 function SetFlamesGCRank(hehe)
-	GCRankImmortalFlames = hehe
+	Player.GCRankImmortalFlames = hehe
 end
 
 function SetAddersGCRank(hehe)
@@ -1052,7 +1052,7 @@ function SetAddersGCRank(hehe)
 end
 
 function SetMaelstromGCRank(hehe)
-	GCRankMaelstrom = hehe
+	Player.GCRankMaelstrom = hehe
 end
 
 function check_GC_RANKS(renkk)

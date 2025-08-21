@@ -573,7 +573,8 @@ if wheeequeheeheheheheheehhhee == 0 then
 		if FUTA_processors[hoo_arr_weeeeee][9][2] > FUTA_processors[hoo_arr_weeeeee][9][3] then
 			FUTA_processors[hoo_arr_weeeeee][9][2] = 1
 			yield("/li home")
-			CharacterSafeWait()
+			WaitForLifestream()
+			--CharacterSafeWait()
 			return_fc_entrance() --does the same thing just enters target
 			open_house_door() --opens the door to house
 			CharacterSafeWait()
