@@ -66,7 +66,7 @@ automarketfix = "AutoBot" -- try to xldisable profile automarket. however if you
 equip_from_table = 0 --0 is no, 1 is yes
 illegalcleaningresetvalue = 3 --this is the pct chance it will try to do a "selling/repricing" after completing AR tasks. it is also the value it sets after a cleaning is done/triggered. 3% might actually be kind of high if you have lots of chars . i might lower it to 1 for myself.
 dontforceillegalcleaning = 1 --this is so it doesnt force a 100% chance to illegally clean after a gc cleaning. this is probably best if you have giant empire you want to delay cleanings as much as possible
-maxlevel = 100
+maxlevel = 100 --this is fishing max level to go ocean fishing. set it to 30 if you just want to prep chars for leves. its 1-2 trips to get to 30
 ------------------------------------------
 --Config and change back after done!------
 ------------------------------------------
