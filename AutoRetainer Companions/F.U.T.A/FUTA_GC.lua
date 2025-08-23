@@ -230,6 +230,7 @@ function Final_GC_Cleaning()
 							yield("/echo We need to get to our GC")
 							WaitForLifestream()
 						end
+						WaitForLifestream()
 						didwetp = 1
 						darget("OIC Quartermaster")
 						--[[
@@ -237,6 +238,7 @@ function Final_GC_Cleaning()
 						yield("/lockon")
 						yield("/wait 0.5")
 						yield("/automove")
+						--]]
 						yield("/wait 2")
 						yield("/interact")
 						yield("/wait 2")
@@ -245,7 +247,6 @@ function Final_GC_Cleaning()
 						yield("/callback SelectString true 0")
 						yield("/wait 1")
 						yield("/automove off")
-						--]]
 						buycount = 0
 						while (buycount < buymax) do
 							if purchase_attempts < 2 then
