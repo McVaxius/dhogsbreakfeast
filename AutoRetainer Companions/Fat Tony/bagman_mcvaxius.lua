@@ -271,7 +271,7 @@ local function shake_hands()
 					yield("/echo attempting to add stuff to the bag....")
 					DropboxSetItemQuantity(filled_bags[i][1],false,filled_bags[i][2])
 					DropboxSetItemQuantity(filled_bags[i][1],true,filled_bags[i][2])
-					yield("/wait 0.5")
+					yield("/wait 0.03")
 				end
 				horrible_counter_method = horrible_counter_method + 1
 				yield("/echo DEBUG bagman type 1 processing....")

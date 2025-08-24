@@ -363,9 +363,11 @@ function DidWeLoadcorrectly()
 end
 
 function CharacterSafeWait()
-     yield("/echo 15 second wait for char swap")
-	 yield("/wait 15")
+     --yield("/echo 15 second wait for char swap")
+     yield("/echo wait for char swap")
+	 yield("/wait 3")
 	 yield("/waitaddon NamePlate<maxwait 600>")
+	 WaitForLifestream()
  	 yield("/wait 5")
 	 --ZoneTransition()
 end
