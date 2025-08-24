@@ -600,6 +600,7 @@ end
 
 --update DATA line
 zungazunga()
+print("Processing -> "..FUTA_processors[hoo_arr_weeeeee][1][1])  --for debugging
 if FUTA_processors[hoo_arr_weeeeee][11][2] > -1 then -- this is so we can disable the check with -1
 	FUTA_processors[hoo_arr_weeeeee][11][2] = GetItemCount(1) --GIL
 end
