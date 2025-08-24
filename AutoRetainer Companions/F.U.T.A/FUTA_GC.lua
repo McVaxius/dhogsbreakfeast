@@ -171,7 +171,6 @@ function Final_GC_Cleaning()
 			castattempt = 0
 			yield("/freecompanycmd")
 			yield("/wait 1")
-			
 			if IsAddonReady("FreeCompany") then
 				yield("/callback FreeCompany false 0 4u")
 				yield("/wait 1")
@@ -181,7 +180,7 @@ function Final_GC_Cleaning()
 				yield("/echo FC not ready for Seal Sweetener II")
 				buymax = 1 -- only buy one of the garbage buff
 			end
-			for i = 51001, 51021 do
+			for i = 51001, 51016 do
 				--1,10,14,i,3
 				local node = Addons.GetAddon("FreeCompanyAction"):GetNode(1, 10, 14, i, 3)
 				if node then
