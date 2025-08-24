@@ -605,11 +605,11 @@ if FUTA_processors[hoo_arr_weeeeee][11][2] > -1 then -- this is so we can disabl
 end
 if FUTA_processors[hoo_arr_weeeeee][11][3] > -1 then -- this is so we can disable the check with -1 for chars that are not FC leaders
 	yield("/freecompanycmd") -- for atools and for "DATA"
-	yield("/wait 1")
-		fcpoynts = Addons.GetAddon("FreeCompany"):GetNode(1, 4, 16, 17)
-		yield("/echo Fc points -> "..tostring(fcpoynts.Text))
-		clean_fcpoynts = fcpoynts.Text:gsub(",", "")
-		numeric_fcpoynts = tonumber(clean_fcpoynts)
+	yield("/wait 3")
+	fcpoynts = Addons.GetAddon("FreeCompany"):GetNode(1, 4, 16, 17)
+	yield("/echo Fc points -> "..tostring(fcpoynts.Text))
+	clean_fcpoynts = fcpoynts.Text:gsub(",", "")
+	numeric_fcpoynts = tonumber(clean_fcpoynts)
 	FUTA_processors[hoo_arr_weeeeee][11][3] = numeric_fcpoynts
 	FUTA_processors[hoo_arr_weeeeee][11][999422999] = Player.FreeCompany.Rank
 	fcshort = Addons.GetAddon("FreeCompany"):GetNode(1, 4, 9)
