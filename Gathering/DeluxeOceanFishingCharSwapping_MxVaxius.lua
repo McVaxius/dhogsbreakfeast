@@ -1,5 +1,7 @@
 --Please read this stuff its not hard the default config will die if you just copy paste so your gonna have to pass the test of reading. and uncommenting one of the two paths or modifying them
 
+require("dfunc")
+
 --log path - change this to a valid path. foreward slashes are actually backslashes, don't use backslashes unless you know how to escape them properly.
 
 --UNCOMMENT ONE OF THESE TWO and or modify to your hearts content
@@ -305,6 +307,7 @@ function fishing()
 	
 	--if we are tp to inn. we will go to gridania yo
 	if which_one[feesh_c][2] == 3 then
+	--[[
 		yield("/tp New Gridania")
 		ZoneTransition()
 		yield("/wait 2")
@@ -315,10 +318,14 @@ function fishing()
 		yield("/target Antoinaut")
 		yield("/wait 0.5")
 		yield("/interact")
+		--]]
+		yield("/li inn")
+		WaitForLifestream()
 	end
 	
 	--options 1 and 2 are fc estate entrance or fc state bell so thats only time we will tp to fc estate
 	if which_one[feesh_c][2] == 0 or which_one[feesh_c][2] == 1 then
+		--[[
 		--yield("/tp Estate Hall (Free Company)")
 		yield("/waitaddon NamePlate<maxwait 600>")
 		yield("/li fc")
@@ -326,10 +333,14 @@ function fishing()
 		--yield("/waitaddon Nowloading<maxwait 600>")
 		yield("/wait 15")
 		yield("/waitaddon NamePlate<maxwait 600>")
+		--]]
+		yield("/li fc")
+		WaitForLifestream()	
 	end
 
 	--normal small house shenanigans
 	if which_one[feesh_c][2] == 0 then
+		--[[
 		yield("/hold W")
 		yield("/wait 1")
 		yield("/release W")
@@ -352,6 +363,9 @@ function fishing()
 		yield("/release Q")
 		yield("/interact")
 		yield("/wait 1")
+		--]]
+--		yield("/li house")
+		WaitForLifestream()
 	end
 
 	--retainer bell nearby shenanigans
