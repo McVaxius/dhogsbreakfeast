@@ -621,25 +621,52 @@ if FUTA_processors[hoo_arr_weeeeee][11][3] > -1 then -- this is so we can disabl
 	FUTA_processors[hoo_arr_weeeeee][11][999424999] = fcshortname
 	FUTA_processors[hoo_arr_weeeeee][11][999425999] = tostring(Player.FreeCompany.Name)
 	
-	--time to get the address.
-	yield("/callback FreeCompany true 0 5")
-	yield("/wait 0.5")
-	yield("/callback FreeCompanyMember true -2")
-	yield("/wait 0.5")
-	yield("/callback FreeCompanyStatus true 2")
-	yield("/wait 1")
-	fcSizeL = Addons.GetAddon("HousingSignBoard"):GetNode(1, 2, 17, 21).Text
-	yield("/echo Found a house at -> "..fcSizeL)
-	fcDistrict = ""
-	fcWard = 0
-	fcPlot = 0
-	-- Pattern: Plot <plot>, <ward>th Ward, <district> (<size>)
-	local plot, ward, district, size = fcSizeL:match("Plot%s+(%d+),%s+(%d+)th Ward,%s+([^%(]+)%s+%(([^)]+)%)")
-	-- Assign to variables
-	fcPlot = tonumber(plot)
-	fcWard = tonumber(ward)
-	fcDistrict = district:match("^%s*(.-)%s*$") -- trim spaces
-	fcSize = size
+    --time to get the address.
+    yield("/callback FreeCompany true 0 5")
+    yield("/wait 0.5")
+    yield("/callback FreeCompanyMember true -2")
+    yield("/wait 0.5")
+    yield("/callback FreeCompanyStatus true 2")
+    yield("/wait 1")
+    fcSizeL = Addons.GetAddon("HousingSignBoard"):GetNode(1, 2, 17, 21).Text
+    yield("/echo Found a house at -> "..fcSizeL)
+	-- fcSize already holds: "Plot 55, 6th Ward, Shirogane (Small)"
+	local fcLine = fcSizeL or ""
+
+	if fcLine == "" then
+	  yield("/echo [parse] no Free Company address text")
+	else
+	  local function trim(s) return (s:gsub("^%s+",""):gsub("%s+$","")) end
+
+	  -- Try numeric ordinal (1st/2nd/3rd/4th…)
+	  local plot, ward, district, size =
+		  fcLine:match("Plot%s+(%d+),%s+(%d+)%a*%s+Ward,%s+([^%(]+)%s*%(([^)]+)%)")
+
+	  -- Fallback for word ordinals ("first/second/third") just in case
+	  if not plot then
+		local wardWord
+		plot, wardWord, district, size =
+			fcLine:match("Plot%s+(%d+),%s+(%a+)%s+Ward,%s+([^%(]+)%s*%(([^)]+)%)")
+		if wardWord then
+		  local map = { first=1, second=2, third=3 }
+		  ward = map[wardWord:lower()]
+		end
+	  end
+
+	  if plot and ward and district and size then
+		fcPlot     = tonumber(plot)
+		fcWard     = tonumber(ward)
+		fcDistrict = trim(district)
+		fcSize     = trim(size)
+
+		-- Debug
+		yield(string.format("/echo Plot:%s Ward:%s District:%s Size:%s",
+		  tostring(fcPlot), tostring(fcWard), fcDistrict, fcSize))
+	  else
+		yield("/echo [parse] failed to read: "..fcLine)
+	  end
+	end
+
 	-- Debug echo
 	yield("/echo Plot: "..fcPlot)
 	yield("/echo Ward: "..fcWard)
