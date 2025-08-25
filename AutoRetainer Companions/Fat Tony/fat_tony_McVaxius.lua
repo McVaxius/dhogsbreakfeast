@@ -202,20 +202,21 @@ for i=1,#franchise_owners do
 			--normal small house shenanigans
 			if franchise_owners[i][3] == 0 then
     			yield("/wait 5")
-				return_to_fc()			
-				CharacterSafeWait()
+				yield("/li fc")
+				WaitForLifestream()
 				yield("/wait 5")
 				return_fc_entrance()
 			end
 			if franchise_owners[i][3] == 3 then --return to fc without returning to entrance
     			yield("/wait 5")
-				return_to_fc()			
-				CharacterSafeWait()
+				yield("/li fc")
+				WaitForLifestream()
 			end
 			--retainer bell nearby shenanigans
 			if franchise_owners[i][3] == 1 then
     			yield("/wait 5")
-				return_to_fc()			
+				yield("/li fc")
+				WaitForLifestream()
 				CharacterSafeWait()
 				yield("/target \"Summoning Bell\"")
 				yield("/wait 2")
