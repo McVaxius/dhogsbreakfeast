@@ -79,6 +79,10 @@ for i = 1, #FUTA_processors do
 	fcr = 0
 	fcs = ""
 	fcl = ""
+	fcSize = ""
+	fcDistrict = ""
+	fcWard = 0
+	fcPlot = 0
 
     if FUTA_processors[i][11][2] ~= nil then gil = FUTA_processors[i][11][2] end
     if FUTA_processors[i][11][3] ~= nil then
@@ -95,10 +99,14 @@ for i = 1, #FUTA_processors do
     if FUTA_processors[i][11][999422999] ~= nil then fcr = FUTA_processors[i][11][999422999] end
     if FUTA_processors[i][11][999424999] ~= nil then fcs = FUTA_processors[i][11][999424999] end
     if FUTA_processors[i][11][999425999] ~= nil then fcl = FUTA_processors[i][11][999425999] end
+    if FUTA_processors[i][11][999426999] ~= nil then fcSize = FUTA_processors[i][11][999426999] end
+    if FUTA_processors[i][11][999427999] ~= nil then fcDistrict = FUTA_processors[i][11][999427999] end
+    if FUTA_processors[i][11][999428999] ~= nil then fcWard = FUTA_processors[i][11][999428999] end
+    if FUTA_processors[i][11][999429999] ~= nil then fcPlot = FUTA_processors[i][11][999429999] end
 
 	if file then
 		nem = tostring(FUTA_processors[i][1][1])
-		file:write(nem.."\t"..gil.."\t"..fc.."\t"..mgp.."\t"..vc.."\t"..cf.."\t"..mrk.."\t"..hjl.."\t"..gcr.."\t"..fcr.."\t"..fcs.."\t"..fcl.."\r")
+		file:write(nem.."\t"..gil.."\t"..fc.."\t"..mgp.."\t"..vc.."\t"..cf.."\t"..mrk.."\t"..hjl.."\t"..gcr.."\t"..fcr.."\t"..fcs.."\t"..fcl.."\t"..fcSize.."\t"..fcDistrict.."\t"..fcWard.."\t"..fcPlot.."\r")
 	else
 		yield("/echo Error: Unable to open file for writing")
 	end
@@ -106,5 +114,5 @@ end
 	file:close()
 
 yield("/echo ----- formatted for copy paste ----")
-yield("/echo "..gil.."\t"..fc.."\t"..mgp.."\t"..vc.."\t"..cf.."\t"..mrk.."\t"..hjl.."\t"..gcr.."\t"..fcr.."\t"..fcs.."\r"..fcl)
+yield("/echo "..gil.."\t"..fc.."\t"..mgp.."\t"..vc.."\t"..cf.."\t"..mrk.."\t"..hjl.."\t"..gcr.."\t"..fcr.."\t"..fcs.."\t"..fcl.."\t"..fcSize.."\t"..fcDistrict.."\t"..fcWard.."\t"..fcPlot.."\r")
 

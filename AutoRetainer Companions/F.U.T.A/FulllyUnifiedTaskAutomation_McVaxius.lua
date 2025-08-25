@@ -620,7 +620,38 @@ if FUTA_processors[hoo_arr_weeeeee][11][3] > -1 then -- this is so we can disabl
 	--yield("/echo fc shortname -> "..fcshortname)
 	FUTA_processors[hoo_arr_weeeeee][11][999424999] = fcshortname
 	FUTA_processors[hoo_arr_weeeeee][11][999425999] = tostring(Player.FreeCompany.Name)
+	
+	--time to get the address.
+	yield("/callback FreeCompany true 0 5")
+	yield("/wait 0.5")
+	yield("/callback FreeCompanyMember true -2")
+	yield("/wait 0.5")
+	yield("/callback FreeCompanyStatus true 2")
+	yield("/wait 1")
+	fcSizeL = Addons.GetAddon("HousingSignBoard"):GetNode(1, 2, 17, 21).Text
+	yield("/echo Found a house at -> "..fcSizeL)
+	fcDistrict = ""
+	fcWard = 0
+	fcPlot = 0
+	-- Pattern: Plot <plot>, <ward>th Ward, <district> (<size>)
+	local plot, ward, district, size = fcSizeL:match("Plot%s+(%d+),%s+(%d+)th Ward,%s+([^%(]+)%s+%(([^)]+)%)")
+	-- Assign to variables
+	fcPlot = tonumber(plot)
+	fcWard = tonumber(ward)
+	fcDistrict = district:match("^%s*(.-)%s*$") -- trim spaces
+	fcSize = size
+	-- Debug echo
+	yield("/echo Plot: "..fcPlot)
+	yield("/echo Ward: "..fcWard)
+	yield("/echo District: "..fcDistrict)
+	yield("/echo Size: "..fcSize)
+	
+	FUTA_processors[hoo_arr_weeeeee][11][999426999] = fcSize
+	FUTA_processors[hoo_arr_weeeeee][11][999427999] = fcDistrict
+	FUTA_processors[hoo_arr_weeeeee][11][999428999] = fcWard
+	FUTA_processors[hoo_arr_weeeeee][11][999429999] = fcPlot
 end
+
 FUTA_processors[hoo_arr_weeeeee][11][29] = GetItemCount(29) + GetItemCount(16784) * 50000       --MGP + MGP Platinum Cards (50,000 MGP each)
 FUTA_processors[hoo_arr_weeeeee][11][32161] = GetItemCount(32161) --Venture Coffers
 FUTA_processors[hoo_arr_weeeeee][11][10155] = GetItemCount(10155) --10155 = Ceruleum Fuel
