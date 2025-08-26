@@ -120,6 +120,7 @@ function fishing()
 	end
 
 	yield("/bait Versatile Lure")
+	yield("/discardall")
  
 	--get current area
 	--check if area has changed every 5 seconds.
