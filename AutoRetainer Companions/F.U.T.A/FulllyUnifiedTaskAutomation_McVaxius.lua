@@ -604,14 +604,20 @@ print("Processing -> "..FUTA_processors[hoo_arr_weeeeee][1][1])  --for debugging
 if FUTA_processors[hoo_arr_weeeeee][11][2] > -1 then -- this is so we can disable the check with -1
 	FUTA_processors[hoo_arr_weeeeee][11][2] = GetItemCount(1) --GIL
 end
-if FUTA_processors[hoo_arr_weeeeee][11][3] > -1 then -- this is so we can disable the check with -1 for chars that are not FC leaders
+
+-- this is so we can disable the check with -1 for chars that are not FC leaders
+local current = FUTA_processors[hoo_arr_weeeeee][11][3]
+if current and current > -1 or current == nil then
 	yield("/freecompanycmd") -- for atools and for "DATA"
 	yield("/wait 3")
 	fcpoynts = Addons.GetAddon("FreeCompany"):GetNode(1, 4, 16, 17)
-	yield("/echo Fc points -> "..tostring(fcpoynts.Text))
-	clean_fcpoynts = fcpoynts.Text:gsub(",", "")
-	numeric_fcpoynts = tonumber(clean_fcpoynts)
-	FUTA_processors[hoo_arr_weeeeee][11][3] = numeric_fcpoynts
+	if fcpoynts and fcpoynts.Text then
+	  clean_fcpoynts = fcpoynts.Text:gsub(",", "")
+	  numeric_fcpoynts = tonumber(clean_fcpoynts) or 0
+	  FUTA_processors[hoo_arr_weeeeee][11][3] = numeric_fcpoynts
+	else
+	  yield("/echo [error] could not get FreeCompany points")
+	end
 	FUTA_processors[hoo_arr_weeeeee][11][999422999] = Player.FreeCompany.Rank
 	fcshort = Addons.GetAddon("FreeCompany"):GetNode(1, 4, 9)
 	fcshortname = fcshort.Text
@@ -631,44 +637,6 @@ if FUTA_processors[hoo_arr_weeeeee][11][3] > -1 then -- this is so we can disabl
     fcSizeL = Addons.GetAddon("HousingSignBoard"):GetNode(1, 2, 17, 21).Text
     yield("/echo Found a house at -> "..fcSizeL)
 	-- fcSize already holds: "Plot 55, 6th Ward, Shirogane (Small)"
-	
-	--[[
-	local fcLine = fcSizeL or ""
-
-	if fcLine == "" then
-	  yield("/echo [parse] no Free Company address text")
-	else
-	  local function trim(s) return (s:gsub("^%s+",""):gsub("%s+$","")) end
-
-	  -- Try numeric ordinal (1st/2nd/3rd/4th…)
-	  local plot, ward, district, size =
-		  fcLine:match("Plot%s+(%d+),%s+(%d+)%a*%s+Ward,%s+([^%(]+)%s*%(([^)]+)%)")
-
-	  -- Fallback for word ordinals ("first/second/third") just in case
-	  if not plot then
-		local wardWord
-		plot, wardWord, district, size =
-			fcLine:match("Plot%s+(%d+),%s+(%a+)%s+Ward,%s+([^%(]+)%s*%(([^)]+)%)")
-		if wardWord then
-		  local map = { first=1, second=2, third=3 }
-		  ward = map[wardWord:lower()]
-		end
-	  end
-
-	  if plot and ward and district and size then
-		fcPlot     = tonumber(plot)
-		fcWard     = tonumber(ward)
-		fcDistrict = trim(district)
-		fcSize     = trim(size)
-
-		-- Debug
-		yield(string.format("/echo Plot:%s Ward:%s District:%s Size:%s",
-		  tostring(fcPlot), tostring(fcWard), fcDistrict, fcSize))
-	  else
-		yield("/echo [parse] failed to read: "..fcLine)
-	  end
-	end
-	--]]
 	local fcLine = fcSizeL or ""   -- "Plot 6, 3rd Ward, Mist (Medium)"
 
 	if fcLine == "" then
@@ -676,28 +644,32 @@ if FUTA_processors[hoo_arr_weeeeee][11][3] > -1 then -- this is so we can disabl
 	else
 	  local function trim(s) return (s:gsub("^%s+",""):gsub("%s+$","")) end
 
-	  -- Split by commas
-	  local parts = {}
-	  for part in fcLine:gmatch("[^,]+") do
-		table.insert(parts, trim(part))
-	  end
+	-- Split by commas
+	local parts = {}
+	for part in fcLine:gmatch("[^,]+") do
+	table.insert(parts, trim(part))
+	end
 
-	  -- parts[1] = "Plot 6"
-	  -- parts[2] = "3rd Ward"
-	  -- parts[3] = "Mist (Medium)"
+	-- parts[1] = "Plot 6"
+	-- parts[2] = "3rd Ward"
+	-- parts[3] = "Mist (Medium)"
 
-	  -- Plot
-	  fcPlot = tonumber(parts[1]:gsub("Plot",""):match("%d+"))
+	-- Plot
+	fcPlot = tonumber(parts[1]:gsub("Plot",""):match("%d+"))
 
-	  -- Ward (strip "Ward" and ordinals)
-	  local wardStr = parts[2]:gsub("Ward","")
-	  wardStr = wardStr:gsub("st",""):gsub("nd",""):gsub("rd",""):gsub("th","")
-	  fcWard = tonumber(wardStr:match("%d+"))
+	-- Ward (strip "Ward" and ordinals)
+	local wardStr = parts[2]:gsub("Ward","")
+	wardStr = wardStr:gsub("st",""):gsub("nd",""):gsub("rd",""):gsub("th","")
+	fcWard = tonumber(wardStr:match("%d+"))
 
-	  -- District + Size
+	if parts[3] then
 	  local district, size = parts[3]:match("^(.-)%s*%((.+)%)$")
-	  fcDistrict = trim(district or parts[3])
+	  fcDistrict = trim(district or parts[3] or "")
 	  fcSize = trim(size or "")
+	else
+	  fcDistrict = ""
+	  fcSize = ""
+	end
 
 	  -- Debug
 	  yield(string.format("/echo Plot:%s Ward:%s District:%s Size:%s",
