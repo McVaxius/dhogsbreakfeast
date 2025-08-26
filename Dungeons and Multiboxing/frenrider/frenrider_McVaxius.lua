@@ -532,14 +532,15 @@ function returnJobbu()
 			return i
 		end
 	end
+	return 1
 end
 
 function returnCuratedDist()
-	return job_configs[returnJobbu()][2]
+	return job_configs[returnJobbu()][2] or 2.6
 end
 
 function returnCuratedFollow()
-	return job_configs[returnJobbu()][3]
+	return job_configs[returnJobbu()][3] or 1
 end
 
 function returnCuratedPosition()
@@ -551,14 +552,14 @@ function returnCuratedPosition()
 	if whichP == 0 then beturn =  "front" end
 	if whichP == 1 then beturn =  "rear" end
 	if whichP == 2 then beturn =  "any" end
-	return beturn
+	return beturn or "front"
 end
 
 yield("/bmrai positional "..returnCuratedPosition())
 yield("/echo Turning Positional "..returnCuratedPosition().." on")
 
 function returnCuratedJob() --not used yet.
-	return job_configs[returnJobbu()][5]
+	return job_configs[returnJobbu()][5] or "Paladin"
 end
 
 if follow_in_combat == 42 then
