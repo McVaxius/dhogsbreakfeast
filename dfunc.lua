@@ -536,6 +536,12 @@ end
 
 
 function return_fc_entrance()
+	--no longer will man be given wings of horrible hackjob coding but he will walk, if he has a lifestream path configured.
+	--also just press forwards for a tiny bit just in case
+	yield("/hold W")
+	yield("/wait 1")
+	yield("/release W")
+	--[[
 	--saw a weirdness where vnav never finished.. no errors and error traps. need more analysis. wasn't life stream the char isnt registered in it
 	yield("/echo attempting to enter nearby entrance to house")
 	yield("/hold W")
@@ -563,6 +569,7 @@ function return_fc_entrance()
 	end
 	yield("/target Entrance")
 	yield("/wait 1")
+	--]]
 end
 
 function open_house_door()
