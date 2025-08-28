@@ -19,7 +19,7 @@ while hehe == "heehee" do
 		--debug
 		--yield("/echo GetPlayerRawXPos() -> "..GetPlayerRawXPos())
 		--yield("/echo hehex -> "..hehex)
-		if GetPlayerRawXPos() == hehex and GetPlayerRawYPos() == hehey and GetPlayerRawZPos() == hehez then
+		if math.abs(GetPlayerRawXPos() - hehex) < 0.5 and math.abs(GetPlayerRawYPos() - hehey) < 0.5 and math.abs(GetPlayerRawZPos() - hehez) < 0.5 then
 			yield("/qst stop")
 			yield("/wait 3")
 			yield("/qst start")
