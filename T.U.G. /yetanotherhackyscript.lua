@@ -41,12 +41,12 @@ while hehe == "heehee" do
 			end
 		end
 		
+		hehex = GetPlayerRawXPos()
+		hehey = GetPlayerRawYPos()
+		hehez = GetPlayerRawZPos()
     end
 	if Player.Job.Level > 18 then --make sure we not near training dummy stuff near start of msq
 		yield("/send KEY_1")
 	end
-	hehex = GetPlayerRawXPos()
-	hehey = GetPlayerRawYPos()
-	heehz = GetPlayerRawZPos()
     yield("/wait 10")
 end
