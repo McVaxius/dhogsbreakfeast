@@ -23,13 +23,22 @@ while hehe == "heehee" do
 		--yield("/echo math.abs(GetPlayerRawXPos() - hehex) -> "..math.abs(GetPlayerRawXPos() - hehex))
 		--yield("/echo math.abs(GetPlayerRawYPos() - hehey) -> "..math.abs(GetPlayerRawYPos() - hehey))
 		--yield("/echo math.abs(GetPlayerRawZPos() - hehez) -> "..math.abs(GetPlayerRawZPos() - hehez))
+		--[[
 		if math.abs(GetPlayerRawXPos() - hehex) < 0.5 and math.abs(GetPlayerRawYPos() - hehey) < 0.5 and math.abs(GetPlayerRawZPos() - hehez) < 0.5 then
-			togglecounter = togglecounter + 1
+			--togglecounter = togglecounter + 1
 			yield("/echo restarting QST")
+			yield("/interact")
+			yield("/send NUMPAD0")
 			yield("/qst stop")
 			yield("/wait 3")
+			yield("/interact")
+			yield("/send NUMPAD0")
 			yield("/qst start")
 			yield("/wait 2")
+			yield("/interact")
+			yield("/send NUMPAD0")
+			yield("/wait 10")
+			yield("/send ESCAPE")
 			if togglecounter > 5 then
 				yield("/echo it took too long, we are going to try to reset questionable")
 				togglecounter = 0
@@ -38,6 +47,7 @@ while hehe == "heehee" do
 				yield("/xlenableplugin Questionable")
 			end
 		end
+		--]]
 		if math.abs(GetPlayerRawXPos() - hehex) > 0.5 then
 			togglecounter = 0
 		end
