@@ -949,7 +949,7 @@ countfartula = 1 --redeclare dont worry its fine. we need this so we can do it l
 		--yield("/target \"<"..countfartula..">\"")
 		--yield("/echo \"<"..countfartula.."\>")
 		--yield("/echo nem nem nem -> "..countfartula)
-		yield("/wait 0.5")
+		yield("/wait 0.03")
 		--yield("/echo name -> "..GetTargetName())
 		gawk_gawk_3000("is it "..GetTargetName().."?")
 		if GetTargetName() == fren then
@@ -1076,7 +1076,7 @@ while weirdvar == 1 do
 				if Svc.ClientState.TerritoryType ~= 1044 then
 					yield("/ac dismount")
 				end
-				yield("/wait 0.5")
+				yield("/wait 0.03")
 				rhandling()
 			end
 
@@ -1118,14 +1118,14 @@ while weirdvar == 1 do
 					yield("/send KEY_2")
 					flandom = getRandomNumber(1,3)
 					if flandom == 1 then yield("/send E") end
-					yield("/wait 0.5")
+					yield("/wait 0.03")
 				end
 				if (Svc.Condition[26] == true and follow_in_combat == 1 and fake_outdoors_foray == 0) or Svc.Condition[26] == false then --in combat with forced follow, or no forced follow
 					if formation == false then
 						if bistance > hcling and bistance < maxbistance then
 							clingmove(fren) --movement func
 						end
-						yield("/wait 0.5")
+						yield("/wait 0.03")
 					end	
 				end
 				pandora_interact_toggler_count = pandora_interact_toggler_count + 1
@@ -1146,7 +1146,7 @@ while weirdvar == 1 do
 					local leaderX, leaderY, leaderZ = GetObjectRawXPos(fren), GetObjectRawYPos(fren), GetObjectRawZPos(fren)
 					local leaderRotation = GetObjectRotation(fren)
 					moveToFormationPosition(partycardinality, leaderX, leaderY, leaderZ, leaderRotation)
-					yield("/wait 0.5")
+					yield("/wait 0.03")
 				end
 				--movement without formation
 				if Svc.Condition[26] == true and formation == false then --in combat
@@ -1154,7 +1154,7 @@ while weirdvar == 1 do
 						if bistance > hcling and bistance < maxbistance then
 							clingmove(fren) --movement func
 						end
-						yield("/wait 0.5")
+						yield("/wait 0.03")
 					end	
 					if fake_outdoors_foray == 1 then --if they are elevated we need to get into LOS
 						if Entity.Target and Entity.Target.Name then 
@@ -1215,10 +1215,10 @@ while weirdvar == 1 do
 				--check if we changed areas and stop movement and clear target
 				we_are_in = Svc.ClientState.TerritoryType
 				if we_are_in ~= we_were_in then
-					yield("/wait 0.5")
+					yield("/wait 0.1")
 					yield("/visland stop")
 					yield("/vnavmesh stop")
-					yield("/wait 0.5")
+					yield("/wait 0.1")
 					yield("/visland stop")
 					yield("/vnavmesh stop")
 					ClearTarget()
@@ -1327,7 +1327,7 @@ while weirdvar == 1 do
 								clingmove(fren) --movement func
 								--gawk_gawk_3000("DEBUG line 467ish")
 							end
-							yield("/wait 0.5")
+							yield("/wait 0.03")
 						end	
 
 						--gawk_gawk_3000("fly fools .."..tostring(fly_you_fools))
@@ -1361,7 +1361,7 @@ while weirdvar == 1 do
 								yield("/rotation Cancel")
 							--end
 							gawk_gawk_3000("Attempting to Mount Friend")
-							yield("/wait 0.5")
+							yield("/wait 0.03")
 						end
 					end
 				end
