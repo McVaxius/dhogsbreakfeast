@@ -34,10 +34,18 @@ while hehe == "heehee" do
 				yield("/echo it took too long, we are going to try to reset questionable")
 				togglecounter = 0
 				yield("/xldisableplugin Questionable")
-				while HasPlugin("Questionable") do yield("/wait 0.5") end
-				yield("/wait 0.5")
-				yield("/xlenableleplugin Questionable")
-				while HasPlugin("Questionable") == false do yield("/wait 0.5") end	
+				--while HasPlugin("Questionable") == true do
+				--while tostring(IPC.Questionable.GetCurrentQuestId()) ~= "00007FFC194A4AB4" do
+					--yield("/wait 0.5")
+					--yield("/echo waiting on qst to be disabled")
+				--end
+				yield("/wait 10")
+				yield("/xlenableplugin Questionable")
+				--while HasPlugin("Questionable") == false do
+				--while tostring(IPC.Questionable.GetCurrentQuestId()) == "00007FFC194A4AB4" do
+				--	yield("/wait 0.5")
+				--	yield("/echo waiting on qst to be enabled")
+				--end	
 			end
 		end
 		
