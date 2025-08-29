@@ -698,8 +698,19 @@ FUTA_processors[hoo_arr_weeeeee][11][999423999] = GetGCRank() --get GC Rank
 --check for personal house address
 if FUTA_processors[hoo_arr_weeeeee][9][2] > 0 then --do we have a pre-specified personal house?
 	yield("/housing")
+	--if outside of house
+	--[[
 	yield("/wait 1")
-	yield("/callback HousingMenu true 6")
+	yield("/callback HousingMenu true 6") 
+	yield("/wait 1")
+	yield("/callback HousingSelectHouse true 0")
+	yield("/wait 1")
+	yield("/callback HousingSubmenu true 5")
+	yield("/wait 1")
+	--]]
+	--if inside house
+	yield("/wait 1")
+	yield("/callback HousingMenu true 0") 
 	yield("/wait 1")
 	yield("/callback HousingSelectHouse true 0")
 	yield("/wait 1")
