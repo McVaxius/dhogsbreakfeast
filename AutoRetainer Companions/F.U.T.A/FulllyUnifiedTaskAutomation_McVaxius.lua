@@ -703,28 +703,19 @@ if FUTA_processors[hoo_arr_weeeeee][9][2] > 0 then --do we have a pre-specified 
 	yield("/wait 0.3")
 	yield("/housing")
 	darget(GetCharacterName(false))
+	darget("Entrance")
 	darget("Voyage Control Panel")
-	--if outside of workshop
-    if Entity.Target.Name ~=  "Voyage Control Panel" then
-		yield("/wait 1")
-		--yield("/callback HousingMenu true 6") --outside of house entirely?!?!
-		yield("/callback HousingMenu true 4")
-		yield("/wait 1")
-		yield("/callback HousingSelectHouse true 0")
-		yield("/wait 1")
-		yield("/callback HousingSubmenu true 5")
-		yield("/wait 1")
-	end
-	--if inside workshop
-	if Entity.Target.Name == "Voyage Control Panel" then
-		yield("/wait 1")
-		yield("/callback HousingMenu true 0") 
-		yield("/wait 1")
-		yield("/callback HousingSelectHouse true 0")
-		yield("/wait 1")
-		yield("/callback HousingSubmenu true 5")
-		yield("/wait 1")
-	end
+	housingmenu = 0
+	if Entity.Target.Name == "Entrance" then housingmenu = 6 end --if not in a fc house	
+    if Entity.Target.Name ==  GetCharacterName(false) then housingmenu = 4 end--if outside of workshop but inside fc house
+	if Entity.Target.Name == "Voyage Control Panel" then housingmenu = 0 end--if inside workshop
+	yield("/wait 1")
+	yield("/callback HousingMenu true "..housingmenu)
+	yield("/wait 1")
+	yield("/callback HousingSelectHouse true 0")
+	yield("/wait 1")
+	yield("/callback HousingSubmenu true 5")
+	yield("/wait 1")
 	--double check this is actually a personal house by checking the owner and comparing it to self without @server
 	if Addons.GetAddon("HousingSignBoard"):GetNode(1, 2, 9, 13).Text ~= GetCharacterName(false) then
 		FUTA_processors[hoo_arr_weeeeee][11][999430999] = "FUCK" --we lost the house :~(  maybe we can rebuy it. check the older records.
