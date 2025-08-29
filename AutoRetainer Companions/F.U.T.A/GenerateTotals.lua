@@ -54,6 +54,8 @@ else
     yield("/echo Error: Serialized data is nil.")
 end
 
+--init the vars
+
 gil = 0
 fc = 0
 mgp = 0
@@ -63,6 +65,16 @@ mrk = 0
 hjl = 0
 gcr = 0
 fcr = 0
+fcs = ""
+fcl = ""
+fcSize = ""
+fcDistrict = ""
+fcWard = 0
+fcPlot = 0
+pfcSize = ""
+pfcDistrict = ""
+pfcWard = 0
+pfcPlot = 0
 
 local file = io.open(filepath .. "FUTA_Daily_"..version..".txt", "w")
 file:write("nem\tgil\tfc\tmgp\tvc\tcf\tmrk\thjl\tgcr\tfcr\tfcs\tfcl\r")
@@ -121,5 +133,6 @@ for i = 1, #FUTA_processors do
 end
 	file:close()
 
-yield("/echo ----- formatted for copy paste ----")
-yield("/echo "..gil.."\t"..fc.."\t"..mgp.."\t"..vc.."\t"..cf.."\t"..mrk.."\t"..hjl.."\t"..gcr.."\t"..fcr.."\t"..fcs.."\t"..fcl.."\t"..fcSize.."\t"..fcDistrict.."\t"..fcWard.."\t"..fcPlot.."\t"..pfcSize.."\t"..pfcDistrict.."\t"..pfcWard.."\t"..pfcPlot.."\r")
+--pointless output. for debug only.
+--yield("/echo ----- formatted for copy paste ----")
+--yield("/echo "..gil.."\t"..fc.."\t"..mgp.."\t"..vc.."\t"..cf.."\t"..mrk.."\t"..hjl.."\t"..gcr.."\t"..fcr.."\t"..fcs.."\t"..fcl.."\t"..fcSize.."\t"..fcDistrict.."\t"..fcWard.."\t"..fcPlot.."\t"..pfcSize.."\t"..pfcDistrict.."\t"..pfcWard.."\t"..pfcPlot.."\r")
