@@ -695,6 +695,81 @@ FUTA_processors[hoo_arr_weeeeee][11][10373] = GetItemCount(10373) --10373 = Magi
 FUTA_processors[hoo_arr_weeeeee][11][999420999] = highest_jb() --get highest job level
 FUTA_processors[hoo_arr_weeeeee][11][999423999] = GetGCRank() --get GC Rank
 
+--check for personal house address
+if FUTA_processors[hoo_arr_weeeeee][9][2] > 0 then --do we have a pre-specified personal house?
+	yield("/housing")
+	yield("/wait 1")
+	yield("/callback HousingMenu true 6")
+	yield("/wait 1")
+	yield("/callback HousingSelectHouse true 0")
+	yield("/wait 1")
+	yield("/callback HousingSubmenu true 5")
+	yield("/wait 1")
+	--double check this is actually a personal house by checking the owner and comparing it to self without @server
+	if Addons.GetAddon("HousingSignBoard"):GetNode(1, 2, 9, 13).Text ~= GetCharacterName(false) then
+		FUTA_processors[hoo_arr_weeeeee][11][999430999] = "FUCK" --we lost the house :~(  maybe we can rebuy it. check the older records.
+	end
+	if Addons.GetAddon("HousingSignBoard"):GetNode(1, 2, 9, 13).Text == GetCharacterName(false) then
+		fcSize = ""
+		fcDistrict = ""
+		fcWard = 0
+		fcPlot = 0
+		    fcSizeL = Addons.GetAddon("HousingSignBoard"):GetNode(1, 2, 17, 21).Text
+		yield("/echo Found a house at -> "..fcSizeL)
+		-- fcSize already holds: "Plot 55, 6th Ward, Shirogane (Small)"
+		local fcLine = fcSizeL or ""   -- "Plot 6, 3rd Ward, Mist (Medium)"
+
+		if fcLine == "" then
+		  yield("/echo [parse] no Free Company address text")
+		else
+		  local function trim(s) return (s:gsub("^%s+",""):gsub("%s+$","")) end
+
+		-- Split by commas
+		local parts = {}
+		for part in fcLine:gmatch("[^,]+") do
+		table.insert(parts, trim(part))
+		end
+
+		-- parts[1] = "Plot 6"
+		-- parts[2] = "3rd Ward"
+		-- parts[3] = "Mist (Medium)"
+
+		-- Plot
+		fcPlot = tonumber(parts[1]:gsub("Plot",""):match("%d+"))
+
+		-- Ward (strip "Ward" and ordinals)
+		local wardStr = parts[2]:gsub("Ward","")
+		wardStr = wardStr:gsub("st",""):gsub("nd",""):gsub("rd",""):gsub("th","")
+		fcWard = tonumber(wardStr:match("%d+"))
+
+		if parts[3] then
+		  local district, size = parts[3]:match("^(.-)%s*%((.+)%)$")
+		  fcDistrict = trim(district or parts[3] or "")
+		  fcSize = trim(size or "")
+		else
+		  fcDistrict = ""
+		  fcSize = ""
+		end
+
+		  -- Debug
+		  yield(string.format("/echo Plot:%s Ward:%s District:%s Size:%s",
+			tostring(fcPlot), tostring(fcWard), fcDistrict, fcSize))
+		end
+
+		-- Debug echo
+		yield("/echo PPlot: "..fcPlot)
+		yield("/echo PWard: "..fcWard)
+		yield("/echo PDistrict: "..fcDistrict)
+		yield("/echo PSize: "..fcSize)
+		
+		if string.len(fcSize) > 0 then FUTA_processors[hoo_arr_weeeeee][11][999430999] = fcSize end
+		if string.len(fcDistrict) > 0 then FUTA_processors[hoo_arr_weeeeee][11][999431999] = fcDistrict end
+		if fcWard > 0 then FUTA_processors[hoo_arr_weeeeee][11][999432999] = fcWard end
+		if fcPlot > 0 then FUTA_processors[hoo_arr_weeeeee][11][999433999] = fcPlot end
+	end
+end
+
+
 -- Stop beginning to do stuff
 yield("/echo Debug: Finished all processing")
 tablebunga(FUTA_config_file, "FUTA_processors", folderPath)

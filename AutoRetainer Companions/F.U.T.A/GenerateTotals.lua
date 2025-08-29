@@ -83,6 +83,10 @@ for i = 1, #FUTA_processors do
 	fcDistrict = ""
 	fcWard = 0
 	fcPlot = 0
+	pfcSize = ""
+	pfcDistrict = ""
+	pfcWard = 0
+	pfcPlot = 0
 
     if FUTA_processors[i][11][2] ~= nil then gil = FUTA_processors[i][11][2] end
     if FUTA_processors[i][11][3] ~= nil then
@@ -103,10 +107,14 @@ for i = 1, #FUTA_processors do
     if FUTA_processors[i][11][999427999] ~= nil then fcDistrict = FUTA_processors[i][11][999427999] end
     if FUTA_processors[i][11][999428999] ~= nil then fcWard = FUTA_processors[i][11][999428999] end
     if FUTA_processors[i][11][999429999] ~= nil then fcPlot = FUTA_processors[i][11][999429999] end
+    if FUTA_processors[i][11][999430999] ~= nil then pfcSize = FUTA_processors[i][11][999430999] end
+    if FUTA_processors[i][11][999431999] ~= nil then pfcDistrict = FUTA_processors[i][11][999431999] end
+    if FUTA_processors[i][11][999432999] ~= nil then pfcWard = FUTA_processors[i][11][999432999] end
+    if FUTA_processors[i][11][999433999] ~= nil then pfcPlot = FUTA_processors[i][11][999433999] end
 
 	if file then
 		nem = tostring(FUTA_processors[i][1][1])
-		file:write(nem.."\t"..gil.."\t"..fc.."\t"..mgp.."\t"..vc.."\t"..cf.."\t"..mrk.."\t"..hjl.."\t"..gcr.."\t"..fcr.."\t"..fcs.."\t"..fcl.."\t"..fcSize.."\t"..fcDistrict.."\t"..fcWard.."\t"..fcPlot.."\r")
+		file:write(nem.."\t"..gil.."\t"..fc.."\t"..mgp.."\t"..vc.."\t"..cf.."\t"..mrk.."\t"..hjl.."\t"..gcr.."\t"..fcr.."\t"..fcs.."\t"..fcl.."\t"..fcSize.."\t"..fcDistrict.."\t"..fcWard.."\t"..fcPlot.."\t"..pfcSize.."\t"..pfcDistrict.."\t"..pfcWard.."\t"..pfcPlot.."\r")
 	else
 		yield("/echo Error: Unable to open file for writing")
 	end
@@ -114,5 +122,4 @@ end
 	file:close()
 
 yield("/echo ----- formatted for copy paste ----")
-yield("/echo "..gil.."\t"..fc.."\t"..mgp.."\t"..vc.."\t"..cf.."\t"..mrk.."\t"..hjl.."\t"..gcr.."\t"..fcr.."\t"..fcs.."\t"..fcl.."\t"..fcSize.."\t"..fcDistrict.."\t"..fcWard.."\t"..fcPlot.."\r")
-
+yield("/echo "..gil.."\t"..fc.."\t"..mgp.."\t"..vc.."\t"..cf.."\t"..mrk.."\t"..hjl.."\t"..gcr.."\t"..fcr.."\t"..fcs.."\t"..fcl.."\t"..fcSize.."\t"..fcDistrict.."\t"..fcWard.."\t"..fcPlot.."\t"..pfcSize.."\t"..pfcDistrict.."\t"..pfcWard.."\t"..pfcPlot.."\r")
