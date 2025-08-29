@@ -365,7 +365,7 @@ yield("/echo Debug: Lowest ID determined -> "..lowestID.." Corresponding to -> "
 -- If the lowest guy is max level, we aren't fishing
 if FUTA_processors[lowestID][2][2] > (maxlevel - 1) and force_fishing == 0 or FUTA_processors[lowestID][2][2] == -1 then
     wheeequeheeheheheheheehhhee = 0
-    yield("/echo Lowest char is max level or no chars have fishing so we aren't fishing")
+    yield("/echo Lowest char is max level or no chars have fishing enabled -> so we aren't fishing")
 end
 
 
