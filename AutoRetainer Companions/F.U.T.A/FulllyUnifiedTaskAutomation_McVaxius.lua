@@ -697,6 +697,10 @@ FUTA_processors[hoo_arr_weeeeee][11][999423999] = GetGCRank() --get GC Rank
 
 --check for personal house address
 if FUTA_processors[hoo_arr_weeeeee][9][2] > 0 then --do we have a pre-specified personal house?
+	yield("/send ESCAPE")
+	yield("/wait 0.3")
+	yield("/send ESCAPE")
+	yield("/wait 0.3")
 	yield("/housing")
 	darget(GetCharacterName(false))
 	darget("Voyage Control Panel")
