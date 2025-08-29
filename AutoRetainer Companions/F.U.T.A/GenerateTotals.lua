@@ -77,7 +77,7 @@ pfcWard = 0
 pfcPlot = 0
 
 local file = io.open(filepath .. "FUTA_Daily_"..version..".txt", "w")
-file:write("nem\tgil\tfc\tmgp\tvc\tcf\tmrk\thjl\tgcr\tfcr\tfcs\tfcl\r")
+file:write("nem\tgil\tfc\tmgp\tvc\tcf\tmrk\thjl\tgcr\tfcr\tfcs\tfcn\tfcsize\tfcdistrict\tfcward\tfcplot\tpfcsize\tpfcdistrict\tpfcward\tpfcplot\r")
 
 for i = 1, #FUTA_processors do
 	gil = 0
