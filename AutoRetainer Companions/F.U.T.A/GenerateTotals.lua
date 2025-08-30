@@ -75,9 +75,10 @@ pfcSize = ""
 pfcDistrict = ""
 pfcWard = 0
 pfcPlot = 0
+leveA = 0
 
 local file = io.open(filepath .. "FUTA_Daily_"..version..".txt", "w")
-file:write("nem\tgil\tfc\tmgp\tvc\tcf\tmrk\thjl\tgcr\tfcr\tfcs\tfcn\tfcsize\tfcdistrict\tfcward\tfcplot\tpfcsize\tpfcdistrict\tpfcward\tpfcplot\r")
+file:write("nem\tgil\tfc\tmgp\tvc\tcf\tmrk\thjl\tgcr\tfcr\tfcs\tfcn\tfcsize\tfcdistrict\tfcward\tfcplot\tpfcsize\tpfcdistrict\tpfcward\tpfcplot\tleveA\r")
 
 for i = 1, #FUTA_processors do
 	gil = 0
@@ -99,6 +100,7 @@ for i = 1, #FUTA_processors do
 	pfcDistrict = ""
 	pfcWard = 0
 	pfcPlot = 0
+	leveA = 0
 
     if FUTA_processors[i][11][2] ~= nil then gil = FUTA_processors[i][11][2] end
     if FUTA_processors[i][11][3] ~= nil then
@@ -123,10 +125,11 @@ for i = 1, #FUTA_processors do
     if FUTA_processors[i][11][999431999] ~= nil then pfcDistrict = FUTA_processors[i][11][999431999] end
     if FUTA_processors[i][11][999432999] ~= nil then pfcWard = FUTA_processors[i][11][999432999] end
     if FUTA_processors[i][11][999433999] ~= nil then pfcPlot = FUTA_processors[i][11][999433999] end
+    if FUTA_processors[i][11][999434999] ~= nil then leveA = FUTA_processors[i][11][999434999] end
 
 	if file then
 		nem = tostring(FUTA_processors[i][1][1])
-		file:write(nem.."\t"..gil.."\t"..fc.."\t"..mgp.."\t"..vc.."\t"..cf.."\t"..mrk.."\t"..hjl.."\t"..gcr.."\t"..fcr.."\t"..fcs.."\t"..fcl.."\t"..fcSize.."\t"..fcDistrict.."\t"..fcWard.."\t"..fcPlot.."\t"..pfcSize.."\t"..pfcDistrict.."\t"..pfcWard.."\t"..pfcPlot.."\r")
+		file:write(nem.."\t"..gil.."\t"..fc.."\t"..mgp.."\t"..vc.."\t"..cf.."\t"..mrk.."\t"..hjl.."\t"..gcr.."\t"..fcr.."\t"..fcs.."\t"..fcl.."\t"..fcSize.."\t"..fcDistrict.."\t"..fcWard.."\t"..fcPlot.."\t"..pfcSize.."\t"..pfcDistrict.."\t"..pfcWard.."\t"..pfcPlot.."\t"..leveA.."\r")
 	else
 		yield("/echo Error: Unable to open file for writing")
 	end

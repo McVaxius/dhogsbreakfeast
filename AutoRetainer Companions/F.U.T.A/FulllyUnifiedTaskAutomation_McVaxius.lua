@@ -696,7 +696,7 @@ FUTA_processors[hoo_arr_weeeeee][11][999420999] = highest_jb() --get highest job
 FUTA_processors[hoo_arr_weeeeee][11][999423999] = GetGCRank() --get GC Rank
 
 --check for personal house address
-if FUTA_processors[hoo_arr_weeeeee][9][2] > 0 then --do we have a pre-specified personal house?
+if FUTA_processors[hoo_arr_weeeeee][9][2] > 0 then --have we configured this character to check for a personal house every [hoo_arr_weeeeee][9][3] AR checks
 	yield("/send ESCAPE")
 	yield("/wait 0.3")
 	yield("/send ESCAPE")
@@ -725,7 +725,7 @@ if FUTA_processors[hoo_arr_weeeeee][9][2] > 0 then --do we have a pre-specified 
 		fcDistrict = ""
 		fcWard = 0
 		fcPlot = 0
-		    fcSizeL = Addons.GetAddon("HousingSignBoard"):GetNode(1, 2, 17, 21).Text
+		fcSizeL = Addons.GetAddon("HousingSignBoard"):GetNode(1, 2, 17, 21).Text
 		yield("/echo Found a house at -> "..fcSizeL)
 		-- fcSize already holds: "Plot 55, 6th Ward, Shirogane (Small)"
 		local fcLine = fcSizeL or ""   -- "Plot 6, 3rd Ward, Mist (Medium)"
@@ -780,6 +780,15 @@ if FUTA_processors[hoo_arr_weeeeee][9][2] > 0 then --do we have a pre-specified 
 	end
 end
 
+--well that was exciting. how about we get the leve allowances next?
+yield("/send ESCAPE")
+yield("/wait 0.3")
+yield("/send ESCAPE")
+yield("/wait 0.3")
+yield("/journal")
+yield("/wait 1")
+leveA = Addons.GetAddon("Journal"):GetNode(1, 33, 35, 2).Text
+FUTA_processors[hoo_arr_weeeeee][11][99934999] = tonumber(leveA)
 
 -- Stop beginning to do stuff
 yield("/echo Debug: Finished all processing")
