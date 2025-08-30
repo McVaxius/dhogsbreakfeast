@@ -25,7 +25,7 @@ while hehe == "heehee" do
 		--yield("/echo math.abs(GetPlayerRawZPos() - hehez) -> "..math.abs(GetPlayerRawZPos() - hehez))
 		if math.abs(GetPlayerRawXPos() - hehex) < 0.5 and math.abs(GetPlayerRawYPos() - hehey) < 0.5 and math.abs(GetPlayerRawZPos() - hehez) < 0.5 then
 			togglecounter = togglecounter + 1
-			if togglecounter > 5 then
+			if togglecounter > 51111111111 then
 				yield("/echo restarting QST")
 				yield("/interact")
 				yield("/send NUMPAD0")
