@@ -125,7 +125,7 @@ for i = 1, #FUTA_processors do
     if FUTA_processors[i][11][999431999] ~= nil then pfcDistrict = FUTA_processors[i][11][999431999] end
     if FUTA_processors[i][11][999432999] ~= nil then pfcWard = FUTA_processors[i][11][999432999] end
     if FUTA_processors[i][11][999433999] ~= nil then pfcPlot = FUTA_processors[i][11][999433999] end
-    if FUTA_processors[i][11][999434999] ~= nil then leveA = FUTA_processors[i][11][999434999] end
+    if FUTA_processors[i][11][99934999] ~= nil then leveA = FUTA_processors[i][11][99934999] end
 
 	if file then
 		nem = tostring(FUTA_processors[i][1][1])
