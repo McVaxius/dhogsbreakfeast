@@ -14,7 +14,8 @@ while hehe == "heehee" do
         yield("/rotation auto")
     end
     if Svc.Condition[34] ~= nil and Svc.Condition[34] == false then
-        yield("/bmrai setpresetname FRENRIDER")
+        --yield("/bmrai setpresetname FRENRIDER")
+        yield("/bmrai setpresetname Questionable - Quest Battles")
         yield("/rotation cancel")
 		
 		--debug
@@ -25,28 +26,14 @@ while hehe == "heehee" do
 		--yield("/echo math.abs(GetPlayerRawZPos() - hehez) -> "..math.abs(GetPlayerRawZPos() - hehez))
 		if math.abs(GetPlayerRawXPos() - hehex) < 0.5 and math.abs(GetPlayerRawYPos() - hehey) < 0.5 and math.abs(GetPlayerRawZPos() - hehez) < 0.5 then
 			togglecounter = togglecounter + 1
-			if togglecounter > 51111111111 then
+			if togglecounter > 5 then
 				yield("/echo restarting QST")
-				yield("/interact")
-				yield("/send NUMPAD0")
-				yield("/qst stop")
-				yield("/wait 3")
-				yield("/interact")
-				yield("/send NUMPAD0")
 				yield("/qst start")
-				yield("/wait 2")
-				yield("/interact")
-				yield("/send NUMPAD0")
-				yield("/wait 10")
-				yield("/send ESCAPE")
+				yield("/qst reload")
 				togglecounter = 0
 			end
-			if togglecounter > 54563456 then
-				yield("/echo it took too long, we are going to try to reset questionable")
-				togglecounter = 0
-				yield("/xldisableplugin Questionable")
-				yield("/wait 10")
-				yield("/xlenableplugin Questionable")
+			if togglecounter > 2 then
+				yield("/send KEY_1")
 			end
 		end
 		if math.abs(GetPlayerRawXPos() - hehex) > 0.5 then
@@ -57,8 +44,8 @@ while hehe == "heehee" do
 		hehey = GetPlayerRawYPos()
 		hehez = GetPlayerRawZPos()
     end
-	if Player.Job.Level > 18 then --make sure we not near training dummy stuff near start of msq
-		yield("/send KEY_1")
-	end
+--	if Player.Job.Level > 18 then --make sure we not near training dummy stuff near start of msq
+--		yield("/send KEY_1")
+--	end
     yield("/wait 10")
 end
