@@ -34,6 +34,13 @@ process_fc_buffs = 1	--0=no,1=yes try to get seal buff 2 (Seal Sweetener II) and
 ----Coffer Table----
 --------------------
 koffers = {
+--seasonal stuff that might still be taking up space in inventories
+{47963,"2 headed criminal minion"},
+{48004,"King Elmer Card"},
+{41484,"Zidane minion"},
+{6213,"Windup airshit"},
+
+--actual coffers
 {38467,"Gladiator's Plundered Arms (Lv. 15)"},
 {38469,"Gladiator's Doctore Arms (Lv. 20)"},
 {38470,"Gladiator's Frostbite Arms (Lv. 24)"},
