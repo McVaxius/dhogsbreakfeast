@@ -7,6 +7,10 @@ hehey = GetPlayerRawYPos()
 hehez = GetPlayerRawZPos()
 togglecounter = 0
 arr_list = { --list of zoneIDs for arr dungeons < level 47ish
+	--semi hard solo duties
+	306,--Level 27 - Big Trouble in Little Ala Mhigo
+
+	--dungeons
 	1036,--sastasha
 	1037,--tam tara deep croft
 	1038,--copperbell
@@ -14,6 +18,8 @@ arr_list = { --list of zoneIDs for arr dungeons < level 47ish
 	1040,--haukke manor
 	1041,--brayflox
 	1042,--stone vigil
+	
+	--trials
 	1045,--ifrit
 	1046--titan
 }
@@ -34,10 +40,17 @@ while hehe == "heehee" do
 			yield("/bmrai setpresetname Questionable - Quest Battles")
 			yield("/rotation cancel")
 		end
+		if zonetest == 301 then --Level 38 - In the Eyes of Gods and Men -- need to target the rosary
+			darget("Draconian Rosary")
+			zdarget = "Draconian Rosary"
+			if _distance(EntityPlayerPositionX(), EntityPlayerPositionY(), EntityPlayerPositionZ(), GetObjectRawXPos(zdarget),GetObjectRawYPos(zdarget),GetObjectRawZPos(zdarget)) > 5 then
+				yield("/vnav moveto "..GetObjectRawXPos(zdarget).." "..GetObjectRawYPos(zdarget).." "..GetObjectRawZPos(zdarget))
+			end
+		end
     end
     if Svc.Condition[34] ~= nil and Svc.Condition[34] == false then
-        --yield("/bmrai setpresetname FRENRIDER")
-        yield("/bmrai setpresetname Questionable - Quest Battles")
+        yield("/bmrai setpresetname FRENRIDER")
+        --yield("/bmrai setpresetname Questionable - Quest Battles")
         yield("/rotation cancel")
 		
 		--debug
