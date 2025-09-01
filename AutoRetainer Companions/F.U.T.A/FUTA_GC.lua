@@ -34,7 +34,7 @@ process_fc_buffs = 1	--0=no,1=yes try to get seal buff 2 (Seal Sweetener II) and
 ----Coffer Table----
 --------------------
 koffers = {
---seasonal stuff that might still be taking up space in inventories
+--seasonal/quest stuff that might still be taking up space in inventories
 {47963,"2 headed criminal minion"},
 {48004,"King Elmer Card"},
 {41484,"Zidane minion"},
@@ -52,6 +52,7 @@ koffers = {
 {38473,"Paladin's Flametongue Arms (Lv. 35)"},
 {38472,"Paladin's Longstop Arms (Lv. 32)"},
 {38477,"Paladin's Templar Arms (Lv. 47)"},
+
 {36137,"Crag Weapon Coffer (IL 80)"},
 {36616,"Heavens Weapon Coffer (IL 205)"},
 {36143,"Hive Weapon Coffer (IL 190)"},
