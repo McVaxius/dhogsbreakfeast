@@ -6,12 +6,34 @@ hehex = GetPlayerRawXPos()
 hehey = GetPlayerRawYPos()
 hehez = GetPlayerRawZPos()
 togglecounter = 0
+arr_list = { --list of zoneIDs for arr dungeons < level 47ish
+	1036,--sastasha
+	1037,--tam tara deep croft
+	1038,--copperbell
+	1039,--totorak
+	1040,--haukke manor
+	1041,--brayflox
+	1042,--stone vigil
+	1045,--ifrit
+	1046--titan
+}
 
 while hehe == "heehee" do
     yield("/bmrai on")
     if Svc.Condition[34] ~= nil and Svc.Condition[34] == true then
-        yield("/bmrai setpresetname Autoduty Passive")
-        yield("/rotation auto")
+		arr_l_47 = 0
+		zonetest = Svc.ClientState.TerritoryType
+		for i=1,#arr_list do
+			if zonetest == arr_list[i] then arr_l_47 = 1 end
+		end
+		if arr_l_47 == 1 then
+			yield("/bmrai setpresetname Autoduty Passive")
+			yield("/rotation auto")
+		end
+		if arr_l_47 == 0 then
+			yield("/bmrai setpresetname Questionable - Quest Battles")
+			yield("/rotation cancel")
+		end
     end
     if Svc.Condition[34] ~= nil and Svc.Condition[34] == false then
         --yield("/bmrai setpresetname FRENRIDER")
