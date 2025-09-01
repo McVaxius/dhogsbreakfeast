@@ -1,6 +1,8 @@
 --bad questionable helper
 require("dfunc")
 hehe = "heehee"
+yield("/echo ensuring Pandora is off")
+yield("/xldisableplugin Pandora") --this will break QST in any case so keep it OFF
 
 hehex = GetPlayerRawXPos()
 hehey = GetPlayerRawYPos()
@@ -9,6 +11,7 @@ togglecounter = 0
 arr_list = { --list of zoneIDs for arr dungeons < level 47ish
 	--semi hard solo duties
 	306,--Level 27 - Big Trouble in Little Ala Mhigo
+	302,--Level 40 - The Heretic among Us
 
 	--dungeons
 	1036,--sastasha
@@ -49,27 +52,32 @@ while hehe == "heehee" do
 		end
     end
     if Svc.Condition[34] ~= nil and Svc.Condition[34] == false then
-        yield("/bmrai setpresetname FRENRIDER")
-        --yield("/bmrai setpresetname Questionable - Quest Battles")
-        yield("/rotation cancel")
-		
 		--debug
 		--yield("/echo GetPlayerRawXPos() -> "..GetPlayerRawXPos())
 		--yield("/echo              hehex -> "..hehex)
 		--yield("/echo math.abs(GetPlayerRawXPos() - hehex) -> "..math.abs(GetPlayerRawXPos() - hehex))
 		--yield("/echo math.abs(GetPlayerRawYPos() - hehey) -> "..math.abs(GetPlayerRawYPos() - hehey))
 		--yield("/echo math.abs(GetPlayerRawZPos() - hehez) -> "..math.abs(GetPlayerRawZPos() - hehez))
+		togglecounter = togglecounter + 1
 		if math.abs(GetPlayerRawXPos() - hehex) < 0.5 and math.abs(GetPlayerRawYPos() - hehey) < 0.5 and math.abs(GetPlayerRawZPos() - hehez) < 0.5 then
-			togglecounter = togglecounter + 1
-			if togglecounter > 5 then
+			if togglecounter > 50 then
 				yield("/echo restarting QST")
 				yield("/qst start")
 				yield("/qst reload")
 				togglecounter = 0
 			end
-			if togglecounter > 2 then
+			
+			if togglecounter > 0 and Svc.Condition[26] == false then
 				yield("/send KEY_1")
+				--yield("/mount")
 			end
+			
+			if togglecounter > 60 then			
+				yield("/bmrai setpresetname FRENRIDER")
+				yield("/rotation cancel")
+				togglecounter = 0
+			end
+
 		end
 		if math.abs(GetPlayerRawXPos() - hehex) > 0.5 then
 			togglecounter = 0
@@ -82,5 +90,5 @@ while hehe == "heehee" do
 --	if Player.Job.Level > 18 then --make sure we not near training dummy stuff near start of msq
 --		yield("/send KEY_1")
 --	end
-    yield("/wait 10")
+    yield("/wait 0.5")
 end
