@@ -33,7 +33,7 @@ Click new - choose LUA<br>
 Enter in <br>
 ```https://github.com/McVaxius/dhogsbreakfeast/blob/main/dfunc.lua``` <br>
 into the GitHub url, then click create<br>
-<img width="393" height="241" alt="image" src="https://github.com/user-attachments/assets/a695a385-6baa-4bf0-ab35-5a078acac4f4" />
+<img width="386" height="236" alt="image" src="https://github.com/user-attachments/assets/c6a11af0-1b30-4ac3-b835-6b05c8711a91" />
 
 
 ## Tip One - Update
