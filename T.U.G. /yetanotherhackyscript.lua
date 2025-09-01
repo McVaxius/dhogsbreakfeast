@@ -12,6 +12,7 @@ arr_list = { --list of zoneIDs for arr dungeons < level 47ish
 	--semi hard solo duties
 	306,--Level 27 - Big Trouble in Little Ala Mhigo
 	302,--Level 40 - The Heretic among Us
+	304,--Level 44 - Notorious Biggs
 
 	--dungeons
 	1036,--sastasha
@@ -72,7 +73,7 @@ while hehe == "heehee" do
 				--yield("/mount")
 			end
 			
-			if togglecounter > 60 then			
+			if togglecounter > 60 or Svc.Condition[26] == true then			
 				yield("/bmrai setpresetname FRENRIDER")
 				yield("/rotation cancel")
 				togglecounter = 0
