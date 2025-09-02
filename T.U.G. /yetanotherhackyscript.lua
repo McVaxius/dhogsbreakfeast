@@ -61,19 +61,23 @@ while hehe == "heehee" do
 		--yield("/echo math.abs(GetPlayerRawZPos() - hehez) -> "..math.abs(GetPlayerRawZPos() - hehez))
 		togglecounter = togglecounter + 1
 		if math.abs(GetPlayerRawXPos() - hehex) < 0.5 and math.abs(GetPlayerRawYPos() - hehey) < 0.5 and math.abs(GetPlayerRawZPos() - hehez) < 0.5 then
-			if togglecounter > 50 then
+			if togglecounter > 15 then
 				yield("/echo restarting QST")
 				yield("/qst start")
 				yield("/qst reload")
 				togglecounter = 0
 			end
 			
-			if togglecounter > 0 and Svc.Condition[26] == false then
+			if Svc.Condition[26] == false then
+				yield("/send KEY_1")
+			end
+--			if togglecounter > 60 and Svc.Condition[26] == false then
+			if togglecounter > 20 then
 				yield("/send KEY_1")
 				--yield("/mount")
 			end
 			
-			if togglecounter > 60 or Svc.Condition[26] == true then			
+			if togglecounter > 20 or Svc.Condition[26] == true then			
 				yield("/bmrai setpresetname FRENRIDER")
 				yield("/rotation cancel")
 				togglecounter = 0
