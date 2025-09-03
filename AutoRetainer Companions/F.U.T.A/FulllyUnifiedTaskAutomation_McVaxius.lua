@@ -610,11 +610,15 @@ local current = FUTA_processors[hoo_arr_weeeeee][11][3]
 if current and current > -1 or current == nil then
 	yield("/freecompanycmd") -- for atools and for "DATA"
 	yield("/wait 3")
-	fcpoynts = Addons.GetAddon("FreeCompany"):GetNode(1, 4, 16, 17)
-	if fcpoynts and fcpoynts.Text then
-	  clean_fcpoynts = fcpoynts.Text:gsub(",", "")
+	fcpoynts = Addons.GetAddon("FreeCompany"):GetNode(1, 4, 16, 17).Text or 0
+	--if fcpoynts and fcpoynts.Text then
+	--yield("/echo string.len(tostring(fcpoynts)) -> "..string.len(tostring(fcpoynts)))
+	if string.len(tostring(fcpoynts)) > 1 then
+	  --clean_fcpoynts = fcpoynts.Text:gsub(",", "")
+	  clean_fcpoynts = fcpoynts:gsub(",", "")
 	  numeric_fcpoynts = tonumber(clean_fcpoynts) or 0
 	  FUTA_processors[hoo_arr_weeeeee][11][3] = numeric_fcpoynts
+	  yield("/echo FC points -> "..numeric_fcpoynts)
 	else
 	  yield("/echo [error] could not get FreeCompany points")
 	end

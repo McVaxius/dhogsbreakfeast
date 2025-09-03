@@ -495,7 +495,7 @@ function return_to_lair()
 	yield("/waitaddon NamePlate<maxwait 600>")
 	yield("/wait 5")
 	return_fc_entrance() --does the same thing just enters target
-	open_house_door() --opens the door to house
+	--open_house_door() --opens the door to house
 	--wait a bit then go back to fc house
 end
 

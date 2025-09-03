@@ -24,25 +24,30 @@ arr_list = { --list of zoneIDs for arr dungeons < level 47ish
 	1042,--stone vigil
 	
 	--trials
+	1047,--garuda
 	1045,--ifrit
 	1046--titan
 }
+togglecounter = 0
 
 while hehe == "heehee" do
     yield("/bmrai on")
     if Svc.Condition[34] ~= nil and Svc.Condition[34] == true then
+		togglecounter = togglecounter + 1
 		arr_l_47 = 0
 		zonetest = Svc.ClientState.TerritoryType
 		for i=1,#arr_list do
 			if zonetest == arr_list[i] then arr_l_47 = 1 end
 		end
-		if arr_l_47 == 1 then
+		if arr_l_47 == 1 and togglecounter > 20 then
 			yield("/bmrai setpresetname Autoduty Passive")
 			yield("/rotation auto")
+			togglecounter = 0
 		end
-		if arr_l_47 == 0 then
+		if arr_l_47 == 0 and togglecounter > 20 then
 			yield("/bmrai setpresetname Questionable - Quest Battles")
 			yield("/rotation cancel")
+			togglecounter = 0
 		end
 		if zonetest == 301 then --Level 38 - In the Eyes of Gods and Men -- need to target the rosary
 			darget("Draconian Rosary")
