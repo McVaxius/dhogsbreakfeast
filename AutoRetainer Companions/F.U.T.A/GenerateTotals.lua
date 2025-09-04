@@ -136,6 +136,7 @@ for i = 1, #FUTA_processors do
 end
 	file:close()
 
+yield("/echo Data extracted -> enjoy!")
 --pointless output. for debug only.
 --yield("/echo ----- formatted for copy paste ----")
 --yield("/echo "..gil.."\t"..fc.."\t"..mgp.."\t"..vc.."\t"..cf.."\t"..mrk.."\t"..hjl.."\t"..gcr.."\t"..fcr.."\t"..fcs.."\t"..fcl.."\t"..fcSize.."\t"..fcDistrict.."\t"..fcWard.."\t"..fcPlot.."\t"..pfcSize.."\t"..pfcDistrict.."\t"..pfcWard.."\t"..pfcPlot.."\r")

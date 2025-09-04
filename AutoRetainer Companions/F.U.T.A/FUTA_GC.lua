@@ -606,7 +606,7 @@ function FUTA_robust_gc()
 		Final_GC_Cleaning()
 	end
 	workshop_entered = 0
-	if restock_fuel > 0 and GetItemCount(10373) > 0 and GetItemCount(10155) <= restock_fuel then
+	if restock_fuel > 0 and GetItemCount(10373) > 0 and GetItemCount(10155) <= restock_fuel and FUTA_processors[hoo_arr_weeeeee][4][3] > 0 then
 		enter_workshop()
 		try_to_buy_fuel(restock_amt)
 		workshop_entered = 1

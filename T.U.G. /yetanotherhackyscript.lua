@@ -9,10 +9,13 @@ hehey = GetPlayerRawYPos()
 hehez = GetPlayerRawZPos()
 togglecounter = 0
 arr_list = { --list of zoneIDs for arr dungeons < level 47ish
-	--semi hard solo duties
+	--semi hard solo duties MSQ
 	306,--Level 27 - Big Trouble in Little Ala Mhigo
 	302,--Level 40 - The Heretic among Us
 	304,--Level 44 - Notorious Biggs
+
+	--jobs/classes
+	319,--Level 30 - whm Unlock seer folly
 
 	--dungeons
 	1036,--sastasha
@@ -22,11 +25,11 @@ arr_list = { --list of zoneIDs for arr dungeons < level 47ish
 	1040,--haukke manor
 	1041,--brayflox
 	1042,--stone vigil
-	
+
 	--trials
-	1047,--garuda
-	1045,--ifrit
-	1046--titan
+	1045, --ifrit
+	1046, --titan
+	1047  --garuda
 }
 togglecounter = 0
 
@@ -80,6 +83,7 @@ while hehe == "heehee" do
 			if togglecounter > 20 then
 				yield("/send KEY_1")
 				--yield("/mount")
+				yield("/equipguud")
 			end
 			
 			if togglecounter > 20 or Svc.Condition[26] == true then			

@@ -824,7 +824,7 @@ end
 function try_to_buy_fuel(restock_amt)
     zoneczec = Svc.ClientState.TerritoryType
 	--only try to actually buy fuel if we are in the workshop
-	if zoneczec == 424 or zoneczec == 425 or zoneczec == 423 or zoneczec == 653 or zoneczec == 984 then
+	if zoneczec == 424 or zoneczec == 425 or zoneczec == 423 or zoneczec == 653 or zoneczec == 984 and restock_amt > 0 then
 		--target mammet
 		yield("/wait 5")
 		yield("/target mammet")
