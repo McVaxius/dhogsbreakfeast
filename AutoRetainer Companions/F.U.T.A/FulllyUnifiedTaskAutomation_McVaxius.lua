@@ -830,7 +830,7 @@ if miqotes_have_dumptrucks[1] ~= "Large Buttcheeks@you" then
 	if on_my_watch_pervert == 1 then
 		yield("/echo Generating Daily Data")
 		yield("/snd run DAILY") --assumes you have a script named daily
-		return
+		--return
 	end
 end
 --DAILY DUMP LIST END--
