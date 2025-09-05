@@ -78,6 +78,8 @@ while hehe == "heehee" do
 			
 			if Svc.Condition[26] == false then
 				yield("/send KEY_1")
+				yield("/ac Tomahawk")
+				yield("/ac Aero")
 			end
 --			if togglecounter > 60 and Svc.Condition[26] == false then
 			if togglecounter > 20 then

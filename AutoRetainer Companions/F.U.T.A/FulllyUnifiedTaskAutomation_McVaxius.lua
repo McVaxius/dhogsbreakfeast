@@ -836,8 +836,8 @@ end
 --DAILY DUMP LIST END--
 
 --ar doesnt play nice with snd atm
---if wheeequeheeheheheheheehhhee == 1 then
+if wheeequeheeheheheheheehhhee == 1 then
 	yield("/ays multi e") --if we had to toggle AR
---end
+end
 --yield("/snd stop all") --uncomment this if you want it to clear snd errors after script run
 PauseYesAlready() --we dont need this unless we do then plugin/etc will turn it on - this is so that questionable x cbt doesn't break for seasonals
