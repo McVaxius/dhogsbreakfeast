@@ -67,6 +67,7 @@ equip_from_table = 0 --0 is no, 1 is yes
 illegalcleaningresetvalue = 3 --this is the pct chance it will try to do a "selling/repricing" after completing AR tasks. it is also the value it sets after a cleaning is done/triggered. 3% might actually be kind of high if you have lots of chars . i might lower it to 1 for myself.
 dontforceillegalcleaning = 1 --this is so it doesnt force a 100% chance to illegally clean after a gc cleaning. this is probably best if you have giant empire you want to delay cleanings as much as possible
 maxlevel = 100 --this is fishing max level to go ocean fishing. set it to 30 if you just want to prep chars for leves. its 1-2 trips to get to 30
+levecheck = 1 -- set this to 1 if you want maxlevel to be the goal with ocean fishing, but ONLY if they are maxlevel-10 in fisher, so that you can patiently wait till they are leveled as high as they can go with leves first.
 ------------------------------------------
 --Config and change back after done!------
 ------------------------------------------
@@ -363,11 +364,19 @@ end
 yield("/echo Debug: Lowest ID determined -> "..lowestID.." Corresponding to -> "..FUTA_processors[lowestID][1][1].. " With a level of -> "..FUTA_processors[lowestID][2][2])
 
 -- If the lowest guy is max level, we aren't fishing
-if FUTA_processors[lowestID][2][2] > (maxlevel - 1) and force_fishing == 0 or FUTA_processors[lowestID][2][2] == -1 then
+if FUTA_processors[lowestID][2][2] > (maxlevel - 1) and levecheck == 0 and force_fishing == 0 or FUTA_processors[lowestID][2][2] == -1 then
     wheeequeheeheheheheheehhhee = 0
     yield("/echo Lowest char is max level or no chars have fishing enabled -> so we aren't fishing")
 end
 
+--add a case if we below the level where we want to start ocean fishing if we have levecheck == 1
+if levecheck == 1 and FUTA_processors[lowestID][2][2] < (maxlevel - 10) then
+	wheeequeheeheheheheheehhhee = 0
+end
+-- add a case for if we are maxlevel-10 for fisher, let them go do ocean fishing.  We can't use leves anymore.
+if FUTA_processors[lowestID][2][2] > (maxlevel - 11) and levecheck == 1 then
+	wheeequeheeheheheheheehhhee = 1
+end
 
 --update do_we_discard
 dwdid = hoo_arr_weeeeee
