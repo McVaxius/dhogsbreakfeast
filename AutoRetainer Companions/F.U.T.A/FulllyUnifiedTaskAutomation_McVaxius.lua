@@ -373,10 +373,6 @@ end
 if levecheck == 1 and FUTA_processors[lowestID][2][2] < (maxlevel - 10) then
 	wheeequeheeheheheheheehhhee = 0
 end
--- add a case for if we are maxlevel-10 for fisher, let them go do ocean fishing.  We can't use leves anymore.
-if FUTA_processors[lowestID][2][2] > (maxlevel - 11) and levecheck == 1 then
-	wheeequeheeheheheheheehhhee = 1
-end
 
 --update do_we_discard
 dwdid = hoo_arr_weeeeee
