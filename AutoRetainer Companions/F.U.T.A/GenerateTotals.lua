@@ -19,7 +19,12 @@ configs:
     required: true
   zfilepath:
     default: "default"
-    description: "pathroot for the configs. please know about LUA escapes"
+    description: "pathroot for the FUTA generated configs. \rplease know about LUA escapes"
+    type: string
+    required: true
+  zfilepathAR:
+    default: "default"
+    description: "pathroot for the Autoretainer generated configs (defaultconfig.json).\rThis is for Retainer Gil\rplease know about LUA escapes"
     type: string
     required: true
 [[End Metadata]]
@@ -27,7 +32,9 @@ configs:
 
 --Don't edit these
 filepath = Config.Get("zfilepath")
+filepathAR = Config.Get("zfilepathAR")
 if filepath == "default" then filepath = os.getenv("appdata").."\\XIVLauncher\\pluginConfigs\\SomethingNeedDoing\\" end
+if filepathAR == "default" then filepathAR = os.getenv("appdata").."\\XIVLauncher\\pluginConfigs\\Autoretainer\\" end
 
 version = Config.Get("zversion")
 filenem  = Config.Get("zfilenem"):gsub('"', '')
@@ -37,7 +44,7 @@ fullPath = filepath .. filenem
 require("dfunc")
 
 --change this later maybe
-local path = os.getenv("appdata").."\\XIVLauncher\\pluginConfigs\\AutoRetainer\\DefaultConfig.json"
+local path = filepathAR .. "DefaultConfig.json"
 
 local function readFile(filePath)
     local f = io.open(filePath, "r")
