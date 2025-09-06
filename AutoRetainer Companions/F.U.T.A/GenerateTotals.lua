@@ -36,9 +36,71 @@ fullPath = filepath .. filenem
 
 require("dfunc")
 
+--change this later maybe
+local path = os.getenv("appdata").."\\XIVLauncher\\pluginConfigs\\AutoRetainer\\DefaultConfig.json"
+
+local function readFile(filePath)
+    local f = io.open(filePath, "r")
+    if not f then return nil end
+    local content = f:read("*a")
+    f:close()
+    -- Remove BOM if present
+    content = content:gsub("\239\187\191", "")
+    return content
+end
+
+local content = readFile(path)
+if not content then
+    print("Failed to open file!")
+    return
+end
+
+-- Extract SelectedRetainers block
+local selectedBlock = content:match('"SelectedRetainers"%s*:%s*{(.-)}%s*,')
+if not selectedBlock then
+    print("No SelectedRetainers block found!")
+    return
+end
+
+-- Extract OfflineData block (greedy until last ])
+local offlineBlock = content:match('"OfflineData"%s*:%s*(%[.+%])')
+if not offlineBlock then
+    print("No OfflineData block found!")
+    return
+end
+
+-- Build RetainerName -> {owner, gil, server} map
+local retainerMap = {}
+for ownerID, ownerName, serverName, retainersBlock in offlineBlock:gmatch(
+    '"CID"%s*:%s*(%d+).-,"Name"%s*:%s*"([^"]+)".-,"World"%s*:%s*"([^"]+)".-,"RetainerData"%s*:%s*%[(.-)%]') 
+do
+    for retName, gil in retainersBlock:gmatch('"Name"%s*:%s*"([^"]+)".-,"Gil"%s*:%s*(%d+)') do
+        retainerMap[retName] = {owner = ownerName, gil = tonumber(gil), server = serverName}
+    end
+end
+
+-- Iterate SelectedRetainers and print info
+flart = {}
+for ownerID, charList in selectedBlock:gmatch('"(.-)"%s*:%s*%[(.-)%]') do
+    for charName in charList:gmatch('"([^"]+)"') do
+        local info = retainerMap[charName]
+        if info then
+            --print(string.format("%s (%s)\t%s -> %s -> %d gil", info.owner, info.server, ownerID, charName, info.gil))
+			-- Append a new table to flart in one step
+			flart[#flart+1] = {info.owner.."@"..info.server, ownerID, charName, info.gil}
+            print(info.owner.."@"..info.server.."<-->"..ownerID.."<-->"..charName.."<-->"..info.gil)
+           -- print("flart size -> "..#flart)
+            --print(info.owner.."\t"..ownerID .. " -> " .. charName .. " -> " .. info.gil .. " gil (Owner: " .. info.owner .. ")")
+        else
+            print(ownerID .. " -> " .. charName .. " -> no data")
+        end
+    end
+end
+
+--print(flart[1][1])
+yield("/echo Retainer Data extracted -> enjoy!")
+
 FUTA_processors = {} -- Initialize variable
-
-
 -- Read and deserialize the data
 serializedData = readSerializedData(fullPath)
 deserializedTable = {}
@@ -76,6 +138,7 @@ pfcDistrict = ""
 pfcWard = 0
 pfcPlot = 0
 leveA = 0
+retainergil = 0
 
 local file = io.open(filepath .. "FUTA_Daily_"..version..".txt", "w")
 file:write("nem\tgil\tfc\tmgp\tvc\tcf\tmrk\thjl\tgcr\tfcr\tfcs\tfcn\tfcsize\tfcdistrict\tfcward\tfcplot\tpfcsize\tpfcdistrict\tpfcward\tpfcplot\tleveA\r")
@@ -101,6 +164,7 @@ for i = 1, #FUTA_processors do
 	pfcWard = 0
 	pfcPlot = 0
 	leveA = 0
+	retainergil = 0
 
     if FUTA_processors[i][11][2] ~= nil then gil = FUTA_processors[i][11][2] end
     if FUTA_processors[i][11][3] ~= nil then
@@ -126,17 +190,22 @@ for i = 1, #FUTA_processors do
     if FUTA_processors[i][11][999432999] ~= nil then pfcWard = FUTA_processors[i][11][999432999] end
     if FUTA_processors[i][11][999433999] ~= nil then pfcPlot = FUTA_processors[i][11][999433999] end
     if FUTA_processors[i][11][99934999] ~= nil then leveA = FUTA_processors[i][11][99934999] end
-
+	for i=1,#flart do
+		if flart[i][1] == nem then
+		print("debug -> "..nem.."->"..retainergil.."->"..flart[i][4])
+			retainergil = retainergil + flart[i][4]
+		end
+	end
 	if file then
 		nem = tostring(FUTA_processors[i][1][1])
-		file:write(nem.."\t"..gil.."\t"..fc.."\t"..mgp.."\t"..vc.."\t"..cf.."\t"..mrk.."\t"..hjl.."\t"..gcr.."\t"..fcr.."\t"..fcs.."\t"..fcl.."\t"..fcSize.."\t"..fcDistrict.."\t"..fcWard.."\t"..fcPlot.."\t"..pfcSize.."\t"..pfcDistrict.."\t"..pfcWard.."\t"..pfcPlot.."\t"..leveA.."\r")
+		file:write(nem.."\t"..gil.."\t"..fc.."\t"..mgp.."\t"..vc.."\t"..cf.."\t"..mrk.."\t"..hjl.."\t"..gcr.."\t"..fcr.."\t"..fcs.."\t"..fcl.."\t"..fcSize.."\t"..fcDistrict.."\t"..fcWard.."\t"..fcPlot.."\t"..pfcSize.."\t"..pfcDistrict.."\t"..pfcWard.."\t"..pfcPlot.."\t"..leveA.."\t"..retainergil.."\r")
 	else
 		yield("/echo Error: Unable to open file for writing")
 	end
 end
 	file:close()
 
-yield("/echo Data extracted -> enjoy!")
+yield("/echo Character Data extracted -> enjoy!")
 --pointless output. for debug only.
 --yield("/echo ----- formatted for copy paste ----")
 --yield("/echo "..gil.."\t"..fc.."\t"..mgp.."\t"..vc.."\t"..cf.."\t"..mrk.."\t"..hjl.."\t"..gcr.."\t"..fcr.."\t"..fcs.."\t"..fcl.."\t"..fcSize.."\t"..fcDistrict.."\t"..fcWard.."\t"..fcPlot.."\t"..pfcSize.."\t"..pfcDistrict.."\t"..pfcWard.."\t"..pfcPlot.."\r")
