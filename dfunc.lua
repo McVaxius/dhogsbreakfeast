@@ -128,7 +128,7 @@ function become_feesher()
 	yield("/wait 0.5")
 	if GetItemCount(35393) > 0 then yield("/equipitem 35393") end --integral fishing rod
 	yield("/wait 0.5")
-	==]]
+	--]]
 	yield("/equipjob fsh")
 	yield("/wait 0.5")
 	ungabunga()
