@@ -286,6 +286,7 @@ if rotationplogon == "BMR" then
 --		until HasPlugin("BossModReborn")
 		yield("/bmrai "..bossmodAI)
 		yield("/bmr ar set "..autorotationtype)
+		yield("/bmrai setpresetname "..autorotationtype)
 		yield("/echo WE SWITCHED TO BMR FROM VBM - please review DTR bar etc.")
 --	end
 end
@@ -529,6 +530,7 @@ goatEnjoyer = GetClassJobId() --call this again if we gonna call one of the cura
 function returnJobbu()
 	for i=1,#job_configs do
 		if goatEnjoyer == job_configs[i][1] then
+			yield("/echo we are -> "..job_configs[i][5])
 			return i
 		end
 	end
