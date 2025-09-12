@@ -67,7 +67,9 @@ equip_from_table = 0 --0 is no, 1 is yes
 illegalcleaningresetvalue = 3 --this is the pct chance it will try to do a "selling/repricing" after completing AR tasks. it is also the value it sets after a cleaning is done/triggered. 3% might actually be kind of high if you have lots of chars . i might lower it to 1 for myself.
 dontforceillegalcleaning = 1 --this is so it doesnt force a 100% chance to illegally clean after a gc cleaning. this is probably best if you have giant empire you want to delay cleanings as much as possible
 maxlevel = 100 --this is fishing max level to go ocean fishing. set it to 30 if you just want to prep chars for leves. its 1-2 trips to get to 30
-levecheck = 1 -- set this to 1 if you want maxlevel to be the goal with ocean fishing, but ONLY if they are maxlevel-10 in fisher, so that you can patiently wait till they are leveled as high as they can go with leves first.
+maxspread = 10 --this is the level spread from max level to look for 
+levecheck = 0 -- set this to 1 if you want maxlevel to be the goal with ocean fishing, but ONLY if they are maxlevel-maxspread in fisher, so that you can patiently wait till they are leveled as high as they can go with leves first.
+			  -- set it to 0 if you want maxlevel to be the goal for ocean fishing.  maxsperead won't matter in this case.
 ------------------------------------------
 --Config and change back after done!------
 ------------------------------------------
@@ -350,7 +352,10 @@ yield("/echo Debug: Time check completed")
 lowestID = 1
 --first get a non 0 value
 for i = 1, #FUTA_processors do
-    if FUTA_processors[i][2][2] > 0 then
+    if FUTA_processors[i][2][2] > 0 and levecheck == 0 then
+        lowestID = i
+    end
+    if FUTA_processors[i][2][2] > (maxlevel - maxspread) and levecheck == 1 then
         lowestID = i
     end
 end
@@ -370,7 +375,7 @@ if FUTA_processors[lowestID][2][2] > (maxlevel - 1) and levecheck == 0 and force
 end
 
 --add a case if we below the level where we want to start ocean fishing if we have levecheck == 1
-if levecheck == 1 and FUTA_processors[lowestID][2][2] < (maxlevel - 10) then
+if levecheck == 1 and FUTA_processors[lowestID][2][2] < (maxlevel - maxspread) then
 	wheeequeheeheheheheheehhhee = 0
 end
 
