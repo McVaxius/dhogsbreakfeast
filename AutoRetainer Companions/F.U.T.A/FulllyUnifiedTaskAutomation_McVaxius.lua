@@ -355,13 +355,16 @@ for i = 1, #FUTA_processors do
     if FUTA_processors[i][2][2] > 0 and levecheck == 0 then
         lowestID = i
     end
-    if FUTA_processors[i][2][2] > (maxlevel - maxspread) and levecheck == 1 then
+    if FUTA_processors[i][2][2] > (maxlevel - maxspread - 1) and levecheck == 1 then
         lowestID = i
     end
 end
 --now look for a smaller one
 for i = 1, #FUTA_processors do
-    if FUTA_processors[i][2][2] > 0 and FUTA_processors[i][2][2] < FUTA_processors[lowestID][2][2] then
+    if FUTA_processors[i][2][2] > 0 and FUTA_processors[i][2][2] < FUTA_processors[lowestID][2][2] and levecheck == 0  then
+        lowestID = i
+    end
+    if FUTA_processors[i][2][2] > 0 and FUTA_processors[i][2][2] < FUTA_processors[lowestID][2][2] and FUTA_processors[i][2][2] > (maxlevel - maxspread - 1) and levecheck == 1  then
         lowestID = i
     end
 end
