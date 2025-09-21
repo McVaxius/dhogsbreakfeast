@@ -649,60 +649,67 @@ if current and current > -1 or current == nil then
     yield("/wait 0.5")
     yield("/callback FreeCompanyMember true -2")
     yield("/wait 0.5")
-    yield("/callback FreeCompanyStatus true 2")
-    yield("/wait 1")
-    fcSizeL = Addons.GetAddon("HousingSignBoard"):GetNode(1, 2, 17, 21).Text
-    yield("/echo Found a house at -> "..fcSizeL)
-	-- fcSize already holds: "Plot 55, 6th Ward, Shirogane (Small)"
-	local fcLine = fcSizeL or ""   -- "Plot 6, 3rd Ward, Mist (Medium)"
-
-	if fcLine == "" then
-	  yield("/echo [parse] no Free Company address text")
-	else
-	  local function trim(s) return (s:gsub("^%s+",""):gsub("%s+$","")) end
-
-	-- Split by commas
-	local parts = {}
-	for part in fcLine:gmatch("[^,]+") do
-	table.insert(parts, trim(part))
+	--fcexist = Addons.GetAddon("FreeCompanyStatus"):GetNode(1, 4, 52, 57).Text or 0 --57 always seems to have the text O_o
+fcexist = Addons.GetAddon("FreeCompanyStatus"):GetNode(1, 4, 52, 56).Text or "Housing not available."
+	if fcexist == "Housing not available." then
+		yield("/echo We don't have a FC house. skipping fc house data extraction.")
 	end
+	if string.len(fcexist) > 0 then
+		yield("/callback FreeCompanyStatus true 2")
+		yield("/wait 1")
+		fcSizeL = Addons.GetAddon("HousingSignBoard"):GetNode(1, 2, 17, 21).Text
+		yield("/echo Found a house at -> "..fcSizeL)
+		-- fcSize already holds: "Plot 55, 6th Ward, Shirogane (Small)"
+		local fcLine = fcSizeL or ""   -- "Plot 6, 3rd Ward, Mist (Medium)"
 
-	-- parts[1] = "Plot 6"
-	-- parts[2] = "3rd Ward"
-	-- parts[3] = "Mist (Medium)"
+		if fcLine == "" then
+		  yield("/echo [parse] no Free Company address text")
+		else
+		  local function trim(s) return (s:gsub("^%s+",""):gsub("%s+$","")) end
 
-	-- Plot
-	fcPlot = tonumber(parts[1]:gsub("Plot",""):match("%d+"))
+		-- Split by commas
+		local parts = {}
+		for part in fcLine:gmatch("[^,]+") do
+		table.insert(parts, trim(part))
+		end
 
-	-- Ward (strip "Ward" and ordinals)
-	local wardStr = parts[2]:gsub("Ward","")
-	wardStr = wardStr:gsub("st",""):gsub("nd",""):gsub("rd",""):gsub("th","")
-	fcWard = tonumber(wardStr:match("%d+"))
+		-- parts[1] = "Plot 6"
+		-- parts[2] = "3rd Ward"
+		-- parts[3] = "Mist (Medium)"
 
-	if parts[3] then
-	  local district, size = parts[3]:match("^(.-)%s*%((.+)%)$")
-	  fcDistrict = trim(district or parts[3] or "")
-	  fcSize = trim(size or "")
-	else
-	  fcDistrict = ""
-	  fcSize = ""
+		-- Plot
+		fcPlot = tonumber(parts[1]:gsub("Plot",""):match("%d+"))
+
+		-- Ward (strip "Ward" and ordinals)
+		local wardStr = parts[2]:gsub("Ward","")
+		wardStr = wardStr:gsub("st",""):gsub("nd",""):gsub("rd",""):gsub("th","")
+		fcWard = tonumber(wardStr:match("%d+"))
+
+		if parts[3] then
+		  local district, size = parts[3]:match("^(.-)%s*%((.+)%)$")
+		  fcDistrict = trim(district or parts[3] or "")
+		  fcSize = trim(size or "")
+		else
+		  fcDistrict = ""
+		  fcSize = ""
+		end
+
+		  -- Debug
+		  yield(string.format("/echo Plot:%s Ward:%s District:%s Size:%s",
+			tostring(fcPlot), tostring(fcWard), fcDistrict, fcSize))
+		end
+
+		-- Debug echo
+		yield("/echo Plot: "..fcPlot)
+		yield("/echo Ward: "..fcWard)
+		yield("/echo District: "..fcDistrict)
+		yield("/echo Size: "..fcSize)
+		
+		if string.len(fcSize) > 0 then FUTA_processors[hoo_arr_weeeeee][11][999426999] = fcSize end
+		if string.len(fcDistrict) > 0 then FUTA_processors[hoo_arr_weeeeee][11][999427999] = fcDistrict end
+		if fcWard > 0 then FUTA_processors[hoo_arr_weeeeee][11][999428999] = fcWard end
+		if fcPlot > 0 then FUTA_processors[hoo_arr_weeeeee][11][999429999] = fcPlot end
 	end
-
-	  -- Debug
-	  yield(string.format("/echo Plot:%s Ward:%s District:%s Size:%s",
-		tostring(fcPlot), tostring(fcWard), fcDistrict, fcSize))
-	end
-
-	-- Debug echo
-	yield("/echo Plot: "..fcPlot)
-	yield("/echo Ward: "..fcWard)
-	yield("/echo District: "..fcDistrict)
-	yield("/echo Size: "..fcSize)
-	
-	if string.len(fcSize) > 0 then FUTA_processors[hoo_arr_weeeeee][11][999426999] = fcSize end
-	if string.len(fcDistrict) > 0 then FUTA_processors[hoo_arr_weeeeee][11][999427999] = fcDistrict end
-	if fcWard > 0 then FUTA_processors[hoo_arr_weeeeee][11][999428999] = fcWard end
-	if fcPlot > 0 then FUTA_processors[hoo_arr_weeeeee][11][999429999] = fcPlot end
 end
 
 FUTA_processors[hoo_arr_weeeeee][11][29] = GetItemCount(29) + GetItemCount(16784) * 50000       --MGP + MGP Platinum Cards (50,000 MGP each)

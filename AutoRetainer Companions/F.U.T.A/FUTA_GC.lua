@@ -556,6 +556,7 @@ function FUTA_robust_gc()
 			if GetItemCount(koffers[i][1]) > 0 then
 				--yield("/item "..koffers[i][2])
 				--yield("/item "..koffers[i][1])
+				yield("/wait 1")
 				yield("/echo Using Item / Opening Coffer -> "..koffers[i][2])
 				Inventory.GetInventoryItem(tonumber(koffers[i][1])):Use()
 				yield("/wait 4")
