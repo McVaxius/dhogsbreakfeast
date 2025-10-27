@@ -1,3 +1,4 @@
+yield("/li stop") --new problem ive found causing issues.
 --[[
 Fully Unified Task Automation (F.U.T.A.)
 
