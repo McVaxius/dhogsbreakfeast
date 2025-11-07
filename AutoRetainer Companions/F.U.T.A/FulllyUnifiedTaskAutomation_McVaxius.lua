@@ -70,7 +70,7 @@ dontforceillegalcleaning = 1 --this is so it doesnt force a 100% chance to illeg
 maxlevel = 100 --this is fishing max level to go ocean fishing. set it to 30 if you just want to prep chars for leves. its 1-2 trips to get to 30
 maxspread = 10 --this is the level spread from max level to look for 
 levecheck = 0 -- set this to 1 if you want maxlevel to be the goal with ocean fishing, but ONLY if they are maxlevel-maxspread in fisher, so that you can patiently wait till they are leveled as high as they can go with leves first.
-			  -- set it to 0 if you want maxlevel to be the goal for ocean fishing.  maxsperead won't matter in this case.
+			  -- set it to 0 if you want maxlevel to be the goal for ocean fishing.  maxspread won't matter in this case.
 ------------------------------------------
 --Config and change back after done!------
 ------------------------------------------

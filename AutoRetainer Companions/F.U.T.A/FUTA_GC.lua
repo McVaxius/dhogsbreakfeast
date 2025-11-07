@@ -165,6 +165,11 @@ function Final_GC_Cleaning()
 		yield("/freecompanycmd")
 		yield("/wait 1")
 		fcpoynts = Addons.GetAddon("FreeCompany"):GetNode(1, 4, 16, 17)
+		if fcpoynts == 17 then 
+			yield("/freecompanycmd")
+			yield("/wait 3")
+			fcpoynts = Addons.GetAddon("FreeCompany"):GetNode(1, 4, 16, 17)
+		end
 		yield("/echo Fc points -> "..tostring(fcpoynts.Text))
 		clean_fcpoynts = fcpoynts.Text:gsub(",", "")
 		numeric_fcpoynts = tonumber(clean_fcpoynts)
