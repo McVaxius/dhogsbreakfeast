@@ -37,7 +37,7 @@
 	OPTIONAL to reduce cpu+gpu usage significantly and cool down your sauna to just a warm afternoon:
 	Custom Resolution Scaler -> Gameplay -> Pixelated -> 0.1 -> Enabled [x] -> Save and Apply
 		0.1 is like n64 / ps1 graphics. 0.05 is like snes, and 0.001 is like hilarious. its just 4 pixels. THATS IT 
-		it won't reduce cpu/ram reqs but it will reduce GPU to nothing
+		it won't reduce cpu reqs but it will reduce GPU to nothing, and it will reduce RAM by a bit after a few area changes
 	Chillframes -> 15 out of combat 30 in combat
 		it will reduce CPU and GPU reqs, it wont affect ram
 
@@ -88,7 +88,7 @@
 
 	As far as rotation plugins here are my thoughts
 	Bossmod -> Theme: Raiding.			DPS: Decent for level 50 content	Performance: No slowdowns even with many clients.					Configuration: Easy. Just use the included AD presets.
-	RSR 	-> Theme: Easy to Use.		DPS: Best in slot @ level 50 		Performance: No isses except when experimental features added.		Configuration: Super Easy. None required.
+	RSR 	-> Theme: Easy to Use.		DPS: Best in slot @ level 50 		Performance: No issues except when experimental features added.		Configuration: Super Easy. None required.
 	WRATH 	-> Theme: LARPing as gamer.	DPS: Unknown for level 50 content	Performance: Noticable fps drop with 2+ clients using autorotation	Configuration: Medium. Asssumes you know how the job works and can setup the skills acordingly.
 	UCOMBO 	-> Theme: LARPing as gamer.	DPS: Higher than RSR				Performance: Unknown - requires script to automate					Configuration: Medium. Click every checkbox [x]. use/write a script to actually "auto" it
 
