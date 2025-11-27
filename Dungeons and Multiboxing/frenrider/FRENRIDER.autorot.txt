@@ -224,6 +224,14 @@
       {
         "Track": "Raise",
         "Option": "Slowcast"
+      },
+      {
+        "Track": "Esuna2",
+        "Option": "Enabled"
+      },
+      {
+        "Track": "RaiseTargets",
+        "Option": "Everyone"
       }
     ],
     "BossMod.Autorotation.xan.MeleeAI": [],

@@ -2687,6 +2687,7 @@ function WaitForLifestream()
 		--yield("/echo Waiting on lifestream -> "..sekonds)
 		sekonds = sekonds + 1
 		yield("/wait 1")
+		if IsAddonReady("SelectYesno") then yield("/callback SelectYesno true 0") end --finally no need for configuring chars to use aetheryte tickets 
 	end
     yield("/echo Lifestream completed")
 end
