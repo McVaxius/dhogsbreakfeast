@@ -158,9 +158,10 @@ function fishing()
 			end
 		end
 		--try to exit the completion window faster
-		if IsAddonVisible("IKDResult") then
-			yield("/wait 15")
+		while IsAddonVisible("IKDResult") do
+			yield("/echo we are in the results window - trying to escape!")
 			yield("/callback IKDResult false 0")
+			yield("/wait 5")
 		end
 		if Svc.Condition[33]==true then
 			if Svc.Condition[34]==true then
