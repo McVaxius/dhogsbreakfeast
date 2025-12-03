@@ -624,6 +624,13 @@ local current = FUTA_processors[hoo_arr_weeeeee][11][3]
 if current and current > -1 or current == nil then
 	yield("/freecompanycmd") -- for atools and for "DATA"
 	yield("/wait 3")
+	doweskipthis = 1
+	if IsAddonReady("FreeCompany") then doweskipthis = 0 end
+	if doweskipthis == 1 then 
+		yield("/echo we aren't in a FC - exiting process")
+		yield("/ays m e")
+		return 
+	end
 	fcpoynts = Addons.GetAddon("FreeCompany"):GetNode(1, 4, 16, 17).Text or 0
 	--if fcpoynts and fcpoynts.Text then
 	--yield("/echo string.len(tostring(fcpoynts)) -> "..string.len(tostring(fcpoynts)))
