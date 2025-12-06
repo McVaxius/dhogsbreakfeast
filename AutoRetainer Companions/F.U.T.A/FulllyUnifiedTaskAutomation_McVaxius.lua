@@ -430,8 +430,25 @@ if wheeequeheeheheheheheehhhee == 1 then
                 currentTime = os.date("*t")
                 formattedTime = string.format("%04d-%02d-%02d %02d:%02d:%02d", currentTime.year, currentTime.month, currentTime.day, currentTime.hour, currentTime.min, currentTime.sec)
                 FUTA_processors[lowestID][2][2] = GetLevel()
-				xp = Addons.GetAddon("_Exp"):GetNode(1, 4)
-				yield("/echo current xp: "..string.match(xp.Text, "%d[%d.,]*"))
+--				xp = Addons.GetAddon("_Exp"):GetNode(1, 4)
+				local ok, xp = pcall(function()
+					return Addons.GetAddon("_Exp"):GetNode(1, 4)
+				end)
+
+				if not ok or not xp or not xp.Text then
+					-- no xp, not in a job with xp, or addon unavailable
+					yield("/echo current xp: NONE")
+				else
+					local num = xp.Text:match("%d[%d.,]*")
+					if not num then
+						num = 0
+						yield("/echo current xp: NONE")
+				--    else
+				--        yield("/echo current xp: " .. num)
+					end
+						yield("/echo current xp: " .. num)
+				end
+				--yield("/echo current xp: "..string.match(xp.Text, "%d[%d.,]*"))
 				xpxp = string.match(xp.Text, "%d[%d.,]*")
                 file:write(formattedTime.." - "..logfile_differentiator.."["..lowestID.."] - "..FUTA_processors[lowestID][1][1].." - Fisher Lv - "..FUTA_processors[lowestID][2][2].." - XP -> "..xpxp.."\n")
                 file:close()
