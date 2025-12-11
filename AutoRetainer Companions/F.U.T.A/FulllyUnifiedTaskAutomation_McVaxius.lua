@@ -434,7 +434,7 @@ if wheeequeheeheheheheheehhhee == 1 then
 				local ok, xp = pcall(function()
 					return Addons.GetAddon("_Exp"):GetNode(1, 4)
 				end)
-
+				nummy = 1
 				if not ok or not xp or not xp.Text then
 					-- no xp, not in a job with xp, or addon unavailable
 					yield("/echo current xp: NONE")
@@ -442,6 +442,7 @@ if wheeequeheeheheheheheehhhee == 1 then
 					local num = xp.Text:match("%d[%d.,]*")
 					if not num then
 						num = 0
+						nummy = 0
 						yield("/echo current xp: NONE")
 				--    else
 				--        yield("/echo current xp: " .. num)
@@ -449,7 +450,10 @@ if wheeequeheeheheheheheehhhee == 1 then
 						yield("/echo current xp: " .. num)
 				end
 				--yield("/echo current xp: "..string.match(xp.Text, "%d[%d.,]*"))
-				xpxp = string.match(xp.Text, "%d[%d.,]*")
+				xpxp = 0
+				if nummy > 0 then
+					xpxp = string.match(xp.Text, "%d[%d.,]*")
+				end
                 file:write(formattedTime.." - "..logfile_differentiator.."["..lowestID.."] - "..FUTA_processors[lowestID][1][1].." - Fisher Lv - "..FUTA_processors[lowestID][2][2].." - XP -> "..xpxp.."\n")
                 file:close()
                 yield("/echo Text has been written to '" .. folderPath .. "FeeshLevels.txt'")
