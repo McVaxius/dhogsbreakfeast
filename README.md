@@ -36,7 +36,6 @@ Enter in <br>
 into the GitHub url, then click create<br>
 <img width="386" height="236" alt="image" src="https://github.com/user-attachments/assets/c6a11af0-1b30-4ac3-b835-6b05c8711a91" />
 
-
 ## Tip One - Update
 If there is an update you can click over on the **bell** on the **right** to get it<br>
 <img width="571" height="142" alt="image" src="https://github.com/user-attachments/assets/1c4372bc-8bb1-438f-89dd-7cc5a784e2ef" />
