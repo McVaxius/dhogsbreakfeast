@@ -15,7 +15,9 @@ Now it is like this (add the \current):<br>
 
 -----------------------
 ### Instructions for Multi Dalamud<br>
-Simply copy the ```%appData%\xivlauncher```  folder and then specify that path in the .bat file as above ```D:\FF14\!gil\Account4```<br>
+- Simply copy the ```%appData%\xivlauncher```  folder into some path you want to use for that account such as ```d:\floop```<br>
+- then specify that path in the .bat file as above ```D:\FF14\!gil\Account4``` would become ```d:\floop```<br>
+- ```start "" /d "%USERPROFILE%\AppData\Local\XIVLauncher\current" "%USERPROFILE%\AppData\Local\XIVLauncher\current\XIVLauncher.exe" --roamingPath="d:\floop"```
 
 ### Protip if you want it on the taskbar:<br>
 - rename the .bat to a .exe.
