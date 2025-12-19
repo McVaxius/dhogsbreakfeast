@@ -5,7 +5,7 @@ Few considerations.
 - [x] FRENRIDER -> its in this repo. try it out.
 -----------------------
 
-<b>Changes to old setup for multi client launch:<br>
+Changes to old setup for multi client launch:<br>
 Previously you would do something like this:<br>
 ```start "" /d "%USERPROFILE%\AppData\Local\XIVLauncher" "%USERPROFILE%\AppData\Local\XIVLauncher\XIVLauncher.exe" --roamingPath="D:\FF14\!gil\Account4"```
 
