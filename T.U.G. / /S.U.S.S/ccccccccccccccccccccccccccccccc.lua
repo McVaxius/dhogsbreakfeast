@@ -136,6 +136,9 @@ while fuckpvp == 1 do
 	while Svc.Condition[34] == true and fuckyou == 0 do  --timer is paused at 30.998_ seconds until we are able to move our chars around
 		if doop == 0 then
 			yield("/echo we have entered the pvp match - please wait before more stuff happens the timer is paused at 30.998 seconds atm")
+			yield("/echo waiting 10 seconds just in case we bork something")
+			yield("/wait 10")
+			yield("/echo 10 seconds up. ok proceeding as normal")
 			yield("/vnav stop")
 			doop = 1
 		end

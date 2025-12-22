@@ -9,7 +9,8 @@ https://github.com/Jaksuhn/SomethingNeedDoing
 ## .7z files
 Don't ask for support with those scripts.  they are just there just in case someone wants to touch them. they are from old-snd
 
-## What is working
+## What is in here?
+ - [x] [Multiplayer Guide](https://github.com/McVaxius/dhogsbreakfeast/tree/main/Dungeons%20and%20Multiboxing/Multiplayer%20Guide)
  - [x] [dfunc.lua](https://github.com/McVaxius/dhogsbreakfeast/blob/main/dfunc.lua)
  - [x] [Frenrider](https://github.com/McVaxius/dhogsbreakfeast/tree/main/Dungeons%20and%20Multiboxing/frenrider)
  - [x] [G.O.O.N.](https://github.com/McVaxius/dhogsbreakfeast/tree/main/Dungeons%20and%20Multiboxing/G.O.O.N)
@@ -34,7 +35,6 @@ Enter in <br>
 ```https://github.com/McVaxius/dhogsbreakfeast/blob/main/dfunc.lua``` <br>
 into the GitHub url, then click create<br>
 <img width="386" height="236" alt="image" src="https://github.com/user-attachments/assets/c6a11af0-1b30-4ac3-b835-6b05c8711a91" />
-
 
 ## Tip One - Update
 If there is an update you can click over on the **bell** on the **right** to get it<br>
