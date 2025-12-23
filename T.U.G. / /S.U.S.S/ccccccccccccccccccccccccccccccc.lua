@@ -10,8 +10,11 @@ instructions:
 *close DF. 
 *run script
 
-setup CBT auto exit duty, and auto queue
+setup CBT auto leave duty (in enhanced duty/start/end), and auto queue
 
+
+end of instructions
+------------------------------------------------------------
 target "Tactical Crystal"
 status 3016 when its at the start of match until one team moves it
 status 2988 whe its trying to break through to next checkpoint
@@ -40,7 +43,6 @@ GetStatusTimeRemaining(895) == 0 --- this is invuln
 
 --required now in order to make basic stuff work.
 require("dfunc")
-
 
 fuckpvp = 1
 fuckme = 0
