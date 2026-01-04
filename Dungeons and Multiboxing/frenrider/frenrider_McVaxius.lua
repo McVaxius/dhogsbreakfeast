@@ -1072,7 +1072,7 @@ while weirdvar == 1 do
 			bistance = distance(EntityPlayerPositionX(), EntityPlayerPositionY(), EntityPlayerPositionZ(), GetObjectRawXPos(fren),GetObjectRawYPos(fren),GetObjectRawZPos(fren))
 			if Svc.Condition[77] then flying_adjust = flying_adjust + (timefriction / 0.1) end
 			if (flying_adjust > 0.1 and bistance < 10) or flying_adjust > 1 then
-				yield("/echo DEBUG -> trying to movedir")
+				--yield("/echo DEBUG -> trying to movedir")
 				yield("/hold SPACE")
 				yield("/wait 0.01")
 				yield("/release SPACE")
