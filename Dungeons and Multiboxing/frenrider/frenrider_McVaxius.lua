@@ -1,5 +1,8 @@
 --[[
 Changelog
+v3
+fixed following on multiple mounts - it was returning self location on follow instead of target location
+
 v2.5
 more cleanups for DD and Frenrider autorots - they can rez on casters now. thanks xan
 added new var for forays
@@ -364,6 +367,10 @@ if follow_in_combat == 1 then
 end
 if follow_in_combat == 0 then
 	yield("/bmrai followcombat on")
+end
+
+if fly_you_fools == true then --if we are flying don't fall behind ever!
+	maxbistance = maxbistance * 10
 end
 ----------------
 ----INIT END----
@@ -858,14 +865,40 @@ function clingmove(nemm)
 			if bistance > hcling then
 			--* are they still jittering on bubble follow mode?
 				if are_we_social_distancing == 1 and are_we_in_i_zone == 0 and bistance > (hcling + socialdistance_x_wiggle + socialdistance_z_wiggle) then --if we need to spread AND we arent in a zone of interact and not already within the buffer area
-					--*we will do some stuff here - do i need to remove this commment? i think its sorted
+					--*we will do some stuff here - do i need to remove this commment? i think its sorted -- testing if forcing visland solves multi mount following
 					fartX,fartZ = calculateBufferXY (EntityPlayerPositionX(),EntityPlayerPositionZ(),GetObjectRawXPos(nemm),GetObjectRawZPos(nemm))
-					if Svc.Condition[77] == false then yield("/vnav moveto "..fartX.." "..GetObjectRawYPos(nemm).." "..fartZ) end
-					if Svc.Condition[77] == true then yield("/vnav flyto "..fartX.." "..GetObjectRawYPos(nemm).." "..fartZ) end
+--					if Svc.Condition[77] == false then yield("/vnav moveto "..fartX.." "..GetObjectRawYPos(nemm).." "..fartZ) end
+					if Svc.Condition[4] == false and Svc.Condition[10] == false then yield("/vnav moveto "..fartX.." "..GetObjectRawYPos(nemm).." "..fartZ) end
+--					if Svc.Condition[77] == true and IsPartyMemberMounted(fren) == true and IPC.vnavmesh.IsRunning() == false then yield("/vnav flyto "..fartX.." "..GetObjectRawYPos(nemm).." "..fartZ) end
+					if Svc.Condition[4] == true and IsPartyMemberMounted(fren) == true then
+					    if bistance > 50 then --we will force navmesh if we are move than 50 yalm away this is ridiculous
+							yield("/vnav flyto "..fartX.." "..GetObjectRawYPos(nemm).." "..fartZ)
+							while IPC.vnavmesh.IsRunning() == true do yield("/wait 0.1") end
+						end
+					    if bistance < 50 then --we will force navmesh if we are move than 50 yalm away this is ridiculous
+							mooVdirX = fartX - EntityPlayerPositionX()
+							mooVdirY = GetObjectRawYPos(nemm) - EntityPlayerPositionY()
+							mooVdirZ = fartZ - EntityPlayerPositionZ()
+							yield("/visland movedir "..mooVdirX.." "..mooVdirY.." "..mooVdirZ)
+						end
+					end
 				end
 				if are_we_social_distancing == 0 or are_we_in_i_zone == 1 then --if we don't need to spread OR we are in a zone of interact
-					if Svc.Condition[77] == false then yield("/vnav moveto "..GetObjectRawXPos(nemm).." "..GetObjectRawYPos(nemm).." "..GetObjectRawZPos(nemm)) end
-					if Svc.Condition[77] == true then yield("/vnav flyto "..GetObjectRawXPos(nemm).." "..GetObjectRawYPos(nemm).." "..GetObjectRawZPos(nemm)) end
+					if Svc.Condition[4] == false and Svc.Condition[10] == false then yield("/vnav moveto "..GetObjectRawXPos(nemm).." "..GetObjectRawYPos(nemm).." "..GetObjectRawZPos(nemm)) end
+--					if if Svc.Condition[4] == false and Svc.Condition[10] == false then yield("/vnav moveto "..GetObjectRawXPos(nemm).." "..GetObjectRawYPos(nemm).." "..GetObjectRawZPos(nemm)) end
+--					if Svc.Condition[77] == true and IsPartyMemberMounted(fren) == true and IPC.vnavmesh.IsRunning() == false then yield("/vnav flyto "..GetObjectRawXPos(nemm).." "..GetObjectRawYPos(nemm).." "..GetObjectRawZPos(nemm)) end
+					if Svc.Condition[4] == true and IsPartyMemberMounted(fren) == true then
+					    if bistance > 50 then --we will force navmesh if we are move than 50 yalm away this is ridiculous
+							yield("/vnav moveto "..GetObjectRawXPos(nemm).." "..GetObjectRawYPos(nemm).." "..GetObjectRawZPos(nemm))
+							while IPC.vnavmesh.IsRunning() == true do yield("/wait 0.1") end
+						end
+					    if bistance < 50 then --we will force navmesh if we are move than 50 yalm away this is ridiculous
+							mooVdirX = GetObjectRawXPos(nemm) - EntityPlayerPositionX()
+							mooVdirY = GetObjectRawYPos(nemm) - EntityPlayerPositionY()
+							mooVdirZ = GetObjectRawZPos(nemm) - EntityPlayerPositionZ()
+							yield("/visland movedir "..mooVdirX.." "..mooVdirY.." "..mooVdirZ)
+						end
+					end
 				end
 				did_we_try_to_move = 1
 			end
@@ -873,7 +906,7 @@ function clingmove(nemm)
 		--visland
 		if zclingtype == 1 then
 			if Svc.Condition[77] == false then yield("/visland moveto "..GetObjectRawXPos(nemm).." "..GetObjectRawYPos(nemm).." "..GetObjectRawZPos(nemm)) end
-			if Svc.Condition[77] == true then yield("/visland flyto "..GetObjectRawXPos(nemm).." "..GetObjectRawYPos(nemm).." "..GetObjectRawZPos(nemm)) end
+			if Svc.Condition[77] == true then yield("/visland flyto "..GetObjectRawXPos(nemm).." "..GetObjectRawYPos(nemm).." "..GetObjectRawZPos(nemm)) end --flyto isn't actually a thing in visland. at least not anymore as of 2026 01 01 when i checked
 			did_we_try_to_move = 1
 		end
 		--not bmr
@@ -1021,6 +1054,7 @@ gawk_gawk_3000("Beginning fren rider main loop")
 xp_item_equip = 0 --counter
 re_engage = 0 --counter
 renav_check = 0
+flying_adjust = 0 --counter
 
 function IsPlayerReallyAvailable()
 	if Player.Available or Svc.Condition[11] then
@@ -1036,6 +1070,14 @@ while weirdvar == 1 do
 	if IsPlayerReallyAvailable() then
 		if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean" and type(Svc.Condition[4]) == "boolean" then
 			bistance = distance(EntityPlayerPositionX(), EntityPlayerPositionY(), EntityPlayerPositionZ(), GetObjectRawXPos(fren),GetObjectRawYPos(fren),GetObjectRawZPos(fren))
+			if Svc.Condition[77] then flying_adjust = flying_adjust + (timefriction / 0.1) end
+			if (flying_adjust > 0.1 and bistance < 10) or flying_adjust > 1 then
+				yield("/echo DEBUG -> trying to movedir")
+				yield("/hold SPACE")
+				yield("/wait 0.01")
+				yield("/release SPACE")
+				flying_adjust = 0
+			end
 			if bistance > maxbistance then --follow ourselves if fren too far away or it will do weird shit
 				clingmove(GetCharacterName())
 			end
@@ -1057,6 +1099,7 @@ while weirdvar == 1 do
 			if Svc.Condition[26] == true and type(GetTargetName()) == "string" and string.len(GetTargetName()) > 1 then
 				if distance(EntityPlayerPositionX(), EntityPlayerPositionY(), EntityPlayerPositionZ(), GetObjectRawXPos(GetTargetName()),GetObjectRawYPos(GetTargetName()),GetObjectRawZPos(GetTargetName())) < 3 then
 					yield("/vnav stop")
+					yield("/visland stop")
 				end
 			end
 
@@ -1077,9 +1120,10 @@ while weirdvar == 1 do
 				yield("/bmrai follow slot1")
 				if Svc.ClientState.TerritoryType ~= 1044 then
 					yield("/ac dismount")
+					yield("/visland stop")
 				end
 				yield("/wait 0.03")
-				rhandling()
+				--rhandling()
 			end
 
 			xp_item_equip = xp_item_equip + 1		
@@ -1091,7 +1135,7 @@ while weirdvar == 1 do
 			re_engage = re_engage + 1
 			if re_engage > 2 then --every 3 seconds we will do rhandling() just to make sure we are attacking stuff if we aren't mounted.
 				if Svc.Condition[4] == false then
-					rhandling()
+					--rhandling()
 				end
 				re_engage = 0
 			end
@@ -1112,7 +1156,7 @@ while weirdvar == 1 do
 				if bistance > maxbistance then --follow ourselves if fren too far away or it will do weird shit
 					clingmove(GetCharacterName())
 				end
-				--allright im getting sick of pratorium. its time to do something.
+				--allright im getting sick of praetorium. its time to do something.
 				if type(Svc.ClientState.TerritoryType) == "number" and Svc.ClientState.TerritoryType == 1044 and Svc.Condition[4] then --Praetorium
 					--if string.len(GetTargetName()) == 0 then
 					TargetClosestEnemy()
