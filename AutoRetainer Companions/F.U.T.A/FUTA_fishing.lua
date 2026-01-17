@@ -63,7 +63,14 @@ function fishing()
 		yield("/wait 1")
 		ungabunga()
 	end
-	 yield("/bait Versatile Lure")
+	
+	yield("/send ADD")
+	yield("/wait 1")
+	yield("/send ADD")
+	yield("/wait 1")
+	yield("/send ADD")
+	yield("/wait 1")
+	yield("/bait Versatile Lure")
 	 
 	--check if we have less than 3 versatile lures and more than 20000 gil if not we buy 20 of them!
 	while GetItemCount(29717) < 3 and GetItemCount(1) > 20000 do
