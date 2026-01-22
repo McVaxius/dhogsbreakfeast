@@ -1066,6 +1066,7 @@ end
 largebuttfucks = 0
 
 while weirdvar == 1 do
+	rhandling() -- force the rotation
 	--catch if character is ready before doing anything
 	if IsPlayerReallyAvailable() then
 		if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean" and type(Svc.Condition[4]) == "boolean" then
