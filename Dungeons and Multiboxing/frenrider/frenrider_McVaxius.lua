@@ -1181,7 +1181,23 @@ while weirdvar == 1 do
 				checkzoi()
 			end
 
+			if Svc.Condition[4] == false and Svc.Condition[10] == false then
+				rhandling()
+				yield("/vbmai on")
+				yield("/bmrai on")
+			end
+
 			if Svc.Condition[34] == false or fake_outdoors_foray == 1 then  --not in duty  or we are in a foray
+			if Svc.Condition[4] == true then
+				yield("/rotation cancel") --keep rotations off
+				yield("/bmrai off")
+				yield("/vbmai off")
+			end
+			if Svc.Condition[10] == true then
+				yield("/rotation cancel") --keep rotations off
+				yield("/bmrai off")
+				yield("/vbmai off")
+			end
 		--yield("/echo fake outdoors 2 -> "..fake_outdoors_foray)
 				--SAFETY CHECKS DONE, can do whatever you want now with characterconditions etc			
 				--movement with formation - initially we test while in any situation not just combat
@@ -1273,7 +1289,7 @@ while weirdvar == 1 do
 					ClearTarget()
 					we_were_in = we_are_in
 				end
-							
+	
 				--the code block that got this all started haha
 				--follow and mount fren
 				if Svc.Condition[26] == false then --not in combat
@@ -1351,17 +1367,6 @@ while weirdvar == 1 do
 					end
 					largefondles = 0
 					if Svc.Condition[34] == false or fake_outdoors_foray == 1 then largefondles = 1 end
-					if Svc.Condition[4] == false and Svc.Condition[10] == false then rhandling() end
-					if Svc.Condition[4] == true then
-						yield("/rotation cancel") --keep rotations off
-						yield("/bmrai off")
-						yield("/vbmai off")
-					end
-					if Svc.Condition[10] == true then
-						yield("/rotation cancel") --keep rotations off
-						yield("/bmrai off")
-						yield("/vbmai off")
-					end
 					if Svc.Condition[4] == false and Svc.Condition[10] == false and largefondles == 1 then --not mounted and not mounted2 (riding friend)
 						--chocobo stuff. first check if we can fly. if not don't try to chocobo
 						--actually check if we are in a sanctuary first, if true we aren't gonna try to check or do anything.
