@@ -1,5 +1,8 @@
 --[[
 Changelog
+v4
+fixed various crash bugs and aggro dismounting while in combat
+
 v3
 fixed following on multiple mounts - it was returning self location on follow instead of target location
 
