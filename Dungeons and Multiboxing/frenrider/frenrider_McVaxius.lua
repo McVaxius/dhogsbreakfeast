@@ -1066,7 +1066,6 @@ end
 largebuttfucks = 0
 
 while weirdvar == 1 do
-	rhandling() -- force the rotation
 	--catch if character is ready before doing anything
 	if IsPlayerReallyAvailable() then
 		if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean" and type(Svc.Condition[4]) == "boolean" then
@@ -1349,6 +1348,17 @@ while weirdvar == 1 do
 					end
 					largefondles = 0
 					if Svc.Condition[34] == false or fake_outdoors_foray == 1 then largefondles = 1 end
+					if Svc.Condition[4] == false and Svc.Condition[10] == false then rhandling() end
+					if Svc.Condition[4] == true then
+						yield("/rotation cancel") --keep rotations off
+						yield("/bmrai off")
+						yield("/vbmai off")
+					end
+					if Svc.Condition[10] == true then
+						yield("/rotation cancel") --keep rotations off
+						yield("/bmrai off")
+						yield("/vbmai off")
+					end
 					if Svc.Condition[4] == false and Svc.Condition[10] == false and largefondles == 1 then --not mounted and not mounted2 (riding friend)
 						--chocobo stuff. first check if we can fly. if not don't try to chocobo
 						--actually check if we are in a sanctuary first, if true we aren't gonna try to check or do anything.
@@ -1379,22 +1389,18 @@ while weirdvar == 1 do
 
 						--gawk_gawk_3000("fly fools .."..tostring(fly_you_fools))
 						if fly_you_fools == true then
-							if Svc.Condition[4] == true then
-								yield("/rotation cancel") --keep rotations off
-							end
-							if Svc.Condition[4] == false and Svc.Condition[10] == false and IsPartyMemberMounted(fren) == true then
+							if Svc.Condition[4] == false and Svc.Condition[26] == false and Svc.Condition[10] == false and IsPartyMemberMounted(fren) == true then
 								--mountup your own mount
 								--cancel movement
 								yield("/mount \""..fool_flier.."\"")
 								--yield("/wait 5") -- we can mount and move now
 								ClearTarget()
-								yield("/rotation Cancel")
 								--try to fly 
 								--yield("/gaction jump")
 								--yield("/lockon on")
 							end
 						end
-						if IsPartyMemberMounted(fren) == true and fly_you_fools == false then
+						if IsPartyMemberMounted(fren) == true and fly_you_fools == false and Svc.Condition[26] == false then
 							--for i=1,7 do
 								--yield("/ridepillion <"..partycardinality.."> "..i)
 								--yield("/echo fake outdoors 3 -> "..fake_outdoors_foray)
