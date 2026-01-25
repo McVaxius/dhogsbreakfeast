@@ -36,9 +36,10 @@ for i=1,#the_goats do
 		--/autoduty run DutyMode TerritoryTypeInteger LoopTimesInteger [BareModeBool]
 		
 		--check my level and sun sastasha if we are under  35
-		ehehehehheehLARGEFARTINGGOATShehehaskjlehjkhasehjk = GetLevel() --get our level and assign it to an easy to remember variable
-		if ehehehehheehLARGEFARTINGGOATShehehaskjlehjkhasehjk < 35 then yield("/ad run Support 1036 20 false") end --sastasha
-		if ehehehehheehLARGEFARTINGGOATShehehaskjlehjkhasehjk > 34 then yield("/ad run Support 1267 20 false") end --sunken temple of qarn
+		gyatlevel = GetLevel() --get our level and assign it to an easy to remember variable
+		if gyatlevel < 35 then yield("/ad run Support 1036 20 false") end --sastasha
+		if gyatlevel > 34 and gyatlevel < 44 then yield("/ad run Support 1267 20 false") end --sunken temple of qarn
+		if gyatlevel > 43 then yield("/ad run Support 1330 20 false") end --dzemael
 		yield("/snd stop all")
 --		return --end this for loop
 	end
