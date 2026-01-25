@@ -601,7 +601,7 @@ if type(Svc.Condition[34]) == "boolean" and type(Svc.Condition[26]) == "boolean"
 			yield("/wait 1")
 		end
 		yield("/wait 5")
-		yield("/ad queu	e The Porta Decumana")
+		yield("/ad queue The Porta Decumana")
 	end
 	
 	if imthecaptainnow == 1 and duty_counter < 2 then
