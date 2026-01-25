@@ -15,7 +15,7 @@ for i=1,#the_goats do
 	if GetCharacterName(true) == the_goats[i] and i < #the_goats then
 		yield("/ays relog "..the_goats[i+1])
 
-		while GetCharacterName(true) != the_goats[i] and i < #the_goats do
+		while GetCharacterName(true) ~= the_goats[i+1] and i < #the_goats do
 			yield("/echo Load -> "..the_goats[i+1])
 			yield("/ays relog " ..the_goats[i+1])
 			yield("/wait 3")
@@ -32,14 +32,15 @@ for i=1,#the_goats do
 		
 		--/autoduty run DutyMode TerritoryTypeInteger LoopTimesInteger [BareModeBool]
 		
-		--check my level and sun sastasha if we are under  35	
-		if GetLevel() < 35 then yield("/ad run Support 1036 20 false") end --sastasha
-		if GetLevel() > 34 then yield("/ad run Support 1267 20 false") end --sunken temple of qarn
+		--check my level and sun sastasha if we are under  35
+		ehehehehheehLARGEFARTINGGOATShehehaskjlehjkhasehjk = GetLevel() --get our level and assign it to an easy to remember variable
+		if ehehehehheehLARGEFARTINGGOATShehehaskjlehjkhasehjk < 35 then yield("/ad run Support 1036 20 false") end --sastasha
+		if ehehehehheehLARGEFARTINGGOATShehehaskjlehjkhasehjk > 34 then yield("/ad run Support 1267 20 false") end --sunken temple of qarn
 		
 		return --end this for loop
 	end
 	if GetCharacterName(true) == the_goats[i] and i == #the_goats then
-		yield("/ays m e"
+		yield("/ays m e")
 		return --end this for loop
 	end
 end
