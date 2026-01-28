@@ -37,6 +37,9 @@ for i=1,#the_goats do
 		
 		--check my level and sun sastasha if we are under  35
 		gyatlevel = GetLevel() --get our level and assign it to an easy to remember variable
+		if gyatlevel < 35 then IPC.AutoDuty.SetConfig("StopLevelInt", "35") end
+		if gyatlevel > 34 and gyatlevel < 44 then IPC.AutoDuty.SetConfig("StopLevelInt", "44") end
+		if gyatlevel > 43 and gyatlevel < 100 then IPC.AutoDuty.SetConfig("StopLevelInt", "47") end
 		if gyatlevel < 35 then yield("/ad run Support 1036 20 false") end --sastasha
 		if gyatlevel > 34 and gyatlevel < 44 then yield("/ad run Support 1267 20 false") end --sunken temple of qarn
 		if gyatlevel > 43 then yield("/ad run Support 1330 20 false") end --dzemael

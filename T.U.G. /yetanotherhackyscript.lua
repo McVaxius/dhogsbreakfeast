@@ -59,6 +59,15 @@ while hehe == "heehee" do
            yield("/ac Tomahawk")
            yield("/ac Aero")
         end
+        if zonetest == 266 then --level 15 thaumaturge
+            zdarget = "Momo's Urn"
+            if Svc.Condition(26) == true then
+                yield("/vnav stop")
+            end
+            if _distance(EntityPlayerPositionX(), EntityPlayerPositionY(), EntityPlayerPositionZ(), GetObjectRawXPos(zdarget),GetObjectRawYPos(zdarget),GetObjectRawZPos(zdarget)) > 5 and Svc.Condition(26) == false then
+                yield("/vnav moveto "..GetObjectRawXPos(zdarget).." "..GetObjectRawYPos(zdarget).." "..GetObjectRawZPos(zdarget))
+            end            
+        end
         if zonetest == 301 then --Level 38 - In the Eyes of Gods and Men -- need to target the rosary
             darget("Draconian Rosary")
             zdarget = "Draconian Rosary"
