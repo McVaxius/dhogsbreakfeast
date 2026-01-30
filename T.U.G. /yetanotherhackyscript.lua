@@ -38,11 +38,8 @@ while hehe == "heehee" do
     if Svc.Condition[34] ~= nil and Svc.Condition[34] == false then --not in duty
         zonetest = Svc.ClientState.TerritoryType
 		if zonetest == 130 then
-			yield("/echo we in the glitchy place dist to bad spot -> "..mydistto(-21,10,-41))
-			cleanrand = getRandomNumber(0, 99) --faild attempt to fix the "in combat" but not really issue
-			if mydistto(-21,10,-41) < 50 and cleanrand == 0 or mydistto(-21,10,-41) < 5 then
---			-14.859131813049 10.000000953674 -45.417598724365
---			-14.340654373169 10.000000953674 -43.860664367676
+			--yield("/echo we in the glitchy place dist to bad spot -> "..mydistto(-21,10,-41))
+			if mydistto(-21,10,-41) < 5 then
 				yield("/vnav moveto -14 10 -38")
 				yield("/echo damn uldah glitch")
 				yield("/wait 10")
@@ -111,6 +108,7 @@ while hehe == "heehee" do
         end
     end
     if Svc.Condition[34] ~= nil and Svc.Condition[34] == false then
+		zonetest = Svc.ClientState.TerritoryType
         --debug
         --yield("/echo GetPlayerRawXPos() -> "..GetPlayerRawXPos())
         --yield("/echo              hehex -> "..hehex)
