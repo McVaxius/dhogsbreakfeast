@@ -35,7 +35,28 @@ togglecounter = 0
 
 while hehe == "heehee" do
     yield("/bmrai on")
-    if Svc.Condition[34] ~= nil and Svc.Condition[34] == true then
+    if Svc.Condition[34] ~= nil and Svc.Condition[34] == false then --not in duty
+        zonetest = Svc.ClientState.TerritoryType
+		if zonetest == 130 then
+			yield("/echo we in the glitchy place dist to bad spot -> "..mydistto(-21,10,-41))
+			cleanrand = getRandomNumber(0, 99) --faild attempt to fix the "in combat" but not really issue
+			if mydistto(-21,10,-41) < 50 and cleanrand == 0 or mydistto(-21,10,-41) < 5 then
+--			-14.859131813049 10.000000953674 -45.417598724365
+--			-14.340654373169 10.000000953674 -43.860664367676
+				yield("/vnav moveto -14 10 -38")
+				yield("/echo damn uldah glitch")
+				yield("/wait 10")
+			end
+		end
+		cleanrand = getRandomNumber(0, 99) --faild attempt to fix the "in combat" but not really issue
+		if cleanrand == 0 and zonetest ~= 130 then
+			yield("/qst stop")
+			yield("/echo escaping from potential stuck in overworld")
+			yield("/wait 1")
+			yield("/qst start")
+		end
+	end
+    if Svc.Condition[34] ~= nil and Svc.Condition[34] == true then --are in duty
         togglecounter = togglecounter + 1
         arr_l_47 = 0
         zonetest = Svc.ClientState.TerritoryType
@@ -59,6 +80,17 @@ while hehe == "heehee" do
            yield("/ac Tomahawk")
            yield("/ac Aero")
         end
+		if zonetest == 130 and Svc.Condition[34] == false then
+--		if zonetest == 131 and Svc.Condition[34] == false then
+			cleanrand = getRandomNumber(0, 99) --faild attempt to fix the "in combat" but not really issue
+			if cleanrand == 0 and Svc.Condition[34] == false then
+				yield("/qst stop")
+				yield("/echo escaping from potential stuck in uldah")
+				yield("/wait 1")
+				yield("/qst start")
+			end
+		end
+        --[[ actualyl this doesnt work
         if zonetest == 266 then --level 15 thaumaturge
             zdarget = "Momo's Urn"
             if Svc.Condition(26) == true then
@@ -68,6 +100,7 @@ while hehe == "heehee" do
                 yield("/vnav moveto "..GetObjectRawXPos(zdarget).." "..GetObjectRawYPos(zdarget).." "..GetObjectRawZPos(zdarget))
             end            
         end
+        --]]
         if zonetest == 301 then --Level 38 - In the Eyes of Gods and Men -- need to target the rosary
             darget("Draconian Rosary")
             zdarget = "Draconian Rosary"
