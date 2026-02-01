@@ -36,6 +36,8 @@ q_w_kx = { --the list of bullshit quests we get stuck on because of slay x/y
 22, --way of hte conjuror kill various
 3854, --eggs over queesy kill chigoes
 376, --thou shalt not tresspass kill qirin
+253, --way of the gladiator
+329, --the perfect swamp
 12313 --nothing
 }
 
@@ -74,10 +76,28 @@ while hehe == "heehee" do
 		--test the types of Quest
 		--yield("/echo cleanrand -> "..cleanrand)
 		if zonetestZ == 0 and cleanrand == 0 then
+		--if zonetestZ == 0 and cleanrand < 20 then
 			zonetestZ = 1
 			yield("/echo testing to see if we on the right missiont to reset qst")
 			for i=1,#q_w_kx do
 				if Quests.IsQuestAccepted(i) then zonetestZ = 0 end
+				if Quests.IsQuestAccepted(618) then
+                    if mydistto(-340, -37, 241) < 5 then
+						yield("/echo trying to interact with ripe corpse")
+						yield("/qst stop")
+						yield("/send NUMPAD0")
+						yield("/wait 2")
+						--yield("/send NUMPAD5")
+						--yield("/wait 2")
+						yield("/interact")
+						yield("/wait 1")
+						yield("/interact")
+						yield("/wait 1")
+						yield("/interact")
+						yield("/wait 1")
+						yield("/target Ripe")
+					end
+				end
 			end
 			--yield("/echo q completed -> "..tostring(Quests.IsQuestComplete(i)))
 			--yield("/echo q accepted -> "..tostring(Quests.IsQuestAccepted(i)))
