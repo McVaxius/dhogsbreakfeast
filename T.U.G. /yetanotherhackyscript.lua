@@ -37,6 +37,7 @@ q_w_kx = { --the list of bullshit quests we get stuck on because of slay x/y
 3854, --eggs over queesy kill chigoes
 376, --thou shalt not tresspass kill qirin
 253, --way of the gladiator
+311, --way of the marauder
 329, --the perfect swamp
 12313 --nothing
 }
@@ -64,7 +65,7 @@ while hehe == "heehee" do
 		if zonetest == 129 then zonetestZ = 1 end --limsa
 		if zonetest == 133 then zonetestZ = 1 end --grid
 		if zonetest == 132 then zonetestZ = 1 end --grid
-		if Quests.IsQuestAccepted(448) and zonetest == 132 and cleanrand == 0 and IPC.vnavmesh.IsRunning() == false then --festive endevours in gridania finisher
+		if Quests.IsQuestAccepted(448) and zonetest == 132 and cleanrand == 0 and IPC.vnavmesh.IsRunning() == false and mydistto(228, 2, 38) < 20 then --festive endevours in gridania finisher
 			yield("/echo maybe we can tp back to grid now")
 			yield("/tp grid")
 			yield("/qst stop")
@@ -75,6 +76,32 @@ while hehe == "heehee" do
 		end
 		--test the types of Quest
 		--yield("/echo cleanrand -> "..cleanrand)
+		if zonetest == 145 and mydistto(-332, -22, 432) < 5 then  --we just finished the halatali unlock and need to continue the msq
+			yield("/tp horizon")
+		end
+		--START HALATALI RECOVERY
+		if Quests.IsQuestComplete(697) then -- this is the code for halatali
+			if zonetest == 140 and Player.Job.Level > 22 and mydistto(72, 45, -221) < 25 then --get to the waking sands
+				yield("/vnav moveto -483, 17, -386")
+				yield("/wait 20")
+			end
+			if zonetest == 140 and Player.Job.Level > 22 and mydistto(-483, 17, -386) < 5 then
+				yield("/target entrance")
+				yield("/wait 2")
+				yield("/send NUMPAD5")
+				yield("/interact")
+				yield("/send NUMPAD0")
+				yield("/wait 2")
+			end
+			if zonetest == 212 and Player.Job.Level > 22 then
+				yield("/target solar")
+				yield("/wait 2")
+				yield("/interact")
+				yield("/send NUMPAD0")
+				yield("/wait 20")
+			end
+		end
+		--END HALATALI RECOVERY
 		if zonetestZ == 0 and cleanrand == 0 then
 		--if zonetestZ == 0 and cleanrand < 20 then
 			zonetestZ = 1
