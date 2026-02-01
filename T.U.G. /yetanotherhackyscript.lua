@@ -79,7 +79,8 @@ while hehe == "heehee" do
 		if zonetest == 145 and mydistto(-332, -22, 432) < 5 then  --we just finished the halatali unlock and need to continue the msq
 			yield("/tp horizon")
 		end
-		--START HALATALI RECOVERY
+		--START HALATALI RECOVERY - actually this is not safe if we picked immortal flames GC. best to just remove halatali from the prio quests
+		--[[
 		if Quests.IsQuestComplete(697) then -- this is the code for halatali
 			if zonetest == 140 and Player.Job.Level > 22 and mydistto(72, 45, -221) < 25 then --get to the waking sands
 				yield("/vnav moveto -483, 17, -386")
@@ -101,6 +102,7 @@ while hehe == "heehee" do
 				yield("/wait 20")
 			end
 		end
+		--]]
 		--END HALATALI RECOVERY
 		if zonetestZ == 0 and cleanrand == 0 then
 		--if zonetestZ == 0 and cleanrand < 20 then
