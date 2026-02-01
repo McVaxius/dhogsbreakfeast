@@ -38,6 +38,7 @@ q_w_kx = { --the list of bullshit quests we get stuck on because of slay x/y
 376, --thou shalt not tresspass kill qirin
 253, --way of the gladiator
 311, --way of the marauder
+314, --wake of destruction
 329, --the perfect swamp
 12313 --nothing
 }
@@ -65,6 +66,21 @@ while hehe == "heehee" do
 		if zonetest == 129 then zonetestZ = 1 end --limsa
 		if zonetest == 133 then zonetestZ = 1 end --grid
 		if zonetest == 132 then zonetestZ = 1 end --grid
+		if Quests.IsQuestAccepted(466) and zonetest == 134 and cleanrand < 20 and IPC.vnavmesh.IsRunning() == false and mydistto(192, 46, 119) < 5 then --festive endevours double dealing in noscea
+			yield("/qst stop")
+			yield("/target Sozai")
+			yield("/target Aylmer")
+			yield("/target Eyrimhus")
+			yield("/echo targeting these fuckers")
+			yield("/wait 2")
+			yield("/interact")
+			yield("/wait 2")
+			yield("/interact")
+			yield("/wait 2")
+			yield("/interact")
+			yield("/wait 20")
+			yield("/qst start")
+		end
 		if Quests.IsQuestAccepted(448) and zonetest == 132 and cleanrand == 0 and IPC.vnavmesh.IsRunning() == false and mydistto(228, 2, 38) < 20 then --festive endevours in gridania finisher
 			yield("/echo maybe we can tp back to grid now")
 			yield("/tp grid")
@@ -146,9 +162,8 @@ while hehe == "heehee" do
                 yield("/qst reload")
                 togglecounter = 0
             end
-            
             if Svc.Condition[26] == false then
-                --yield("/send KEY_1")
+                if Player.Job.Level < 11 then yield("/send KEY_1") end
                 yield("/ac Tomahawk")
                 yield("/ac Aero")
             end
