@@ -1,5 +1,7 @@
 --[[
 Changelog
+v5 maybe multi mounts will work correctly now. we shall see.
+
 v4
 fixed various crash bugs and aggro dismounting while in combat
 
@@ -424,7 +426,7 @@ idle_shitter_list = {
 "/lookout",
 "/pushups", --10 command missions with squad
 "/winded", --3k centurio seals
-"/groundsit",
+--"/groundsit", --this is annoying
 "/lean",	 --firmament
 "/overreact",
 "/water", --2 achivement certs from old grid
@@ -822,7 +824,7 @@ function clingmove(nemm)
 		gawk_gawk_3000("Cannot find >"..nemm.."< or they are somehow at 0,0,0 - we are not moving")
 		return
 	end
-	--jump if we are mounted and below the leader by 10 yalms
+	--jump if we are mounted and below the leader by 10 yalms AND the leader is moutned
 	if (GetObjectRawYPos(nemm) - EntityPlayerPositionY()) > 9 and Svc.Condition[4] == true then
 		yield("/gaction jump")
 	end
@@ -874,16 +876,20 @@ function clingmove(nemm)
 					if Svc.Condition[4] == false and Svc.Condition[10] == false then yield("/vnav moveto "..fartX.." "..GetObjectRawYPos(nemm).." "..fartZ) end
 --					if Svc.Condition[77] == true and IsPartyMemberMounted(fren) == true and IPC.vnavmesh.IsRunning() == false then yield("/vnav flyto "..fartX.." "..GetObjectRawYPos(nemm).." "..fartZ) end
 					if Svc.Condition[4] == true and IsPartyMemberMounted(fren) == true then
-					    if bistance > 50 then --we will force navmesh if we are move than 50 yalm away this is ridiculous
-							yield("/vnav flyto "..fartX.." "..GetObjectRawYPos(nemm).." "..fartZ)
-							while IPC.vnavmesh.IsRunning() == true do yield("/wait 0.1") end
+					    if bistance > 5 then --we will force navmesh if we are move than 1 yalm away to avoid wiggle
+							--cleanrand = getRandomNumber(0, 99) --faild attempt to fix the stuck on rock
+							if bistance < 5 then yield("/vnav stop") end
+							if IPC.vnavmesh.IsRunning() == false then yield("/vnav flyto "..GetObjectRawXPos(nemm).." "..GetObjectRawYPos(nemm).." "..GetObjectRawZPos(nemm)) end
+							--while IPC.vnavmesh.IsRunning() == true do yield("/wait 0.1") end
 						end
+						--[[
 					    if bistance < 50 then --we will force navmesh if we are move than 50 yalm away this is ridiculous
 							mooVdirX = fartX - EntityPlayerPositionX()
 							mooVdirY = GetObjectRawYPos(nemm) - EntityPlayerPositionY()
 							mooVdirZ = fartZ - EntityPlayerPositionZ()
 							yield("/visland movedir "..mooVdirX.." "..mooVdirY.." "..mooVdirZ)
 						end
+						--]] --visland does not behave correctly.
 					end
 				end
 				if are_we_social_distancing == 0 or are_we_in_i_zone == 1 then --if we don't need to spread OR we are in a zone of interact
@@ -891,16 +897,20 @@ function clingmove(nemm)
 --					if if Svc.Condition[4] == false and Svc.Condition[10] == false then yield("/vnav moveto "..GetObjectRawXPos(nemm).." "..GetObjectRawYPos(nemm).." "..GetObjectRawZPos(nemm)) end
 --					if Svc.Condition[77] == true and IsPartyMemberMounted(fren) == true and IPC.vnavmesh.IsRunning() == false then yield("/vnav flyto "..GetObjectRawXPos(nemm).." "..GetObjectRawYPos(nemm).." "..GetObjectRawZPos(nemm)) end
 					if Svc.Condition[4] == true and IsPartyMemberMounted(fren) == true then
-					    if bistance > 50 then --we will force navmesh if we are move than 50 yalm away this is ridiculous
-							yield("/vnav moveto "..GetObjectRawXPos(nemm).." "..GetObjectRawYPos(nemm).." "..GetObjectRawZPos(nemm))
-							while IPC.vnavmesh.IsRunning() == true do yield("/wait 0.1") end
+					    if bistance > 5 then --we will force navmesh if we are move than 1 yalm away to avoid wiggle
+							--if IPC.vnavmesh.IsRunning() == false then yield("/vnav flyto "..fartX.." "..GetObjectRawYPos(nemm).." "..fartZ) end
+							if bistance < 5 then yield("/vnav stop") end
+							if IPC.vnavmesh.IsRunning() == false then yield("/vnav flyto "..GetObjectRawXPos(nemm).." "..GetObjectRawYPos(nemm).." "..GetObjectRawZPos(nemm)) end
+							--while IPC.vnavmesh.IsRunning() == true do yield("/wait 0.1") end
 						end
+						--[[
 					    if bistance < 50 then --we will force navmesh if we are move than 50 yalm away this is ridiculous
-							mooVdirX = GetObjectRawXPos(nemm) - EntityPlayerPositionX()
+							mooVdirX = fartX - EntityPlayerPositionX()
 							mooVdirY = GetObjectRawYPos(nemm) - EntityPlayerPositionY()
-							mooVdirZ = GetObjectRawZPos(nemm) - EntityPlayerPositionZ()
+							mooVdirZ = fartZ - EntityPlayerPositionZ()
 							yield("/visland movedir "..mooVdirX.." "..mooVdirY.." "..mooVdirZ)
 						end
+						--]] --visland does not behave correctly.
 					end
 				end
 				did_we_try_to_move = 1

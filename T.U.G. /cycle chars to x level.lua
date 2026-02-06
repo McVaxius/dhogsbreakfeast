@@ -37,11 +37,22 @@ for i=1,#the_goats do
 		
 		--check my level and sun sastasha if we are under  35
 		gyatlevel = GetLevel() --get our level and assign it to an easy to remember variable
+		--set the recursive script check level
 		if gyatlevel < 35 then IPC.AutoDuty.SetConfig("StopLevelInt", "35") end
-		if gyatlevel > 34 and gyatlevel < 44 then IPC.AutoDuty.SetConfig("StopLevelInt", "44") end
+		if gyatlevel > 34 and gyatlevel < 44 and GetFlamesGCRank() == 0 then IPC.AutoDuty.SetConfig("StopLevelInt", "44") end
+		if GetFlamesGCRank() > 0 then
+			if gyatlevel > 34 and gyatlevel < 38 then IPC.AutoDuty.SetConfig("StopLevelInt", "38") end
+			if gyatlevel > 37 and gyatlevel < 44 then IPC.AutoDuty.SetConfig("StopLevelInt", "44") end
+		end
 		if gyatlevel > 43 and gyatlevel < 100 then IPC.AutoDuty.SetConfig("StopLevelInt", "47") end
-		if gyatlevel < 35 then yield("/ad run Support 1036 20 false") end --sastasha
-		if gyatlevel > 34 and gyatlevel < 44 then yield("/ad run Support 1267 20 false") end --sunken temple of qarn
+		--pick the duty now
+		--if gyatlevel < 35 then yield("/ad run Support 1036 20 false") end --sastasha
+		if gyatlevel < 35 then yield("/ad run Support 1245 20 false") end --halatali
+		if gyatlevel > 34 and gyatlevel < 44 and GetFlamesGCRank() == 0 then yield("/ad run Support 1267 20 false") end --sunken temple of qarn
+		if GetFlamesGCRank() > 0 then
+			if gyatlevel > 34 and gyatlevel < 38 then yield("/ad run Support 1267 20 false") end --sunken temple of qarn
+			if gyatlevel > 37 and gyatlevel < 44 then yield("/ad run Support 1303 20 false") end --cuckers cry
+		end
 		if gyatlevel > 43 then yield("/ad run Support 1330 20 false") end --dzemael
 		yield("/snd stop all")
 --		return --end this for loop
