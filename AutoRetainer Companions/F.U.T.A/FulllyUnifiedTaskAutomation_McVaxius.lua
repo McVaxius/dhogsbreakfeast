@@ -45,6 +45,11 @@ Known issues and resolution
 	Automarket is donezo. it was nice while it lasted.  maybe a replacement will appear. i am looking at some script alternative but i don't like it.	for now i set the default value for illegal cleaning to 0 until a solution appears. you can leave existing configurations alone as if it comes back it will just start working again if you update dfunc
 
 --]]
+
+yield("/henchman stop")
+RestoreYesAlready() --bring it back so we can do stuff
+
+
 ------------------------------------------------------------
 -------------------Static Variables-------------------------
 ------------------------------------------------------------
@@ -890,3 +895,4 @@ if wheeequeheeheheheheheehhhee == 1 then
 end
 --yield("/snd stop all") --uncomment this if you want it to clear snd errors after script run
 PauseYesAlready() --we dont need this unless we do then plugin/etc will turn it on - this is so that questionable x cbt doesn't break for seasonals
+yield("/henchman OnABoat")
