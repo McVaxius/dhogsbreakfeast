@@ -294,12 +294,14 @@ if re_organize_return_locations == 1 then
 end
 
 --temporary work around until AR plays nice
-if FUTA_processors[hoo_arr_weeeeee][11][6942069] ~= nil then
-	if FUTA_processors[hoo_arr_weeeeee][11][6942069] == 1 then
-		FUTA_processors[hoo_arr_weeeeee][11][6942069] = 0 --new var im inventing for checking if we just did an AR run so we don't get stuck in an infinite loop
-		tablebunga(FUTA_config_file, "FUTA_processors", folderPath)
-		yield("/echo tablebunga() completed successfully AND We are avoiding getting caught in a loop")
-		yield("/snd stop all")
+function temporary_permanent_doublecheck()
+	if FUTA_processors[hoo_arr_weeeeee][11][6942069] ~= nil then
+		if FUTA_processors[hoo_arr_weeeeee][11][6942069] == 1 then
+			FUTA_processors[hoo_arr_weeeeee][11][6942069] = 0 --new var im inventing for checking if we just did an AR run so we don't get stuck in an infinite loop
+			tablebunga(FUTA_config_file, "FUTA_processors", folderPath)
+			yield("/echo tablebunga() completed successfully AND We are avoiding getting caught in a loop")
+			yield("/snd stop all")
+		end
 	end
 end
 
@@ -487,6 +489,7 @@ if wheeequeheeheheheheheehhhee == 0 then
 				wheeequeheeheheheheheehhhee = 1  --re using this var because we can and it means the same thing at end of script
 				yield("/echo Debug: Inventory cleaning adjustment started")
 				--kneecapping AR for now because it interferes with am
+				temporary_permanent_doublecheck() -- kill the script and let AR continue
 				yield("/ays multi d")
 				yield("/wait 1")
 				yield("/ays reset")

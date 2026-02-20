@@ -217,6 +217,14 @@
       {
         "Track": "Stance",
         "Option": "Disabled"
+      },
+      {
+        "Track": "Personal mits",
+        "Option": "Disabled"
+      },
+      {
+        "Track": "Invuln",
+        "Option": "Disabled"
       }
     ],
     "BossMod.Autorotation.VeynBRD": [],
@@ -226,17 +234,22 @@
         "Option": "Slowcast"
       },
       {
-        "Track": "Esuna2",
-        "Option": "Enabled"
-      },
-      {
         "Track": "RaiseTargets",
         "Option": "Everyone"
+      },
+      {
+        "Track": "Esuna2",
+        "Option": "Enabled"
       }
     ],
     "BossMod.Autorotation.xan.MeleeAI": [],
     "BossMod.Autorotation.xan.RangedAI": [],
-    "BossMod.Autorotation.akechi.AkechiPLD": [],
+    "BossMod.Autorotation.akechi.AkechiPLD": [
+      {
+        "Track": "Dash",
+        "Option": "Delay"
+      }
+    ],
     "BossMod.Autorotation.xan.SCH": [],
     "BossMod.Autorotation.xan.PhantomAI": [
       {
@@ -250,6 +263,7 @@
         "Option": "Slowcast"
       }
     ],
+    "BossMod.Autorotation.xan.BozjaAI": [],
     "BossMod.Autorotation.MiscAI.NormalMovement": [
       {
         "Track": "Cast",
