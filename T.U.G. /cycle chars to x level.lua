@@ -1,12 +1,15 @@
 require("dfunc")
 
 the_goats = {
-"floop floop@Floopiorous",
-"floop floopb@Floopiorous",
-"floop floopc@Floopiorous",
-"floop floopd@Floopiorous",
-"floop floope@Floopiorous",
 "floop floopf@Floopiorous",
+"floop floopf@Floopiorous",
+"floop floopf@Floopiorous",
+"floop floopf@Floopiorous",
+"floop floopf@Floopiorous",
+"floop floopf@Floopiorous",
+"floop floopf@Floopiorous",
+"floop floopf@Floopiorous",
+"floop floopf@Floopiorous"
 }
 
 --find out who we are on. and pick the next in list, unless we are at end of list in which case "/ays m e" to turn multi back on and cal it a day
@@ -14,6 +17,14 @@ the_goats = {
 yield("/wait 15")
 function do_it()
 	--check my level and sun sastasha if we are under  35
+	yield("/wait 3")
+	--switch to highest level combat job if we aren't on it already.
+	if are_we_dol() then
+		yield("/equipjob "..job_short(which_cj()))
+		yield("/echo Switching to "..job_short(which_cj()))
+		yield("/wait 3")
+	end
+	yield("/wait 3")
 	gyatlevel = GetLevel() --get our level and assign it to an easy to remember variable
 	--set the recursive script check level
 	if gyatlevel < 35 then IPC.AutoDuty.SetConfig("StopLevelInt", "35") end

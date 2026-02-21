@@ -598,9 +598,12 @@ function return_fc_near_bell()
 end
 
 function are_we_dol()
-	is_it_dol = false
+	is_it_dol = true
 	yield("/echo Our job is "..tostring(GetClassJobId()))
-	if type(GetClassJobId()) == "number" and GetClassJobId() > 7 and GetClassJobId() < 19 then
+	--if type(GetClassJobId()) == "number" and GetClassJobId() > 7 and GetClassJobId() < 19 then
+	if Player.GetJob(GetClassJobId()).IsDiscipleOfWar then is_it_dol = false end
+	if Player.GetJob(GetClassJobId()).IsDiscipleOfMagic then is_it_dol = false end
+	if is_it_dol then
 		is_it_dol = true
 		yield("/echo We are a Disciple of the (H/L)and")
 	end
@@ -629,18 +632,23 @@ function which_cj()
 	highest_cj_level = 0
 	yield("/echo Time to figure out which job ID to switch to !")
 	for i=0,7 do
-		if tonumber(GetLevel(i)) ~= nil then
-			if tonumber(GetLevel(i)) > highest_cj_level then
-				highest_cj_level = GetLevel(i)
+		if Player.GetJob(i).Level ~= nil then
+		--if tonumber(GetLevel(i)) ~= nil then
+			if Player.GetJob(i).Level > highest_cj_level then
+			--if tonumber(GetLevel(i)) > highest_cj_level then
+				highest_cj_level = Player.GetJob(i).Level
 				highest_cj = i
 				yield("/echo Oh my maybe job->"..i.." lv->"..tostring(highest_cj_level).." is the highest one?")
 			end
 		end
 	end
 	for i=19,29 do
-		if tonumber(GetLevel(i)) ~= nil then
-			if tonumber(GetLevel(i)) > highest_cj_level then
-				highest_cj_level = GetLevel(i)
+		if Player.GetJob(i).Level ~= nil then
+		--if tonumber(GetLevel(i)) ~= nil then
+			if Player.GetJob(i).Level > highest_cj_level then
+			--if tonumber(GetLevel(i)) > highest_cj_level then
+				highest_cj_level = Player.GetJob(i).Level
+				--highest_cj_level = GetLevel(i)
 				highest_cj = i
 				yield("/echo Oh my maybe job->"..i.." lv->"..tostring(highest_cj_level).." is the highest one?")
 			end
@@ -652,6 +660,8 @@ end
 function job_short(which_cj)
 	yield("/echo Time to figure out which job shortname to switch to !")
 	if which_cj == -1 then shortjob = "adv" end
+	shortjob = Player.GetJob(which_cj).Abbreviation
+	--[[
 	if which_cj == 1 then shortjob = "gld" 
 		if GetItemCount(4542) > 0 then
 			shortjob = "pld"
@@ -702,6 +712,7 @@ function job_short(which_cj)
 	if which_cj == 27 then shortjob = "dnc" end
 	if which_cj == 28 then shortjob = "rpr" end
 	if which_cj == 29 then shortjob = "sge" end
+	]]--
 	return shortjob
 end
 
