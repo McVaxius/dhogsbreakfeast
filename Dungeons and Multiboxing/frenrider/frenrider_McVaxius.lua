@@ -461,7 +461,7 @@ duties_with_distancing = {
 
 {759,"Doman Enclave"},
 {915,"Gangos"},
-{920,"Hydatos"},
+{920,"Bozja"},
 {975,"Zadnor"},
 
 {1237,"Sinus Ardorum"}, 				--no mounts

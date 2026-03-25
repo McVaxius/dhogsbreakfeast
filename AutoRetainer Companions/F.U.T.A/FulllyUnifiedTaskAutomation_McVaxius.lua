@@ -9,7 +9,7 @@ This script will, after AR is done, do various things based on a set of rules yo
 
 It could be ocean fishing, triple triad, inventory cleaning, going for a jog around the housing ward, delivering something to specific person, crafting. or whatever!
 
-Requirements : SND, vnavmesh, dropbox, visland, pandora, simpletweaks
+Requirements : SND, vnavmesh, dropbox, visland, pandora, simpletweaks, henchman
 and maybe more - let's see where we go with it
 everything from the folder you found this
 and https://raw.githubusercontent.com/McVaxius/dhogsbreakfeast/refs/heads/main/dfunc.lua
@@ -72,8 +72,11 @@ automarketfix = "AutoBot" -- try to xldisable profile automarket. however if you
 equip_from_table = 0 --0 is no, 1 is yes
 illegalcleaningresetvalue = 3 --this is the pct chance it will try to do a "selling/repricing" after completing AR tasks. it is also the value it sets after a cleaning is done/triggered. 3% might actually be kind of high if you have lots of chars . i might lower it to 1 for myself.
 dontforceillegalcleaning = 1 --this is so it doesnt force a 100% chance to illegally clean after a gc cleaning. this is probably best if you have giant empire you want to delay cleanings as much as possible
-maxlevel = 100 --this is fishing max level to go ocean fishing. set it to 30 if you just want to prep chars for leves. its 1-2 trips to get to 30
-maxspread = 10 --this is the level spread from max level to look for 
+
+--this is kind of obselete now. we are recommending you use henchman for fishing and just disable these settings.
+--maxlevel = 100 --this is fishing max level to go ocean fishing. set it to 30 if you just want to prep chars for leves. its 1-2 trips to get to 30
+maxlevel = 2 --disabled
+maxspread = 1 --this is the level spread from max level to look for 
 levecheck = 0 -- set this to 1 if you want maxlevel to be the goal with ocean fishing, but ONLY if they are maxlevel-maxspread in fisher, so that you can patiently wait till they are leveled as high as they can go with leves first.
 			  -- set it to 0 if you want maxlevel to be the goal for ocean fishing.  maxspread won't matter in this case.
 ------------------------------------------

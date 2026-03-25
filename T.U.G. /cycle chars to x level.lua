@@ -40,7 +40,8 @@ function do_it()
 	if questcheck ~= 666 then
 		while Quests.IsQuestComplete(questcheck) == false do
 			yield("/echo waiting for quest -> "..questcheck.." to finish")
-			yield("/wait 5")
+            yield("/qst start")
+			yield("/wait 20")
 		end
 	end
 	
