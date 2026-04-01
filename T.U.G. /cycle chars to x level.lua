@@ -27,7 +27,7 @@ function do_it()
 	yield("/wait 3")
 	gyatlevel = GetLevel() --get our level and assign it to an easy to remember variable
 	--check the quests and run them if not done - make sure they are in priority queue and set priority queue to not self delete
-	questcheck = 666
+    questcheck = 574
 	if gyatlevel > 31 then questcheck = 764 end --open qarn 764 "Braving new Depths"
 	if gyatlevel > 34 then questcheck = 921 end --open cutters 921 "Dishonor before Death"
 	if gyatlevel > 41 then --open dzemael shadows uncast 1128 1129 1130 lim grid ulda
@@ -35,14 +35,15 @@ function do_it()
 		if GetAddersGCRank() > 0 then questcheck = 1129 end
 		if GetMaelstromGCRank() > 0 then questcheck = 1128 end
 	end
-	
+
 	--now lets see if that quest is done.
-	if questcheck ~= 666 then
+	if questcheck ~= 574 then
 		while Quests.IsQuestComplete(questcheck) == false do
 			yield("/echo waiting for quest -> "..questcheck.." to finish")
             yield("/qst start")
 			yield("/wait 20")
 		end
+            yield("/qst stop")
 	end
 	
 	--set the recursive script check level
